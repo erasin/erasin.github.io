@@ -1,0 +1,271 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>mdbook - Rust 学习日志</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Rust 学习日志">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="../">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+        <link rel="stylesheet" href="theme/style.css">
+        
+
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li><a href="./setup.html"><strong>1.</strong> 安装</a></li><li><a href="./book.html"><strong>2.</strong> 书籍</a></li><li><a href="./soft.html"><strong>3.</strong> 软件</a></li><li><ul class="section"><li><a href="./soft/mdbook.html" class="active"><strong>3.1.</strong> mdbook</a></li></ul></li><li><a href="./crates.html"><strong>4.</strong> 三方包</a></li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                    </div>
+
+                    <h1 class="menu-title">Rust 学习日志</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="./soft/mdbook.html#mdbook" id="mdbook"><h1>mdbook</h1></a>
+<p><a href="https://github.com/azerupi/mdBook">github</a> <a href="http://azerupi.github.io/mdBook/">doc</a></p>
+<!-- TOC -->
+<ul>
+<li><a href="./soft/mdbook.html#1-%E5%AE%89%E8%A3%85">1. 安装</a></li>
+<li><a href="./soft/mdbook.html#2-%E4%BD%BF%E7%94%A8">2. 使用</a></li>
+<li><a href="./soft/mdbook.html#3-%E9%AB%98%E9%98%B6">3. 高阶</a>
+<ul>
+<li><a href="./soft/mdbook.html#31-%E4%B8%BA%E9%A1%B5%E9%9D%A2%E8%BF%BD%E5%8A%A0-js-%E6%88%96%E8%80%85-css">3.1. 为页面追加 js 或者 css</a></li>
+<li><a href="./soft/mdbook.html#32-%E4%BF%AE%E6%94%B9-indexhbs-%E6%A8%A1%E6%9D%BF">3.2. 修改 index.hbs 模板</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<a class="header" href="./soft/mdbook.html#1-安装" id="1-安装"><h1>1. 安装</h1></a>
+<p>建议到<a href="https://github.com/azerupi/mdBook/releases">mdbook 项目地址</a>，下载与系统对应的最新版本。</p>
+<p>如果安装了 RUST 环境，可以使用 cargo 安装</p>
+<pre><code class="language-bash">cargo install mdbook
+</code></pre>
+<a class="header" href="./soft/mdbook.html#2-使用" id="2-使用"><h1>2. 使用</h1></a>
+<p><strong>mdbook</strong> 命令</p>
+<ul>
+<li>help 查看帮助</li>
+<li>init 创建和初始化文档</li>
+<li>build 生成book</li>
+<li>serve 建立本地服务，默认地址为 <a href="http://localhost:3000">http://localhost:3000</a></li>
+<li>watch 监控文件变动</li>
+</ul>
+<p>使用 init 创建文档</p>
+<pre><code class="language-bash"># 1. 创建 bookname 
+mdbook init bookname  # 直接生成文件夹以及初始文件
+# 1.2 将现有文件夹转换为 book, 和上面等价
+mkdir  bookname
+cd bookname
+mdbook init
+</code></pre>
+<p>使用 serve 建立本地服务，实时预览</p>
+<pre><code class="language-bash">mdbook serve
+</code></pre>
+<p>在发布 html book 之前 ，需要使用 build 生成正式的文件</p>
+<blockquote>
+<p>在使用 serve 命令的时候，默认开启了 WebSocket 来自动更新，所以最后需要使用 build 来生成正式的文件。</p>
+</blockquote>
+<a class="header" href="./soft/mdbook.html#3-高阶" id="3-高阶"><h1>3. 高阶</h1></a>
+<p>在 mdbook 中可以追加 <code>book.toml</code> 和 <code>theme</code> 文件夹来实现高级的功能。</p>
+<p>book.toml， 内部参数可以选择使用，仅需添加需要的配置</p>
+<pre><code class="language-toml">title = &quot;&quot;
+author = &quot;&quot;
+description = &quot;&quot;
+
+[output.html]
+# theme 路径
+theme = &quot;./theme&quot;
+mathjax-support = true
+additional-js = [&quot;./theme/xxx.js&quot;]
+additional-css = [&quot;./theme/xxx.css&quot;]
+google_analytics = &quot;&quot; # 这里为统计ID
+
+# 使用编辑器
+[output.html.playpen]
+#editor = &quot;&quot;  #自定义编辑器的时候输入
+editable = true 
+
+</code></pre>
+<a class="header" href="./soft/mdbook.html#31-为页面追加-js-或者-css" id="31-为页面追加-js-或者-css"><h2>3.1. 为页面追加 js 或者 css</h2></a>
+<p>比如想要将页面中的 link 中特定的字符串转换为图标</p>
+<ol>
+<li>
+<p>修改 <code>book.toml</code> 追加 js, 让页面上加载 <code>Custom JS script</code></p>
+<pre><code class="language-toml">...
+
+[output.html]
+additional-js = [&quot;./theme/icons.js&quot;]
+
+...
+</code></pre>
+</li>
+<li>
+<p>创建 <code>./theme/icons.js</code> 追加内容</p>
+<pre><code class="language-js">$( document ).ready(function() {
+    $('a').each(function(element) {
+        var link = $(this);
+        switch (link.text()) {
+            case &quot;github&quot;:
+                link.html('&lt;i class=&quot;fa fa-github&quot;&gt;&lt;/i&gt;');
+                break;
+            case &quot;doc&quot;:
+                link.html('&lt;i class=&quot;fa fa-book&quot;&gt;&lt;/i&gt;');
+                break;
+            case &quot;site&quot;:
+                link.html('&lt;i class=&quot;fa fa-home&quot;&gt;&lt;/i&gt;');
+                break;
+            case &quot;crate&quot;:
+                link.html('&lt;i class=&quot;fa fa-cubes&quot;&gt;&lt;/i&gt;');
+                break;
+            default:
+                break;
+        }
+    });
+});
+</code></pre>
+</li>
+</ol>
+<blockquote>
+<p>参照 <a href="http://fontawesome.io/icons/">fontawesome-icon</a> 进行图标处理</p>
+</blockquote>
+<a class="header" href="./soft/mdbook.html#32-修改-indexhbs-模板" id="32-修改-indexhbs-模板"><h2>3.2. 修改 index.hbs 模板</h2></a>
+<p>mdbook 提供了可以直接修改文章模板来直接修改布局， 可以参考和拷贝<a href="https://github.com/azerupi/mdBook/blob/master/src/theme/index.hbs">默认模板</a> 来修改出自己的默认布局。</p>
+<p>在项目文件夹目录内创建 theme 文件夹，可以在内部替换默认的一些文件</p>
+<ul>
+<li>index.hbs  文档模板</li>
+<li>book.js  主要 js 处理</li>
+<li>book.css 页面样式</li>
+<li>favicon.png 页面图标</li>
+<li>...</li>
+</ul>
+<blockquote>
+<p>这里不建议替换，而是选择配置 <code>additional-js|css</code> 来扩展定义。当然需要进行大量的定制的情况除外。</p>
+</blockquote>
+<p>index.hbs 使用的是 handlebars 模板系统， 内部变量统一使用 <code>{{ name_of_property }}</code> 来表示。
+模板提供了一些默认的配置和变量。  建议阅读<a href="http://azerupi.github.io/mdBook/format/theme/index-hbs.html">官方文档</a> 和 <a href="https://github.com/azerupi/mdBook/blob/master/src/theme/index.hbs">默认模板</a> 进行解析。</p>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a rel="prev" href="./soft.html" class="mobile-nav-chapters previous" title="Previous chapter">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="./crates.html" class="mobile-nav-chapters next" title="Next chapter">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+
+            </div>
+
+            
+                <a href="./soft.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+                <a href="./crates.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+        <script type="text/javascript" src="theme/icons.js"></script>
+        
+        <script type="text/javascript" src="theme/go.js"></script>
+        
+
+    </body>
+</html>

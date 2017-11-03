@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>书籍 - Rust 学习日志</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Rust 学习日志">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+        <link rel="stylesheet" href="theme/style.css">
+        
+
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li><a href="./setup.html"><strong>1.</strong> 安装</a></li><li><a href="./book.html" class="active"><strong>2.</strong> 书籍</a></li><li><a href="./soft.html"><strong>3.</strong> 软件</a></li><li><ul class="section"><li><a href="./soft/mdbook.html"><strong>3.1.</strong> mdbook</a></li></ul></li><li><a href="./crates.html"><strong>4.</strong> 三方包</a></li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                    </div>
+
+                    <h1 class="menu-title">Rust 学习日志</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="./book.html#book" id="book"><h1>BOOK</h1></a>
+<p><strong>常用站点</strong></p>
+<ul>
+<li><a href="https://www.rust-lang.org">Rust Lang</a>      官方站点</li>
+<li><a href="https://www.rustup.rs/">Rustup</a>            工具安装</li>
+<li><a href="https://crates.io/">Rust crates</a>           官方库</li>
+<li><a href="https://doc.rust-lang.org/std/">Rust std</a>  基础库文档</li>
+<li><a href="https://docs.rs/">Rust Docs</a>               第三方文档查询</li>
+</ul>
+<p><strong>学习书籍</strong></p>
+<ul>
+<li><a href="https://doc.rust-lang.org/book">Rust Book</a>
+官方文档第一册与第二层，建议先阅读第二册，然后阅读第一册</li>
+<li><a href="https://kaisery.gitbooks.io/rust-book-chinese/content/">Rust First edition 中文版</a>
+官方文档第一册的中文版</li>
+<li><a href="https://kaisery.github.io/trpl-zh-cn/">Rust Second edition 中文版</a>
+官方文档第二层的中文版</li>
+<li><a href="https://rustcc.gitbooks.io/rustprimer/content/">Rust rustprimer 中文</a>
+国内 Rust 社区为国人写的教程</li>
+<li><a href="https://doc.rust-lang.org/stable/reference/">Rust reference</a>
+参考</li>
+<li><a href="https://doc.rust-lang.org/stable/unstable-book/">Rust unstable</a>
+不安全代码</li>
+<li><a href="https://doc.rust-lang.org/stable/nomicon/">Rust The Rustonomicon</a>
+黑魔法书</li>
+<li><a href="https://rustbyexample.com/">Rust by Example</a>
+案例学习</li>
+<li><a href="http://rustcc.github.io/rust-by-example/">Rust by Example 中文版</a>
+案例学习中文版</li>
+<li><a href="https://danielkeep.github.io/tlborm/">The Little Book of Rust Macros</a>
+关于宏命令的详解</li>
+<li><a href="https://daseinphaos.github.io/tlborm-chinese/">Rust 宏小册</a>
+The Little Book of Rust Macros 中文版</li>
+<li><a href="https://rust-lang-nursery.github.io/rust-cookbook/">Rust cookbook</a>
+一本第三方的 cookbook</li>
+</ul>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a rel="prev" href="./setup.html" class="mobile-nav-chapters previous" title="Previous chapter">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="./soft.html" class="mobile-nav-chapters next" title="Next chapter">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+
+            </div>
+
+            
+                <a href="./setup.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+                <a href="./soft.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+        <script type="text/javascript" src="theme/icons.js"></script>
+        
+        <script type="text/javascript" src="theme/go.js"></script>
+        
+
+    </body>
+</html>

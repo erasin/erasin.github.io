@@ -1,0 +1,265 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>三方包 - Rust 学习日志</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Rust 学习日志">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+        <link rel="stylesheet" href="theme/style.css">
+        
+
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li><a href="./setup.html"><strong>1.</strong> 安装</a></li><li><a href="./book.html"><strong>2.</strong> 书籍</a></li><li><a href="./soft.html"><strong>3.</strong> 软件</a></li><li><ul class="section"><li><a href="./soft/mdbook.html"><strong>3.1.</strong> mdbook</a></li></ul></li><li><a href="./crates.html" class="active"><strong>4.</strong> 三方包</a></li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                    </div>
+
+                    <h1 class="menu-title">Rust 学习日志</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="./crates.html#rust-crates" id="rust-crates"><h1>rust crates</h1></a>
+<!-- TOC -->
+<ul>
+<li><a href="./crates.html#1-lib">1. LIB</a></li>
+<li><a href="./crates.html#2-text">2. text</a></li>
+<li><a href="./crates.html#3-terminal">3. terminal</a></li>
+<li><a href="./crates.html#4-net">4. NET:</a></li>
+<li><a href="./crates.html#5-db">5. DB:</a></li>
+<li><a href="./crates.html#6-gui">6. GUI:</a></li>
+<li><a href="./crates.html#7-game">7. GAME:</a></li>
+<li><a href="./crates.html#8-sound">8. sound</a></li>
+<li><a href="./crates.html#10-%E8%AE%BE%E5%A4%87">10. 设备</a></li>
+<li><a href="./crates.html#11-other">11. other</a></li>
+</ul>
+<!-- /TOC -->
+<a class="header" href="./crates.html#1-lib" id="1-lib"><h1>1. LIB</h1></a>
+<ul>
+<li><strong>regex</strong> <a href="https://github.com/rust-lang/regex">github</a>  正则处理</li>
+<li><strong>time</strong> <a href="https://github.com/rust-lang-deprecated/time">github</a> 官方时间扩展</li>
+<li><strong>chrono</strong> <a href="https://crates.io/crates/chrono">crate</a>  时间格式化</li>
+<li><strong>log</strong> <a href="https://github.com/rust-lang-nursery/log">github</a> 轻量级日志</li>
+<li><strong>slog</strong> <a href="https://github.com/slog-rs/slog">github</a> 日志</li>
+<li><strong>rayon</strong> <a href="https://github.com/nikomatsakis/rayon/">github</a> Rust并行库</li>
+<li><strong>nom</strong> <a href="https://github.com/Geal/nom">github</a> 解析组合框架</li>
+<li><strong>num</strong> <a href="https://github.com/rust-num/num">github</a>  数字</li>
+<li><strong>cgmath</strong> <a href="https://github.com/brendanzab/cgmath">github</a> 线性代数</li>
+<li><strong>nalgebra</strong> <a href="http://nalgebra.org/">site</a> <a href="https://github.com/sebcrozet/nalgebra">github</a> 线性代数库</li>
+<li><strong>color</strong> <a href="https://github.com/brendanzab/color-rs">github</a></li>
+<li><strong>ring</strong> <a href="https://github.com/briansmith/ring">github</a> 加密库</li>
+<li><strong>tarpc</strong> <a href="https://github.com/google/tarpc">github</a> RPC</li>
+<li><strong>flate2</strong> <a href="https://crates.io/crates/flate2">crate</a></li>
+<li><strong>clap</strong> <a href="https://github.com/kbknapp/clap-rs">github</a> cli flag parse</li>
+<li><strong>docopt</strong> <a href="https://github.com/docopt/docopt.rs">github</a> 命令参数解析</li>
+<li><strong>rustc-serialize</strong> <a href="https://crates.io/crates/rustc-serialize">crate</a>  hex/base64/json</li>
+<li><strong>chrono</strong> <a href="https://github.com/lifthrasiir/rust-chrono">github</a>  时间库</li>
+<li><strong>serde</strong> <a href="https://github.com/serde-rs/serde">github</a>  json序列化反序列
+<ul>
+<li><strong>serde</strong>-json <a href="https://crates.io/crates/serde_json">github</a></li>
+</ul>
+</li>
+<li><strong>crypto</strong> <a href="https://github.com/DaGenix/rust-crypto">github</a>  加密</li>
+<li><strong>image</strong> <a href="https://github.com/PistonDevelopers/image">github</a>  图片处理</li>
+<li><strong>encoding</strong> <a href="https://github.com/lifthrasiir/rust-encoding">github</a></li>
+<li><strong>error-chain</strong> <a href="https://github.com/brson/error-chain">github</a>  错误处理的库</li>
+<li><strong>rustgnuplot</strong> <a href="https://github.com/SiegeLord/RustGnuplot">github</a></li>
+<li><strong>captcha</strong> <a href="https://github.com/daniel-e/captcha">github</a></li>
+<li><strong>failure</strong> <a href="https://github.com/withoutboats/failure">github</a> 错误处理 <a href="https://boats.gitlab.io/failure">doc</a></li>
+</ul>
+<a class="header" href="./crates.html#2-text" id="2-text"><h1>2. text</h1></a>
+<ul>
+<li><strong>pulldown-cmark</strong> <a href="https://github.com/google/pulldown-cmark">github</a>   markdown 解析器</li>
+<li><strong>tera</strong> <a href="https://github.com/Keats/tera">github</a> template 模板</li>
+<li><strong>handlebars</strong> <a href="https://github.com/sunng87/handlebars-rust">github</a> template 模板</li>
+</ul>
+<a class="header" href="./crates.html#3-terminal" id="3-terminal"><h1>3. terminal</h1></a>
+<ul>
+<li><strong>termion</strong> <a href="https://github.com/ticki/termion">github</a>  终端工具</li>
+<li><strong>rustty</strong> <a href="https://github.com/cpjreynolds/rustty">github</a> 终端UI terminal UI</li>
+<li><strong>screenprints</strong> <a href="https://github.com/softprops/screenprints">github</a> reprints for your terminal</li>
+</ul>
+<a class="header" href="./crates.html#4-net" id="4-net"><h1>4. NET:</h1></a>
+<ul>
+<li><strong>hyper</strong> <a href="https://github.com/hyperium/hyper">github</a> 基础协议实现</li>
+<li><strong>tokio</strong><a href="https://github.com/tokio-rs/tokio">github</a> 网络framework</li>
+<li><strong>websocket</strong>  <a href="https://github.com/cyderize/rust-websocket">github</a></li>
+<li><strong>ws-rs</strong> <a href="https://github.com/housleyjk/ws-rs">github</a>  kiss use websocket</li>
+<li><strong>framework</strong>
+<ul>
+<li><strong>iron</strong> <a href="https://github.com/iron/iron">github</a></li>
+<li><strong>nickel</strong> <a href="https://github.com/nickel-org/nickel.rs">github</a></li>
+<li><strong>rocket</strong> <a href="https://rocket.rs/">site</a> <a href="https://github.com/SergioBenitez/Rocket">github</a></li>
+<li><strong>restful</strong> <a href="https://github.com/Ogeon/rustful">github</a></li>
+<li><strong>rouille</strong> <a href="https://github.com/tomaka/rouille">github</a></li>
+</ul>
+</li>
+<li><strong>select</strong> <a href="https://github.com/utkarshkukreti/select.rs">github</a> html parse base on html5ever</li>
+</ul>
+<a class="header" href="./crates.html#5-db" id="5-db"><h1>5. DB:</h1></a>
+<ul>
+<li><strong>diesel</strong> <a href="http://diesel.rs/">web</a> ORM myql</li>
+<li><strong>rusqlite</strong> <a href="https://github.com/jgallagher/rusqlite">github</a> rust sqlite</li>
+<li><strong>redis</strong> <a href="https://github.com/mitsuhiko/redis-rs">github</a> redis</li>
+</ul>
+<a class="header" href="./crates.html#6-gui" id="6-gui"><h1>6. GUI:</h1></a>
+<ul>
+<li><strong>conrod</strong> <a href="https://github.com/PistonDevelopers/conrod">github</a></li>
+<li><strong>wtftw</strong> <a href="https://github.com/Kintaro/wtftw">github</a></li>
+<li><strong>Rustbox</strong> <a href="https://github.com/gchp/rustbox">github</a></li>
+<li><strong>gl</strong> <a href="https://github.com/brendanzab/gl-rs">github</a> OpenGL 处理</li>
+<li><strong>sfml</strong> <a href="https://github.com/jeremyletang/rust-sfml">github</a></li>
+<li><strong>glfw</strong> <a href="https://github.com/PistonDevelopers/glfw-rs">github</a></li>
+<li><strong>winit</strong> <a href="https://github.com/tomaka/winit">github</a>  多平台窗口</li>
+</ul>
+<a class="header" href="./crates.html#7-game" id="7-game"><h1>7. GAME:</h1></a>
+<ul>
+<li><strong>rust-sdl2</strong>  <a href="https://github.com/AngryLawyer/rust-sdl2">github</a>  sdl2 = &quot;0.21&quot;</li>
+<li><strong>piston</strong> <a href="https://github.com/PistonDevelopers/piston">github</a></li>
+</ul>
+<a class="header" href="./crates.html#8-sound" id="8-sound"><h1>8. sound</h1></a>
+<ul>
+<li><strong>radio</strong> <a href="https://github.com/tomaka/rodio">github</a>  rust audio playback library</li>
+<li><strong>hound</strong> <a href="https://github.com/ruuda/hound">github</a> <a href="https://crates.io/crates/hound">crate</a>  A wav encoding/decoding library.</li>
+<li><strong>vorbis</strong> <a href="https://github.com/tomaka/vorbis-rs">github</a> <a href="https://crates.io/crates/vorbis">crate</a> vorbis bing .  ogg file open audio encoding
+<ul>
+<li><strong>lewtn</strong> <a href="https://github.com/est31/lewton">github</a> vorbis by rust not binding</li>
+</ul>
+</li>
+<li><strong>spine</strong> <a href="https://github.com/tomaka/spine-rs">github</a> 动画绘制</li>
+</ul>
+<a class="header" href="./crates.html#10-设备" id="10-设备"><h1>10. 设备</h1></a>
+<ul>
+<li><strong>cheddar</strong> <a href="https://github.com/Sean1708/rusty-cheddar">github</a> 自动生成c的header文件</li>
+</ul>
+<a class="header" href="./crates.html#11-other" id="11-other"><h1>11. other</h1></a>
+<ul>
+<li><strong>bincode</strong> <a href="https://crates.io/crates/bincode">crates</a></li>
+<li><strong>qrcode</strong> <a href="https://crates.io/crates/qrcode">crate</a> qr encoder</li>
+<li><strong>coio</strong> <a href="https://github.com/zonyitoo/coio-rs">github</a> 协同IO</li>
+<li><strong>toml</strong> <a href="https://github.com/alexcrichton/toml-rs">github</a> <a href="https://crates.io/crates/toml">crate</a></li>
+<li><strong>ffmpeg</strong> <a href="https://github.com/meh/rust-ffmpeg">github</a></li>
+<li><strong>notify</strong> <a href="https://github.com/passcod/rsnotify">github</a>  系统监控处理</li>
+<li><strong>ArcdeRs</strong> <a href="https://jadpole.github.io/arcaders/arcaders-1-1">site</a></li>
+</ul>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a rel="prev" href="./soft/mdbook.html" class="mobile-nav-chapters previous" title="Previous chapter">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+
+            </div>
+
+            
+                <a href="./soft/mdbook.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+        <script type="text/javascript" src="theme/icons.js"></script>
+        
+        <script type="text/javascript" src="theme/go.js"></script>
+        
+
+    </body>
+</html>
