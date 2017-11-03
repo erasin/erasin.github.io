@@ -65,7 +65,7 @@
         </script>
 
         <div id="sidebar" class="sidebar">
-            <ul class="chapter"><li><a href="./setup.html"><strong>1.</strong> 安装</a></li><li><a href="./book.html"><strong>2.</strong> 书籍</a></li><li><a href="./soft.html"><strong>3.</strong> 软件</a></li><li><ul class="section"><li><a href="./soft/mdbook.html"><strong>3.1.</strong> mdbook</a></li></ul></li><li><a href="./crates.html"><strong>4.</strong> 三方包</a></li></ul>
+            <ul class="chapter"><li><a href="./book.html"><strong>1.</strong> 书籍</a></li><li><a href="./setup.html"><strong>2.</strong> 安装环境</a></li><li><a href="./soft.html"><strong>3.</strong> 软件</a></li><li><ul class="section"><li><a href="./soft/mdbook.html"><strong>3.1.</strong> mdbook</a></li></ul></li><li><a href="./crates.html"><strong>4.</strong> 三方包</a></li></ul>
         </div>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -87,7 +87,43 @@
                 </div>
 
                 <div id="content" class="content">
-                    <a class="header" href="print.html#rust-setup" id="rust-setup"><h1>RUST SETUP</h1></a>
+                    <a class="header" href="print.html#book" id="book"><h1>BOOK</h1></a>
+<p><strong>常用站点</strong></p>
+<ul>
+<li><a href="https://www.rust-lang.org">Rust Lang</a>      官方站点</li>
+<li><a href="https://www.rustup.rs/">Rustup</a>            工具安装</li>
+<li><a href="https://crates.io/">Rust crates</a>           官方库</li>
+<li><a href="https://doc.rust-lang.org/std/">Rust std</a>  基础库文档</li>
+<li><a href="https://docs.rs/">Rust Docs</a>               第三方文档查询</li>
+</ul>
+<p><strong>学习书籍</strong></p>
+<ul>
+<li><a href="https://doc.rust-lang.org/book">Rust Book</a> <a href="https://github.com/rust-lang/book">github</a>
+官方文档第一册与第二层，建议先阅读第二册，然后阅读第一册</li>
+<li><a href="https://kaisery.gitbooks.io/rust-book-chinese/content/">Rust First edition 中文版</a> <a href="https://github.com/KaiserY/rust-book-chinese">github</a>
+官方文档第一册的中文版</li>
+<li><a href="https://kaisery.github.io/trpl-zh-cn/">Rust Second edition 中文版</a> <a href="https://github.com/KaiserY/trpl-zh-cn">github</a>
+官方文档第二层的中文版</li>
+<li><a href="https://rustcc.gitbooks.io/rustprimer/content/">Rust rustprimer 中文</a> <a href="https://github.com/rustcc/RustPrimer">github</a>
+国内 Rust 社区为国人写的教程</li>
+<li><a href="https://doc.rust-lang.org/stable/reference/">Rust reference</a>
+参考</li>
+<li><a href="https://doc.rust-lang.org/stable/unstable-book/">Rust unstable</a>
+不安全代码</li>
+<li><a href="https://doc.rust-lang.org/stable/nomicon/">Rust The Rustonomicon</a>
+黑魔法书</li>
+<li><a href="https://rustbyexample.com/">Rust by Example</a> <a href="https://github.com/rust-lang/rust-by-example">github</a>
+案例学习</li>
+<li><a href="http://rustcc.github.io/rust-by-example/">Rust by Example 中文版</a>
+案例学习中文版</li>
+<li><a href="https://danielkeep.github.io/tlborm/">The Little Book of Rust Macros</a> <a href="https://github.com/DanielKeep/tlborm/">github</a>
+关于宏命令的详解</li>
+<li><a href="https://daseinphaos.github.io/tlborm-chinese/">Rust 宏小册</a> <a href="https://github.com/DaseinPhaos/tlborm-chinese">github</a>
+The Little Book of Rust Macros 中文版</li>
+<li><a href="https://rust-lang-nursery.github.io/rust-cookbook/">Rust cookbook</a> <a href="https://github.com/rust-lang-nursery/rust-cookbook">github</a>
+一本第三方的 cookbook</li>
+</ul>
+<a class="header" href="print.html#rust-setup" id="rust-setup"><h1>RUST SETUP</h1></a>
 <p>使用 <a href="https://www.rustup.rs/">rustup</a> 来安装和管理 rust 环境</p>
 <a class="header" href="print.html#安装-rustup" id="安装-rustup"><h1>安装 rustup</h1></a>
 <pre><code class="language-bash">curl https://sh.rustup.rs -sSf | sh
@@ -147,42 +183,6 @@ rustup component add rust-src --toolchain nightly
 <a class="header" href="print.html#检查" id="检查"><h2>检查</h2></a>
 <pre><code>cargo new --bin projectName 
 </code></pre>
-<a class="header" href="print.html#book" id="book"><h1>BOOK</h1></a>
-<p><strong>常用站点</strong></p>
-<ul>
-<li><a href="https://www.rust-lang.org">Rust Lang</a>      官方站点</li>
-<li><a href="https://www.rustup.rs/">Rustup</a>            工具安装</li>
-<li><a href="https://crates.io/">Rust crates</a>           官方库</li>
-<li><a href="https://doc.rust-lang.org/std/">Rust std</a>  基础库文档</li>
-<li><a href="https://docs.rs/">Rust Docs</a>               第三方文档查询</li>
-</ul>
-<p><strong>学习书籍</strong></p>
-<ul>
-<li><a href="https://doc.rust-lang.org/book">Rust Book</a>
-官方文档第一册与第二层，建议先阅读第二册，然后阅读第一册</li>
-<li><a href="https://kaisery.gitbooks.io/rust-book-chinese/content/">Rust First edition 中文版</a>
-官方文档第一册的中文版</li>
-<li><a href="https://kaisery.github.io/trpl-zh-cn/">Rust Second edition 中文版</a>
-官方文档第二层的中文版</li>
-<li><a href="https://rustcc.gitbooks.io/rustprimer/content/">Rust rustprimer 中文</a>
-国内 Rust 社区为国人写的教程</li>
-<li><a href="https://doc.rust-lang.org/stable/reference/">Rust reference</a>
-参考</li>
-<li><a href="https://doc.rust-lang.org/stable/unstable-book/">Rust unstable</a>
-不安全代码</li>
-<li><a href="https://doc.rust-lang.org/stable/nomicon/">Rust The Rustonomicon</a>
-黑魔法书</li>
-<li><a href="https://rustbyexample.com/">Rust by Example</a>
-案例学习</li>
-<li><a href="http://rustcc.github.io/rust-by-example/">Rust by Example 中文版</a>
-案例学习中文版</li>
-<li><a href="https://danielkeep.github.io/tlborm/">The Little Book of Rust Macros</a>
-关于宏命令的详解</li>
-<li><a href="https://daseinphaos.github.io/tlborm-chinese/">Rust 宏小册</a>
-The Little Book of Rust Macros 中文版</li>
-<li><a href="https://rust-lang-nursery.github.io/rust-cookbook/">Rust cookbook</a>
-一本第三方的 cookbook</li>
-</ul>
 <a class="header" href="print.html#rust-soft" id="rust-soft"><h1>RUST SOFT</h1></a>
 <a class="header" href="print.html#cli" id="cli"><h1>CLI</h1></a>
 <ul>
