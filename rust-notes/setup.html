@@ -87,7 +87,66 @@
                 </div>
 
                 <div id="content" class="content">
-                    <pre><code class="language-bash"></code></pre>
+                    <a class="header" href="./setup.html#rust-setup" id="rust-setup"><h1>RUST SETUP</h1></a>
+<p>使用 <a href="https://www.rustup.rs/">rustup</a> 来安装和管理 rust 环境</p>
+<a class="header" href="./setup.html#安装-rustup" id="安装-rustup"><h1>安装 rustup</h1></a>
+<pre><code class="language-bash">curl https://sh.rustup.rs -sSf | sh
+</code></pre>
+<a class="header" href="./setup.html#配置环境" id="配置环境"><h2>配置环境</h2></a>
+<p>修改 PATH, 使用 <code>.bashrc</code> 或 <code>.bash_profile</code> 来修改环境变量</p>
+<pre><code class="language-bash">export CARGO_HOME=$HOME/.cargo/
+RUSTBINPATH=$HOME/.cargo/bin
+RUST=&quot;$(~/.cargo/bin/rustc --print sysroot)&quot;
+export RUST_SRC_PATH=$RUST/lib/rustlib/src/rust/src
+export RUST_BACKTRACE=full
+export PATH=&quot;$PATH:RUSTBINPATH&quot;
+</code></pre>
+<p>其中 <code>RUST_SRC_PATH</code> 用来给编辑器服务（racer,rls)提供的. <code>RUST_BACKTRACE=1</code> 可以来对编译 rust 项目的时候进行 debug 的信息显示进行配置环境。</p>
+<a class="header" href="./setup.html#使用-rustup" id="使用-rustup"><h2>使用 rustup</h2></a>
+<p>rustup</p>
+<ul>
+<li>show 当前工具链显示</li>
+<li>default 可以修改使用工具链</li>
+<li>update 更新所有</li>
+</ul>
+<pre><code class="language-bash">rustup show
+Default host: x86_64-apple-darwin
+
+installed toolchains
+--------------------
+
+stable-x86_64-apple-darwin
+nightly-x86_64-apple-darwin (default)      &lt;---- 当前正在使用的
+
+installed targets for active toolchain
+--------------------------------------
+
+asmjs-unknown-emscripten
+x86_64-apple-darwin
+
+active toolchain
+----------------
+
+nightly-x86_64-apple-darwin (default)
+rustc 1.23.0-nightly (8b22e70b2 2017-10-31)
+</code></pre>
+<p>修改使用 stable 工具链</p>
+<pre><code>rustup default stable 
+</code></pre>
+<p><strong>安装rls</strong> ,  <a href="https://github.com/rust-lang-nursery/rls">Rust Language Server</a> (RLS),</p>
+<pre><code>rustup self udpate
+rustup update nightly
+
+rustup component add rls-preview --toolchain nightly
+rustup component add rust-analysis --toolchain nightly
+rustup component add rust-src --toolchain nightly
+</code></pre>
+<blockquote>
+<p>使用 vscode 的可以安装 Rust support for Visual Studio Code  <a href="https://github.com/rust-lang-nursery/rls-vscode">github</a>, 编辑器中插件搜索 rust 或者更为精确 <a href="https://marketplace.visualstudio.com/items?itemName=rust-lang.rust">rust-lang.rust</a>。</p>
+</blockquote>
+<a class="header" href="./setup.html#检查" id="检查"><h2>检查</h2></a>
+<pre><code>cargo new --bin projectName 
+</code></pre>
 
                 </div>
 
