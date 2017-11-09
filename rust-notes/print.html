@@ -65,7 +65,7 @@
         </script>
 
         <div id="sidebar" class="sidebar">
-            <ul class="chapter"><li><a href="./book.html"><strong>1.</strong> 书籍</a></li><li><a href="./setup.html"><strong>2.</strong> 安装环境</a></li><li><a href="./soft.html"><strong>3.</strong> 软件</a></li><li><ul class="section"><li><a href="./soft/mdbook.html"><strong>3.1.</strong> mdbook</a></li></ul></li><li><a href="./crates.html"><strong>4.</strong> 三方包</a></li></ul>
+            <ul class="chapter"><li><a href="./book.html"><strong>1.</strong> 书籍</a></li><li><a href="./setup.html"><strong>2.</strong> 安装环境</a></li><li><a href="./notes.html"><strong>3.</strong> 笔记</a></li><li><a href="./soft.html"><strong>4.</strong> 软件</a></li><li><ul class="section"><li><a href="./soft/mdbook.html"><strong>4.1.</strong> mdbook</a></li></ul></li><li><a href="./crates.html"><strong>5.</strong> 三方包</a></li></ul>
         </div>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -178,11 +178,13 @@ rustup component add rust-analysis --toolchain nightly
 rustup component add rust-src --toolchain nightly
 </code></pre>
 <blockquote>
-<p>使用 vscode 的可以安装 Rust support for Visual Studio Code  <a href="https://github.com/rust-lang-nursery/rls-vscode">github</a>, 编辑器中插件搜索 rust 或者更为精确 <a href="https://marketplace.visualstudio.com/items?itemName=rust-lang.rust">rust-lang.rust</a>。</p>
+<p>使用 vscode 的可以安装 Rust support for Visual Studio Code  <a href="https://github.com/rust-lang-nursery/rls-vscode">github</a>, 编辑器中插件搜索 rust 或者更为精确 <a href="https://marketplace.visualstudio.com/items?itemName=rust-lang.rust">rust-lang.rust</a>。
+在配置项中开启<code>&quot;rust.goto_def_racer_fallback&quot;: true</code> 跳转选项。</p>
 </blockquote>
 <a class="header" href="print.html#检查" id="检查"><h2>检查</h2></a>
 <pre><code>cargo new --bin projectName 
 </code></pre>
+<a class="header" href="print.html#笔记" id="笔记"><h1>笔记</h1></a>
 <a class="header" href="print.html#rust-soft" id="rust-soft"><h1>RUST SOFT</h1></a>
 <a class="header" href="print.html#cli" id="cli"><h1>CLI</h1></a>
 <ul>
@@ -475,6 +477,20 @@ additional-js = [&quot;./theme/icons.js&quot;]
 
         <!-- Livereload script (if served using the cli tool) -->
         
+    <script type="text/javascript">
+        var socket = new WebSocket("ws://localhost:3001");
+        socket.onmessage = function (event) {
+            if (event.data === "reload") {
+                socket.close();
+                location.reload(true); // force reload from server (not from cache)
+            }
+        };
+
+        window.onbeforeunload = function() {
+            socket.close();
+        }
+    </script>
+
 
         
 
