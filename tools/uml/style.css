@@ -1,0 +1,49 @@
+/* line 14, /Users/erasin/Sites/html5/uml/style.scss */
+body {
+  font: 100% Helvetica, sans-serif;
+  color: #333;
+  margin: 10px auto;
+  width: 80%;
+  font-size: 13px;
+  line-height: 18px; }
+
+/* line 23, /Users/erasin/Sites/html5/uml/style.scss */
+h1 {
+  padding: 35px 0; }
+
+/* line 27, /Users/erasin/Sites/html5/uml/style.scss */
+h2 {
+  padding-bottom: 8px;
+  border-bottom: 3px solid #333;
+  margin-top: 20px; }
+
+/* line 33, /Users/erasin/Sites/html5/uml/style.scss */
+h3, h4 {
+  padding-bottom: 8px;
+  border-bottom: 1px solid #333;
+  margin-top: 15px; }
+
+/* line 39, /Users/erasin/Sites/html5/uml/style.scss */
+pre {
+  background: #eee;
+  color: #333;
+  padding: 8px 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  border-radius: 10px; }
+
+/* line 46, /Users/erasin/Sites/html5/uml/style.scss */
+p code {
+  padding: 2px 4px;
+  background: #eee;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  border-radius: 2px; }
+
+/* line 51, /Users/erasin/Sites/html5/uml/style.scss */
+strong {
+  font-weight: 800; }
+
+/*# sourceMappingURL=style.css.map */

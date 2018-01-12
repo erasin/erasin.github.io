@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>PlantUML editor</title>
+<meta http-equiv='content-language' content='zh_CN' />
+<meta http-equiv='Content-type' content='text/html; charset=utf-8'>
+	<link rel="stylesheet" href="js/codemirror/lib/codemirror.min.css">
+<style>
+.row,.row .clear{
+	width:100%;
+	height:100%;
+	clear:both;
+	padding:0;
+}
+.row .col1{
+	width:50%;
+	padding:0;
+	float:right;
+}
+.row .col2{
+	width:50%;
+	height: 100%;
+	padding:0;
+	text-align: center;
+}
+.CodeMirror{
+	border:1px solid #ccc;
+	 height: auto;
+	 position:fixed;
+}
+.header{
+	clear: both;
+	padding: 5px 10px;
+	border-bottom: 1px solid #ccc;
+	text-align: right;
+	width: 95%;
+}
+.header a{margin-right:5px; color:rgb(117, 157, 215)}
+#uml{
+	max-width:100%;
+}
+#uml embed{
+	max-width: 100%;
+}
+</style>
+<script charset="utf-8">
+	var STATIC_URL = '';
+	var STATIC_VER = '';
+</script>
+
+
+</head>
+<body>
+	<div class='row'>
+		<div class="col1">
+			<textarea id="code" cols="50" rows="10"></textarea>
+		</div>
+		<div class="col2">
+			<div class="header">
+				<span style="color:rgb(235, 150, 61);font-weight:700;float:left;"> PLANTUML </span>
+				<a href="#" target="_blank" id="uml_png" style='display:none'>PNG</a>
+				<a href="#" target="_blank" id="uml_svg" style='display:none'>SVG</a>
+				<a href="readme.html" target="_blank">使用帮助</a>
+				<!-- <a href="demo.html" target="_blank">案例</a> -->
+			</div>
+			<div id="uml"></div>
+			<img id="loader" src="ajax-loader.gif" style="display: none" />
+		</div>
+		<div class="clear"></div>
+	</div>
+
+	<script type="text/javascript" src="js/require.js"></script>
+	<script type="text/javascript" src="js/require.config.js"></script>
+	<script charset="utf-8">
+	require(['plantuml'],function(plantuml){
+		plantuml.do();
+	});
+	</script>
+<!--
+	<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="js/jquery.base64.min.js"></script>
+	<script type="text/javascript" src="js/rawdeflate.min.js"></script>
+	<script src="js/codemirror/lib/codemirror.min.js"></script>
+	<script src="js/codemirror/mode/yaml/yaml.js"></script>
+	<script type="text/javascript" src="js/mustache.min.js" ></script>
+	<script type="text/javascript" src="js/plantuml.js"></script> -->
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?498b63db28fa8b633c352048334361db";
+	  var s = document.getElementsByTagName("script")[0];
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+</body>
+</html>

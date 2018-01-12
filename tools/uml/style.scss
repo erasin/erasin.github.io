@@ -1,0 +1,53 @@
+$font-stack:    Helvetica, sans-serif;
+
+$bg-color:#eee;
+$fg-color:#333;
+
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+body {
+  font: 100% $font-stack;
+  color: $fg-color;
+  margin:10px auto;
+  width:80%;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+h1{
+  padding:35px 0;
+}
+
+h2{
+  padding-bottom:8px;
+  border-bottom: 3px solid $fg-color;
+  margin-top:20px;
+}
+
+h3,h4{
+  padding-bottom:8px;
+  border-bottom: 1px solid $fg-color;
+  margin-top:15px;
+}
+
+pre{
+  background: $bg-color;
+  color: $fg-color;
+  padding:8px 10px;
+  @include border-radius(10px);
+}
+
+p code{
+  padding: 2px 4px;
+  background:$bg-color;
+  @include border-radius(2px);
+}
+strong {
+  font-weight: 800;
+}
