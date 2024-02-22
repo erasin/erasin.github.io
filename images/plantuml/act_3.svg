@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="227px" preserveAspectRatio="none" style="width:127px;height:227px;" version="1.1" viewBox="0 0 127 227" width="127px" zoomAndPan="magnify"><defs><filter height="300%" id="faviczqlvct03" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="46" x="44" y="17.4023">act_3</text><ellipse cx="16" cy="46.1992" fill="#000000" filter="url(#faviczqlvct03)" rx="10" ry="10" style="stroke: none; stroke-width: 1.0;"/><rect fill="#FEFECE" filter="url(#faviczqlvct03)" height="34.1328" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="28" x="46" y="29.1992"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="8" x="56" y="50.8008">1</text><polygon fill="#FEFECE" filter="url(#faviczqlvct03)" points="60,104.1992,72,116.1992,60,128.1992,48,116.1992,60,104.1992" style="stroke: #A80036; stroke-width: 1.5;"/><rect fill="#FEFECE" filter="url(#faviczqlvct03)" height="34.1328" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="32" x="44" y="182.1992"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="12" x="54" y="203.8008">真</text><ellipse cx="106" cy="199.1992" fill="none" filter="url(#faviczqlvct03)" rx="10" ry="10" style="stroke: #000000; stroke-width: 1.0;"/><ellipse cx="106.5" cy="199.6992" fill="#000000" rx="6" ry="6" style="stroke: none; stroke-width: 1.0;"/><!--link start to 1--><path d="M26.3125,46.1992 C31.08,46.1992 35.8474,46.1992 40.6149,46.1992 " fill="none" id="start-1" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="45.7881,46.1992,36.7881,42.1992,40.7881,46.1992,36.7881,50.1992,45.7881,46.1992" style="stroke: #A80036; stroke-width: 1.0;"/><!--link 1 to #5--><path d="M60,63.5026 C60,74.358 60,88.2955 60,99.11 " fill="none" id="1-#5" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="60,104.1409,64,95.1409,60,99.1409,56,95.1409,60,104.1409" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="22" x="32.3625" y="93.7655">介绍</text><!--link #5 to 真--><path d="M53.4429,122.3283 C47.5885,128.2872 39.4258,137.9218 36,148.1992 C32.6493,158.2514 36.4268,168.9242 41.902,177.8942 " fill="none" id="#5-真" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="44.7024,182.1507,43.0973,172.4335,41.9542,177.9737,36.4141,176.8306,44.7024,182.1507" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="22" x="37" y="159.834">true</text><!--link #5 to 真--><path d="M60.4586,128.0506 C60.6696,134.082 60.8958,141.5301 61,148.1992 C61.1443,157.4386 61.0049,167.6189 60.789,176.4382 " fill="none" id="#5-真" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="60.6465,181.7329,64.8873,172.8438,60.7811,176.7347,56.8902,172.6285,60.6465,181.7329" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="25" x="62" y="159.834">false</text><!--link 真 to end--><path d="M76.1719,199.1992 C80.9636,199.1992 85.7553,199.1992 90.5471,199.1992 " fill="none" id="真-end" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="95.7466,199.1992,86.7466,195.1992,90.7466,199.1992,86.7466,203.1992,95.7466,199.1992" style="stroke: #A80036; stroke-width: 1.0;"/><!--
+@startuml
+
+title act_3
+
+(*)->1
+if  "介绍" then
+    - ->[true] "真"
+else
+    - ->[false] "真"
+endif
+->(*)
+@enduml
+
+PlantUML version 1.2017.19(Sun Nov 12 19:46:22 CST 2017)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 1.8.0_112-b16
+Operating System: Mac OS X
+OS Version: 10.12.6
+Default Encoding: UTF-8
+Language: zh
+Country: CN
+--></g></svg>
