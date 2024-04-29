@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="268px" preserveAspectRatio="none" style="width:120px;height:268px;" version="1.1" viewBox="0 0 120 268" width="120px" zoomAndPan="magnify"><defs><filter height="300%" id="f19evsx6agxbov" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="46" x="39" y="17.4023">act_4</text><!--cluster 分区名称--><polygon fill="#FFFFFF" filter="url(#f19evsx6agxbov)" points="14,136.1992,76,136.1992,83,158.6875,98,158.6875,98,205.1992,14,205.1992,14,136.1992" style="stroke: #000000; stroke-width: 2.0;"/><line style="stroke: #000000; stroke-width: 2.0;" x1="14" x2="83" y1="158.6875" y2="158.6875"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="56" x="18" y="151.7344">分区名称</text><rect fill="#FEFECE" filter="url(#f19evsx6agxbov)" height="34.1328" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="68" x="22" y="163.1992"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="48" x="32" y="184.8008">基本节点</text><ellipse cx="56" cy="39.1992" fill="#000000" filter="url(#f19evsx6agxbov)" rx="10" ry="10" style="stroke: none; stroke-width: 1.0;"/><rect fill="#FEFECE" filter="url(#f19evsx6agxbov)" height="34.1328" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="44" x="34" y="89.1992"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="24" x="44" y="110.8008">开始</text><ellipse cx="56" cy="247.1992" fill="none" filter="url(#f19evsx6agxbov)" rx="10" ry="10" style="stroke: #000000; stroke-width: 1.0;"/><ellipse cx="56.5" cy="247.6992" fill="#000000" rx="6" ry="6" style="stroke: none; stroke-width: 1.0;"/><!--link start to 开始--><path d="M56,49.3751 C56,58.5178 56,72.2618 56,83.9428 " fill="none" id="start-开始" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="56,89.1406,60,80.1406,56,84.1406,52,80.1406,56,89.1406" style="stroke: #A80036; stroke-width: 1.0;"/><!--link 开始 to 基本节点--><path d="M56,123.3623 C56,133.636 56,146.8067 56,157.8823 " fill="none" id="开始-基本节点" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="56,163.1292,60,154.1292,56,158.1292,52,154.1292,56,163.1292" style="stroke: #A80036; stroke-width: 1.0;"/><!--link 基本节点 to end--><path d="M56,197.4534 C56,208.151 56,221.7649 56,232.0456 " fill="none" id="基本节点-end" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="56,237.0847,60,228.0847,56,232.0847,52,228.0847,56,237.0847" style="stroke: #A80036; stroke-width: 1.0;"/><!--
+@startuml
+
+title act_4
+
+(*) - -> 开始
+partition "分区名称" {
+    - -> "基本节点"
+}
+- -> (*)
+
+@enduml
+
+PlantUML version 1.2017.19(Sun Nov 12 19:46:22 CST 2017)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 1.8.0_112-b16
+Operating System: Mac OS X
+OS Version: 10.12.6
+Default Encoding: UTF-8
+Language: zh
+Country: CN
+--></g></svg>

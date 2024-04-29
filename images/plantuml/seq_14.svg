@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="387px" preserveAspectRatio="none" style="width:390px;height:387px;" version="1.1" viewBox="0 0 390 387" width="390px" zoomAndPan="magnify"><defs><filter height="300%" id="fl1jp6udw1lmv" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="50" x="170" y="23.5352">seq_14</text><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="148" x2="148" y1="68.9766" y2="346.7715"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="211" x2="211" y1="68.9766" y2="346.7715"/><rect fill="#FEFECE" filter="url(#fl1jp6udw1lmv)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="56" x="118" y="33.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="42" x="125" y="54.0234">服务端</text><rect fill="#FEFECE" filter="url(#fl1jp6udw1lmv)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="56" x="118" y="345.7715"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="42" x="125" y="366.3066">服务端</text><rect fill="#FEFECE" filter="url(#fl1jp6udw1lmv)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="42" x="188" y="33.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="28" x="195" y="54.0234">客户</text><rect fill="#FEFECE" filter="url(#fl1jp6udw1lmv)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="42" x="188" y="345.7715"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="28" x="195" y="366.3066">客户</text><polygon fill="#00FFFF" filter="url(#fl1jp6udw1lmv)" points="8,83.9766,8,123.9766,139,123.9766,139,93.9766,129,83.9766,8,83.9766" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="129" x2="129" y1="83.9766" y2="93.9766"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="139" x2="129" y1="93.9766" y2="93.9766"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="106" x="14" y="101.5449">This is displayed</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="85" x="14" y="116.8555">left of 服务端.</text><polygon fill="#FBFB77" filter="url(#fl1jp6udw1lmv)" points="153,138.5977,153,163.5977,378,163.5977,378,148.5977,368,138.5977,153,138.5977" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="368" x2="368" y1="138.5977" y2="148.5977"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="378" x2="368" y1="148.5977" y2="148.5977"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="204" x="159" y="156.166">This is displayed right of 服务端.</text><polygon fill="#FBFB77" filter="url(#fl1jp6udw1lmv)" points="43,177.9082,43,202.9082,248,202.9082,248,187.9082,238,177.9082,43,177.9082" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="238" x2="238" y1="177.9082" y2="187.9082"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="248" x2="238" y1="187.9082" y2="187.9082"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="184" x="49" y="195.4766">This is displayed over 服务端.</text><polygon fill="#FFAAAA" filter="url(#fl1jp6udw1lmv)" points="99,217.2188,99,257.2188,255,257.2188,255,227.2188,245,217.2188,99,217.2188" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="245" x2="245" y1="217.2188" y2="227.2188"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="255" x2="245" y1="227.2188" y2="227.2188"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="106" x="105" y="234.7871">This is displayed</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="131" x="109" y="250.0977">over 客户 and 服务端.</text><polygon fill="#FBFB77" filter="url(#fl1jp6udw1lmv)" points="108,271.8398,108,326.8398,246,326.8398,246,281.8398,236,271.8398,108,271.8398" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="236" x2="236" y1="271.8398" y2="281.8398"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="246" x2="236" y1="281.8398" y2="281.8398"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="117" x="114" y="289.4082">This is yet another</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="70" x="114" y="304.7188">example of</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="75" x="114" y="320.0293">a long note.</text><!--
+@startuml
+title seq_14
+
+participant 服务端
+participant 客户
+note left of 服务端 #aqua
+    This is displayed 
+    left of 服务端. 
+end note
+ 
+note right of 服务端: This is displayed right of 服务端.
+
+note over 服务端: This is displayed over 服务端.
+
+note over 服务端, 客户 #FFAAAA: This is displayed\n over 客户 and 服务端.
+
+note over 客户, 服务端
+    This is yet another
+    example of
+    a long note.
+end note
+@enduml
+
+PlantUML version 1.2017.19(Sun Nov 12 19:46:22 CST 2017)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 1.8.0_112-b16
+Operating System: Mac OS X
+OS Version: 10.12.6
+Default Encoding: UTF-8
+Language: zh
+Country: CN
+--></g></svg>

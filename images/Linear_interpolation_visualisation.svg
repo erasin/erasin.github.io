@@ -1,0 +1,68 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 100 100">
+ <title>Visualisation of linear interpretation</title>
+ <desc>In this geometric visualisation by CMG Lee, the value at the green circle multiplied by the distance between the red and blue circles is equal to the sum of the value at the red circle multiplied by its distance to the blue circle, and the value at the blue circle multiplied by its distance to the red circle.</desc>
+ <defs>
+  <circle id="point" cx="0" cy="0" r="2" fill="none"/>
+  <path id="arrow_u" d="M 0 0 L -2 5 M 0 0 L 2 5" fill="none"/>
+  <use id="arrow_d" xlink:href="#arrow_u" transform="rotate(180)"/>
+  <use id="arrow_l" xlink:href="#arrow_u" transform="rotate(270)"/>
+  <use id="arrow_r" xlink:href="#arrow_u" transform="rotate(90)"/>
+  <g id="y_r" stroke="#cc0000" stroke-dasharray="0.5,0.5">
+   <path d="M 0 0 V 20"/>
+   <use xlink:href="#arrow_u"/>
+   <use xlink:href="#arrow_d" transform="translate(0,20)"/>
+  </g>
+  <g id="y_g" stroke="#009900">
+   <path d="M 0 0 V 30"/>
+   <use xlink:href="#arrow_u"/>
+   <use xlink:href="#arrow_d" transform="translate(0,30)"/>
+  </g>
+  <g id="y_b" stroke="#0000ff" stroke-dasharray="3,0.5">
+   <path d="M 0 0 V 50"/>
+   <use xlink:href="#arrow_u"/>
+   <use xlink:href="#arrow_d" transform="translate(0,50)"/>
+  </g>
+  <g id="x_r" stroke="#cc0000" stroke-dasharray="0.5,0.5">
+   <path d="M 0 0 H 40"/>
+   <use xlink:href="#arrow_l"/>
+   <use xlink:href="#arrow_r" transform="translate(40,0)"/>
+  </g>
+  <g id="x_g" stroke="#009900">
+   <path d="M 0 0 H 60"/>
+   <use xlink:href="#arrow_l"/>
+   <use xlink:href="#arrow_r" transform="translate(60,0)"/>
+  </g>
+  <g id="x_b" stroke="#0000ff" stroke-dasharray="3,0.5">
+   <path d="M 0 0 H 20"/>
+   <use xlink:href="#arrow_l"/>
+   <use xlink:href="#arrow_r" transform="translate(20,0)"/>
+  </g>
+  <path id="times" d="M -2 -2 L 2 2 M -2 2 L 2 -2" stroke="#000000"/>
+  <path id="equals" d="M -2.5 -1 H 2.5 M -2.5 1 H 2.5" stroke="#000000"/>
+  <path id="plus" d="M -2.5 0 H 2.5 M 0 -2.5 V 2.5" stroke="#000000"/>
+ </defs>
+ <path d="M 10 45 L 90 5" stroke="#000000"/>
+ <path d="M 10 60 H 90" stroke="#999999"/>
+ <use xlink:href="#point" transform="translate(20,40)" stroke="#cc0000"/>
+ <use xlink:href="#point" transform="translate(40,30)" stroke="#009900"/>
+ <use xlink:href="#point" transform="translate(80,10)" stroke="#0000ff"/>
+ <use xlink:href="#y_r" transform="translate(20,40)"/>
+ <use xlink:href="#y_g" transform="translate(40,30)"/>
+ <use xlink:href="#y_b" transform="translate(80,10)"/>
+ <use xlink:href="#x_r" transform="translate(40,60)"/>
+ <use xlink:href="#x_g" transform="translate(20,65)"/>
+ <use xlink:href="#x_b" transform="translate(20,60)"/>
+
+ <use xlink:href="#y_g" transform="translate(1.5,77.5) scale(0.5)"/>
+ <use xlink:href="#times" transform="translate(5,85)"/>
+ <use xlink:href="#x_g" transform="translate(8,85) scale(0.5)"/>
+ <use xlink:href="#equals" transform="translate(42.5,85)"/>
+ <use xlink:href="#y_r" transform="translate(48,80) scale(0.5)"/>
+ <use xlink:href="#times" transform="translate(52,85)"/>
+ <use xlink:href="#x_r" transform="translate(55,85) scale(0.5)"/>
+ <use xlink:href="#plus" transform="translate(79,85)"/>
+ <use xlink:href="#y_b" transform="translate(83.5,72.5) scale(0.5)"/>
+ <use xlink:href="#times" transform="translate(87,85)"/>
+ <use xlink:href="#x_b" transform="translate(89.5,85) scale(0.5)"/>
+</svg>
