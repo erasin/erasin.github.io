@@ -1,0 +1,1557 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  helix editor 中文教程 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="编辑器,helix,vim,nvim,中文教程,官方教程" property="description" />
+
+  
+    <meta content="cli,github,helix,vim,rust" name="keywords" />
+  
+
+  
+
+  
+    
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> helix editor 中文教程 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      HELIX EDITOR 中文教程
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2023-02-02
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <pre data-lang="bob" style="background-color:#2b303b;color:#6c7079;" class="language-bob "><code class="language-bob" data-lang="bob"><span style="color:#abb2bf;">     _   _                 __    __
+</span><span style="color:#abb2bf;">    | | | |         _      \ \  / /
+</span><span style="color:#abb2bf;">    | |_| |  ____  | | (_)  \ \/ /
+</span><span style="color:#abb2bf;">    |  _  | /  _ \ | |  _    )  (
+</span><span style="color:#abb2bf;">    | | | | |  __/ | | | |  / /\ \
+</span><span style="color:#abb2bf;">    |_| |_|  \___| |_| |_| /_/  \_\
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">        一个后现代模态文本编辑器
+</span><span style="color:#abb2bf;">            version 22.12 
+</span></code></pre>
+<blockquote>
+<p>本文已经提交 PR<a href="https://github.com/helix-editor/helix/pull/5199">#5199</a>
+建议本地合并PR，编译后使用 <code>:tutor zh_cn</code> 使用本教程。</p>
+</blockquote>
+<p>欢迎使用 Helix 编辑器！Helix 不同于其他的编辑器，它是有模态的，
+也就是它在编辑文本的时候有不同的模式，最常用的模式有<strong>普通模式</strong>
+（<strong>Normal mode</strong>）和<strong>插入模式</strong>(<strong>Insert mode</strong>)。普通模式下您输入的按键
+实际上不会输入任何文本，而会对文本进行各种操作。这样可让您进行
+更加高效率的操作。本教程将教您如何使用 Helix 的模态编辑功能。</p>
+<p>现在，现在请确保您的 <code>CapsLock</code> (大小写锁定键) 没有被按下，然后
+按下 j 键，直到第一节课的内容完全显示。</p>
+<span id="continue-reading"></span><h2 id="1-1-ji-chu-de-guang-biao-yi-dong">1.1 基础的光标移动</h2>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">      ↑
+</span><span style="color:#abb2bf;">      k       * h 向左移动
+</span><span style="color:#abb2bf;">  ← h   l →   * l 向右移动
+</span><span style="color:#abb2bf;">      j       * j 向下移动
+</span><span style="color:#abb2bf;">      ↓       * k 向上移动
+</span></code></pre>
+<p>在helix中使用 <code>h</code>,<code>j</code>,<code>k</code>,<code>l</code> 移动光标,如上图所示，也可以使用上下左右键
+来移动光标。但是使用 hjkl 更加的便捷，试着使用 hjkl 来移动光标，
+之后按 <code>j</code> 键移动下一节课程。</p>
+<h2 id="1-2-tui-chu-helix">1.2 退出 HELIX</h2>
+<ol>
+<li>输入 <code>:</code> (冒号，hx 使用的是英文半角符号) 进入命令模式，可以发现
+光标进入了窗口的底部。</li>
+<li>输入 <code>q</code> 或者 <code>quit</code>，然后回车就可以退出 Helix 了。</li>
+</ol>
+<blockquote>
+<p>提示：如果有存在未保存的文件的时候，退出命令将失效。如果想要放弃
+文件的更改，可以使用 <code>q!</code> 或者 <code>quit!</code> 进行强制退出。稍后您将
+学习到如何保存文件。</p>
+</blockquote>
+<p>可以通过输入 <code>Esc</code> 键退出命令模式。</p>
+<p>现在，可以进入下一课了。</p>
+<h2 id="1-3-shan-chu-cao-zuo">1.3 删除操作</h2>
+<p>键入 <code>d</code> 键可以删除光标下的字符。</p>
+<ol>
+<li>移动光标到下面标记 '--&gt;' 位置。</li>
+<li>对照下方的一行，移动光标找到额外的字符，并使用 <code>d</code> 删除。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; Thhiss senttencee haass exxtra charracterss.
+</span><span style="color:#abb2bf;">     This sentence has extra characters.
+</span></code></pre>
+<p>如果两行句子对照后一致的话，我们就可以进入下一节课了。</p>
+<h2 id="1-4-cha-ru-mo-shi">1.4 插入模式</h2>
+<p>键入 <code>i</code> 键可以进入插入模式(Insert Mode)。</p>
+<ol>
+<li>移动光标到下面标记 '--&gt;' 位置。</li>
+<li>对照下一行的文本，移动光标到文本缺少的位置，然后键入 <code>i</code> 进入
+插入模式，就可以开始输入字符了。</li>
+<li>输入缺少的文本内容。</li>
+<li>使用 <code>Esc</code> 键退出插入模式，会自动切换为普通模式。</li>
+<li>重复练习，直到与下一行的内容对照一致。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; Th stce misg so.
+</span><span style="color:#abb2bf;">     This sentence is missing some text.
+</span></code></pre>
+<blockquote>
+<p>提示：在编辑器底部的状态栏会显示当前的状态模式。
+当键入 i 的时候，可以看到 NOR 变为了 INS。</p>
+</blockquote>
+<h2 id="1-5-bao-cun-wen-jian">1.5 保存文件</h2>
+<p>键入 <code>:w</code> / <code>:write</code> 可以保存当前的文件。</p>
+<ol>
+<li>现在可以使用 <code>:q!</code> 强制离开,或者新开一个终端窗口。</li>
+<li>使用 Helix 打开已个文件，在终端中输入 hx 文件名称。</li>
+<li>打开后文件后，现在在编辑器中输入一些内容。</li>
+<li>键入 <code>:</code> 进入 <strong>命令模式</strong>。</li>
+<li>继续键入 <code>w</code> 或者 <code>write</code> ，然后回车就可以将内容保存到文件了。</li>
+</ol>
+<p>您也可以使用 <code>wq</code> 或者 <code>write-quit</code> 命令来保存后退出。</p>
+<blockquote>
+<p>提示：您可以在 <code>w / write</code> 命令后跟随输入任意文件地址进行另存为
+自定义的路径。</p>
+</blockquote>
+<blockquote>
+<p>提示：如果当前文件包含没有保存的内容，在状态栏显示文件名称的位置
+会追加 [+] 的字符来提示文件未保存。</p>
+</blockquote>
+<h2 id="zhang-jie-1-gai-yao">章节 1 概要</h2>
+<ul>
+<li>
+<p>使用 <code>h</code>,<code>j</code>,<code>k</code>,<code>l</code> 键移动光标。</p>
+</li>
+<li>
+<p>键入 : 进入命令模式</p>
+<ul>
+<li>使用 <code>q / quit</code> 和 <code>q! / quit!</code> 命令退出 Helix。前者会在文件未保
+存的时候失败，而后者会直接忽略未保存的文件。</li>
+<li>使用 <code>w / write</code> 命令来保存文件。</li>
+<li>使用 <code>wq / write-quit</code> 命令保存并退出。</li>
+</ul>
+</li>
+<li>
+<p>键入 <code>d</code> 可以删除光标下的字符。</p>
+</li>
+<li>
+<p>键入 <code>i</code> 可以进入插入模式后输入文本，使用 Esc 返回到普通模式。</p>
+</li>
+</ul>
+<h2 id="2-1-cha-ru-ming-ling">2.1 插入命令</h2>
+<p>如上所述，您可以在光标所在的位置键入 <code>i</code> 进入插入模式。下面介绍几
+种在不同位置进入插入模式的方式。</p>
+<p>常用的插入命令有：</p>
+<ul>
+<li><code>i</code> - 在选区的前面进入插入模式。</li>
+<li><code>a</code> - 在选区的后面进入插入模式(这里是扩展选区的意思)。</li>
+<li><code>I</code> - 在行的最前方进入插入模式。</li>
+<li><code>A</code> - 在行的最后方进入插入模式。</li>
+</ul>
+<ol>
+<li>移动光标到下面标记 '--&gt;' 位置。</li>
+<li>键入 <code>A (Shift + a)</code>，你的光标会移动到行尾进入插入模式。</li>
+<li>输入内容直到和对照内容一致。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; This sentence is miss
+</span><span style="color:#abb2bf;">     This sentence is missing some text.
+</span></code></pre>
+<h2 id="2-2-xin-jian-xing">2.2 新建行</h2>
+<p>键入 <code>o</code> 会在光标所在位置的下方新建一行，并进入插入模式。<br />
+键入 <code>O</code> 会在光标所在位置的上方新建一行，并进入插入模式。</p>
+<ol>
+<li>移动光标到下面标记 '--&gt;' 位置。</li>
+<li>键入 o 新建一行并输入您的答案。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; What is the best editor? 
+</span><span style="color:#abb2bf;">     你觉得最棒的编辑器是？
+</span></code></pre>
+<h2 id="zhang-jie-2-gai-yao">章节 2 概要</h2>
+<ul>
+<li>
+<p>键入 <code>a</code> 可以追加选区内容。</p>
+</li>
+<li>
+<p>键入 <code>I</code> 光标会移动到行首第一个空白字符并进入插入模式。</p>
+</li>
+<li>
+<p>键入 <code>A</code> 会在行尾进入插入模式。</p>
+</li>
+<li>
+<p>使用 <code>o</code> 和 <code>O</code> 将会在光标下方和上方创建新的行。</p>
+</li>
+</ul>
+<h2 id="3-1-yi-dong-ming-ling-he-xuan-qu">3.1 移动命令和选区</h2>
+<p>键入 <code>w</code> 会选择内容直到下一个单词的开头之前。</p>
+<p>实际上，光标可以理解为单个字符的选择区（selection），之前学习的
+<code>d</code> 键删除并非是光标下的字符，而是删除选区中的内容。</p>
+<ol>
+<li>移动光标到下面标记 '--&gt;' 位置。</li>
+<li>移动光标到所需要删除单词的起始位置。</li>
+<li>键入 w 可以看到选择了单词直到下个单词的开头之前的位置。</li>
+<li>键入 d 删除所选择的内容。</li>
+<li>重复操作，删除多余的单词，直到和对照内容一致。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; This sentence pencil has vacuum extra words in the it.
+</span><span style="color:#abb2bf;">     This sentence has extra words in it.
+</span></code></pre>
+<h2 id="3-2-chang-yong-yi-dong-ming-ling">3.2 常用移动命令</h2>
+<p>上一节，我们可以看到键入 <code>w</code> 后，光标会从所在位置移动到下个单词的
+开始位置，会自动选择光标遍历的内容。这种围绕单词的移动操作非常有
+利于选择单词并对其进行操作。</p>
+<p>常用的移动操作包括：</p>
+<ul>
+<li><code>w</code> - 向前移动光标直到下个单词开头之前。</li>
+<li><code>e</code> - 向前移动光标直到当前单词的末尾。</li>
+<li><code>b</code> - 向后移动光标直到当前单词的开头。</li>
+</ul>
+<p>单词移动 <code>w</code>,<code>e</code>,<code>b</code> 移动操作有对应 <code>W</code>,<code>E</code>,<code>B</code>,它们遍历的内容包括单词和一
+些其他的分割字符，比如标点符号(英文半角)。而单词移动会把其他符号
+也看做单词，除了空白。</p>
+<p>当然，这些移动操作都会自动选择光标遍历的文本内容。</p>
+<h2 id="3-3-geng-gai-ming-ling">3.3 更改命令</h2>
+<p>键入 <code>c</code> 可以修改当前的选区。</p>
+<p>该更改命令会删除当前选区并进入插入模式，可以看作 <code>di</code> 的快捷命令。</p>
+<ol>
+<li>移动光标到下面标记 '--&gt;' 位置。</li>
+<li>移动光标到错误单词的开始位置，键入 <code>w</code> 进行选择。</li>
+<li>键入 <code>c</code> 删除该单词并进入插入模式。</li>
+<li>输入正确的单词。</li>
+<li>重复操作，直到和下一行的对照内容一致。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; This paper has heavy words behind it.
+</span><span style="color:#abb2bf;">     This sentence has incorrect words in it.
+</span></code></pre>
+<h2 id="3-4-ji-shu-zhong-fu-yi-dong-cao-zuo">3.4 计数重复移动操作</h2>
+<p>在移动动作前输入数字可以让它重复操作多次。</p>
+<ol>
+<li>移动光标到下面标记 '--&gt;' 位置。</li>
+<li>键入 <code>2w</code> 向前移动到第二个单词末尾。</li>
+<li>键入 <code>3e</code> 向前移动到之后第三个单词的词尾。</li>
+<li>键入 <code>2b</code> 向后移动两个单词。</li>
+<li>试着输入和上面不同的数字的操作，然后观察变动。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; This is just a line with words you can move around in.
+</span></code></pre>
+<h2 id="3-5-xuan-ze-mo-shi-kuo-zhan-mo-shi">3.5 选择模式 / 扩展模式</h2>
+<p>键入 <code>v</code> 进入选择模式。<br />
+键入 <code>v</code> 后输入 <code>Esc</code> 可以返回普通模式。</p>
+<p>在选择模式下，移动操作不会重置选择内容，而会扩展当前的选择内容。</p>
+<ol>
+<li>移动光标到下面标记 '--&gt;' 位置。</li>
+<li>移动光标到 FOO 的首字母，键入 <code>v2w</code> 就可以选择之后的两个单词。</li>
+<li>键入 <code>d</code> 可以删除当前的两个单词，可以看到 <code>d</code> 后返回到普通模式。</li>
+<li>移动光标到 BAZ 的首字母，然后重复之前的操作。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; Remove the FOO BAR distracting words BAZ BIZ from this line.
+</span></code></pre>
+<h2 id="3-6-xing-xuan-ze">3.6 行选择</h2>
+<p>键入 <code>x</code> 可以选择整行，再键入 <code>x</code> 可以继续选择下一行。</p>
+<ol>
+<li>移动光标到下方标记 '--&gt;' 第二行。</li>
+<li>键入 <code>x</code> 选择当前行，然后键入 <code>d</code> 删除行。</li>
+<li>移动光标到第4行（这里是标记为4的行）。</li>
+<li>键入 <code>x</code> 两次或者键入 <code>2x</code> 选择两行，使用 <code>d</code> 删除选区。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; 1) Roses are red,
+</span><span style="color:#abb2bf;"> --&gt; 2) Mud is fun,
+</span><span style="color:#abb2bf;"> --&gt; 3) Violets are blue,
+</span><span style="color:#abb2bf;"> --&gt; 4) I have a car,
+</span><span style="color:#abb2bf;"> --&gt; 5) Clocks tell time,
+</span><span style="color:#abb2bf;"> --&gt; 6) Sugar is sweet,
+</span><span style="color:#abb2bf;"> --&gt; 7) And so are you.
+</span></code></pre>
+<blockquote>
+<p>提示：<code>X</code> 命令和 <code>x</code> 很类似，不过该命令没有扩展到下一行的功能，对空
+白行也不起作用。</p>
+</blockquote>
+<h2 id="3-7-qu-xiao-xuan-qu">3.7 取消选区</h2>
+<p>键入 <code>;</code> （分号）可以取消选区直到单个光标。</p>
+<p>有时，您希望在不移动光标（可能为多个光标）的情况下取消选择的内
+容,使用 <code>;</code> 键进行操作。</p>
+<ol>
+<li>移动光标到下面标记 '--&gt;' 的行。</li>
+<li>使用之前学习的移动操作或者选择模式进行选择，然后使用 <code>;</code> 取消
+所选的内容。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; This is an error-free line with words to move around in.
+</span></code></pre>
+<blockquote>
+<p>提示：该操作在选择模式中也起作用。</p>
+</blockquote>
+<blockquote>
+<p>提示：还有一个相关的命令 <code>Alt-;</code> 可以翻转选区。这里你可以观察下
+光标位置的变动。</p>
+</blockquote>
+<h2 id="zhang-jie-3-gai-yao">章节3 概要</h2>
+<ul>
+<li>
+<p>键入 <code>w</code> 光标向前移动选择直到下个单词。</p>
+<ul>
+<li>键入 <code>e</code> 向前选择到当前单词末尾</li>
+<li>键入 <code>b</code> 向后选择到当前单词首字母</li>
+<li>使用大写的 <code>W</code>,<code>E</code>,<code>B</code> 选择词汇</li>
+</ul>
+</li>
+<li>
+<p>键入 <code>d</code> 删除选区</p>
+<ul>
+<li>键入 <code>c</code> 删除选区并进入插入模式</li>
+</ul>
+</li>
+<li>
+<p>在移动操作前键入数字进行复数的操作。</p>
+</li>
+<li>
+<p>键入 <code>v</code> 进入选择模式，可以使用移动操作扩展选区。</p>
+</li>
+<li>
+<p>键入 <code>x</code> 选择当前行，继续键入 <code>x</code> 继续向下选择行。</p>
+</li>
+<li>
+<p>键入 <code>;</code> (分号) 取消选区到光标位置</p>
+</li>
+</ul>
+<h2 id="4-1-che-xiao">4.1 撤销</h2>
+<p>键入 <code>u</code> 可以撤销之前操作。<br />
+键入 <code>U</code> 可以重做撤销的操作。</p>
+<ol>
+<li>移动光标到下面标记 '--&gt;' 的行。</li>
+<li>移动光标到错误的单词，然后键入 <code>d</code> 删除。</li>
+<li>键入 <code>u</code> 撤销你的删除操作。</li>
+<li>修复所有错误的单词。</li>
+<li>多次键入 <code>u</code> 撤销你的修复。</li>
+<li>多次键入 <code>U</code> 重做你撤销的修复。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; Fiix the errors on thhis line and reeplace them witth undo.
+</span><span style="color:#abb2bf;">     Fix the errors on this line and replace them with undo.
+</span></code></pre>
+<h2 id="4-2-fu-zhi-he-nian-tie-wen-ben">4.2 复制和粘贴文本</h2>
+<p>键入 <code>y</code> 来复制选区内容。<br />
+键入 <code>p</code> 将复制的内容粘贴到光标位置的后面。<br />
+键入 <code>P</code> 将复制的内容粘贴到光标位置的前面。</p>
+<ol>
+<li>移动光标到下面标记 '--&gt;' 的行。
+确认您的光标在 banana 的首字母上。</li>
+<li>键入 <code>w</code> 选中单词 banana 然后键入 <code>y</code> 来复制选择的内容。</li>
+<li>移动光标到 2 和 3 中间键入 <code>p</code> 来粘贴内容。</li>
+<li>在 3 和 4 中间重复操作。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; 1 banana 2 3 4
+</span><span style="color:#abb2bf;">     1 banana 2 banana 3 banana 4
+</span></code></pre>
+<blockquote>
+<p>提示：当您删除(<code>d</code>)和修改(<code>c</code>)文本的时候，Helix 会自动复制修改的
+内容到寄存器。使用 <code>Alt-d / Alt-c</code> 可以避免这种复制操作。</p>
+</blockquote>
+<blockquote>
+<p>提示：默认情况下，Helix 不会共享复制的内容给系统的剪贴板。使用
+<code>Space + y / p</code> 可以在系统的剪贴板复制和粘贴内容。</p>
+</blockquote>
+<blockquote>
+<p>提示：<code>y</code> 这里是 yank (抽拉)首字母，意指将内容抽取到寄存器（可以
+理解为剪贴板）。使用 yank 而非 copy  是来自 Vim 的历史原
+因。教程第八节介绍寄存器，在这之前您可以理解为复制。</p>
+</blockquote>
+<h2 id="4-3-zai-wen-jian-zhong-sou-suo">4.3 在文件中搜索</h2>
+<p>键入 <code>/</code> 会从当前光标位置在当前文件中向前搜索，回车后确认搜索。<br />
+键入 <code>n</code> 会移动到下一个匹配的搜索内容。<br />
+键入 <code>N</code> 会移动到上一个匹配的搜索内容。</p>
+<ol>
+<li>键入 <code>/</code> 然后输入单词，比如‘banana’。</li>
+<li>回车确认搜索。</li>
+<li>使用 <code>n</code> 和 <code>N</code> 循环导航匹配内容。</li>
+</ol>
+<p>搜索使用正则表达式，允许使用复杂的正则表达式匹配目标，您会在该
+教程中学习到选择命令(select command)。</p>
+<blockquote>
+<p>提示：键入 <code>?</code> (Shift-/) 可以向后方向搜索。</p>
+</blockquote>
+<blockquote>
+<p>提示：与 Vim 不同，? 并不会搜索的方向，N 总是向后，n 总是向前。</p>
+</blockquote>
+<h2 id="zhang-jie-4-gai-yao">章节 4 概要</h2>
+<ul>
+<li>
+<p>键入 <code>u</code> 撤销。 键入 <code>U</code> 重做。</p>
+</li>
+<li>
+<p>键入 <code>y</code> 复制文本，使用 <code>p</code> 粘贴文本。</p>
+<ul>
+<li>使用 <code>Space</code> + <code>y</code> 和 <code>Space</code> + <code>p</code> 在系统剪贴板上复制粘贴。</li>
+</ul>
+</li>
+<li>
+<p>键入 <code>/</code> 在文件中向前搜索，使用 <code>?</code> 向后搜索。</p>
+<ul>
+<li>使用 <code>n</code> 和 <code>N</code> 可以循环导航匹配内容。</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-1-duo-guang-biao-mo-shi">5.1 多光标模式</h2>
+<p>键入 <code>C</code> 会在下一个合适行的位置复制光标。</p>
+<ol>
+<li>移动光标到下面第一个标记 ‘--&gt;’ 的行。
+确保光标在 ‘--&gt;’ 的后面的单词上。</li>
+<li>键入 <code>C</code> 在会自动在下一个适合的行上的位置复制光标。注意它跳过了
+中间的行，现在键入的内容会影响所有光标所在的位置。</li>
+<li>使用插入模式修复行内错误内容，两个光标会固定在两行同时处理。</li>
+<li>键入 <code>,</code> (逗号) 移除第二个光标。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; Fix th two nes at same ime.
+</span><span style="color:#abb2bf;"> --&gt;
+</span><span style="color:#abb2bf;"> --&gt; Fix th two nes at same ime.
+</span><span style="color:#abb2bf;">     Fix these two lines at the same time.
+</span></code></pre>
+<blockquote>
+<p>提示：键入 <code>Alt-C</code> 会向上方向做同样的操作。</p>
+</blockquote>
+<h2 id="5-2-xuan-ze-ming-ling">5.2 选择命令</h2>
+<p>键入s 可以在选区中选择匹配内容。</p>
+<ol>
+<li>移动光标到下面标记 ‘--&gt;’ 的行。</li>
+<li>键入 <code>x</code> 选择行。</li>
+<li>键入 <code>s.</code> 会看到选中的提示。（这里 . 是正则表达式）</li>
+<li>键入 apples 然后回车，会看到行中的 apples 都被选中。
+这里已经多光标了。</li>
+<li>键入 <code>c</code> 修改 apples 为其他的东西，比如 oranges 。</li>
+<li>键入 Esc 退出插入模式。</li>
+<li>键入 <code>,</code> 移除其余的光标。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; I like to eat apples since my favorite fruit is apples.
+</span><span style="color:#abb2bf;">     I like to eat oranges since my favorite fruit is oranges.
+</span></code></pre>
+<h2 id="5-3-tong-guo-zheng-ze-xuan-ze">5.3 通过正则选择</h2>
+<p>和搜索功能一样，选择命令也支持正则表达式，不只是完全匹配。</p>
+<ol>
+<li>移动光标到下面标记 ‘--&gt;’ 的行。</li>
+<li>键入 <code>x</code> 选择行，键入 <code>s</code> 。</li>
+<li>键入 <code> +</code> (这里是空格加号) 会自动匹配连续空格数量大于1的部分。
+键入回车确认选择。</li>
+<li>键入 <code>c</code> 修改匹配内容为单个空格。</li>
+<li>键入 <code>,</code> 取消多光标模式。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; This  sentence has   some      extra spaces.
+</span><span style="color:#abb2bf;">     This sentence has some extra spaces.
+</span></code></pre>
+<blockquote>
+<p>提示：如果您想要查询并替换，使用选择命令也可以做到。使用 <code>%</code> 选择
+整个文件的内容，然后执行上面的操作。</p>
+</blockquote>
+<h2 id="5-4-dui-qi-xuan-qu">5.4 对齐选区</h2>
+<p>键入 <code>&amp;</code> 可以向光标方向按列对齐选区内容。</p>
+<ol>
+<li>移动光标到下面第一个标记 ‘--&gt;’ 的行，确保光标在箭头后面空白
+的位置。</li>
+<li>键入 <code>C</code> 4次，或者键入 <code>4C</code> 。</li>
+<li>键入 <code>W</code> 选择数字和括号。</li>
+<li>键入 <code>&amp;</code> 对齐选中的词汇。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; 97) lorem
+</span><span style="color:#abb2bf;"> --&gt; 98) ipsum
+</span><span style="color:#abb2bf;"> --&gt; 99) dolor
+</span><span style="color:#abb2bf;"> --&gt; 100) sit
+</span><span style="color:#abb2bf;"> --&gt; 101) amet
+</span></code></pre>
+<blockquote>
+<p>提示：<code>&amp;</code> 只关心对齐选区的头部,也就是移动方向的末端（多光标所在的
+位置），另外一段称作锚（author）。</p>
+</blockquote>
+<h2 id="5-5-an-xing-fen-ge-xuan-qu">5.5 按行分割选区</h2>
+<p>键入 <code>Alt-s</code> 按换行符分割选区。</p>
+<ol>
+<li>移动光标到下面表格首行。</li>
+<li>键入 <code>6x</code> 选择整个表格。</li>
+<li>键入 <code>Alt-s</code> 按行分割选区。</li>
+<li>键入 <code>&amp;</code> 对齐表格。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">    | FRUIT   | AMOUNT |
+</span><span style="color:#abb2bf;">    |---------|--------|
+</span><span style="color:#abb2bf;"> | Apples  | 8      |
+</span><span style="color:#abb2bf;">    | Bananas | 6      |
+</span><span style="color:#abb2bf;">  | Oranges | 3      |
+</span><span style="color:#abb2bf;">     | Donuts  | 4      |
+</span></code></pre>
+<blockquote>
+<p>提示：如果表格是非等长内容，可以使用选择命令 <code>s</code> 选择 <code>|</code> 然后使
+用 <code>&amp;</code> 来对齐。</p>
+</blockquote>
+<h2 id="zhang-jie-5-zhai-yao">章节 5 摘要</h2>
+<ul>
+<li>
+<p>键入 <code>C</code> 在下面合适的行的位置复制光标。
+使用 <code>Alt-C</code> 则向上操作。</p>
+</li>
+<li>
+<p>键入 <code>x</code> 可以在当前选区上正则匹配内容。</p>
+</li>
+<li>
+<p>键入 <code>&amp;</code> 来按列对齐选区。</p>
+</li>
+<li>
+<p>键入 <code>Alt-s</code> 按行分割选区。</p>
+</li>
+</ul>
+<h2 id="6-1-dan-zi-fu-xuan-ze">6.1 单字符选择</h2>
+<p>键入 <code>f&lt;字符&gt;</code> 会选择并包括找到的字符。<br />
+键入 <code>t&lt;字符&gt;</code> 会做选择直到到字符前面的位置。（不包含字符）<br />
+键入 <code>F</code> / <code>T</code> 会反方向上做同样的操作。</p>
+<ol>
+<li>移动光标到下面标记 ‘--&gt;’ 的行。确保光标在第一个破折号上。</li>
+<li>键入 <code>f[</code> 选择到方括号。</li>
+<li>键入 <code>d</code> 删除您的选择区。</li>
+<li>到行末尾，使用 <code>F]</code> 重复操作。</li>
+<li>移动下一行标记 ‘--&gt;’ 后面的位置。</li>
+<li>在这个句子上使用 <code>t</code> 和 <code>T</code> 操作删除破折号。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; -----[Free this sentence of its brackets!]-----
+</span><span style="color:#abb2bf;"> --&gt; ------Free this sentence of its dashes!------
+</span></code></pre>
+<blockquote>
+<p>提示：和 Vim 不同，Helix 并没有限制这些命令在当前行上查询，它实
+际上是在整个文件中搜索字符的。</p>
+</blockquote>
+<h2 id="6-2-ti-huan-ming-ling">6.2 替换命令</h2>
+<p>键入 <code>r&lt;字符&gt;</code> 会将选区下内容提花为输入的字符。</p>
+<ol>
+<li>移动到下方表格的第二行，确保光标在第一个 = 上。</li>
+<li>键入 <code>t|</code> (Shift-|) 选择整个 = 。</li>
+<li>键入 <code>r-</code> 替换这些内容为 - (破折号)。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> | Month | Days |
+</span><span style="color:#abb2bf;"> |=======|------|
+</span><span style="color:#abb2bf;"> | Jan   | 31   |
+</span><span style="color:#abb2bf;"> | Feb   | 28   |
+</span><span style="color:#abb2bf;"> | Mar   | 31   |
+</span><span style="color:#abb2bf;"> | ...   | ...  |
+</span></code></pre>
+<h2 id="6-3-zhong-fu-cao-zuo">6.3 重复操作</h2>
+<p>键入 <code>.</code> 会重复最后一次的插入命令操作。<br />
+键入 <code>Alt-.</code> 会重复最后一次 <code>f</code> / <code>t</code> 选择操作。</p>
+<ol>
+<li>移动光标到下方标记 ‘--&gt;’ 的行。</li>
+<li>修改，插入或者扩展内容并用 . 来练习重复操作。</li>
+<li>试着使用 <code>f</code> / <code>t</code> 和 <code>Alt-</code>. 选择句子的内容。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; This is some text for you to repeat things. You can repeat
+</span><span style="color:#abb2bf;">     insertions like changing words, or repeat selections like
+</span><span style="color:#abb2bf;">     f / t.
+</span></code></pre>
+<h2 id="zhang-jie-6-zhai-yao">章节 6 摘要</h2>
+<ul>
+<li>
+<p>键入 <code>f</code> / <code>F</code> 来扩展选区并包含查询的字符。</p>
+<ul>
+<li>键入 <code>t</code> / <code>T</code> 扩展选区直到查询的字符(不包含)。</li>
+</ul>
+</li>
+<li>
+<p>键入 <code>r</code> 将选区内容替换为输入字符。</p>
+</li>
+<li>
+<p>键入 . 重复最后一次的插入操作。</p>
+<ul>
+<li>键入 <code>Alt-.</code> 重复最后一次 <code>f</code> / <code>t</code> 选择操作。</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-1-ti-huan-wei-fu-zhi-de-nei-rong">7.1 替换为复制的内容</h2>
+<p>键入 <code>R</code> 会使用复制的内容替换当前选区内容。</p>
+<ol>
+<li>移动光标到下方标记 ‘--&gt;’ 的行。</li>
+<li>键入 <code>w</code> 选择 watermelons 然后键入 <code>y</code> 复制内容。</li>
+<li>继续 <code>w</code> 选择 oranges。</li>
+<li>键入 <code>R</code> 替换 oranges 为复制中的 watermelons。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; I like watermelons because oranges are refreshing.
+</span><span style="color:#abb2bf;">     I like watermelons because watermelons are refreshing.
+</span></code></pre>
+<h2 id="7-2-he-bing-xing-cao-zuo">7.2 合并行操作</h2>
+<p>键入 <code>J</code> 会将选区的所有行合并。</p>
+<ol>
+<li>移动光标到下方标记 ‘--&gt;’ 的行。</li>
+<li>键入 <code>x</code> 4次或者 <code>4x</code> 选择下面的4行内容。</li>
+<li>键入 <code>J</code> 合并这些行。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; This sentence
+</span><span style="color:#abb2bf;">is spilling over
+</span><span style="color:#abb2bf;">onto other
+</span><span style="color:#abb2bf;">lines.
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">     This sentence is spilling over onto other lines.
+</span><span style="color:#abb2bf;">
+</span></code></pre>
+<h2 id="7-3-xing-de-suo-jin-chu-li">7.3 行的缩进处理</h2>
+<p>键入 <code>&gt;</code> 可以缩进行，键入 <code>&lt;</code> 可以减少行缩进（悬挂缩进）。</p>
+<ol>
+<li>移动光标到下方标记 ‘--&gt;’ 的行。</li>
+<li>移动到第二行，键入 <code>&gt;</code> 缩进处理。</li>
+<li>移动到第三行，键入 <code>&lt;</code> 减少缩进。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; These lines
+</span><span style="color:#abb2bf;">    are indented
+</span><span style="color:#abb2bf;">         very poorly.
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">     These lines
+</span><span style="color:#abb2bf;">     are indented
+</span><span style="color:#abb2bf;">     much better.
+</span></code></pre>
+<h2 id="7-4-shu-zi-de-di-zeng-yu-di-jian">7.4 数字的递增与递减</h2>
+<p>键入 <code>Ctrl-a</code>选区的数字会进行递增操作。<br />
+键入 <code>Ctrl-x</code>选区的数字会进行递减操作。</p>
+<ol>
+<li>移动光标到下面标记 ‘--&gt;’ 的第三行。</li>
+<li>键入 <code>Ctrl-a</code>对标记 2 的部分进行递增操作。</li>
+<li>同样对下面标记为 3 的进行处理。</li>
+<li>移动到标记 6 的位置，键入 <code>Ctrl-x</code>递减处理。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; 1) First point.
+</span><span style="color:#abb2bf;"> --&gt; 2) Added point.
+</span><span style="color:#abb2bf;"> --&gt; 2) Next point.
+</span><span style="color:#abb2bf;"> --&gt; 3) Another point.
+</span><span style="color:#abb2bf;"> --&gt; 6) Last point.
+</span></code></pre>
+<blockquote>
+<p>提示：如果光标下没有数字，光标会跳转该行的下一个数字并进行操作。</p>
+</blockquote>
+<h2 id="zhang-jie-7-gai-yao">章节 7 概要</h2>
+<ul>
+<li>
+<p>键入 <code>R</code> 会使用寄存器中的内容替代选区。</p>
+</li>
+<li>
+<p>键入 <code>J</code> 合并行。</p>
+</li>
+<li>
+<p>键入 <code>&lt;</code> 和 <code>&gt;</code> 进行缩进和悬挂缩进行。</p>
+</li>
+<li>
+<p>键入 <code>Ctrl-a</code> 递增所选的数字。</p>
+<ul>
+<li>键入 <code>Ctrl-x</code> 递减所选的数字。</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-1-ji-cun-qi">8.1 寄存器</h2>
+<p>寄存器是一种用字符为标识,用于存储复制（抽取）文本内容的容器。
+寄存器还用于存储最新的搜索词汇和宏操作，在下一章节中会有所介绍。</p>
+<p>键入 <code>"&lt;字符&gt;</code> 将选择内容寄存到<code>&lt;字符&gt;</code>标记的寄存器。</p>
+<ol>
+<li>移动光标到下面标记 ‘--&gt;’ 的行。</li>
+<li>键入 <code>w</code> 选择 watermelons ,然后使用 <code>y</code> 复制（抽取）。</li>
+<li>键入 <code>w</code> 选择 bananas。</li>
+<li>现在注册标识 <code>b</code> 到寄存器,键入 <code>"b</code> 然后用 <code>y</code> 复制（抽取）。</li>
+<li>选择 mangoes 然后键入 <code>R</code> 会将其替换为 watermelons 。</li>
+<li>选择 pineapples 然后键入 <code>"bR</code> 会将其替换为 bananas 。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; I like watermelons and bananas because my favorite fruits
+</span><span style="color:#abb2bf;">     are mangoes and pineapples.
+</span></code></pre>
+<blockquote>
+<p>提示：Helix 的一些操作比如复制，粘贴，搜索，宏都有默认的寄存器，
+在使用自定义的寄存器，可以在操作前先使用 <code>"</code> 选择寄存器。</p>
+</blockquote>
+<h2 id="8-2-hong">8.2 宏</h2>
+<p>宏是一种记录想要重复的一组操作的方法。您还可以将宏记录到特定的
+寄存器（默认是 <code>@</code> ）。 输入 <code>Q</code> 开始录制宏，编辑器底部看到提示，
+右侧会看到寄存器位置，默认是 ‘[<code>@</code>]’ 。再次键入 <code>Q</code> 会停止录制。
+键入 <code>q</code> 会自动重复寄存器 <code>@</code>（默认）中的宏。</p>
+<ol>
+<li>移动光标到下面第一个标记 ‘--&gt;’ 的行。
+确保您的光标在 &gt; 上。</li>
+<li>键入 <code>Q</code> 开始录制宏。</li>
+<li>编辑当前行，直到和下面的对照内容一致。</li>
+<li>离开插入模式后，再次键入 <code>Q</code> 停止录制宏。</li>
+<li>移动光标移动到下面第二个 &gt; 上。</li>
+<li>键入 <code>q</code> 执行宏。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; ... sentence doesn&#39;t have it&#39;s first and last ... .
+</span><span style="color:#abb2bf;"> --&gt; ... sentence doesn&#39;t have it&#39;s first and last ... .
+</span><span style="color:#abb2bf;">     This sentence doesn&#39;t have it&#39;s first and last word.
+</span></code></pre>
+<blockquote>
+<p>提示：要多次执行宏，可以追加数字比如 <code>2q </code>。</p>
+</blockquote>
+<blockquote>
+<p>提示：不想使用默认的 <code>@</code> 的时候，先选择存储的寄存器，例如 <code>"aQ</code> 来
+记录宏到寄存器 <code>a</code> 中。使用的时候也是一样，先选择寄存器，后
+操作，例如 <code>"a2q</code> 来执行寄存器 <code>a</code> 中的宏两次。</p>
+</blockquote>
+<h2 id="zhang-jie-8-gai-yao">章节 8 概要</h2>
+<ul>
+<li>
+<p>键入 <code>"</code> 选择不同的寄存器。</p>
+</li>
+<li>
+<p>键入 <code>Q</code> 进行开始和停止录制宏，并注册到寄存器，默认是 <code>@</code> 。</p>
+</li>
+<li>
+<p>键入 <code>q</code> 会重复默认寄存器 <code>@</code> 或者选择的寄存器中的宏。</p>
+</li>
+</ul>
+<h2 id="9-1-shi-yong-sou-suo-xuan-ze-nei-rong">9.1 使用搜索选择内容</h2>
+<p>使用搜索 <code>/</code> 会自动存储到 寄存器 <code>/</code> 中。<br />
+使用 <code>n</code> 和 <code>N</code> 都指向寄存器 <code>/</code> ，这意味着我们不需要输入搜索就可以设
+定该寄存器。</p>
+<p>键入 <code>*</code> 会自动设置选区内容到寄存器 <code>/</code> 中, （这里的 <code>*</code> 命令可以理解
+为 <code>/</code>选区内容的快捷方式），也会设置为搜索项的选项。这将会复制主
+选择，将在下一章节的循环选择中介绍。</p>
+<ol>
+<li>移动光标到下面标记 ‘--&gt;’ 的行。</li>
+<li>键入 <code>e</code> 选择 horse ,然后键入 * 。</li>
+<li>使用 <code>n</code> 和 <code>N</code> 来回切换该例子中的 horse 。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; A horse is a horse, of course, of course,
+</span><span style="color:#abb2bf;"> --&gt; And no one can talk to a horse of course.
+</span></code></pre>
+<blockquote>
+<p>提示：<code>*</code> 可以看作是 <code>"/y</code> 的快捷方式，真正的动作是将复制的选区内容
+放入寄存器 <code>/</code> 中。</p>
+</blockquote>
+<h2 id="9-2-zai-pi-pei-zhong-zhui-jia-xuan-qu">9.2 在匹配中追加选区</h2>
+<p>在选择模式(<code>v</code>)中使用 <code>n</code> 和 <code>N</code> 将不是仅移动光标，而是在每个匹配上追
+加选新的选择。</p>
+<ol>
+<li>移动光标到下面标记 ‘--&gt;’ 的行。</li>
+<li>选择第一个 bat 然后键入 * 匹配搜索。</li>
+<li>键入 <code>v</code> 进入选择模式。</li>
+<li>键入 <code>n</code> 会选择另一个 bat。</li>
+<li>键入 <code>c</code> 或者 <code>r</code> 修改 bat 为 cat 。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; Everybody wants to be a bat,
+</span><span style="color:#abb2bf;"> --&gt; because a cat&#39;s the only bat
+</span><span style="color:#abb2bf;"> --&gt; who knows where it&#39;s at.
+</span></code></pre>
+<h2 id="9-3-shi-yong-tiao-zhuan-lie-biao">9.3 使用跳转列表</h2>
+<p>Helix 可以在光标跳跃移动的时候跟踪跳转（jumps），比如搜索或者lsp
+中函数定义调转，会将这些存储到跳转列表（jumplist）中。</p>
+<p>使用 <code>Ctrl-s</code> 手动保存当前位置到跳转列表中。</p>
+<p>使用 <code>Ctrl-i</code> ("in") 和 <code>Ctrl-o</code> ("out") 分别在跳转列表中向前和向后
+移动。</p>
+<p>使用 <code>Space j</code> 可以打开跳转列表。</p>
+<ol>
+<li>在随意位置键入 <code>Ctrl-s</code> 。</li>
+<li>移动到该文件其他的位置。</li>
+<li>键入 <code>Ctrl-o</code> (一次) 返回到您刚刚保存的位置。</li>
+</ol>
+<h2 id="zhang-jie-9-gai-yao">章节 9 概要</h2>
+<ul>
+<li>
+<p>键入 <code>*</code> 可以设置搜索寄存器 <code>/</code> ，然后设置为主要选区。</p>
+</li>
+<li>
+<p>在选择模式中键入 <code>n</code> / <code>N</code> 可以将每个匹配追加为新的选区。</p>
+</li>
+<li>
+<p>键入 <code>Ctrl-s</code> 保存当前位置到跳转列表。</p>
+<ul>
+<li>键入 <code>Ctrl-i</code> 和 <code>Ctrl-o</code> 分别在跳转列表中向前和向后移动。</li>
+</ul>
+</li>
+</ul>
+<h2 id="10-1-xun-huan-xuan-qu-he-shan-chu-xuan-qu">10.1 循环选区和删除选区</h2>
+<p>键入 <code>)</code> 和 <code>(</code> 分别向前和向后循环主要选择（多光标模式下）。</p>
+<p>键入 <code>Alt-,</code> 删除主要选区。</p>
+<ol>
+<li>移动光标到下面标记 ‘--&gt;’ 的行。</li>
+<li>使用 <code>xx</code> 或者 <code>2x</code> 选择两行。</li>
+<li>键入 <code>s</code> 进入搜索选择，输入 would 并回车。</li>
+<li>使用 <code>(</code> 和 <code>)</code> 循环主要选择，并使用 <code>Alt-,</code> 删除第二个 would 的
+选择。</li>
+<li>键入 c wood 将剩下的 would 修改为 wood。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; How much would would a wouldchuck chuck
+</span><span style="color:#abb2bf;"> --&gt; if a wouldchuck could chuck would?
+</span></code></pre>
+<h2 id="10-2-xun-huan-duo-ge-xuan-ze-de-nei-rong">10.2 循环多个选择的内容</h2>
+<p>键入 <code>Alt-(</code> 和 <code>Alt-)</code> 分别可以向前和向后循环多个选择中的内容。</p>
+<ol>
+<li>移动光标到下面标记 ‘--&gt;’ 的行。</li>
+<li>使用 <code>xx</code> 或者 <code>2x</code> 选择两行。</li>
+<li>键入 <code>s</code> 进入搜索选择，输入 through|water|know 并回车。</li>
+<li>使用 <code>Alt-(</code> 和 <code>Alt-)</code> 循环选中的内容。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; Jumping through the water,
+</span><span style="color:#abb2bf;"> --&gt; daring to know.
+</span></code></pre>
+<h2 id="10-3-bian-geng">10.3 变更</h2>
+<p>键入 <code>～</code>    可以切换选区字母的大小写。<br />
+键入 `     可以设定选区字母为小写。<br />
+键入 Alt-` 可以设定选区字母为大写。</p>
+<ol>
+<li>移动光标到下面标记 ‘--&gt;’ 的行。</li>
+<li>选择每个大写或小写错误的字母，键入 <code>~</code> 修改它。</li>
+<li>移动到第二个标记 ‘--&gt;’ 的行。</li>
+<li>键入 <code>x</code> 选择行。</li>
+<li>键入 ` 将行变更为小写。</li>
+<li>移动到第三个标记 ‘--&gt;’ 的行。</li>
+<li>键入 <code>x</code> 选择行。</li>
+<li>键入 Alt-` 将行文本变更为大写。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> --&gt; thIs sENtencE hAs MIS-cApitalIsed leTTerS.
+</span><span style="color:#abb2bf;"> --&gt; this SENTENCE SHOULD all be in LOWERCASE.
+</span><span style="color:#abb2bf;"> --&gt; THIS sentence should ALL BE IN uppercase!
+</span></code></pre>
+<h2 id="10-4-fen-ge-xuan-qu">10.4 分割选区</h2>
+<p>键入 <code>S</code> 可以使用正则分割选区内容。</p>
+<ol>
+<li>移动光标到 --- 下面的行。</li>
+<li>键入 <code>xx</code> / =2x= 选择两行。</li>
+<li>键入 <code>S</code> 然后输入 . |!  然后回车（注意 . 和 ! 后都有空格）。
+这样可以有效的将选区内容分割为每个句号和叹号对应的句子。</li>
+<li>键入 <code>Alt-;</code> 光标反转。</li>
+<li>键入 <code>;</code> 撤销选择到单个字符，也就是每个句子的首字母。</li>
+<li>键入 Alt-` 将选择字母大写处理。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">---
+</span><span style="color:#abb2bf;">these are sentences. some sentences don&#39;t start with uppercase
+</span><span style="color:#abb2bf;">letters! that is not good grammar. you can fix this.
+</span></code></pre>
+<h2 id="zhang-jie-10-gai-yao">章节 10 概要</h2>
+<ul>
+<li>
+<p>键入 <code>)</code> 和 <code>(</code> 分别在多个选区中向前和向后循环主要选择。</p>
+<ul>
+<li>键入 <code>Alt-,</code> 来删除主选择。</li>
+<li>键入 <code>Alt-)</code> 和 <code>Alt-(</code> 可以循环选择的内容。</li>
+</ul>
+</li>
+<li>
+<p>键入 <code>～</code> 可以切换选区字母的大小写。</p>
+<ul>
+<li>使用 <code> 和 Alt-</code> 分别可以设定选区字母为小写和大写。</li>
+</ul>
+</li>
+<li>
+<p>键入 <code>S</code> 可以使用正则分割选区内容。</p>
+</li>
+</ul>
+<h2 id=""></h2>
+<p>该教程还在编著中。
+更多的章节仍在计划中。</p>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;helix&#x2F;tutor&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;helix&#x2F;tutor&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2023-02-02
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;helix&#x2F;helix-start&#x2F;">
+    <i class="icon icon-left-open"></i>
+    开始使用 HELIX EDITOR 编辑器</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;godot&#x2F;gdscript&#x2F;">
+    Godot4 脚本语言 gdscript2
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+<div class="no-print">
+  
+  <script src="https://giscus.app/client.js" data-repo="erasin/erasin.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnk3MzE0Mzg3Mw==" data-category="article" data-category-id="" data-mapping="pathname"
+    data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light"
+    data-lang="zh-CN" crossorigin="anonymous" async>
+    </script>
+  <style>
+    .utterances {
+      max-width: initial;
+    }
+  </style>
+  
+  
+</div>
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-success" href="//erasin.wang/categories/cli/">cli</a>
+
+
+
+<a class="tag is-dark" href="//erasin.wang/categories/soft/">soft</a>
+
+
+
+<a class="tag is-danger" href="//erasin.wang/categories/helix/">helix</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-link" href="//erasin.wang/tags/cli/">cli</a>
+
+
+
+<a class="tag is-warning" href="//erasin.wang/tags/github/">github</a>
+
+
+
+<a class="tag is-danger" href="//erasin.wang/tags/helix/">helix</a>
+
+
+
+<a class="tag is-warning" href="//erasin.wang/tags/vim/">vim</a>
+
+
+
+<a class="tag is-primary" href="//erasin.wang/tags/rust/">rust</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="1-1-ji-chu-de-guang-biao-yi-dong" href="//erasin.wang/helix/tutor/#1-1-ji-chu-de-guang-biao-yi-dong">1.1 基础的光标移动</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="1-2-tui-chu-helix" href="//erasin.wang/helix/tutor/#1-2-tui-chu-helix">1.2 退出 HELIX</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="1-3-shan-chu-cao-zuo" href="//erasin.wang/helix/tutor/#1-3-shan-chu-cao-zuo">1.3 删除操作</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="1-4-cha-ru-mo-shi" href="//erasin.wang/helix/tutor/#1-4-cha-ru-mo-shi">1.4 插入模式</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="1-5-bao-cun-wen-jian" href="//erasin.wang/helix/tutor/#1-5-bao-cun-wen-jian">1.5 保存文件</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="zhang-jie-1-gai-yao" href="//erasin.wang/helix/tutor/#zhang-jie-1-gai-yao">章节 1 概要</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="2-1-cha-ru-ming-ling" href="//erasin.wang/helix/tutor/#2-1-cha-ru-ming-ling">2.1 插入命令</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="2-2-xin-jian-xing" href="//erasin.wang/helix/tutor/#2-2-xin-jian-xing">2.2 新建行</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="zhang-jie-2-gai-yao" href="//erasin.wang/helix/tutor/#zhang-jie-2-gai-yao">章节 2 概要</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="3-1-yi-dong-ming-ling-he-xuan-qu" href="//erasin.wang/helix/tutor/#3-1-yi-dong-ming-ling-he-xuan-qu">3.1 移动命令和选区</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="3-2-chang-yong-yi-dong-ming-ling" href="//erasin.wang/helix/tutor/#3-2-chang-yong-yi-dong-ming-ling">3.2 常用移动命令</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="3-3-geng-gai-ming-ling" href="//erasin.wang/helix/tutor/#3-3-geng-gai-ming-ling">3.3 更改命令</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="3-4-ji-shu-zhong-fu-yi-dong-cao-zuo" href="//erasin.wang/helix/tutor/#3-4-ji-shu-zhong-fu-yi-dong-cao-zuo">3.4 计数重复移动操作</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="3-5-xuan-ze-mo-shi-kuo-zhan-mo-shi" href="//erasin.wang/helix/tutor/#3-5-xuan-ze-mo-shi-kuo-zhan-mo-shi">3.5 选择模式 &#x2F; 扩展模式</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="3-6-xing-xuan-ze" href="//erasin.wang/helix/tutor/#3-6-xing-xuan-ze">3.6 行选择</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="3-7-qu-xiao-xuan-qu" href="//erasin.wang/helix/tutor/#3-7-qu-xiao-xuan-qu">3.7 取消选区</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="zhang-jie-3-gai-yao" href="//erasin.wang/helix/tutor/#zhang-jie-3-gai-yao">章节3 概要</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="4-1-che-xiao" href="//erasin.wang/helix/tutor/#4-1-che-xiao">4.1 撤销</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="4-2-fu-zhi-he-nian-tie-wen-ben" href="//erasin.wang/helix/tutor/#4-2-fu-zhi-he-nian-tie-wen-ben">4.2 复制和粘贴文本</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="4-3-zai-wen-jian-zhong-sou-suo" href="//erasin.wang/helix/tutor/#4-3-zai-wen-jian-zhong-sou-suo">4.3 在文件中搜索</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="zhang-jie-4-gai-yao" href="//erasin.wang/helix/tutor/#zhang-jie-4-gai-yao">章节 4 概要</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="5-1-duo-guang-biao-mo-shi" href="//erasin.wang/helix/tutor/#5-1-duo-guang-biao-mo-shi">5.1 多光标模式</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="5-2-xuan-ze-ming-ling" href="//erasin.wang/helix/tutor/#5-2-xuan-ze-ming-ling">5.2 选择命令</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="5-3-tong-guo-zheng-ze-xuan-ze" href="//erasin.wang/helix/tutor/#5-3-tong-guo-zheng-ze-xuan-ze">5.3 通过正则选择</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="5-4-dui-qi-xuan-qu" href="//erasin.wang/helix/tutor/#5-4-dui-qi-xuan-qu">5.4 对齐选区</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="5-5-an-xing-fen-ge-xuan-qu" href="//erasin.wang/helix/tutor/#5-5-an-xing-fen-ge-xuan-qu">5.5 按行分割选区</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="zhang-jie-5-zhai-yao" href="//erasin.wang/helix/tutor/#zhang-jie-5-zhai-yao">章节 5 摘要</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="6-1-dan-zi-fu-xuan-ze" href="//erasin.wang/helix/tutor/#6-1-dan-zi-fu-xuan-ze">6.1 单字符选择</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="6-2-ti-huan-ming-ling" href="//erasin.wang/helix/tutor/#6-2-ti-huan-ming-ling">6.2 替换命令</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="6-3-zhong-fu-cao-zuo" href="//erasin.wang/helix/tutor/#6-3-zhong-fu-cao-zuo">6.3 重复操作</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="zhang-jie-6-zhai-yao" href="//erasin.wang/helix/tutor/#zhang-jie-6-zhai-yao">章节 6 摘要</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="7-1-ti-huan-wei-fu-zhi-de-nei-rong" href="//erasin.wang/helix/tutor/#7-1-ti-huan-wei-fu-zhi-de-nei-rong">7.1 替换为复制的内容</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="7-2-he-bing-xing-cao-zuo" href="//erasin.wang/helix/tutor/#7-2-he-bing-xing-cao-zuo">7.2 合并行操作</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="7-3-xing-de-suo-jin-chu-li" href="//erasin.wang/helix/tutor/#7-3-xing-de-suo-jin-chu-li">7.3 行的缩进处理</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="7-4-shu-zi-de-di-zeng-yu-di-jian" href="//erasin.wang/helix/tutor/#7-4-shu-zi-de-di-zeng-yu-di-jian">7.4 数字的递增与递减</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="zhang-jie-7-gai-yao" href="//erasin.wang/helix/tutor/#zhang-jie-7-gai-yao">章节 7 概要</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="8-1-ji-cun-qi" href="//erasin.wang/helix/tutor/#8-1-ji-cun-qi">8.1 寄存器</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="8-2-hong" href="//erasin.wang/helix/tutor/#8-2-hong">8.2 宏</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="zhang-jie-8-gai-yao" href="//erasin.wang/helix/tutor/#zhang-jie-8-gai-yao">章节 8 概要</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="9-1-shi-yong-sou-suo-xuan-ze-nei-rong" href="//erasin.wang/helix/tutor/#9-1-shi-yong-sou-suo-xuan-ze-nei-rong">9.1 使用搜索选择内容</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="9-2-zai-pi-pei-zhong-zhui-jia-xuan-qu" href="//erasin.wang/helix/tutor/#9-2-zai-pi-pei-zhong-zhui-jia-xuan-qu">9.2 在匹配中追加选区</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="9-3-shi-yong-tiao-zhuan-lie-biao" href="//erasin.wang/helix/tutor/#9-3-shi-yong-tiao-zhuan-lie-biao">9.3 使用跳转列表</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="zhang-jie-9-gai-yao" href="//erasin.wang/helix/tutor/#zhang-jie-9-gai-yao">章节 9 概要</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="10-1-xun-huan-xuan-qu-he-shan-chu-xuan-qu" href="//erasin.wang/helix/tutor/#10-1-xun-huan-xuan-qu-he-shan-chu-xuan-qu">10.1 循环选区和删除选区</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="10-2-xun-huan-duo-ge-xuan-ze-de-nei-rong" href="//erasin.wang/helix/tutor/#10-2-xun-huan-duo-ge-xuan-ze-de-nei-rong">10.2 循环多个选择的内容</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="10-3-bian-geng" href="//erasin.wang/helix/tutor/#10-3-bian-geng">10.3 变更</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="10-4-fen-ge-xuan-qu" href="//erasin.wang/helix/tutor/#10-4-fen-ge-xuan-qu">10.4 分割选区</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="zhang-jie-10-gai-yao" href="//erasin.wang/helix/tutor/#zhang-jie-10-gai-yao">章节 10 概要</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="" href="//erasin.wang/helix/tutor/#"></a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

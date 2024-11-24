@@ -1,0 +1,552 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  在类vim&#x2F;emacs&#x2F;helix&#x2F;vscode模态文本编辑器中使用esc键切换输入法 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="在类vim&#x2F;emacs&#x2F;helix&#x2F;vscode等支持模态文本编辑器中使用esc键切换输入法" property="description" />
+
+  
+    <meta content="vim,helix,vscode,emacs,linux,macos" name="keywords" />
+  
+
+  
+
+  
+    
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> 在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      在类VIM&#x2F;EMACS&#x2F;HELIX&#x2F;VSCODE模态文本编辑器中使用ESC键切换输入法
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2024-02-22
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <p>在支持模态文本编辑的编辑器，比如 vim, helix， vscode的vim模式等，在使用 <code>esc</code>键后会进入默认的普通模式(normal mode)，这个时候的操作基本是在英文输入状态下完成操作。再使用 ime 中文输入法的情况下，我们使用<code>esc</code>后必须切换回英文输入，无疑对模态操作多了一次步骤。这里我们可以在使用<code>esc</code>时同时切换输入法来解决该问题。</p>
+<p>大致的解决办法是：</p>
+<ol>
+<li>利用脚本以及 cli 命令 来切换系统输入法</li>
+<li>编辑器插入模式，为 esc 配置命令切换为回英文，并记录当前的输入法</li>
+<li>在编辑进入插入模式的时候，读取上次插入模式下的输入法并切换</li>
+</ol>
+<p>下面介绍 Linux ，osx 下的切换输入法方法。</p>
+<h2 id="linux-gnome-huan-jing-ibus">Linux gnome 环境 ibus</h2>
+<p><a href="https://wiki.archlinuxcn.org/wiki/IBus">IBus</a> 是一款输入法框架。具体使用可以参考 <a href="https://wiki.archlinuxcn.org/wiki/IBus">wiki-ibus</a> 。</p>
+<p>ibus 提供了工具 <code>ibus engine</code> 查看当前的输入法标识，使用 <code>ibus engine rime</code> 切换输入法为rime。  但在 <code>gnome 4</code> 版本中，该命令无法和<code>gnome-shell</code>中的系统状态的输入法保持一致。这个时候我们使用一款 <a href="https://extensions.gnome.org/extension/5497/ibus-switcher/">gnome-shell-ibus-switcher</a> 插件来解决该问题。
+<a href="https://github.com/kevinhwang91/gnome-shell-ibus-switcher">ibus-switcher</a> 为 gnome-shell 42 版本后 提供了利用 <code>d-bus</code> 切换输入法的方式，从而切换系统输入法</p>
+<span id="continue-reading"></span>
+<p>ibus-switcher 提供</p>
+<ul>
+<li>获取当前输入法 <code>org.gnome.Shell.Extensions.IbusSwitcher.CurrentSource</code></li>
+<li>切换当前输入法 <code>org.gnome.Shell.Extensions.IbusSwitcher.SwitchSource</code></li>
+</ul>
+<p><strong>获取当前输入法</strong></p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">dbus-send --session --type</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">method_call</span><span style="color:#eb6772;"> --print-reply</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">literal</span><span style="color:#eb6772;"> --dest</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">org.gnome.Shell /org/gnome/Shell/Extensions/IbusSwitcher org.gnome.Shell.Extensions.IbusSwitcher.CurrentSource
+</span></code></pre>
+<p>因为我使用了 ibus-rime 的小鹤输入法，所以获取到的值是 <code>1|小</code> (这里的数字是输入法的序号，<code>|</code>为分隔符，后面跟的是输入法的名称首字母), <code>1|A</code> 就是 ibus-rime 的英文输入。这个具体看自己的配置情况。</p>
+<p><strong>设定输入法</strong></p>
+<p>比如切换输入法到英文</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">dbus-send --session --type</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">method_call</span><span style="color:#eb6772;"> --print-reply</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">literal</span><span style="color:#eb6772;"> --dest</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">org.gnome.Shell /org/gnome/Shell/Extensions/IbusSwitcher org.gnome.Shell.Extensions.IbusSwitcher.SwitchSource uint32:1 string:A
+</span></code></pre>
+<h2 id="mac-ping-tai">Mac 平台</h2>
+<p><a href="https://github.com/laishulu/macism">macism</a> 提供了 mac 平台下输入法切换工具。</p>
+<p>通过 <a href="https://brew.sh/">brew</a> 安装</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">brew</span><span style="color:#abb2bf;"> tap laishulu/macism
+</span><span style="color:#eb6772;">brew</span><span style="color:#abb2bf;"> install macism
+</span></code></pre>
+<p><strong>获取当前输入法</strong></p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">macism
+</span><span style="font-style:italic;color:#5f697a;"># 这里使用的rime获得是
+</span><span style="color:#eb6772;">im.rime.inputmethod.Squirrel.Hans 
+</span></code></pre>
+<p>同样可以获得</p>
+<ul>
+<li>默认的英文为：<code>com.apple.keylayout.ABC</code></li>
+<li>rime 输入法为： <code>im.rime.inputmethod.Squirrel.Hans</code></li>
+</ul>
+<p><strong>设定输入法</strong></p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">macims</span><span style="color:#abb2bf;"> com.apple.keylayout.ABC
+</span></code></pre>
+<h2 id="window-ping-tai">window 平台</h2>
+<p><a href="https://github.com/daipeihust/im-select">im-select</a> 提供了 window 平台的输入法切换工具。</p>
+<h2 id="jiao-ben">脚本</h2>
+<p>查看 <a href="https://github.com/erasin/helix-config/blob/main/shells/ime-switch">github.com/erasin/helix-config 中 ime-switch</a> bash 脚本。</p>
+<p>脚本接收参数 0/1， 0 表示切换为英文输入法，可省略该参数，1 表示恢复上次插入模式下记录的输入法。</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#5f697a;"># 设定英文，并记录当前的输入法
+</span><span style="color:#eb6772;">bash ~</span><span style="color:#abb2bf;">/.config/helix/shells/ime-switch
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 读取记录的输入法名称，设定输入法
+</span><span style="color:#eb6772;">bash ~</span><span style="color:#abb2bf;">/.config/helix/shells/ime-switch 1
+</span></code></pre>
+<h3 id="helix">helix</h3>
+<p>helix 配置文件，打开 hx 后输入 <code>:config-open</code>, 或者直接编辑 <code>~/.config/helix/config.toml</code>。</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#6c7079;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#abb2bf;">[keys.normal]
+</span><span style="font-style:italic;color:#5f697a;"># 输入法切换
+</span><span style="color:#9acc76;">&quot;esc&quot; </span><span style="color:#abb2bf;">= [</span><span style="color:#9acc76;">&quot;normal_mode&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;:pipe-to bash ~/.config/helix/shells/ime-switch&quot;</span><span style="color:#abb2bf;">]
+</span><span style="font-style:italic;color:#5f697a;"># 插入模式，恢复输入法
+</span><span style="color:#eb6772;">i </span><span style="color:#abb2bf;">= [</span><span style="color:#9acc76;">&quot;insert_mode&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;:pipe-to bash ~/.config/helix/shells/ime-switch 1&quot;</span><span style="color:#abb2bf;">]
+</span><span style="color:#eb6772;">I </span><span style="color:#abb2bf;">= [ </span><span style="color:#9acc76;">&quot;insert_at_line_start&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;:pipe-to bash ~/.config/helix/shells/ime-switch 1&quot; </span><span style="color:#abb2bf;">]
+</span><span style="font-style:italic;color:#5f697a;"># use `li` or remap `after insert`
+</span><span style="color:#eb6772;">a </span><span style="color:#abb2bf;">= [ </span><span style="color:#9acc76;">&quot;move_char_right&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;insert_mode&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;:pipe-to bash ~/.config/helix/shells/ime-switch 1&quot; </span><span style="color:#abb2bf;">]
+</span><span style="color:#eb6772;">A </span><span style="color:#abb2bf;">= [</span><span style="color:#9acc76;">&quot;insert_at_line_end&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;:pipe-to bash ~/.config/helix/shells/ime-switch 1&quot;</span><span style="color:#abb2bf;">]
+</span><span style="color:#eb6772;">o </span><span style="color:#abb2bf;">= [</span><span style="color:#9acc76;">&quot;open_below&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;:pipe-to bash ~/.config/helix/shells/ime-switch 1&quot;</span><span style="color:#abb2bf;">]
+</span><span style="color:#eb6772;">O </span><span style="color:#abb2bf;">= [</span><span style="color:#9acc76;">&quot;open_above&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;:pipe-to bash ~/.config/helix/shells/ime-switch 1&quot;</span><span style="color:#abb2bf;">]
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">[keys.insert]
+</span><span style="color:#9acc76;">&quot;esc&quot; </span><span style="color:#abb2bf;">= [</span><span style="color:#9acc76;">&quot;normal_mode&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;:pipe-to bash ~/.config/helix/shells/ime-switch&quot;</span><span style="color:#abb2bf;">]
+</span></code></pre>
+<h2 id="vim-neovim">vim / neovim</h2>
+<p>设定 esc 的 keymap 执行脚本即可。</p>
+<h3 id="vscode-vim-cha-jian">vscode vim 插件</h3>
+<p>vscode vim 提供了 <a href="https://github.com/VSCodeVim/Vim#input-method">Input Method</a></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">&quot;vim.autoSwitchInputMethod.enable&quot;: true,
+</span><span style="color:#abb2bf;">&quot;vim.autoSwitchInputMethod.defaultIM&quot;: &quot;xkb:us::eng&quot;,
+</span><span style="color:#abb2bf;">&quot;vim.autoSwitchInputMethod.obtainIMCmd&quot;: &quot;/usr/bin/ibus engine&quot;,
+</span><span style="color:#abb2bf;">&quot;vim.autoSwitchInputMethod.switchIMCmd&quot;: &quot;/usr/bin/ibus engine {im}&quot;
+</span></code></pre>
+<h3 id="vim-neovim-cha-jian">vim neovim 插件</h3>
+<p>neovim 插件 <a href="https://github.com/kevinhwang91/nvim-ibus-sw">nvim-ibus-sw</a>.</p>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;helix&#x2F;ime-switch&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;helix&#x2F;ime-switch&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2024-02-22
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;posts&#x2F;blender-thumbnailer&#x2F;">
+    <i class="icon icon-left-open"></i>
+    blender thumbnailer 在Linux下缩略图</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;posts&#x2F;makefile&#x2F;">
+    make 和 Makefile
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+<div class="no-print">
+  
+  <script src="https://giscus.app/client.js" data-repo="erasin/erasin.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnk3MzE0Mzg3Mw==" data-category="article" data-category-id="" data-mapping="pathname"
+    data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light"
+    data-lang="zh-CN" crossorigin="anonymous" async>
+    </script>
+  <style>
+    .utterances {
+      max-width: initial;
+    }
+  </style>
+  
+  
+</div>
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-success" href="//erasin.wang/categories/helix/">helix</a>
+
+
+
+<a class="tag is-warning" href="//erasin.wang/categories/cli/">cli</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-info" href="//erasin.wang/tags/vim/">vim</a>
+
+
+
+<a class="tag is-info" href="//erasin.wang/tags/helix/">helix</a>
+
+
+
+<a class="tag is-success" href="//erasin.wang/tags/vscode/">vscode</a>
+
+
+
+<a class="tag is-light" href="//erasin.wang/tags/emacs/">emacs</a>
+
+
+
+<a class="tag is-success" href="//erasin.wang/tags/linux/">linux</a>
+
+
+
+<a class="tag is-primary" href="//erasin.wang/tags/macos/">macos</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="linux-gnome-huan-jing-ibus" href="//erasin.wang/helix/ime-switch/#linux-gnome-huan-jing-ibus">Linux gnome 环境 ibus</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="mac-ping-tai" href="//erasin.wang/helix/ime-switch/#mac-ping-tai">Mac 平台</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="window-ping-tai" href="//erasin.wang/helix/ime-switch/#window-ping-tai">window 平台</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="jiao-ben" href="//erasin.wang/helix/ime-switch/#jiao-ben">脚本</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="helix" href="//erasin.wang/helix/ime-switch/#helix">helix</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="vim-neovim" href="//erasin.wang/helix/ime-switch/#vim-neovim">vim &#x2F; neovim</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="vscode-vim-cha-jian" href="//erasin.wang/helix/ime-switch/#vscode-vim-cha-jian">vscode vim 插件</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="vim-neovim-cha-jian" href="//erasin.wang/helix/ime-switch/#vim-neovim-cha-jian">vim neovim 插件</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

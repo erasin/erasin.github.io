@@ -1,0 +1,1627 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  PlantUML 语法 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="流程图制作" property="description" />
+
+  
+    <meta content="soft,cli,uml" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> PlantUML 语法 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      PLANTUML 语法
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2019-12-15
+    </div>
+  </div>
+
+  <div class="post-content  " 
+    style="background-image:url(&#x27;&#x2F;assets&#x2F;img&#x2F;undraw_process_e90d.svg&#x27;);background-size:240px;" >
+    <h2 id="1-an-zhuang">1. 安装</h2>
+<p><a href="http://plantuml.com/">官方站点</a></p>
+<ol>
+<li>需要 java 环境。</li>
+<li>需要安装 [Graphviz] 依赖</li>
+<li>下载 <a href="http://plantuml.com/download">plantuml</a></li>
+</ol>
+<h2 id="2-shi-yong-ming-ling">2. 使用命令</h2>
+<p>在<code>planuml.jar</code> 同级别文件夹建立 <code>planuml.bat</code>. 类 Unix 系统中使用 bash 即 <code>.sh</code> 脚本，或者创建 <code>alias</code> 别名。</p>
+<p>添加内容</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">java -jar plantuml.jar -gui
+</span></code></pre>
+<p>执行后打开 <code>.puml</code> 为后缀的文件夹。</p>
+<p>window 下使用 ansi 编码保存<code>puml</code>文件(默认的 txt 文档，修改 pu 为后缀)。</p>
+<blockquote>
+<p>最新版本的 PlantUML 已经支持汉字，在创建文件的时候尽量使用 UTF-8 格式创建文本</p>
+</blockquote>
+<span id="continue-reading"></span><h2 id="3-shi-yong-vscode-lai-chuang-jian-he-yu-lan">3. 使用 VSCODE 来创建和预览</h2>
+<ol>
+<li>下载 <a href="https://code.visualstudio.com/">vscode</a> 编辑器。</li>
+<li>打开扩展搜索 "jebbs.plantuml" 或者"plantuml"，点击安装即可。或者访问 <a href="https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml">vscode PlantUML 插件</a> 来安装。</li>
+</ol>
+<p>该扩展内置了 plantuml.jar ， 自动识别<code>.wsd,.pu,.puml,.plantuml,.iuml</code>文件，并配置高亮。<br />
+修改默认配置</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">  &quot;plantuml.previewFileType&quot;: &quot;svg&quot;,  // 预览文件，默认为 png
+</span><span style="color:#abb2bf;">  &quot;plantuml.exportFormat&quot;: &quot;svg&quot;,     // 导出文件，默认为 png
+</span><span style="color:#abb2bf;">  &quot;plantuml.exportOutDirName&quot;: &quot;.&quot;,   // 直接生成在文件当前目录
+</span><span style="color:#abb2bf;">  &quot;plantuml.exportSubFolder&quot;: false,  // 关闭使用子目录
+</span></code></pre>
+<p>使用 <code>Alt + D</code> 可以预览 png 格式的图片，修改配置, 具体可以使用 shift + comand + p 输入 uml 来查看。</p>
+<p>该插件提供多种编译方式。</p>
+<h2 id="4-jiao-ben-yu-fa">4. 脚本语法</h2>
+<blockquote>
+<p>puml 是脚本语言，分行是按照换行来识别语法的<br />
+一般的表达语句为</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">1.
+</span><span style="color:#abb2bf;">节点  连接符号  节点
+</span><span style="color:#abb2bf;">2.
+</span><span style="color:#abb2bf;">关键字  节点或内容
+</span><span style="color:#abb2bf;">3.
+</span><span style="color:#abb2bf;">开始关键字
+</span><span style="color:#abb2bf;">  内容
+</span><span style="color:#abb2bf;">结束关键字
+</span></code></pre>
+<p>注意<code>空格</code>等非字符作为节点内容的使用，有些多关键字语句中需要使用双引号来讲包含空格的语句左右单个节点的存在</p>
+</blockquote>
+<h2 id="5-activity-diagram-xin-ban-liu-cheng-tu">5. Activity Diagram 新版流程图</h2>
+<p>上面的流程图在修改节点的时候因为会自动寻找位置而导致会有所变动,导致一些不便。</p>
+<p>新的语法（测试）兼容。</p>
+<h3 id="5-1-simple-activity">5.1. Simple Activity</h3>
+<p>新的语法是 <code>: 节点 ;</code> 结束。</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">@startuml
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">title act_new_1
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">:步骤一;
+</span><span style="color:#abb2bf;">:此处有个支持简单的 mark 语法 **加粗字体**;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">@enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/act_new_1.svg) -->
+<h3 id="5-2-start-stop-kai-shi-he-jie-shu">5.2. Start/Stop 开始和结束</h3>
+<p>开始位置为 start 开始 , stop 停止 , end 结束.</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">@startuml
+</span><span style="color:#abb2bf;">title act_new_2
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">start
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">:步骤一;
+</span><span style="color:#abb2bf;">:mark 语法 **加粗字体**;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">stop
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">@enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/act_new_2.svg) -->
+<h3 id="5-3-conditional-tiao-jian-yu-ju">5.3. Conditional 条件语句</h3>
+<p>控制语句的使用，注意内容 <code>()</code> 的使用</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">@startuml
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">title act_new_3
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">start
+</span><span style="color:#abb2bf;">if (是否已下载 graphviz?) then (是)
+</span><span style="color:#abb2bf;">    :执行 \ndiagrams;
+</span><span style="color:#abb2bf;">else (否)
+</span><span style="color:#abb2bf;">    :需要下载 graphviz 后才能执行
+</span><span style="color:#abb2bf;">    __activity__ diagrams;
+</span><span style="color:#abb2bf;">endif
+</span><span style="color:#abb2bf;">stop
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">@enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/act_new_3.svg) -->
+<h3 id="5-4-repeat-loop-xun-huan-chu-li-kong-zhi-yu-ju">5.4. Repeat loop 循环处理（控制语句）</h3>
+<p>使用关键字 <code>repeat</code>, <code>repeat while ()</code> 来实现</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">@startuml
+</span><span style="color:#abb2bf;">title act_new_4
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">start
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">repeat
+</span><span style="color:#abb2bf;">    :读取文件;
+</span><span style="color:#abb2bf;">    :编译 diagrams;
+</span><span style="color:#abb2bf;">repeat while (更多，执行下一个?)
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">stop
+</span><span style="color:#abb2bf;">@enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/act_new_4.svg) -->
+<h3 id="5-5-while-loop-xun-huan-kong-zhi">5.5. While loop 循环控制</h3>
+<p>使用 <code>while</code> <code>endwhile</code> 循环控制</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">    title act_new_5
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    start
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    while (执行条件允许文件存在?)
+</span><span style="color:#abb2bf;">      :读取文件;
+</span><span style="color:#abb2bf;">      :编译 diagrams;
+</span><span style="color:#abb2bf;">    endwhile
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    stop
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/act_new_5.svg) -->
+<p>可以追加标签</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">@startuml
+</span><span style="color:#abb2bf;">title act_new_6
+</span><span style="color:#abb2bf;">start
+</span><span style="color:#abb2bf;">:打开文件;
+</span><span style="color:#abb2bf;">while (检查文件大小 ?) is (有内容)
+</span><span style="color:#abb2bf;">    :读取文件;
+</span><span style="color:#abb2bf;">    :编译 dia;
+</span><span style="color:#abb2bf;">endwhile (空)
+</span><span style="color:#abb2bf;">:关闭文件;
+</span><span style="color:#abb2bf;">end
+</span><span style="color:#abb2bf;">@enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/act_new_6.svg) -->
+<h3 id="5-6-parallel-processing-bing-xing-chu-li">5.6. Parallel processing 并行处理</h3>
+<p>使用 <code>fork</code> 关键字创建并行处理</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">@startuml
+</span><span style="color:#abb2bf;">title act_new_7
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">start
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">if (multiprocessor?) then (yes)
+</span><span style="color:#abb2bf;">  fork
+</span><span style="color:#abb2bf;">    :Treatment 1;
+</span><span style="color:#abb2bf;">  fork again
+</span><span style="color:#abb2bf;">    :Treatment 2;
+</span><span style="color:#abb2bf;">  end fork
+</span><span style="color:#abb2bf;">else (monoproc)
+</span><span style="color:#abb2bf;">  :Treatment 1;
+</span><span style="color:#abb2bf;">  :Treatment 2;
+</span><span style="color:#abb2bf;">endif
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">@enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/act_new_7.svg) -->
+<h3 id="5-7-notes-zhu-shi">5.7. Notes 注释</h3>
+<p>和旧版基本相同，单行注释使用 <code>note right|left 内容</code>，注意后面没有分号。而多行注释依旧使用 <code>note right|left 换行 内容 换行 end note</code>的方式处理。</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">@startuml
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">title act_new_8
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">start
+</span><span style="color:#abb2bf;">: 步骤1;
+</span><span style="color:#abb2bf;">note left: This is a __NOTE__
+</span><span style="color:#abb2bf;">: 步骤2;
+</span><span style="color:#abb2bf;">note right
+</span><span style="color:#abb2bf;">    支持 mark 编辑语法
+</span><span style="color:#abb2bf;">    This note is on several
+</span><span style="color:#abb2bf;">    //lines// and can
+</span><span style="color:#abb2bf;">    contain &lt;b&gt;HTML&lt;/b&gt;
+</span><span style="color:#abb2bf;">    ====
+</span><span style="color:#abb2bf;">    * Calling the method &quot;&quot;foo()&quot;&quot; is prohibited
+</span><span style="color:#abb2bf;">end note
+</span><span style="color:#abb2bf;">stop
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">@enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/act_new_8.svg) -->
+<blockquote>
+<p>注意 mark 并非 Markdown 语法，以案例为 b</p>
+</blockquote>
+<h3 id="5-8-color-yan-se">5.8. Color 颜色</h3>
+<p>在冒号钱可以追加 <code>#十六进制</code> 的颜色编号或者名称。</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">@startuml
+</span><span style="color:#abb2bf;">title act_new_9
+</span><span style="color:#abb2bf;">start
+</span><span style="color:#abb2bf;">:进程开始;
+</span><span style="color:#abb2bf;">#red:试着读取文件
+</span><span style="color:#abb2bf;">文件必须有可写权限!;
+</span><span style="color:#abb2bf;">#AAAAAA:结束进程;
+</span><span style="color:#abb2bf;">stop
+</span><span style="color:#abb2bf;">@enduml
+</span></code></pre>
+<h3 id="5-9-complete-example-an-li">5.9. Complete example 案例</h3>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">@startuml
+</span><span style="color:#abb2bf;">title act_new_10
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">start
+</span><span style="color:#abb2bf;">:ClickServlet.handleRequest();
+</span><span style="color:#abb2bf;">:new page;
+</span><span style="color:#abb2bf;">if (Page.onSecurityCheck) then (true)
+</span><span style="color:#abb2bf;">    #7c7c7c:Page.onInit();
+</span><span style="color:#abb2bf;">    if (isForward?) then (no)
+</span><span style="color:#abb2bf;">    #red:Process controls;
+</span><span style="color:#abb2bf;">    if (continue processing?) then (no)
+</span><span style="color:#abb2bf;">        stop
+</span><span style="color:#abb2bf;">    endif
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    if (isPost?) then (yes)
+</span><span style="color:#abb2bf;">        :Page.onPost();
+</span><span style="color:#abb2bf;">    else (no)
+</span><span style="color:#abb2bf;">        :Page.onGet();
+</span><span style="color:#abb2bf;">    endif
+</span><span style="color:#abb2bf;">    :Page.onRender();
+</span><span style="color:#abb2bf;">    endif
+</span><span style="color:#abb2bf;">else (false)
+</span><span style="color:#abb2bf;">endif
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">if (do redirect?) then (yes)
+</span><span style="color:#abb2bf;">    :redirect process;
+</span><span style="color:#abb2bf;">else
+</span><span style="color:#abb2bf;">    if (do forward?) then (yes)
+</span><span style="color:#abb2bf;">    :Forward request;
+</span><span style="color:#abb2bf;">    else (no)
+</span><span style="color:#abb2bf;">    :Render page template;
+</span><span style="color:#abb2bf;">    endif
+</span><span style="color:#abb2bf;">endif
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">stop
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">@enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/act_new_10.svg) -->
+<h2 id="6-liu-cheng-tu-jiu-ban">6. 流程图 (旧版)</h2>
+<p>流程图语法在开始位置必须为 <code>节点 --&gt; 节点</code>， 使用 <code>(*)</code> 来标识开始和结束。<br />
+内部则可以 使用 <code>--&gt; 节点</code> 。</p>
+<blockquote>
+<p>节点是具有唯一性的，当流程中出现节点名称相同的时候会产生混乱，
+所以在写 uml 的时候注意保证节点的唯一性</p>
+</blockquote>
+<h3 id="6-1-kai-shi-yu-jie-shu">6.1. 开始与结束</h3>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">@startuml
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">title act_1
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">(*) --&gt; &quot;文档  内容&quot;
+</span><span style="color:#abb2bf;">--&gt; (*)
+</span><span style="color:#abb2bf;">@enduml
+</span></code></pre>
+<p><img src="//erasin.wang/plantuml/plantuml/act_1.svg" alt="例子_1" /></p>
+<h3 id="6-2-jin-cheng-jie-dian">6.2. 进程节点</h3>
+<p>在箭头后追加 <code>[标签内容]</code> 可以放置标签。<br />
+在 <code>--&gt;</code> 中间可以通过 <code>up,down,left,right</code> 来人为控制箭头的方向。</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">@startuml
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">title act_2
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">(*)--&gt;&quot;开始&quot;
+</span><span style="color:#abb2bf;">--&gt;  &quot;节点名称&quot;
+</span><span style="color:#abb2bf;">--&gt;[箭头的注释]  &quot;节点名称0&quot;
+</span><span style="color:#abb2bf;">-up-&gt;  &quot;节点名称1&quot;
+</span><span style="color:#abb2bf;">-down-&gt;  &quot;节点名称2&quot;
+</span><span style="color:#abb2bf;">-left-&gt;  &quot;节点名称3&quot;
+</span><span style="color:#abb2bf;">-right-&gt;  &quot;节点名称4&quot;
+</span><span style="color:#abb2bf;">--&gt;(*)
+</span><span style="color:#abb2bf;">@enduml
+</span></code></pre>
+<blockquote>
+<p>注意在内容 <code>-right-&gt;</code> 可以定义方向</p>
+</blockquote>
+<p><img src="//erasin.wang/plantuml/plantuml/act_2.svg" alt="例子_2" /></p>
+<h3 id="6-3-tiao-jian-yu-ju-kong-zhi-liu-cheng">6.3. 条件语句（控制流程)</h3>
+<p>使用 <code>if 条件 then \n else</code> 和 <code>endif</code> 写控制语句。</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">@startuml
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">title act_3
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">(*)-&gt;1
+</span><span style="color:#abb2bf;">if  &quot;介绍&quot; then
+</span><span style="color:#abb2bf;">    --&gt;[true] &quot;真&quot;
+</span><span style="color:#abb2bf;">else
+</span><span style="color:#abb2bf;">    --&gt;[false] &quot;真&quot;
+</span><span style="color:#abb2bf;">endif
+</span><span style="color:#abb2bf;">-&gt;(*)
+</span><span style="color:#abb2bf;">@enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/act_3.svg) -->
+<h3 id="6-4-zhu-shi">6.4. 注释</h3>
+<p><strong>单行注释</strong></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">note right:  右侧的内容
+</span><span style="color:#abb2bf;">note left:  右侧的内容
+</span></code></pre>
+<p><strong>多行注释</strong></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">note right:
+</span><span style="color:#abb2bf;">多行内容
+</span><span style="color:#abb2bf;">endnote
+</span></code></pre>
+<h3 id="6-5-fen-qu">6.5. 分区</h3>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">@startuml
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">title act_4
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">(*) --&gt; 开始
+</span><span style="color:#abb2bf;">partition &quot;分区名称&quot; {
+</span><span style="color:#abb2bf;">    --&gt; &quot;基本节点&quot;
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">--&gt; (*)
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">@enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/act_4.svg) -->
+<h3 id="6-6-parallel-processing-bing-xing-chu-li">6.6. Parallel processing 并行处理</h3>
+<p>使用 <code>===标记===</code>, 来处理， 重新从某位置开始的时候使用 <code>===标记=== --&gt; 节点</code> 重新开始</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">@startuml
+</span><span style="color:#abb2bf;">title act_5
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">(*) --&gt;内容
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">--&gt; ===B1===
+</span><span style="color:#abb2bf;">--&gt; &quot;Parallel Activity 1&quot;
+</span><span style="color:#abb2bf;">--&gt; ===B2===
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">===B1=== --&gt; &quot;Parallel Activity 2&quot;
+</span><span style="color:#abb2bf;">--&gt; ===B2===
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">--&gt; (*)
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">@enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/act_5.svg) -->
+<h3 id="6-7-zong-he-an-li">6.7. 综合案例</h3>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">@startuml
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">title act_6
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">(*) --&gt; &quot;ClickServlet.handleRequest()&quot;
+</span><span style="color:#abb2bf;">--&gt; &quot;new Page&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">if &quot;Page.onSecurityCheck&quot; then
+</span><span style="color:#abb2bf;">  -&gt;[true] &quot;Page.onInit()&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">  if &quot;isForward?&quot; then
+</span><span style="color:#abb2bf;">   -&gt;[no] &quot;Process controls&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">   if &quot;continue processing?&quot; then
+</span><span style="color:#abb2bf;">     --&gt;[yes] ===RENDERING===
+</span><span style="color:#abb2bf;">   else
+</span><span style="color:#abb2bf;">     --&gt;[no] ===REDIRECT_CHECK===
+</span><span style="color:#abb2bf;">   endif
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">  else
+</span><span style="color:#abb2bf;">   --&gt;[yes] ===RENDERING===
+</span><span style="color:#abb2bf;">  endif
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">  if &quot;is Post?&quot; then
+</span><span style="color:#abb2bf;">    --&gt;[yes] &quot;Page.onPost()&quot;
+</span><span style="color:#abb2bf;">    --&gt; &quot;Page.onRender()&quot; as render
+</span><span style="color:#abb2bf;">    --&gt; ===REDIRECT_CHECK===
+</span><span style="color:#abb2bf;">  else
+</span><span style="color:#abb2bf;">    --&gt;[no] &quot;Page.onGet()&quot;
+</span><span style="color:#abb2bf;">    --&gt; render
+</span><span style="color:#abb2bf;">  endif
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">else
+</span><span style="color:#abb2bf;">  --&gt;[false] ===REDIRECT_CHECK===
+</span><span style="color:#abb2bf;">endif
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">if &quot;Do redirect?&quot; then
+</span><span style="color:#abb2bf;"> -&gt;[yes] &quot;redirect request&quot;
+</span><span style="color:#abb2bf;"> --&gt; ==BEFORE_DESTROY===
+</span><span style="color:#abb2bf;">else
+</span><span style="color:#abb2bf;"> if &quot;Do Forward?&quot; then
+</span><span style="color:#abb2bf;">  -left-&gt;[yes] &quot;Forward request&quot;
+</span><span style="color:#abb2bf;">  --&gt; ==BEFORE_DESTROY===
+</span><span style="color:#abb2bf;"> else
+</span><span style="color:#abb2bf;">  -right-&gt;[no] &quot;Render page template&quot;
+</span><span style="color:#abb2bf;">  --&gt; ==BEFORE_DESTROY===
+</span><span style="color:#abb2bf;"> endif
+</span><span style="color:#abb2bf;">endif
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">--&gt; &quot;Page.onDestroy()&quot;
+</span><span style="color:#abb2bf;">--&gt;(*)
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">@enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/act_6.svg) -->
+<h2 id="7-sequence-diagram-shi-xu-tu">7. Sequence Diagram 时序图</h2>
+<p>基本语法</p>
+<ol>
+<li>使用 <code>节点 -&gt; 节点: 描述</code> -&gt; 为实线</li>
+<li>如果使用虚线则 用 <code>--&gt;</code></li>
+<li>箭头的方向可以是双向的 <code>节点 &lt;-- 节点</code></li>
+</ol>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">@startuml
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">title seq_1
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">用户 -&gt; 平台: 发送登录请求
+</span><span style="color:#abb2bf;">平台 --&gt; 用户: 验证通过
+</span><span style="color:#abb2bf;">用户 -&gt; 平台: 另一个请求
+</span><span style="color:#abb2bf;">用户 &lt;-- 平台: 返回验证消息
+</span><span style="color:#abb2bf;">@enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/seq_1.svg) -->
+<h3 id="7-1-comments-zhu-shi">7.1. Comments 注释</h3>
+<p>内部注释使用 <code>'</code> 单引号来开始 单行注释，
+多行注释则使用 <code>/'</code> 和 <code>'/</code> 包括</p>
+<h3 id="7-2-declaring-participant-jiao-se">7.2. Declaring participant （角色）</h3>
+<p>提供了的声明参加者（角色）,来丰富图形,
+默认情况下在箭头两边的已经隐式声明了(participant),也可以使用 <code>participant 节点</code> 来显示声明角色，这种状况主要是为了声明角色的顺序。</p>
+<ul>
+<li>actor</li>
+<li>boundary</li>
+<li>control</li>
+<li>entity</li>
+<li>database</li>
+</ul>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">@startuml
+</span><span style="color:#abb2bf;">title seq_2
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">actor Foo1
+</span><span style="color:#abb2bf;">boundary Foo2
+</span><span style="color:#abb2bf;">control Foo3
+</span><span style="color:#abb2bf;">entity Foo4
+</span><span style="color:#abb2bf;">database Foo5
+</span><span style="color:#abb2bf;">Foo1 -&gt; Foo2 : To boundary
+</span><span style="color:#abb2bf;">Foo1 -&gt; Foo3 : To control
+</span><span style="color:#abb2bf;">Foo1 -&gt; Foo4 : To entity
+</span><span style="color:#abb2bf;">Foo1 -&gt; Foo5 : To database
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">@enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/seq_2.svg) -->
+<p>追加色彩案例</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">@startuml
+</span><span style="color:#abb2bf;">title seq_3
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">actor 客户 #red
+</span><span style="color:#abb2bf;">&#39; 声明角色的时候在后面可以追加颜色
+</span><span style="color:#abb2bf;">&#39; 注释内容并不会显示
+</span><span style="color:#abb2bf;">&#39; The only difference between actor
+</span><span style="color:#abb2bf;">&#39; and participant is the drawing
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">participant 服务端
+</span><span style="color:#abb2bf;">participant &quot;I have a really\nlong name&quot; as L #99FF99
+</span><span style="color:#abb2bf;">/&#39;  这里使用 `as` 关键字声明了 L 来作为别名
+</span><span style="color:#abb2bf;">    你也可以这样写:
+</span><span style="color:#abb2bf;">    participant L as &quot;I have a really\nlong name&quot;  #99FF99
+</span><span style="color:#abb2bf;">    &#39;/
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">服务端-&gt;客户: 请求认证
+</span><span style="color:#abb2bf;">客户-&gt;服务端: Authentication Response
+</span><span style="color:#abb2bf;">客户-&gt;L: Log transaction
+</span><span style="color:#abb2bf;">@enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/seq_3.svg) -->
+<h3 id="7-3-use-non-letters-in-participants-fei-zi-fu-chu-li">7.3. Use non-letters in participants 非字符处理</h3>
+<p>在声明非字母的角色的时候使用双引号处理。(包含空格)</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">@startuml
+</span><span style="color:#abb2bf;">title seq_4
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">服务端 -&gt; &quot;客户()&quot; : Hello
+</span><span style="color:#abb2bf;">&quot;客户()&quot; -&gt; &quot;This is very\nlong&quot; as Long
+</span><span style="color:#abb2bf;">&#39; You can also declare:
+</span><span style="color:#abb2bf;">&#39; &quot;客户()&quot; -&gt; Long as &quot;This is very\nlong&quot;
+</span><span style="color:#abb2bf;">Long --&gt; &quot;客户()&quot; : ok
+</span><span style="color:#abb2bf;">@enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/seq_4.svg) -->
+<h3 id="7-4-message-to-self">7.4. Message to Self</h3>
+<p>在介绍过长的内容的时候使用 <code>\n</code> 来换行。</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">@startuml
+</span><span style="color:#abb2bf;">title seq_5
+</span><span style="color:#abb2bf;">服务端-&gt;服务端: This is a signal to self.\nIt also demonstrates\nmultiline \ntext
+</span><span style="color:#abb2bf;">@enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/seq_5.svg) -->
+<h3 id="7-5-change-arrow-style-jian-tou-yang-shi">7.5. Change arrow style 箭头样式</h3>
+<p>在时序图中可以使用多种样式，基于下面的案例，来替换默认的箭头。</p>
+<blockquote>
+<p>总体来说 <code>-</code> 表示实线， <code>--</code> 标识虚线<br />
+而在在两边的标识箭头的方向和样式</p>
+</blockquote>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">@startuml
+</span><span style="color:#abb2bf;">title seq_6
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">客户 -&gt; 服务端
+</span><span style="color:#abb2bf;">客户 -&gt;&gt; 服务端
+</span><span style="color:#abb2bf;">客户 -\ 服务端
+</span><span style="color:#abb2bf;">客户 \\- 服务端
+</span><span style="color:#abb2bf;">客户 //-- 服务端
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">客户 -&gt;o 服务端
+</span><span style="color:#abb2bf;">客户 o\\-- 服务端
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">客户 &lt;-&gt; 服务端
+</span><span style="color:#abb2bf;">客户 &lt;-&gt;o 服务端
+</span><span style="color:#abb2bf;">@enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/seq_6.svg) -->
+<h3 id="7-6-change-arrow-color-jian-tou-se-cai">7.6. Change arrow color 箭头色彩</h3>
+<p>两种方式追加箭头色彩</p>
+<ol>
+<li>实线样式为在箭头和线使用 <code>[#颜色值]</code> 来设定色彩</li>
+<li>虚线样式为在虚线中间使用 <code>[#颜色值]</code> 来设定色彩</li>
+</ol>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">@startuml
+</span><span style="color:#abb2bf;">title seq_7
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">客户 -[#red]&gt; 服务端 : hello
+</span><span style="color:#abb2bf;">服务端 -[#0000FF]-&gt;客户 : ok
+</span><span style="color:#abb2bf;">@enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/seq_7.svg) -->
+<h3 id="7-7-message-sequence-numbering-ji-shu">7.7. Message sequence numbering 计数</h3>
+<p>使用关键字 <code>autonumber</code> 来自动为消息生成索引数字</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">    title seq_8
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    autonumber
+</span><span style="color:#abb2bf;">    客户 -&gt; 服务端 : 请求认证
+</span><span style="color:#abb2bf;">    客户 &lt;- 服务端 : Authentication Response
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/seq_8.svg) -->
+<p>在 <code>autonumber</code> 后可以设定 <code>开始位置 梯度</code> 参数.<br />
+在默认情况下 <code>autonumber</code> 自动追加了 <code>start</code> 参数， 在使用 <code>stop</code> 参数可以停止计数.</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">    title seq_9
+</span><span style="color:#abb2bf;">    autonumber
+</span><span style="color:#abb2bf;">    客户 -&gt; 服务端 : 请求认证
+</span><span style="color:#abb2bf;">    客户 &lt;- 服务端 : Authentication Response
+</span><span style="color:#abb2bf;">    autonumber stop
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    客户 &lt;- 服务端 : 停止
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    autonumber 15
+</span><span style="color:#abb2bf;">    客户 -&gt; 服务端 : Another 请求认证
+</span><span style="color:#abb2bf;">    客户 &lt;- 服务端 : Another authentication Response
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    autonumber 40 10
+</span><span style="color:#abb2bf;">    客户 -&gt; 服务端 : Yet another 请求认证
+</span><span style="color:#abb2bf;">    客户 &lt;- 服务端 : Yet another authentication Response
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/seq_9.svg) -->
+<p>你也可以对数字进行格式化输出, 为 <code>autonumber</code> 追加格式化使用单引号 <code>"格式"</code> ，内部可以使用 HTML 标记。 可以参看后面的 Formatting using HTML 。</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">    title seq_10
+</span><span style="color:#abb2bf;">    autonumber &quot;&lt;b&gt;[000]&lt;/b&gt;&quot;
+</span><span style="color:#abb2bf;">    客户 -&gt; 服务端 : 请求认证
+</span><span style="color:#abb2bf;">    客户 &lt;- 服务端 : Authentication Response
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    autonumber 15 &quot;&lt;b&gt;(&lt;u&gt;###&lt;/u&gt;)&quot;
+</span><span style="color:#abb2bf;">    客户 -&gt; 服务端 : Another 请求认证
+</span><span style="color:#abb2bf;">    客户 &lt;- 服务端 : Another authentication Response
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    autonumber 40 10 &quot;&lt;font color=red&gt;&lt;b&gt;Message 0  &quot;
+</span><span style="color:#abb2bf;">    客户 -&gt; 服务端 : Yet another 请求认证
+</span><span style="color:#abb2bf;">    客户 &lt;- 服务端 : Yet another authentication Response
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+<blockquote>
+<p>上面例子可以看出
+使用的是 html 标记 <code>&lt;b&gt;</code> 标识加粗 , <code>&lt;u&gt;</code> 标识下划线, 而写法有 单标签<code>&lt;b&gt;</code> 和 封闭标签 <code>&lt;b&gt;&lt;/b&gt;</code> 两种标记方式。
+<code>000</code> 表示数字格式,位置不足则补 0
+<code>###</code> 表示数字或空</p>
+</blockquote>
+<!-- ![img](/images/plantuml/seq_10.svg) -->
+<h3 id="7-8-splitting-diagrams-fen-ge-wei-duo-ge-tu-xing">7.8. Splitting diagrams 分割为多个图形</h3>
+<p>关键字 <code>newpage</code> 可以将同一张图形分割为多个图。
+可以追加 标题参数。</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">    title seq_11
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    服务端 -&gt; 客户 : message 1
+</span><span style="color:#abb2bf;">    服务端 -&gt; 客户 : message 2
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    newpage
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    服务端 -&gt; 客户 : message 3
+</span><span style="color:#abb2bf;">    服务端 -&gt; 客户 : message 4
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    newpage 第三章的标题\n最后一页
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    服务端 -&gt; 客户 : message 5
+</span><span style="color:#abb2bf;">    服务端 -&gt; 客户 : message 6
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/seq_11-1.svg) -->
+<!-- ![img](/images/plantuml/seq_11-2.svg) -->
+<!-- ![img](/images/plantuml/seq_11-3.svg) -->
+<h3 id="7-9-grouping-message-fen-zu-xiao-xi">7.9. Grouping message 分组消息</h3>
+<p>提供了一下几组关键词</p>
+<ul>
+<li>alt/else</li>
+<li>opt</li>
+<li>loop</li>
+<li>par</li>
+<li>break</li>
+<li>critical</li>
+<li>group, followed by a text to be displayed</li>
+</ul>
+<p>关键词后可以追加文本，来作为副标题。<br />
+使用 <code>end</code> 关键词来表示结束。</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">    title seq_12
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    服务端 -&gt; 客户: 请求认证
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    alt 成功
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">        客户 -&gt; 服务端: 许可认证
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    else 可识别的正常失败
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">        客户 -&gt; 服务端: 认证失败
+</span><span style="color:#abb2bf;">        group 组名称
+</span><span style="color:#abb2bf;">            服务端 -&gt;  日志:  attack start
+</span><span style="color:#abb2bf;">            loop 1000 times
+</span><span style="color:#abb2bf;">                服务端 -&gt; 客户: DNS Attack
+</span><span style="color:#abb2bf;">            end
+</span><span style="color:#abb2bf;">            服务端 -&gt;  日志: Log attack end
+</span><span style="color:#abb2bf;">        end
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    else  其他失败
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">       客户 -&gt; 服务端: 重新请求
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    end
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/seq_12.svg) -->
+<h3 id="7-10-notes-on-messages">7.10. Notes on messages</h3>
+<p>单行注释</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">note right:  右侧的内容
+</span><span style="color:#abb2bf;">note left:  右侧的内容
+</span></code></pre>
+<p>多行注释</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">note right:
+</span><span style="color:#abb2bf;">多行内容
+</span><span style="color:#abb2bf;">end note
+</span></code></pre>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">@startuml
+</span><span style="color:#abb2bf;">title seq_13
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">服务端-&gt;客户 : hello
+</span><span style="color:#abb2bf;">note left: this is a first note
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">客户-&gt;服务端 : ok
+</span><span style="color:#abb2bf;">note right: this is another note
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">客户-&gt;客户 : I am thinking
+</span><span style="color:#abb2bf;">note left
+</span><span style="color:#abb2bf;">    a note
+</span><span style="color:#abb2bf;">    can also be defined
+</span><span style="color:#abb2bf;">    on several lines
+</span><span style="color:#abb2bf;">end note
+</span><span style="color:#abb2bf;">@enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/seq_13.svg) -->
+<h3 id="7-11-some-other-notes">7.11. Some other notes</h3>
+<p><code>of</code>, <code>over</code> 后跟上角色（参与者）,可以管理。<br />
+其中 <code>over</code> 可以覆盖在线上。</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">    title seq_14
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    participant 服务端
+</span><span style="color:#abb2bf;">    participant 客户
+</span><span style="color:#abb2bf;">    note left of 服务端 #aqua
+</span><span style="color:#abb2bf;">        显示
+</span><span style="color:#abb2bf;">        左侧 of 服务端.
+</span><span style="color:#abb2bf;">    end note
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    note right of 服务端: 显示在右侧 of 服务端.
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    note over 服务端: over 注释覆盖在服务端.
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    note over 服务端, 客户 #FFAAAA: 注释\n 覆盖在 客户 和 服务端.
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    note over 客户, 服务端
+</span><span style="color:#abb2bf;">        This is yet another
+</span><span style="color:#abb2bf;">        example of
+</span><span style="color:#abb2bf;">        a long note.
+</span><span style="color:#abb2bf;">    end note
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/seq_14.svg) -->
+<h3 id="7-12-formatting-using-html">7.12. Formatting using HTML</h3>
+<p>使用类 html-tag：</p>
+<ul>
+<li><code>&lt;b&gt;</code> 来加粗字体</li>
+<li><code>&lt;u&gt;</code> or <code>&lt;u:#AAAAAA&gt;</code> or <code>&lt;u:colorName&gt;</code> 输出下划线</li>
+<li><code>&lt;i&gt;</code> 斜体字输出</li>
+<li><code>&lt;s&gt;</code> or <code>&lt;s:#AAAAAA&gt;</code> or <code>&lt;s:colorName&gt;</code> for strike text</li>
+<li><code>&lt;w&gt; or</code>&lt;w:#AAAAAA&gt;<code>or</code>&lt;w:colorName&gt;` for wave underline text</li>
+<li><code>&lt;color:#AAAAAA&gt;</code> or <code>&lt;color:colorName&gt;</code></li>
+<li><code>&lt;back:#AAAAAA&gt;</code> or <code>&lt;back:colorName&gt;</code> for background color</li>
+<li>`<a href="size:nn">size:nn</a> to change font size</li>
+<li><code>&lt;img src="file"&gt;</code> or <code>&lt;img:file&gt;</code> : the file must be accessible by the filesystem</li>
+<li><code>&lt;img src="http://url"&gt;</code> or <code>&lt;img:http://url&gt;</code> : the URL must be available from the Internet</li>
+</ul>
+<p>example</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">    title seq_15
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    participant 服务端
+</span><span style="color:#abb2bf;">    participant &quot;The &lt;b&gt;Famous&lt;/b&gt; 客户&quot; as 客户
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    服务端 -&gt; 客户 : A &lt;i&gt;well formated&lt;/i&gt; message
+</span><span style="color:#abb2bf;">    note right of 服务端
+</span><span style="color:#abb2bf;">     This is &lt;back:cadetblue&gt;&lt;size:18&gt;displayed&lt;/size&gt;&lt;/back&gt;
+</span><span style="color:#abb2bf;">     &lt;u&gt;left of&lt;/u&gt; 服务端.
+</span><span style="color:#abb2bf;">    end note
+</span><span style="color:#abb2bf;">    note left of 客户
+</span><span style="color:#abb2bf;">     &lt;u:red&gt;This&lt;/u&gt; is &lt;color #118888&gt;displayed&lt;/color&gt;
+</span><span style="color:#abb2bf;">     &lt;b&gt;&lt;color purple&gt;left of&lt;/color&gt; &lt;s:red&gt;服务端&lt;/strike&gt; 客户&lt;/b&gt;.
+</span><span style="color:#abb2bf;">    end note
+</span><span style="color:#abb2bf;">    note over 服务端, 客户
+</span><span style="color:#abb2bf;">     &lt;w:#FF33FF&gt;This is hosted&lt;/w&gt; by &lt;img http://s.plantuml.com/logoc.png&gt;
+</span><span style="color:#abb2bf;">    end note
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+<p>更多的方式查看 <a href="http://plantuml.com/sequence-diagram">官方文档</a></p>
+<!-- ![img](/images/plantuml/seq_15.svg) -->
+<h3 id="7-13-divider">7.13. Divider</h3>
+<p>If you want, you can split a diagram using == separator to divide your diagram into logical steps.</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">    title seq_16
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    == Initialisation ==
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    服务端 -&gt; 客户: 请求认证
+</span><span style="color:#abb2bf;">    客户 --&gt; 服务端: Authentication Response
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    == Repetition ==
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    服务端 -&gt; 客户: Another 请求认证
+</span><span style="color:#abb2bf;">    服务端 &lt;-- 客户: another authentication Response
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/seq_16.svg) -->
+<h3 id="7-14-reference">7.14. Reference</h3>
+<p>You can use reference in a diagram, using the keyword ref over.</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">    title seq_17
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    participant 服务端
+</span><span style="color:#abb2bf;">    actor 客户
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    ref over 服务端, 客户 : init
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    服务端 -&gt; 客户 : hello
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    ref over 客户
+</span><span style="color:#abb2bf;">      This can be on
+</span><span style="color:#abb2bf;">      several lines
+</span><span style="color:#abb2bf;">    end ref
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/seq_17.svg) -->
+<h3 id="7-15-delay">7.15. Delay</h3>
+<p>You can use ... to indicate a delay in the diagram. And it is also possible to put a message with this delay.</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    title seq_18
+</span><span style="color:#abb2bf;">    服务端 -&gt; 客户: 请求认证
+</span><span style="color:#abb2bf;">    ...
+</span><span style="color:#abb2bf;">    客户 --&gt; 服务端: Authentication Response
+</span><span style="color:#abb2bf;">    ...5 minutes latter...
+</span><span style="color:#abb2bf;">    客户 --&gt; 服务端: Bye !
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/seq_18.svg) -->
+<h3 id="7-16-space">7.16. Space</h3>
+<p>对消息使用空行 <code>|||</code>, 也可以自己定义像素高度 <code>||数字||</code>。</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">    title seq_19
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    服务端 -&gt; 客户: message 1
+</span><span style="color:#abb2bf;">    客户 --&gt; 服务端: ok
+</span><span style="color:#abb2bf;">    |||
+</span><span style="color:#abb2bf;">    服务端 -&gt; 客户: message 2
+</span><span style="color:#abb2bf;">    客户 --&gt; 服务端: ok
+</span><span style="color:#abb2bf;">    ||45||
+</span><span style="color:#abb2bf;">    服务端 -&gt; 客户: message 3
+</span><span style="color:#abb2bf;">    客户 --&gt; 服务端: ok
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/seq_19.svg) -->
+<h3 id="7-17-lifeline-activation-and-destruction-sheng-ming-zhou-qi">7.17. Lifeline Activation and Destruction 生命周期</h3>
+<p>使用 <code>activate 角色</code> 表示开始生命周期，使用 <code>destory 角色</code> 标识结束周期。开始和结束必须成对的存在。</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">    title seq_20
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    participant User
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    User -&gt; A: DoWork
+</span><span style="color:#abb2bf;">    activate A
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    A -&gt; B: &lt;&lt; createRequest &gt;&gt;
+</span><span style="color:#abb2bf;">    activate B
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    B -&gt; C: DoWork
+</span><span style="color:#abb2bf;">    activate C
+</span><span style="color:#abb2bf;">    C --&gt; B: WorkDone
+</span><span style="color:#abb2bf;">    destroy C
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    B --&gt; A: RequestCreated
+</span><span style="color:#abb2bf;">    deactivate B
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    A -&gt; User: Done
+</span><span style="color:#abb2bf;">    deactivate A
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/seq_20.svg) -->
+<p>为进程的生命周期进行标记色彩 ，可以追加色彩参数， 在 plantuml 中色彩使用 #十六进制的色彩值 来表示。</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">    title seq_21
+</span><span style="color:#abb2bf;">    participant User
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    User -&gt; A: DoWork
+</span><span style="color:#abb2bf;">    activate A #FFBBBB
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    A -&gt; A: Internal call
+</span><span style="color:#abb2bf;">    activate A #DarkSalmon
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    A -&gt; B: &lt;&lt; createRequest &gt;&gt;
+</span><span style="color:#abb2bf;">    activate B
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    B --&gt; A: RequestCreated
+</span><span style="color:#abb2bf;">    deactivate B
+</span><span style="color:#abb2bf;">    deactivate A
+</span><span style="color:#abb2bf;">    A -&gt; User: Done
+</span><span style="color:#abb2bf;">    deactivate A
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+<!-- ![img](/images/plantuml/seq_21.svg) -->
+<h3 id="7-18-participant-creation">7.18. Participant creation</h3>
+<p>You can use the create keyword just before the first reception of a message to emphasize the fact that this message is actually creating this new object.</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">    客户 -&gt; 服务端 : hello
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    create Other
+</span><span style="color:#abb2bf;">    服务端 -&gt; Other : new
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    create control String
+</span><span style="color:#abb2bf;">    服务端 -&gt; String
+</span><span style="color:#abb2bf;">    note right : You can also put notes!
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    服务端 --&gt; 客户 : ok
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+<h3 id="7-19-incoming-and-outgoing-messages">7.19. Incoming and outgoing messages</h3>
+<p>You can use incoming or outgoing arrows if you want to focus on a part of the diagram.
+Use square brackets to denotate the left "[" or the right "]" side of the diagram.</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">    [-&gt; A: DoWork
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    activate A
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    A -&gt; A: Internal call
+</span><span style="color:#abb2bf;">    activate A
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    A -&gt;] : &lt;&lt; createRequest &gt;&gt;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    A&lt;--] : RequestCreated
+</span><span style="color:#abb2bf;">    deactivate A
+</span><span style="color:#abb2bf;">    [&lt;- A: Done
+</span><span style="color:#abb2bf;">    deactivate A
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+<h3 id="7-20-stereotypes-and-spots">7.20. Stereotypes and Spots</h3>
+<p>It is possible to add stereotypes to participants using &lt;&lt; and &gt;&gt;.
+In the stereotype, you can add a spotted character in a colored circle using the syntax (X,color).</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    participant &quot;Famous 客户&quot; as 客户 &lt;&lt; Generated &gt;&gt;
+</span><span style="color:#abb2bf;">    participant 服务端 &lt;&lt; (C,#ADD1B2) Testable &gt;&gt;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    客户-&gt;服务端: First message
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+<p>或者</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    participant 客户 &lt;&lt; (C,#ADD1B2) &gt;&gt;
+</span><span style="color:#abb2bf;">    participant 服务端 &lt;&lt; (C,#ADD1B2) &gt;&gt;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    客户-&gt;服务端: First message
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+<h3 id="7-21-more-information-on-titles">7.21. More information on titles</h3>
+<p>You can use some HTML tags in the title.</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    title &lt;u&gt;Simple&lt;/u&gt; communication example
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    服务端 -&gt; 客户: 请求认证
+</span><span style="color:#abb2bf;">    客户 -&gt; 服务端: Authentication Response
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+<p>You can add newline using \n in the title description.</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    title &lt;u&gt;Simple&lt;/u&gt; communication example\non several lines
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    服务端 -&gt; 客户: 请求认证
+</span><span style="color:#abb2bf;">    客户 -&gt; 服务端: Authentication Response
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+<p>You can also define title on several lines using title and end title keywords.</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    title
+</span><span style="color:#abb2bf;">     &lt;u&gt;Simple&lt;/u&gt; communication example
+</span><span style="color:#abb2bf;">     on &lt;i&gt;several&lt;/i&gt; lines and using &lt;font color=red&gt;html&lt;/font&gt;
+</span><span style="color:#abb2bf;">     This is hosted by &lt;img:sourceforge.jpg&gt;
+</span><span style="color:#abb2bf;">    end title
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    服务端 -&gt; 客户: 请求认证
+</span><span style="color:#abb2bf;">    客户 -&gt; 服务端: Authentication Response
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+<h3 id="7-22-participants-englober">7.22. Participants englober</h3>
+<p>It is possible to draw a box arround some participants, using box and end box commands.
+You can add an optional title or a optional background color, after the box keyword.</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    box &quot;Internal Service&quot; #LightBlue
+</span><span style="color:#abb2bf;">        participant 客户
+</span><span style="color:#abb2bf;">        participant 服务端
+</span><span style="color:#abb2bf;">    end box
+</span><span style="color:#abb2bf;">    participant Other
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    客户 -&gt; 服务端 : hello
+</span><span style="color:#abb2bf;">    服务端 -&gt; Other : hello
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+<h3 id="7-23-removing-footer">7.23. Removing Footer</h3>
+<p>You can use the hide footbox keywords to remove the footer of the diagram.</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    hide footbox
+</span><span style="color:#abb2bf;">    title Footer removed
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    服务端 -&gt; 客户: 请求认证
+</span><span style="color:#abb2bf;">    客户 --&gt; 服务端: Authentication Response
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+<p>Skinparam</p>
+<p>You can use the skinparam command to change colors and fonts for the drawing.
+You can use this command :</p>
+<p>In the diagram definition, like any other commands,
+In an included file,
+In a configuration file, provided in the command line or the ANT task.</p>
+<pre data-lang="plantuml" style="background-color:#2b303b;color:#6c7079;" class="language-plantuml "><code class="language-plantuml" data-lang="plantuml"><span style="color:#abb2bf;">    @startuml
+</span><span style="color:#abb2bf;">    skinparam backgroundColor #EEEBDC
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    skinparam sequence {
+</span><span style="color:#abb2bf;">        ArrowColor DeepSkyBlue
+</span><span style="color:#abb2bf;">        ActorBorderColor DeepSkyBlue
+</span><span style="color:#abb2bf;">        LifeLineBorderColor blue
+</span><span style="color:#abb2bf;">        LifeLineBackgroundColor #A9DCDF
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">        ParticipantBorderColor DeepSkyBlue
+</span><span style="color:#abb2bf;">        ParticipantBackgroundColor DodgerBlue
+</span><span style="color:#abb2bf;">        ParticipantFontName Impact
+</span><span style="color:#abb2bf;">        ParticipantFontSize 17
+</span><span style="color:#abb2bf;">        ParticipantFontColor #A9DCDF
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">        ActorBackgroundColor aqua
+</span><span style="color:#abb2bf;">        ActorFontColor DeepSkyBlue
+</span><span style="color:#abb2bf;">        ActorFontSize 17
+</span><span style="color:#abb2bf;">        ActorFontName Aapex
+</span><span style="color:#abb2bf;">    }
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    actor User
+</span><span style="color:#abb2bf;">    participant &quot;First Class&quot; as A
+</span><span style="color:#abb2bf;">    participant &quot;Second Class&quot; as B
+</span><span style="color:#abb2bf;">    participant &quot;Last Class&quot; as C
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    User -&gt; A: DoWork
+</span><span style="color:#abb2bf;">    activate A
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    A -&gt; B: Create Request
+</span><span style="color:#abb2bf;">    activate B
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    B -&gt; C: DoWork
+</span><span style="color:#abb2bf;">    activate C
+</span><span style="color:#abb2bf;">    C --&gt; B: WorkDone
+</span><span style="color:#abb2bf;">    destroy C
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    B --&gt; A: Request Created
+</span><span style="color:#abb2bf;">    deactivate B
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    A --&gt; User: Done
+</span><span style="color:#abb2bf;">    deactivate A
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    @enduml
+</span></code></pre>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;plantuml&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;plantuml&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2019-12-15
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;mathtex&#x2F;">
+    <i class="icon icon-left-open"></i>
+    Mathtex 数学公式处理</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;mdbook&#x2F;">
+    MDBOOK 由rust开发的类GitBook图书工具
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-danger" href="//erasin.wang/categories/soft/">soft</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-danger" href="//erasin.wang/tags/soft/">soft</a>
+
+
+
+<a class="tag is-primary" href="//erasin.wang/tags/cli/">cli</a>
+
+
+
+<a class="tag is-black" href="//erasin.wang/tags/uml/">uml</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="1-an-zhuang" href="//erasin.wang/plantuml/#1-an-zhuang">1. 安装</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="2-shi-yong-ming-ling" href="//erasin.wang/plantuml/#2-shi-yong-ming-ling">2. 使用命令</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="3-shi-yong-vscode-lai-chuang-jian-he-yu-lan" href="//erasin.wang/plantuml/#3-shi-yong-vscode-lai-chuang-jian-he-yu-lan">3. 使用 VSCODE 来创建和预览</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="4-jiao-ben-yu-fa" href="//erasin.wang/plantuml/#4-jiao-ben-yu-fa">4. 脚本语法</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="5-activity-diagram-xin-ban-liu-cheng-tu" href="//erasin.wang/plantuml/#5-activity-diagram-xin-ban-liu-cheng-tu">5. Activity Diagram 新版流程图</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="5-1-simple-activity" href="//erasin.wang/plantuml/#5-1-simple-activity">5.1. Simple Activity</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="5-2-start-stop-kai-shi-he-jie-shu" href="//erasin.wang/plantuml/#5-2-start-stop-kai-shi-he-jie-shu">5.2. Start&#x2F;Stop 开始和结束</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="5-3-conditional-tiao-jian-yu-ju" href="//erasin.wang/plantuml/#5-3-conditional-tiao-jian-yu-ju">5.3. Conditional 条件语句</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="5-4-repeat-loop-xun-huan-chu-li-kong-zhi-yu-ju" href="//erasin.wang/plantuml/#5-4-repeat-loop-xun-huan-chu-li-kong-zhi-yu-ju">5.4. Repeat loop 循环处理（控制语句）</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="5-5-while-loop-xun-huan-kong-zhi" href="//erasin.wang/plantuml/#5-5-while-loop-xun-huan-kong-zhi">5.5. While loop 循环控制</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="5-6-parallel-processing-bing-xing-chu-li" href="//erasin.wang/plantuml/#5-6-parallel-processing-bing-xing-chu-li">5.6. Parallel processing 并行处理</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="5-7-notes-zhu-shi" href="//erasin.wang/plantuml/#5-7-notes-zhu-shi">5.7. Notes 注释</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="5-8-color-yan-se" href="//erasin.wang/plantuml/#5-8-color-yan-se">5.8. Color 颜色</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="5-9-complete-example-an-li" href="//erasin.wang/plantuml/#5-9-complete-example-an-li">5.9. Complete example 案例</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="6-liu-cheng-tu-jiu-ban" href="//erasin.wang/plantuml/#6-liu-cheng-tu-jiu-ban">6. 流程图 (旧版)</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="6-1-kai-shi-yu-jie-shu" href="//erasin.wang/plantuml/#6-1-kai-shi-yu-jie-shu">6.1. 开始与结束</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="6-2-jin-cheng-jie-dian" href="//erasin.wang/plantuml/#6-2-jin-cheng-jie-dian">6.2. 进程节点</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="6-3-tiao-jian-yu-ju-kong-zhi-liu-cheng" href="//erasin.wang/plantuml/#6-3-tiao-jian-yu-ju-kong-zhi-liu-cheng">6.3. 条件语句（控制流程)</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="6-4-zhu-shi" href="//erasin.wang/plantuml/#6-4-zhu-shi">6.4. 注释</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="6-5-fen-qu" href="//erasin.wang/plantuml/#6-5-fen-qu">6.5. 分区</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="6-6-parallel-processing-bing-xing-chu-li" href="//erasin.wang/plantuml/#6-6-parallel-processing-bing-xing-chu-li">6.6. Parallel processing 并行处理</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="6-7-zong-he-an-li" href="//erasin.wang/plantuml/#6-7-zong-he-an-li">6.7. 综合案例</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="7-sequence-diagram-shi-xu-tu" href="//erasin.wang/plantuml/#7-sequence-diagram-shi-xu-tu">7. Sequence Diagram 时序图</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="7-1-comments-zhu-shi" href="//erasin.wang/plantuml/#7-1-comments-zhu-shi">7.1. Comments 注释</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="7-2-declaring-participant-jiao-se" href="//erasin.wang/plantuml/#7-2-declaring-participant-jiao-se">7.2. Declaring participant （角色）</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="7-3-use-non-letters-in-participants-fei-zi-fu-chu-li" href="//erasin.wang/plantuml/#7-3-use-non-letters-in-participants-fei-zi-fu-chu-li">7.3. Use non-letters in participants 非字符处理</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="7-4-message-to-self" href="//erasin.wang/plantuml/#7-4-message-to-self">7.4. Message to Self</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="7-5-change-arrow-style-jian-tou-yang-shi" href="//erasin.wang/plantuml/#7-5-change-arrow-style-jian-tou-yang-shi">7.5. Change arrow style 箭头样式</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="7-6-change-arrow-color-jian-tou-se-cai" href="//erasin.wang/plantuml/#7-6-change-arrow-color-jian-tou-se-cai">7.6. Change arrow color 箭头色彩</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="7-7-message-sequence-numbering-ji-shu" href="//erasin.wang/plantuml/#7-7-message-sequence-numbering-ji-shu">7.7. Message sequence numbering 计数</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="7-8-splitting-diagrams-fen-ge-wei-duo-ge-tu-xing" href="//erasin.wang/plantuml/#7-8-splitting-diagrams-fen-ge-wei-duo-ge-tu-xing">7.8. Splitting diagrams 分割为多个图形</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="7-9-grouping-message-fen-zu-xiao-xi" href="//erasin.wang/plantuml/#7-9-grouping-message-fen-zu-xiao-xi">7.9. Grouping message 分组消息</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="7-10-notes-on-messages" href="//erasin.wang/plantuml/#7-10-notes-on-messages">7.10. Notes on messages</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="7-11-some-other-notes" href="//erasin.wang/plantuml/#7-11-some-other-notes">7.11. Some other notes</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="7-12-formatting-using-html" href="//erasin.wang/plantuml/#7-12-formatting-using-html">7.12. Formatting using HTML</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="7-13-divider" href="//erasin.wang/plantuml/#7-13-divider">7.13. Divider</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="7-14-reference" href="//erasin.wang/plantuml/#7-14-reference">7.14. Reference</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="7-15-delay" href="//erasin.wang/plantuml/#7-15-delay">7.15. Delay</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="7-16-space" href="//erasin.wang/plantuml/#7-16-space">7.16. Space</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="7-17-lifeline-activation-and-destruction-sheng-ming-zhou-qi" href="//erasin.wang/plantuml/#7-17-lifeline-activation-and-destruction-sheng-ming-zhou-qi">7.17. Lifeline Activation and Destruction 生命周期</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="7-18-participant-creation" href="//erasin.wang/plantuml/#7-18-participant-creation">7.18. Participant creation</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="7-19-incoming-and-outgoing-messages" href="//erasin.wang/plantuml/#7-19-incoming-and-outgoing-messages">7.19. Incoming and outgoing messages</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="7-20-stereotypes-and-spots" href="//erasin.wang/plantuml/#7-20-stereotypes-and-spots">7.20. Stereotypes and Spots</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="7-21-more-information-on-titles" href="//erasin.wang/plantuml/#7-21-more-information-on-titles">7.21. More information on titles</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="7-22-participants-englober" href="//erasin.wang/plantuml/#7-22-participants-englober">7.22. Participants englober</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="7-23-removing-footer" href="//erasin.wang/plantuml/#7-23-removing-footer">7.23. Removing Footer</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

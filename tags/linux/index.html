@@ -1,0 +1,1227 @@
+<!DOCTYPE html>  
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title> linux - ERASIN </title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+   
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+
+<h1 class="header"> <i class="icon icon-bookmark"></i> LINUX </h1>
+
+
+  
+
+
+
+<div class="posts col">
+  
+  <div class="post odd  " >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/posts/linux-core-switch/" >arch linux 更换内核
+
+
+
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2024-11-24</div>
+    </div>
+    
+    <div class="post-content ">
+      <p>Arch Linux 使用内核 <a href="https://wiki.archlinux.org/title/Kernel">kernel</a>默认为 linux stable 最新的稳定版。切换为 linux-lts Longterm 长期支持版本。</p>
+<p>我是用的是 <code>system-boot</code> 引导系统, 更替内核大概步骤如下。</p>
+<ol>
+<li>安装 linux-lts 内核。</li>
+<li>添加或者替换配置引导条目</li>
+<li>更新 systemd-boot</li>
+</ol>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/posts/linux-core-switch/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+  <div class="post even " >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/posts/blender-thumbnailer/" >blender thumbnailer 在Linux下缩略图
+
+
+
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2024-03-26</div>
+    </div>
+    
+    <div class="post-content ">
+      <p>在 Linux 安装 blender 后，检查 <code>/usr/bin/blender-thumbnailer</code> 缩略图生成命令是否存在。</p>
+<p>创建缩略图生成配置文件</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#6c7079;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#5ebfcc;">cd</span><span style="color:#abb2bf;"> /usr/share/thumbnailers
+</span><span style="color:#eb6772;">sudo</span><span style="color:#abb2bf;"> touch blender.thumbnailer
+</span><span style="color:#eb6772;">sudo</span><span style="color:#abb2bf;"> hx/vim blender.thumbnailer
+</span></code></pre>
+<p>编辑 <code>blender.thumbnailer</code></p>
+<pre data-lang="ini" style="background-color:#2b303b;color:#6c7079;" class="language-ini "><code class="language-ini" data-lang="ini"><span style="color:#cd74e8;">[Thumbnailer Entry]
+</span><span style="color:#eb6772;">TryExec</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">blender</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">thumbnailer
+</span><span style="color:#eb6772;">Exec</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">blender</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">thumbnailer </span><span style="color:#cd74e8;">%i %o
+</span><span style="color:#eb6772;">MimeType</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">application/x-blender;
+</span></code></pre>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/posts/blender-thumbnailer/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+  <div class="post odd  " >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/helix/ime-switch/" >在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2024-02-22</div>
+    </div>
+    
+    <div class="post-content ">
+      <p>在支持模态文本编辑的编辑器，比如 vim, helix， vscode的vim模式等，在使用 <code>esc</code>键后会进入默认的普通模式(normal mode)，这个时候的操作基本是在英文输入状态下完成操作。再使用 ime 中文输入法的情况下，我们使用<code>esc</code>后必须切换回英文输入，无疑对模态操作多了一次步骤。这里我们可以在使用<code>esc</code>时同时切换输入法来解决该问题。</p>
+<p>大致的解决办法是：</p>
+<ol>
+<li>利用脚本以及 cli 命令 来切换系统输入法</li>
+<li>编辑器插入模式，为 esc 配置命令切换为回英文，并记录当前的输入法</li>
+<li>在编辑进入插入模式的时候，读取上次插入模式下的输入法并切换</li>
+</ol>
+<p>下面介绍 Linux ，osx 下的切换输入法方法。</p>
+<h2 id="linux-gnome-huan-jing-ibus">Linux gnome 环境 ibus</h2>
+<p><a href="https://wiki.archlinuxcn.org/wiki/IBus">IBus</a> 是一款输入法框架。具体使用可以参考 <a href="https://wiki.archlinuxcn.org/wiki/IBus">wiki-ibus</a> 。</p>
+<p>ibus 提供了工具 <code>ibus engine</code> 查看当前的输入法标识，使用 <code>ibus engine rime</code> 切换输入法为rime。  但在 <code>gnome 4</code> 版本中，该命令无法和<code>gnome-shell</code>中的系统状态的输入法保持一致。这个时候我们使用一款 <a href="https://extensions.gnome.org/extension/5497/ibus-switcher/">gnome-shell-ibus-switcher</a> 插件来解决该问题。
+<a href="https://github.com/kevinhwang91/gnome-shell-ibus-switcher">ibus-switcher</a> 为 gnome-shell 42 版本后 提供了利用 <code>d-bus</code> 切换输入法的方式，从而切换系统输入法</p>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/helix/ime-switch/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+  <div class="post even " >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/posts/makefile/" >make 和 Makefile
+
+
+
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2024-02-22</div>
+    </div>
+    
+    <div class="post-content ">
+      <p><strong>Makefile</strong> 是一个用来管理项目中源代码编译的文件，通常在 UNIX 和类 UNIX 系统中使用。它包含了一组规则，这些规则告诉 make 工具如何根据源代码文件来构建目标文件以及最终的可执行文件。</p>
+<p>一个简单的 Makefile 包含了以下几个部分：</p>
+<ol>
+<li>变量定义： 可以定义一些变量，例如编译器名称、编译选项等。</li>
+<li>目标与依赖关系： 定义了要构建的目标文件以及这些目标文件所依赖的源文件或其他目标文件。</li>
+<li>规则： 每个规则包含了构建目标文件的命令。</li>
+<li>注释： 可以使用 <code>#</code> 开头的行来添加注释，提高代码可读性。</li>
+</ol>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/posts/makefile/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+  <div class="post odd  " >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/posts/vscode-wayland/" >vscode 在linux wayland 环境的处理
+
+
+
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2023-07-12</div>
+    </div>
+    
+    <div class="post-content ">
+      <p>Vscode 在linux 的 wayland 环境下有可能出现白色边框或者剪贴板的问题。</p>
+<p>可以通过修改 vscode 的 <code>.desktop</code> 文件，追加参数 <code>--ozone-platform=wayland</code> 兼容 wayland环境。</p>
+<p>由于不同的发行版路径不同，这里使用了 archlinux 的 <a href="https://aur.archlinux.org/packages/visual-studio-code-bin">visual-studio-code-bin</a>，其路径为 <code>/usr/share/applications/code.desktop</code>。</p>
+<pre data-lang="ini" style="background-color:#2b303b;color:#6c7079;" class="language-ini "><code class="language-ini" data-lang="ini"><span style="color:#cd74e8;">[Desktop Entry]
+</span><span style="color:#eb6772;">Name</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">Visual Studio Code
+</span><span style="color:#eb6772;">Comment</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">Code Editing</span><span style="color:#adb7c9;">.</span><span style="color:#abb2bf;"> Refined</span><span style="color:#adb7c9;">.
+</span><span style="color:#eb6772;">GenericName</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">Text Editor
+</span><span style="color:#eb6772;">Exec</span><span style="color:#adb7c9;">=/</span><span style="color:#abb2bf;">usr</span><span style="color:#adb7c9;">/</span><span style="color:#abb2bf;">bin</span><span style="color:#adb7c9;">/</span><span style="color:#abb2bf;">code </span><span style="color:#adb7c9;">--</span><span style="color:#abb2bf;">ozone</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">platform</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">wayland </span><span style="color:#cd74e8;">%F
+</span><span style="color:#eb6772;">Icon</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">visual</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">studio</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">code
+</span><span style="color:#eb6772;">Type</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">Application
+</span><span style="color:#eb6772;">StartupNotify</span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">false
+</span><span style="color:#eb6772;">StartupWMClass</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">Code
+</span><span style="color:#eb6772;">Categories</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">TextEditor;Development;IDE;
+</span><span style="color:#eb6772;">MimeType</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">text/plain;inode/directory;application/x-code-workspace;
+</span><span style="color:#eb6772;">Actions</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">new</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">empty</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">window;
+</span><span style="color:#eb6772;">Keywords</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">vscode;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">[Desktop Action new-empty-window]
+</span><span style="color:#eb6772;">Name</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">New Empty Window
+</span><span style="color:#eb6772;">Exec</span><span style="color:#adb7c9;">=/</span><span style="color:#abb2bf;">usr</span><span style="color:#adb7c9;">/</span><span style="color:#abb2bf;">bin</span><span style="color:#adb7c9;">/</span><span style="color:#abb2bf;">code </span><span style="color:#adb7c9;">--</span><span style="color:#abb2bf;">ozone</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">platform</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">wayland </span><span style="color:#adb7c9;">--</span><span style="color:#abb2bf;">new</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">window </span><span style="color:#cd74e8;">%F
+</span><span style="color:#eb6772;">Icon</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">visual</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">studio</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">code
+</span></code></pre>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/posts/vscode-wayland/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+</div>
+
+
+
+  
+
+<nav class="pagination row is-centered" role="navigation" aria-label="pagination">
+  <div class="pagination-btns">
+    
+    
+    <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;tags&#x2F;linux&#x2F;page&#x2F;2&#x2F;">下一页<i class="icon icon-right-open"></i></a>
+    
+  </div>
+  <ul class="pagination-list">
+    
+    
+    
+    
+    
+    
+    
+    <li> <a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a></li>
+    
+    
+    
+    <li> <a class="pagination-link" aria-label="Goto page 2" href="//erasin.wang/tags/linux/page/2">2</a></li>
+    
+    
+    
+  </ul>
+</nav>
+
+
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+<div class="box mini-hide">
+  <h3 class="header">
+    <i class="icon icon-hashtag"></i> 标签
+    <a class="more" href='//erasin.wang/tags'>MORE</a>
+  </h3>
+
+  <div class="box-body">
+    
+
+<ul class="ui list tree">
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/ai-art/">AI art 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/awesome/">awesome 
+
+
+
+
+</a>
+    <span class="sub-num"> 3</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/beancount/">BeanCount 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/blender/">blender 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/book/">book 
+
+<i class="icon icon-book"></i> 
+
+</a>
+    <span class="sub-num"> 4</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/cheatsheet/">cheatsheet 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/cli/">cli 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    <span class="sub-num"> 11</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/code/">code 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/comment/">comment 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/css/">css 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/database/">database 
+
+<i class="icon icon-database"></i> 
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/debug/">debug 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/developer/">developer 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/docs/">docs 
+
+<i class="icon icon-paperclip"></i> 
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/draft/">draft 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/editor/">editor 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/emacs/">emacs 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/font/">font 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/fu-shi-ji-zhang-fa/">复式记账法 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/game/">game 
+
+<i class="icon icon-gamepad"></i> 
+
+</a>
+    <span class="sub-num"> 4</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/git/">git 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/github/">github 
+
+
+
+
+</a>
+    <span class="sub-num"> 7</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/gnome/">gnome 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/go/">go 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/godot/">godot 
+
+
+
+
+</a>
+    <span class="sub-num"> 5</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/golang/">golang 
+
+<i class="icon icon-go"></i> 
+
+</a>
+    <span class="sub-num"> 4</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/gong-ju/">工具 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/helix/">helix 
+
+
+
+
+</a>
+    <span class="sub-num"> 5</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/html/">html 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/http/">http 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/hurl/">hurl 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/image/">image 
+
+<i class="icon icon-picture"></i> 
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/javascript/">javascript 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/kai-yuan/">开源 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/ledger/">ledger 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/linux/">linux 
+
+
+
+
+</a>
+    <span class="sub-num"> 6</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/lsp/">lsp 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/mac/">mac 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/macbook/">macbook 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/macbook-pro/">macbook pro 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/macos/">macos 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/magicavoxel/">MagicaVoxel 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/make/">make 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/markdown/">markdown 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/math/">math 
+
+<i class="icon icon-pi"></i> 
+
+</a>
+    <span class="sub-num"> 4</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/mi-ma/">密码 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/midjourney/">midjourney 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/music/">music 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/open-source/">open-source 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/openssl/">openssl 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/osx/">osx 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/otp/">otp 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/php/">php 
+
+
+
+
+</a>
+    <span class="sub-num"> 6</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/pixel/">pixel 
+
+
+
+
+</a>
+    <span class="sub-num"> 3</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/project/">project 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/promit/">promit 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/regex/">regex 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/rpc/">rpc 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/ruan-jian/">软件 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/rust/">rust 
+
+
+
+
+</a>
+    <span class="sub-num"> 8</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/rustlang/">rustlang 
+
+<i class="icon icon-rust"></i> 
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/server/">server 
+
+<i class="icon icon-server"></i> 
+
+</a>
+    <span class="sub-num"> 3</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/shader/">shader 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/shi-jian-ge-shi/">时间格式 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/site/">site 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/sleepwatcher/">sleepwatcher 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/soft/">soft 
+
+
+
+
+</a>
+    <span class="sub-num"> 7</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/sql/">SQL 
+
+
+
+
+</a>
+    <span class="sub-num"> 3</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/stable-diffusion/">stable diffusion 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/svg/">svg 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/template/">template 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/ti-shi-ci/">提示词 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/uml/">uml 
+
+
+
+
+</a>
+    <span class="sub-num"> 4</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/video/">video 
+
+<i class="icon icon-youtube"></i> 
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/vim/">vim 
+
+
+
+
+</a>
+    <span class="sub-num"> 5</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/vscode/">vscode 
+
+
+
+
+</a>
+    <span class="sub-num"> 6</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/wayland/">wayland 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/web/">web 
+
+<i class="icon icon-network"></i> 
+
+</a>
+    <span class="sub-num"> 6</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/xian-xing-cha-zhi/">线性插值 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/xiang-su/">像素 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/yi-ci-ming-mi-ma/">一次名密码 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/zha-pian/">诈骗 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+</ul>
+
+  </div>
+</div>
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  rustup 和 cargo 国内加速镜像服务 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="rust rustup 和 cargo 国内源加速镜像服务" property="description" />
+
+  
+    <meta content="rustlang" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> rustup 和 cargo 国内加速镜像服务 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      RUSTUP 和 CARGO 国内加速镜像服务
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2020-05-30
+    </div>
+  </div>
+
+  <div class="post-content  " 
+    style="background-image:url(&#x27;&#x2F;assets&#x2F;img&#x2F;rust.svg&#x27;)" >
+    <p>国内提供rustup镜像主要有</p>
+<ul>
+<li>中国科学技术大学 <a href="http://mirrors.ustc.edu.cn/help/rust-static.html">rustup</a> | <a href="http://mirrors.ustc.edu.cn/help/crates.io-index.html">cargo 源</a></li>
+<li>清华大学 <a href="https://mirrors.tuna.tsinghua.edu.cn/help/rustup/">rustup</a> | <a href="https://mirrors.tuna.tsinghua.edu.cn/help/crates.io-index.git/">cargo 源</a></li>
+</ul>
+<span id="continue-reading"></span><h2 id="zhong-guo-ke-xue-ji-shu-da-xue">中国科学技术大学</h2>
+<p><strong>rustup</strong></p>
+<p>追加环境变量 <code>$HOME/.profile</code></p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#cd74e8;">export </span><span style="color:#eb6772;">RUSTUP_DIST_SERVER</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">https://mirrors.ustc.edu.cn/rust-static
+</span><span style="color:#cd74e8;">export </span><span style="color:#eb6772;">RUSTUP_UPDATE_ROOT</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">https://mirrors.ustc.edu.cn/rust-static/rustup
+</span></code></pre>
+<p>追加cargo源 到 <code>$HOME/.cargo/config</code></p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#6c7079;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#abb2bf;">[source.crates-io]
+</span><span style="color:#eb6772;">replace-with </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&#39;ustc&#39;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">[source.ustc]
+</span><span style="color:#eb6772;">registry </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;git://mirrors.ustc.edu.cn/crates.io-index&quot;
+</span></code></pre>
+<h2 id="qing-hua-da-xue">清华大学</h2>
+<p>追加环境变量 <code>$HOME/.profile</code></p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#cd74e8;">export </span><span style="color:#eb6772;">RUSTUP_DIST_SERVER</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">https://mirrors.tuna.tsinghua.edu.cn/rustup 
+</span></code></pre>
+<p>追加cargo源 到 <code>$HOME/.cargo/config</code></p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#6c7079;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#abb2bf;">[source.crates-io]
+</span><span style="color:#eb6772;">replace-with </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&#39;tuna&#39;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">[source.tuna]
+</span><span style="color:#eb6772;">registry </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;https://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git&quot;
+</span></code></pre>
+
+
+
+  </div>
+</div>
+
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;font&#x2F;">
+    <i class="icon icon-left-open"></i>
+    Font 免费编程用字体</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;php-version-env&#x2F;">
+    PHP 多版本运行环境
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-success" href="//erasin.wang/categories/rustlang/">rustlang</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-danger" href="//erasin.wang/tags/rustlang/">rustlang</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="zhong-guo-ke-xue-ji-shu-da-xue" href="//erasin.wang/rustup/#zhong-guo-ke-xue-ji-shu-da-xue">中国科学技术大学</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="qing-hua-da-xue" href="//erasin.wang/rustup/#qing-hua-da-xue">清华大学</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

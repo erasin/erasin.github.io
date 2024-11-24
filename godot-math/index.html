@@ -1,0 +1,510 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  Godot数学-线性插值 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="" property="description" />
+
+  
+    <meta content="game,godot,线性插值,math" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> Godot数学-线性插值 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      GODOT数学-线性插值
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2020-04-08
+    </div>
+  </div>
+
+  <div class="post-content  " 
+    style="background-image:url(&#x2F;assets&#x2F;img&#x2F;PI.svg);background-size:100px;" >
+    <h2 id="lerp-xian-xing-cha-zhi">lerp 线性插值</h2>
+<p>GDSciprt中的 lerp 公式</p>
+<pre data-lang="py" style="background-color:#2b303b;color:#6c7079;" class="language-py "><code class="language-py" data-lang="py"><span style="color:#abb2bf;">func </span><span style="color:#eb6772;">lerp</span><span style="color:#abb2bf;">(a, b, t):
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">return </span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">1 </span><span style="color:#adb7c9;">- </span><span style="color:#abb2bf;">t) </span><span style="color:#adb7c9;">* </span><span style="color:#abb2bf;">a </span><span style="color:#adb7c9;">+ </span><span style="color:#abb2bf;">t </span><span style="color:#adb7c9;">* </span><span style="color:#abb2bf;">b
+</span></code></pre>
+<p>在此公式中，a和b代表两个值，t是插值量，通常表示为0（返回a）和1（返回b）之间的值。该函数查找给定数量的值例如</p>
+<pre data-lang="py" style="background-color:#2b303b;color:#6c7079;" class="language-py "><code class="language-py" data-lang="py"><span style="color:#abb2bf;">x </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">lerp</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">0.75</span><span style="color:#abb2bf;">)  </span><span style="font-style:italic;color:#5f697a;"># x is 0.75
+</span><span style="color:#abb2bf;">x </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">lerp</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">100</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">0.5</span><span style="color:#abb2bf;">)  </span><span style="font-style:italic;color:#5f697a;"># x is 50
+</span><span style="color:#abb2bf;">x </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">lerp</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">10</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">75</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">0.3</span><span style="color:#abb2bf;">)  </span><span style="font-style:italic;color:#5f697a;"># x is 29.5
+</span><span style="color:#abb2bf;">x </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">lerp</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">30</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">2</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">0.75</span><span style="color:#abb2bf;">)  </span><span style="font-style:italic;color:#5f697a;"># x is 9
+</span></code></pre>
+<img src='/images/Linear_interpolation_visualisation.svg'  class="img align-center "  style='width:100%;max-width:300px;' />
+
+<blockquote>
+<p>线性差值概念参照 <a href="https://en.wikipedia.org/wiki/Linear_interpolation">wiki</a> <a href="https://zh.wikipedia.org/wiki/%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC">wiki_zh</a></p>
+</blockquote>
+<span id="continue-reading"></span><h3 id="demo">demo</h3>
+<p>使用 <strong>lerp</strong> 设置节点 <code>Sprite</code> 的缩放属性 <code>scale</code> 和 透明属性 <code>modulate.a</code>， 利用 delta (帧间隔) 特性，获取 a,b 的插值，平稳的改变属性，使节点从小到大， 从显示到透明，</p>
+<pre data-lang="py" style="background-color:#2b303b;color:#6c7079;" class="language-py "><code class="language-py" data-lang="py"><span style="color:#abb2bf;">extends Sprite
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">var time </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">0 </span><span style="font-style:italic;color:#5f697a;"># 计次(帧)
+</span><span style="color:#abb2bf;">var duration </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">2  </span><span style="font-style:italic;color:#5f697a;"># 特效长度
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">func </span><span style="color:#eb6772;">_process</span><span style="color:#abb2bf;">(delta): </span><span style="font-style:italic;color:#5f697a;"># 每帧执行，lerp 获取插值，从而得到线性的变动的值
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">if </span><span style="color:#abb2bf;">time </span><span style="color:#adb7c9;">&lt; </span><span style="color:#abb2bf;">duration:
+</span><span style="color:#abb2bf;">        time </span><span style="color:#adb7c9;">+= </span><span style="color:#abb2bf;">delta
+</span><span style="color:#abb2bf;">        modulate.a </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">lerp</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">, time </span><span style="color:#adb7c9;">/ </span><span style="color:#abb2bf;">duration) </span><span style="font-style:italic;color:#5f697a;"># 从 1 到 0（透明） 
+</span><span style="color:#abb2bf;">        scale </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">Vector2.</span><span style="color:#eb6772;">ONE </span><span style="color:#adb7c9;">* </span><span style="color:#eb6772;">lerp</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">5</span><span style="color:#abb2bf;">, time </span><span style="color:#adb7c9;">/ </span><span style="color:#abb2bf;">duration) </span><span style="font-style:italic;color:#5f697a;"># 从 1 倍到 5 倍
+</span></code></pre>
+<p>{# /images/lerp.gif #}
+<img src="https://i.loli.net/2020/04/07/uoCX9flTyn4eKbi.gif" alt="lerp" /></p>
+<h2 id="xiang-liang-cha-zhi">向量插值</h2>
+<p>向量类型 <code>Vector2</code> 和 <code>Vector3</code> 提供了函数 <code>linear_interpolate()</code> 获取插值。</p>
+<p>比如 向投个目标逼近处理,每帧移动 10%。</p>
+<pre data-lang="py" style="background-color:#2b303b;color:#6c7079;" class="language-py "><code class="language-py" data-lang="py"><span style="color:#abb2bf;">extends Sprite
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">var target
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">func </span><span style="color:#eb6772;">_input</span><span style="color:#abb2bf;">(event):
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">if </span><span style="color:#abb2bf;">event </span><span style="color:#cd74e8;">is </span><span style="color:#abb2bf;">InputEventMouseButton </span><span style="color:#cd74e8;">and </span><span style="color:#abb2bf;">event.pressed:
+</span><span style="color:#abb2bf;">        target </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">event.position
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">func </span><span style="color:#eb6772;">_process</span><span style="color:#abb2bf;">(delta):
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">if </span><span style="color:#abb2bf;">target:
+</span><span style="color:#abb2bf;">        position </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">position.</span><span style="color:#eb6772;">linear_interpolate</span><span style="color:#abb2bf;">(target, </span><span style="color:#db9d63;">0.1</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">
+</span></code></pre>
+<p>lerp 也是支持 <code>Vector2</code> 等类型参数。</p>
+<p>另外在godot 中使用 <code>Tween</code> 补间动画处理也可以达到同样的效果。</p>
+<pre data-lang="py" style="background-color:#2b303b;color:#6c7079;" class="language-py "><code class="language-py" data-lang="py"><span style="font-style:italic;color:#5f697a;"># 设置透明度从半透明到透明
+</span><span style="color:#abb2bf;">$Tween.</span><span style="color:#eb6772;">interpolate_property</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">self</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&quot;modulate&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">Color</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">0.6</span><span style="color:#abb2bf;">), </span><span style="color:#eb6772;">Color</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">),</span><span style="color:#db9d63;">0.35</span><span style="color:#abb2bf;">, Tween.</span><span style="color:#eb6772;">TRANS_SINE</span><span style="color:#abb2bf;">, Tween.</span><span style="color:#eb6772;">EASE_IN</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">$Tween.</span><span style="color:#eb6772;">start</span><span style="color:#abb2bf;">()
+</span></code></pre>
+<h2 id="noise-zao-sheng-fa-sheng-qi">Noise 噪声发生器</h2>
+<p>Godot 提供类库 <a href="https://docs.godotengine.org/en/latest/classes/class_opensimplexnoise.html">OpenSimplexNoise</a> 基于 <a href="https://en.wikipedia.org/wiki/Simplex_noise">Simplex Noise</a> <a href="https://en.wikipedia.org/wiki/OpenSimplex_noise">Open Simplex</a>  噪声生成器。</p>
+<p>下面配置一个噪声发生器，然后获取位置和尺寸。</p>
+<pre data-lang="py" style="background-color:#2b303b;color:#6c7079;" class="language-py "><code class="language-py" data-lang="py"><span style="font-style:italic;color:#5f697a;"># 创建噪声发生器
+</span><span style="color:#abb2bf;">var noise </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">OpenSimplexNoise.</span><span style="color:#eb6772;">new</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 配置
+</span><span style="color:#abb2bf;">noise.seed </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">randi</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">noise.octaves </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">4
+</span><span style="color:#abb2bf;">noise.period </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">20.0
+</span><span style="color:#abb2bf;">noise.persistence </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">0.8
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 获取噪点值
+</span><span style="color:#5ebfcc;">print</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;Values:&quot;</span><span style="color:#abb2bf;">)
+</span><span style="font-style:italic;color:#5f697a;"># get_noise_2d(x, y)
+</span><span style="color:#5ebfcc;">print</span><span style="color:#abb2bf;">(noise.</span><span style="color:#eb6772;">get_noise_2d</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">1.0</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">1.0</span><span style="color:#abb2bf;">))
+</span><span style="font-style:italic;color:#5f697a;"># get_noise_3d(x, y, z)
+</span><span style="color:#5ebfcc;">print</span><span style="color:#abb2bf;">(noise.</span><span style="color:#eb6772;">get_noise_3d</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">0.5</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">3.0</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">15.0</span><span style="color:#abb2bf;">))
+</span><span style="font-style:italic;color:#5f697a;"># get_noise_4d(x, y, z, w)
+</span><span style="color:#5ebfcc;">print</span><span style="color:#abb2bf;">(noise.</span><span style="color:#eb6772;">get_noise_4d</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">0.5</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">1.9</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">4.7</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">0.0</span><span style="color:#abb2bf;">))
+</span></code></pre>
+<p><strong>参数:</strong></p>
+<ul>
+<li><strong>seed</strong> - 用于生成随机值的种子，默认为0.</li>
+<li><strong>period</strong> - 越低的值生成较高频率的噪点（相同距离内会产生更多变化）默认为 64。</li>
+<li><strong>octaves</strong> - 八度音阶层 默认3</li>
+<li><strong>lacunarity</strong> - 八度层之间的间隙，默认为2。</li>
+<li><strong>persistence</strong> - 持续性，每个八度音阶层(octaves) 对噪音的生成量。</li>
+</ul>
+<p>也可以 创建建 <code>Sprite</code> 精灵节点，配置纹理 <code>Texture</code> 属性为 <code>NoiseTexture</code> ， 并设置 <code>Noise</code> 为 新建<code>OpenSimplexNoise</code>，然后配置参数即可实时看到生成效果。</p>
+<p><img src="http://kidscancode.org/godot_recipes/img/2d_noise_example.png" alt="noiseTexture" /></p>
+<blockquote>
+<p><a href="http://kidscancode.org/godot_recipes/math/interpolation/">http://kidscancode.org/godot_recipes/math/interpolation/</a></p>
+</blockquote>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;godot-math&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;godot-math&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2020-04-08
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;soft-magicavoxel&#x2F;">
+    <i class="icon icon-left-open"></i>
+    MagicaVoxel 像素体编辑器</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;osx-launch&#x2F;">
+    OSX 下服务管理工具 launch
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-success" href="//erasin.wang/categories/game/">game</a>
+
+
+
+<a class="tag is-link" href="//erasin.wang/categories/godot/">godot</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-success" href="//erasin.wang/tags/game/">game</a>
+
+
+
+<a class="tag is-danger" href="//erasin.wang/tags/godot/">godot</a>
+
+
+
+<a class="tag is-primary" href="//erasin.wang/tags/xian-xing-cha-zhi/">线性插值</a>
+
+
+
+<a class="tag is-danger" href="//erasin.wang/tags/math/">math</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="lerp-xian-xing-cha-zhi" href="//erasin.wang/godot-math/#lerp-xian-xing-cha-zhi">lerp 线性插值</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="demo" href="//erasin.wang/godot-math/#demo">demo</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="xiang-liang-cha-zhi" href="//erasin.wang/godot-math/#xiang-liang-cha-zhi">向量插值</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="noise-zao-sheng-fa-sheng-qi" href="//erasin.wang/godot-math/#noise-zao-sheng-fa-sheng-qi">Noise 噪声发生器</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

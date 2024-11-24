@@ -1,0 +1,381 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  Linux系统硬盘使用100%写入失败 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="linux 下 No space left on device" property="description" />
+
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> Linux系统硬盘使用100%写入失败 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      LINUX系统硬盘使用100%写入失败
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2020-09-26
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <p>服务器写入文件的时候出现错误，使用<code>touch 1.txt</code> 后出现 <code>no space left on device</code>, 然j就使用 <code>df</code> 看到 硬盘分区
+使用率 100% 后，找到自旧日志文件进行删除操作后，看到空余的硬盘空间，可仍旧无法写入文件。</p>
+<p>这就是 Linux/unix 文件系机制的问题，Linux/Unix like OS 的文件系统中每个目录树中的节点并不是像 Windows 直接包含文件的具体信息，而只包含了文件名和 Inode number 。通过 <strong>Inode number</strong> 所找到对应于文件名的 Inode 节点中才真正记录了<strong>文件的大小/物理地址/所有者/访问权限/时间戳/被硬链接的次数</strong>等实际的metadata。因此你可以在 Linux 系统中通过<strong>硬链接</strong>( hard link ) 的方式给某个文件创建无数个位于不同目录下的文件名，而实际的文件数据只需要一份拷贝。</p>
+<span id="continue-reading"></span>
+<p>Inode是<strong>索引节点</strong>，每个存储设备（例如硬盘）或存储设备的分区被格式化为文件系统后，有两部份，一部份是<strong>inode</strong>，另一部份是 <strong>Block</strong>，Block是用来存储数据用的。而inode呢，就是用来存储这些数据的信息，这些信息包括文件大小、属主、归属的用户组、读写权限等。 inode为每个文件进行信息索引，所以就有了inode的数值。操作系统根据指令，能通过inode值最快的找到相对应的文件。</p>
+<p>缺省情况下， Linux 在系统安装过程中按照1个 Inode 对应 2k 硬盘空间来计算每个分区的最大 Inode 数。一旦文件系统创建之后，每个分区可用 Inode 数就无法进行动态调整。但也正因为这种文件系统的结构，当你在 Linux 中进行 IO 操作的时候，需要的资源除了硬盘空间以外，还要有剩余的 Inode 才可继续操作。</p>
+<p>也就是检查硬盘 block空间之外也检查 系统的 Inode占用率。</p>
+<h2 id="jian-cha">检查</h2>
+<p><strong>检查 block</strong></p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#5f697a;"># df -h
+</span><span style="color:#eb6772;">Filesystem</span><span style="color:#abb2bf;">     Type   Size  Used Avail Use% Mounted on
+</span><span style="color:#eb6772;">/dev/xvda1</span><span style="color:#abb2bf;">     ext4    20G  6.2G   13G  34% /
+</span><span style="color:#eb6772;">tmpfs</span><span style="color:#abb2bf;">          tmpfs  3.9G     0  3.9G   0% /dev/shm
+</span></code></pre>
+<p><em>检查 Inodes</em>*</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#5f697a;"># df -i
+</span><span style="color:#eb6772;">Filesystem</span><span style="color:#abb2bf;">     Type  Inodes IUsed IFree IUse% Mounted on
+</span><span style="color:#eb6772;">/dev/xvda1</span><span style="color:#abb2bf;">     ext4    1.3M  1.3M     0  100% /
+</span><span style="color:#eb6772;">tmpfs</span><span style="color:#abb2bf;">          tmpfs   984K     1  984K    1% /dev/shm
+</span></code></pre>
+<p>可以看出 Inodes 空间已被占用 100%了， 这个说明有很多的文件占用了硬盘空间的 Inodes。 这个时检查文件数量。</p>
+<h2 id="jie-jue">解决</h2>
+<p><strong>检查文件</strong></p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#6c7079;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#5ebfcc;">cd</span><span style="color:#abb2bf;"> /
+</span><span style="color:#cd74e8;">for</span><span style="color:#abb2bf;"> i </span><span style="color:#cd74e8;">in</span><span style="color:#abb2bf;"> ./</span><span style="color:#adb7c9;">*; </span><span style="color:#cd74e8;">do </span><span style="color:#5ebfcc;">echo </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">i</span><span style="color:#adb7c9;">; </span><span style="color:#eb6772;">find </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">i </span><span style="color:#adb7c9;">| </span><span style="color:#eb6772;">wc -l</span><span style="color:#adb7c9;">; </span><span style="color:#cd74e8;">done
+</span></code></pre>
+<p>从文件数量最大的文件继续检查。我这里检查到 <code>maildrop</code> 文件夹占用了大量的文件节点。</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#6c7079;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#5ebfcc;">cd</span><span style="color:#abb2bf;"> /var/spool/postfix/maildrop
+</span><span style="color:#eb6772;">ls </span><span style="color:#adb7c9;">| </span><span style="color:#eb6772;">wc -l
+</span></code></pre>
+<p>使用 find + xargs 形式删除文件，当然也可以使用 <code>rm -f ./*</code> 来删除文件。</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#6c7079;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#eb6772;">find</span><span style="color:#abb2bf;"> ./</span><span style="color:#eb6772;"> -type</span><span style="color:#abb2bf;"> f</span><span style="color:#eb6772;"> -name </span><span style="color:#9acc76;">&quot;*&quot;</span><span style="color:#adb7c9;">|</span><span style="color:#eb6772;">xargs</span><span style="color:#abb2bf;"> rm</span><span style="color:#eb6772;"> -f
+</span></code></pre>
+<p><code>postfix/maildrop</code> 文件夹占用大量的文件，多是系统邮件发送导致。如果系统中有用户开启了cron，而cron中执行的程序有输出内容，输出内容会以邮件形式发给cron的用户，而sendmail没有启动所以就产生了这些文件； 将crontab里面的命令后面加上 <code>&gt; /dev/null 2&gt;&amp;1</code> 或者crontab里面的命令后面加上 <code>&gt; /dev/null</code> 基本上可以避免如此多的垃圾文件生产。</p>
+<p>来100个文件检查下是否可以创建文件了。</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#6c7079;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#5ebfcc;">cd 
+</span><span style="color:#eb6772;">touch </span><span style="color:#abb2bf;">{1..100}.txt
+</span><span style="color:#eb6772;">ls
+</span></code></pre>
+<blockquote>
+<p>超出系统中同时运行的最大 <strong>message queue 个数限制</strong> ,可以在root下用<code>sysctl kernel.msgmni</code>检查该参数，<code>sysctl -w kernel.msgmni=xxx</code> 重新设定即可。</p>
+</blockquote>
+
+
+
+  </div>
+</div>
+
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;php-redis&#x2F;">
+    <i class="icon icon-left-open"></i>
+    PHP Redis cheatsheet</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;svgbob&#x2F;">
+    svgbob 文本转图形
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="jian-cha" href="//erasin.wang/linux-disk-full/#jian-cha">检查</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="jie-jue" href="//erasin.wang/linux-disk-full/#jie-jue">解决</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

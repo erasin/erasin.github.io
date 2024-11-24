@@ -1,0 +1,527 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  midjourney 提示词汇表，风格和处理 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="midjourney promit, AI绘画提示词,魔法咒语,cheapsheet" property="description" />
+
+  
+    <meta content="AI art,midjourney,stable diffusion,promit,提示词,cheatsheet" name="keywords" />
+  
+
+  
+
+  
+    
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> midjourney 提示词汇表，风格和处理 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      MIDJOURNEY 提示词汇表，风格和处理
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2023-03-02
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <p>大部分词汇同样也可以用在 stable diffusion 中。</p>
+<h2 id="feng-ge-ci-hui">风格词汇</h2>
+<ul>
+<li><code>__ style</code> 定义风格</li>
+<li><code>pixel style</code> 像素风格
+<blockquote>
+<p>pixel style,cat
+<img src="/images/aiart/Pixel_style_cat_mocking_standing_no_background_side_lig_92e992ea-80ac-43e6-84f7-bfc816f16b23.png" alt="pixel_style" /></p>
+</blockquote>
+<ul>
+<li><code>8-bit game pixel art</code></li>
+<li><code>16-bit game pixel art</code></li>
+</ul>
+</li>
+<li><code>3d render</code> 3d 渲染
+<blockquote>
+<p>cat jump, 3d render
+<img src="/images/aiart/cat_jump3d_render_140px_3bc2cdb0-57c1-4e12-a5f0-be821fcf3bd3.png" alt="3d render cat" /></p>
+</blockquote>
+</li>
+<li><code>:blender 3d</code> blender 3d 渲染</li>
+<li><code>naive art</code> 童贞艺术</li>
+<li><code>design as Sticker of __</code>  贴纸风格</li>
+<li><code>flat icon design</code> 图标制作</li>
+<li><code>layered paper</code> 折纸风格</li>
+<li><code>isometric art</code> 等轴艺术</li>
+<li><code>low poly</code></li>
+</ul>
+<span id="continue-reading"></span><h2 id="yi-shu-jia-feng-ge">艺术家风格</h2>
+<p>使用艺术家风格的时候可以使用 <code>__ style</code> 或者 <code>by __</code> 来声明。</p>
+<ul>
+<li>disney style 迪士尼风格</li>
+<li>pixar style 皮克斯风格</li>
+<li>Ghibli style 吉普力</li>
+<li>by Miyazaki</li>
+</ul>
+<h2 id="zhuan-huan-ci-hui">转换词汇</h2>
+<ul>
+<li><code>_A_ as _B_ </code> 转换 A 为 B</li>
+<li><code>_A_ make out of _B_</code>   B 覆盖 A</li>
+</ul>
+<h2 id="da-guang-chu-li">打光处理</h2>
+<ul>
+<li>vertical light</li>
+<li>Dramatic Lighting</li>
+<li>blacklight _. 黑暗光效</li>
+<li>cinematic lighting 电影照明</li>
+</ul>
+<h2 id="huan-jing-chu-li">环境处理</h2>
+<h2 id="qi-ta">其他</h2>
+<ul>
+<li><code>symmetrical</code> 对称</li>
+<li><code>photorealistic</code> 照片级别</li>
+<li>game sheet of ___  游戏图表</li>
+<li>knolling ——— 摆放方式 90</li>
+<li>Wide angle</li>
+<li>concept art</li>
+<li>dream-like atmosphere</li>
+<li>Epic composition</li>
+<li>mascot logo 吉祥物logo</li>
+<li>Shift vector</li>
+<li>__ pattern 图案设计</li>
+<li>tatto design</li>
+<li>interior design</li>
+<li>stained glass window 碎花窗</li>
+<li>explode ___ by nachos</li>
+<li>hyper realistic painting</li>
+</ul>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;ai-art&#x2F;midjourney-prompt&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;ai-art&#x2F;midjourney-prompt&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2023-03-02
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;helix&#x2F;helix-zen-mode-like&#x2F;">
+    <i class="icon icon-left-open"></i>
+    给 helix 追加类 Zen Mode 模式</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;rust&#x2F;dhat&#x2F;">
+    DHAT rust 程序分析器
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+<div class="no-print">
+  
+  <script src="https://giscus.app/client.js" data-repo="erasin/erasin.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnk3MzE0Mzg3Mw==" data-category="article" data-category-id="" data-mapping="pathname"
+    data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light"
+    data-lang="zh-CN" crossorigin="anonymous" async>
+    </script>
+  <style>
+    .utterances {
+      max-width: initial;
+    }
+  </style>
+  
+  
+</div>
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-link" href="//erasin.wang/categories/ai/">AI</a>
+
+
+
+<a class="tag is-info" href="//erasin.wang/categories/art/">art</a>
+
+
+
+<a class="tag is-success" href="//erasin.wang/categories/cheatsheet/">cheatsheet</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-light" href="//erasin.wang/tags/ai-art/">AI art</a>
+
+
+
+<a class="tag is-light" href="//erasin.wang/tags/midjourney/">midjourney</a>
+
+
+
+<a class="tag is-black" href="//erasin.wang/tags/stable-diffusion/">stable diffusion</a>
+
+
+
+<a class="tag is-light" href="//erasin.wang/tags/promit/">promit</a>
+
+
+
+<a class="tag is-info" href="//erasin.wang/tags/ti-shi-ci/">提示词</a>
+
+
+
+<a class="tag is-warning" href="//erasin.wang/tags/cheatsheet/">cheatsheet</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="feng-ge-ci-hui" href="//erasin.wang/ai-art/midjourney-prompt/#feng-ge-ci-hui">风格词汇</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="yi-shu-jia-feng-ge" href="//erasin.wang/ai-art/midjourney-prompt/#yi-shu-jia-feng-ge">艺术家风格</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="zhuan-huan-ci-hui" href="//erasin.wang/ai-art/midjourney-prompt/#zhuan-huan-ci-hui">转换词汇</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="da-guang-chu-li" href="//erasin.wang/ai-art/midjourney-prompt/#da-guang-chu-li">打光处理</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="huan-jing-chu-li" href="//erasin.wang/ai-art/midjourney-prompt/#huan-jing-chu-li">环境处理</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="qi-ta" href="//erasin.wang/ai-art/midjourney-prompt/#qi-ta">其他</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

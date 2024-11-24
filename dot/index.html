@@ -1,0 +1,537 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  Graphviz Dot UML 编程工具 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="dot 描述图形语言" property="description" />
+
+  
+    <meta content="soft,svg,uml" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+    
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> Graphviz Dot UML 编程工具 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      GRAPHVIZ DOT UML 编程工具
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2022-10-28
+    </div>
+  </div>
+
+  <div class="post-content  " 
+    style="background-image:url(&#x2F;assets&#x2F;img&#x2F;undraw_pen_nqf7.svg);background-size:200px;" >
+    <p><strong>Graphviz - dot</strong></p>
+<p>Graphviz （英文：Graph Visualization Software的缩写）是一个由AT&amp;T实验室启动的
+开源工具包，可以用于绘制DOT语言脚本描述的图形。它也提供了供其它软件使用的库。
+Graphviz是一个自由软件，其授权为Eclipse Public License。其Mac版本曾经获得2004年
+的苹果设计奖<a href="https://jeanhwea.github.io/article/drawing-graphs-with-dot.html">2</a>。</p>
+<table><thead><tr><th style="text-align: right">命令</th><th>说明</th></tr></thead><tbody>
+<tr><td style="text-align: right">dot</td><td>一个用来将生成的图形转换成多种输出格式的命令行工具。其输出格式包括PostScript，PDF，SVG，PNG，含注解的文本等等。</td></tr>
+<tr><td style="text-align: right">neato</td><td>用于sprint model的生成（在Mac OS版本中称为energy minimized）。</td></tr>
+<tr><td style="text-align: right">twopi</td><td>用于放射状图形的生成</td></tr>
+<tr><td style="text-align: right">circo</td><td>用于圆形图形的生成。</td></tr>
+<tr><td style="text-align: right">fdp</td><td>另一个用于生成无向图的工具。</td></tr>
+<tr><td style="text-align: right">dotty</td><td>一个用于可视化与修改图形的图形用户界面程序。</td></tr>
+<tr><td style="text-align: right">lefty</td><td>一个可编程的(使用一种被EZ影响的语言[4])控件，它可以显示DOT图形，并允许用户用鼠标在图上执行操作。Lefty可以作为MVC模型的使用图形的GUI程序中的视图部分。</td></tr>
+</tbody></table>
+<span id="continue-reading"></span>
+<blockquote>
+<p>layout 属性控制 ，layout = neato</p>
+</blockquote>
+<ul>
+<li>官网：<a href="http://www.graphviz.org/">http://www.graphviz.org/</a></li>
+<li>官方文档：<a href="http://www.graphviz.org/Documentation.php">http://www.graphviz.org/Documentation.php</a></li>
+<li>下载地址：<a href="http://www.graphviz.org/Download..php">http://www.graphviz.org/Download..php</a></li>
+<li>在线测试：<a href="https://dreampuf.github.io/GraphvizOnline/">https://dreampuf.github.io/GraphvizOnline/</a></li>
+</ul>
+<blockquote>
+<p>plantuml 支持 使用 <code>#@startdot ... #@enddot</code></p>
+</blockquote>
+<pre data-lang="shell" style="background-color:#2b303b;color:#6c7079;" class="language-shell "><code class="language-shell" data-lang="shell"><span style="color:#abb2bf;">brew install graphviz
+</span><span style="color:#abb2bf;">touch x.dot
+</span><span style="color:#abb2bf;">dot x.dot -T png -o x.png
+</span></code></pre>
+<h2 id="yu-fa">语法</h2>
+<ul>
+<li>无向图</li>
+</ul>
+<pre data-lang="dot" style="background-color:#2b303b;color:#6c7079;" class="language-dot "><code class="language-dot" data-lang="dot"><span style="color:#cd74e8;">graph </span><span style="color:#abb2bf;">G{
+</span><span style="color:#abb2bf;">    A -- B
+</span><span style="color:#abb2bf;">} 
+</span></code></pre>
+<ul>
+<li>有向图</li>
+</ul>
+<pre data-lang="dot" style="background-color:#2b303b;color:#6c7079;" class="language-dot "><code class="language-dot" data-lang="dot"><span style="color:#cd74e8;">digraph </span><span style="color:#abb2bf;">G{
+</span><span style="color:#abb2bf;">    A --&gt; B
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<ul>
+<li>subgraph 子图</li>
+</ul>
+<pre data-lang="dot" style="background-color:#2b303b;color:#6c7079;" class="language-dot "><code class="language-dot" data-lang="dot"><span style="color:#cd74e8;">graph </span><span style="color:#abb2bf;">G {
+</span><span style="color:#abb2bf;">    
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">subgraph </span><span style="color:#abb2bf;">SG {
+</span><span style="color:#abb2bf;">        
+</span><span style="color:#abb2bf;">    }
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<h2 id="chang-yong-tu-shu-xing">常用图属性</h2>
+<p>使用 <code>{...}</code></p>
+<table><thead><tr><th>属性名</th><th>默认值</th><th>说明</th></tr></thead><tbody>
+<tr><td>label</td><td></td><td>图片标签，如上面示例</td></tr>
+<tr><td>bgcolor</td><td></td><td>背景颜色，颜色文档点此</td></tr>
+<tr><td>fontcolor</td><td>black</td><td>字体颜色，定义上面示例的颜色</td></tr>
+<tr><td>fontname</td><td>Times-Roman</td><td>字体</td></tr>
+<tr><td>fontsize</td><td>14</td><td>字体大小</td></tr>
+<tr><td>rank</td><td></td><td>子图等级限制， same,min,max,source,sink</td></tr>
+<tr><td>rankdir</td><td>TB</td><td>排序方向，LR(left to right) or TB(top to bottom)</td></tr>
+<tr><td>compound</td><td>false</td><td>If true, allow edges between clusters. 配合 lhead 和 ltail 使用</td></tr>
+</tbody></table>
+<p>常用节点属性</p>
+<p>使用 <code>node [...]</code> 设置默认属性 <code>A [...]</code></p>
+<table><thead><tr><th>属性名</th><th>默认值</th><th>说明</th></tr></thead><tbody>
+<tr><td>label</td><td>node name</td><td>节点显示内容</td></tr>
+<tr><td>color</td><td>black</td><td>node边框颜色</td></tr>
+<tr><td>fontcolor</td><td>black</td><td>字体颜色</td></tr>
+<tr><td>fillcolor</td><td></td><td>背景色</td></tr>
+<tr><td>fontname</td><td>Times-Roman</td><td>字体</td></tr>
+<tr><td>fontsize</td><td>14</td><td>字体大小</td></tr>
+<tr><td>shape</td><td>ellipse</td><td>形状,box、ellipse、circle、diamond、plaintext、point、triangle、invtriangle</td></tr>
+<tr><td>style</td><td></td><td>图形样式，eg. bold、dashed、dotted、filled</td></tr>
+<tr><td>image</td><td></td><td>背景图片地址</td></tr>
+</tbody></table>
+<p>常用边属性</p>
+<p>使用 <code>edge [...]</code> 设置默认属性, <code>A -- B [...]</code></p>
+<table><thead><tr><th>属性名</th><th>默认值</th><th>说明</th></tr></thead><tbody>
+<tr><td>label</td><td></td><td>描述关系</td></tr>
+<tr><td>color</td><td>black</td><td>箭头颜色</td></tr>
+<tr><td>fontcolor</td><td>black</td><td>关系文字颜色</td></tr>
+<tr><td>dir</td><td>forward</td><td>设置方向：forward,back,both,none</td></tr>
+<tr><td>arrowhead</td><td>normal</td><td>箭头头部形状。box、crow、diamond、dot、none、normal、vee。箭头文档点此</td></tr>
+<tr><td>arrowtail</td><td></td><td>箭头尾部形状</td></tr>
+<tr><td>arrowsize</td><td>1.0</td><td>箭头大小</td></tr>
+<tr><td>style</td><td></td><td>图形样式，eg. bold、dashed、dotted、filled</td></tr>
+<tr><td>lhead</td><td></td><td>当 compound 为true时，lhead用于指定边指向的cluster</td></tr>
+<tr><td>ltail</td><td></td><td>与ltail类似</td></tr>
+</tbody></table>
+<h2 id="zi-tu">子图</h2>
+<ul>
+<li><strong>subgraph</strong></li>
+<li><strong>subdigraph</strong></li>
+</ul>
+<h2 id="qi-ta">其他</h2>
+<p><strong>多节点联合</strong></p>
+<pre data-lang="dot" style="background-color:#2b303b;color:#6c7079;" class="language-dot "><code class="language-dot" data-lang="dot"><span style="color:#abb2bf;">{A B} -- {C D}
+</span></code></pre>
+<p><strong>图形节点</strong></p>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;dot&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;dot&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2022-10-28
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;rust-extphp-rs&#x2F;">
+    <i class="icon icon-left-open"></i>
+    ext-php-rs 使用 RUST 更加方便的构建 PHP 扩展</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;open-join&#x2F;">
+    参加开源项目
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+<div class="no-print">
+  
+  <script src="https://giscus.app/client.js" data-repo="erasin/erasin.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnk3MzE0Mzg3Mw==" data-category="article" data-category-id="" data-mapping="pathname"
+    data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light"
+    data-lang="zh-CN" crossorigin="anonymous" async>
+    </script>
+  <style>
+    .utterances {
+      max-width: initial;
+    }
+  </style>
+  
+  
+</div>
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-black" href="//erasin.wang/categories/soft/">soft</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-link" href="//erasin.wang/tags/soft/">soft</a>
+
+
+
+<a class="tag is-link" href="//erasin.wang/tags/svg/">svg</a>
+
+
+
+<a class="tag is-primary" href="//erasin.wang/tags/uml/">uml</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="yu-fa" href="//erasin.wang/dot/#yu-fa">语法</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="chang-yong-tu-shu-xing" href="//erasin.wang/dot/#chang-yong-tu-shu-xing">常用图属性</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="zi-tu" href="//erasin.wang/dot/#zi-tu">子图</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="qi-ta" href="//erasin.wang/dot/#qi-ta">其他</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

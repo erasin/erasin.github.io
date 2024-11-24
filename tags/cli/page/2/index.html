@@ -1,0 +1,1246 @@
+<!DOCTYPE html>  
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title> cli - ERASIN </title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+   
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+
+<h1 class="header"> <i class="icon icon-bookmark"></i> CLI </h1>
+
+
+  
+
+
+
+<div class="posts col">
+  
+  <div class="post odd  " >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/latex-quick/" >使用 tectonic 快速入门使用 latex
+
+
+
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2022-11-01</div>
+    </div>
+    
+    <div class="post-content ">
+      <h2 id="li-jie-ji-ben">理解基本</h2>
+<p>latex 是一个文档准备系统 (document preparing system)，它非常适用于生成高印
+刷质 量的科技类和数学类文档。它也能够生成所有其他种类的文档，小到简单的信件，大
+到完整的书 籍。latex 使用 tex 作为它的排版引擎。</p>
+<p>latex 本质上是利用各种个这样的宏包提供的标记命令来标记文本，从而编译出对应的
+格 式,如果学习过 html 标签文本的同学会更加的了解这一书写规范。现代的文本编辑格
+式 从普不同文本，到简单的 markdown 以及其他的 markdown 变体，到复杂的 html 以及
+latex, 这样的纯文本加上标记的文档，实际上是让人更加的注重文章的内容，而不必去限
+定于某种软件才能编辑，无论是跨平台还是版本管理（vcs）上都是十分具有优势的。</p>
+<p>另外在学术领域上 latex 上应用比较广泛，markdown 则在程序开发者应用比较多。</p>
+<h2 id="gong-ju">工具</h2>
+<ul>
+<li>texlive <a href="https://www.tug.org/texlive/acquire-iso.html">https://www.tug.org/texlive/acquire-iso.html</a></li>
+<li>miktex <a href="https://miktex.org/download">https://miktex.org/download</a></li>
+<li>overleaf <a href="https://www.overleaf.com/">https://www.overleaf.com/</a></li>
+<li>tentonic <a href="https://tectonic-typesetting.github.io/">https://tectonic-typesetting.github.io/</a>
+下载安装 <code>curl --proto '=https' --tlsv1.2 -fssl https://drop-sh.fullyjustified.net |sh</code></li>
+<li>图书 <a href="https://github.com/ctex-org/lshort-zh-cn">一份不太简短的latex介绍</a></li>
+</ul>
+<h3 id="language-server-protocol-lsp-he-wen-ben-bian-ji-qi">language server protocol (lsp) 和 文本编辑器</h3>
+<p><a href="https://github.com/latex-lsp/texlab">texlab</a> 为 latex 提供了 语言服务器协议（lsp）。</p>
+<ul>
+<li>vscode <a href="https://marketplace.visualstudio.com/items?itemname=efoerster.texlab">texlab 扩展</a>
+也可使用 <a href="https://marketplace.visualstudio.com/items?itemname=james-yu.latex-workshop">latex workshop</a></li>
+<li><a href="https://github.com/helix-editor/helix">helix editor</a> 已经内置支持,安装texlab即可。</li>
+<li>vim/nvim <a href="https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#texlab">nvim-lspconfig</a> 配置项</li>
+</ul>
+<p>texlab 和 tectonic 一起使用 <a href="https://github.com/latex-lsp/texlab/wiki/tectonic">https://github.com/latex-lsp/texlab/wiki/tectonic</a> .</p>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/latex-quick/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+  <div class="post even " >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/awesome/cli/" >命令行工具
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2020-06-03</div>
+    </div>
+    
+    <div class="post-content ">
+      <h2 id="lv1">LV1</h2>
+<ul>
+<li><strong>rg</strong> =&gt; ripgrep <a href="https://github.com/BurntSushi/ripgrep">github</a>超快速的 grep 替代工具</li>
+<li><strong>fd</strong> <a href="https://github.com/sharkdp/fd">github</a> 快速查找文件工具</li>
+<li><strong>sk</strong> =&gt; skim <a href="https://github.com/lotabout/skim">github</a> 终端文件查找</li>
+<li><strong>mdbook</strong> 文档生成工具 <a href="https://github.com/azerupi/mdBook">github</a> <a href="/mdbook/">简介教程</a></li>
+<li><strong>plantuml</strong> UML 绘制工具 <a href="/plantuml/">文档</a></li>
+<li><strong>zoxide</strong> <a href="https://github.com/ajeetdsouza/zoxide">github</a> z 快速跳转(cd) 替代</li>
+<li><strong>dust</strong> <a href="https://github.com/bootandy/dust">github</a> du-dust</li>
+<li><strong>rmx</strong> <a href="https://github.com/NyxCode/ormx">github</a> 替代 rm, 速度比 rm 要快 4-5倍</li>
+<li><strong>atuin</strong> <a href="https://github.com/ellie/atuin">github</a> 快速查询历史命令工具</li>
+<li><strong>gdu</strong> <a href="https://github.com/dundee/gdu">github</a> 磁盘使用检查工具</li>
+<li><strong>pdu</strong> <a href="https://github.com/KSXGitHub/parallel-disk-usage">github</a> 磁盘检查工具</li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/awesome/cli/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+  <div class="post odd  " >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/osx-launch/" >OSX 下服务管理工具 launch
+
+
+
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2020-04-04</div>
+    </div>
+    
+    <div class="post-content ">
+      <p><strong>launchctl</strong> 是一个统一的服务管理框架，可以启动、停止和管理守护进程、应用程序、进程和脚本等。</p>
+<ul>
+<li>创建管理守护进程</li>
+<li>定时任务脚本 ( 类似 <strong>crontab</strong> )</li>
+</ul>
+<p>launchctl 配置文件后缀为 <code>.plist</code>, 一般存储于</p>
+<table><thead><tr><th>位置</th><th>备注</th></tr></thead><tbody>
+<tr><td>$HOME/Library/LaunchAgents</td><td>由用户自己定义的任务项</td></tr>
+<tr><td>/Library/LaunchAgents</td><td>由管理员为用户定义的任务项</td></tr>
+<tr><td>/Library/LaunchDaemons</td><td>由管理员定义的守护进程任务项</td></tr>
+<tr><td>/System/Library/LaunchAgents</td><td>由OSX为用户定义的任务项</td></tr>
+<tr><td>/System/Library/LaunchDaemons</td><td>由OSX定义的守护进程任务项</td></tr>
+</tbody></table>
+<ul>
+<li>LaunchDaemons 一般为守护进程配置，多数用于系统启动运行</li>
+<li>LaunchAgents  一般为用户脚本以及需要登录用户后才会执行的进程</li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/osx-launch/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+  <div class="post even " style="background-image:url(&#x27;&#x2F;assets&#x2F;img&#x2F;undraw_happy_music_g6wc.svg&#x27;)" >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/soft-cmus/" >CMUS 终端音乐播放器
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2020-01-12</div>
+    </div>
+    
+    <div class="post-content ">
+      <p>CMUS <a href="https://github.com/cmus/cmus">git</a> <a href="https://cmus.github.io/">site</a> 是一个小型的终端音乐播放器。</p>
+<h2 id="ji-ben-ming-ling">基本命令</h2>
+<ul>
+<li>:set softvol=true - 打开软音量控制</li>
+<li>:add /path/to/music/dir - 添加音乐库目录</li>
+<li>:clear -清除播放列表</li>
+<li>:save playlist.pls - 保存当前播放列表</li>
+<li>:load playlist.pls -加载播放列表</li>
+<li>:colorscheme xterm-white - 修改配色方案</li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/soft-cmus/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+  <div class="post odd  " >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/iterm2-cheatsheet/" >Terminal & iterm2 cheatsheet
+
+
+
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2019-12-18</div>
+    </div>
+    
+    <div class="post-content ">
+      <ul>
+<li>terminal</li>
+<li>iterm2</li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/iterm2-cheatsheet/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+</div>
+
+
+
+  
+
+<nav class="pagination row is-centered" role="navigation" aria-label="pagination">
+  <div class="pagination-btns">
+    
+    <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;tags&#x2F;cli&#x2F;"><i class="icon icon-left-open"></i>上一页</a>
+    
+    
+    <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;tags&#x2F;cli&#x2F;page&#x2F;3&#x2F;">下一页<i class="icon icon-right-open"></i></a>
+    
+  </div>
+  <ul class="pagination-list">
+    
+    
+    
+    
+    
+    
+    
+    <li> <a class="pagination-link" aria-label="Goto page 1" href="&#x2F;&#x2F;erasin.wang&#x2F;tags&#x2F;cli&#x2F;">1</a></li>
+    
+    
+    
+    <li> <a class="pagination-link is-current" aria-label="Page 2" aria-current="page">2</a></li>
+    
+    
+    
+    <li> <a class="pagination-link" aria-label="Goto page 3" href="//erasin.wang/tags/cli/page/3">3</a></li>
+    
+    
+    
+  </ul>
+</nav>
+
+
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+<div class="box mini-hide">
+  <h3 class="header">
+    <i class="icon icon-hashtag"></i> 标签
+    <a class="more" href='//erasin.wang/tags'>MORE</a>
+  </h3>
+
+  <div class="box-body">
+    
+
+<ul class="ui list tree">
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/ai-art/">AI art 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/awesome/">awesome 
+
+
+
+
+</a>
+    <span class="sub-num"> 3</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/beancount/">BeanCount 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/blender/">blender 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/book/">book 
+
+<i class="icon icon-book"></i> 
+
+</a>
+    <span class="sub-num"> 4</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/cheatsheet/">cheatsheet 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/cli/">cli 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    <span class="sub-num"> 11</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/code/">code 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/comment/">comment 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/css/">css 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/database/">database 
+
+<i class="icon icon-database"></i> 
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/debug/">debug 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/developer/">developer 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/docs/">docs 
+
+<i class="icon icon-paperclip"></i> 
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/draft/">draft 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/editor/">editor 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/emacs/">emacs 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/font/">font 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/fu-shi-ji-zhang-fa/">复式记账法 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/game/">game 
+
+<i class="icon icon-gamepad"></i> 
+
+</a>
+    <span class="sub-num"> 4</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/git/">git 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/github/">github 
+
+
+
+
+</a>
+    <span class="sub-num"> 7</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/gnome/">gnome 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/go/">go 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/godot/">godot 
+
+
+
+
+</a>
+    <span class="sub-num"> 5</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/golang/">golang 
+
+<i class="icon icon-go"></i> 
+
+</a>
+    <span class="sub-num"> 4</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/gong-ju/">工具 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/helix/">helix 
+
+
+
+
+</a>
+    <span class="sub-num"> 5</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/html/">html 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/http/">http 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/hurl/">hurl 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/image/">image 
+
+<i class="icon icon-picture"></i> 
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/javascript/">javascript 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/kai-yuan/">开源 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/ledger/">ledger 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/linux/">linux 
+
+
+
+
+</a>
+    <span class="sub-num"> 6</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/lsp/">lsp 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/mac/">mac 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/macbook/">macbook 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/macbook-pro/">macbook pro 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/macos/">macos 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/magicavoxel/">MagicaVoxel 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/make/">make 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/markdown/">markdown 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/math/">math 
+
+<i class="icon icon-pi"></i> 
+
+</a>
+    <span class="sub-num"> 4</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/mi-ma/">密码 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/midjourney/">midjourney 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/music/">music 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/open-source/">open-source 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/openssl/">openssl 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/osx/">osx 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/otp/">otp 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/php/">php 
+
+
+
+
+</a>
+    <span class="sub-num"> 6</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/pixel/">pixel 
+
+
+
+
+</a>
+    <span class="sub-num"> 3</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/project/">project 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/promit/">promit 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/regex/">regex 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/rpc/">rpc 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/ruan-jian/">软件 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/rust/">rust 
+
+
+
+
+</a>
+    <span class="sub-num"> 8</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/rustlang/">rustlang 
+
+<i class="icon icon-rust"></i> 
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/server/">server 
+
+<i class="icon icon-server"></i> 
+
+</a>
+    <span class="sub-num"> 3</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/shader/">shader 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/shi-jian-ge-shi/">时间格式 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/site/">site 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/sleepwatcher/">sleepwatcher 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/soft/">soft 
+
+
+
+
+</a>
+    <span class="sub-num"> 7</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/sql/">SQL 
+
+
+
+
+</a>
+    <span class="sub-num"> 3</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/stable-diffusion/">stable diffusion 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/svg/">svg 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/template/">template 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/ti-shi-ci/">提示词 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/uml/">uml 
+
+
+
+
+</a>
+    <span class="sub-num"> 4</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/video/">video 
+
+<i class="icon icon-youtube"></i> 
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/vim/">vim 
+
+
+
+
+</a>
+    <span class="sub-num"> 5</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/vscode/">vscode 
+
+
+
+
+</a>
+    <span class="sub-num"> 6</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/wayland/">wayland 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/web/">web 
+
+<i class="icon icon-network"></i> 
+
+</a>
+    <span class="sub-num"> 6</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/xian-xing-cha-zhi/">线性插值 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/xiang-su/">像素 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/yi-ci-ming-mi-ma/">一次名密码 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/zha-pian/">诈骗 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+</ul>
+
+  </div>
+</div>
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

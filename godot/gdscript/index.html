@@ -1,0 +1,803 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  Godot4 脚本语言 gdscript2 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="gdscript2 for godot4 快速的预览" property="description" />
+
+  
+    <meta content="godot" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> Godot4 脚本语言 gdscript2 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      GODOT4 脚本语言 GDSCRIPT2
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2023-01-11
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <p><strong>主要内容</strong></p>
+<ul>
+<li>注释</li>
+<li>类</li>
+<li>变量</li>
+<li>表达式</li>
+<li>函数</li>
+<li>流程控制</li>
+<li>数据类型</li>
+</ul>
+<span id="continue-reading"></span><h2 id="ji-chu">基础</h2>
+<pre data-lang="gd" style="background-color:#2b303b;color:#6c7079;" class="language-gd "><code class="language-gd" data-lang="gd"><span style="font-style:italic;color:#5f697a;"># 单行注释使用 # 书写
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 类
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 声明类
+</span><span style="color:#abb2bf;">class_name MyClass 
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 声明继承
+</span><span style="color:#cd74e8;">extends</span><span style="color:#9acc76;"> BaseClass
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 为类声明一个图标
+</span><span style="color:#abb2bf;">@</span><span style="color:#eb6772;">icon</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;res://path/icon.svg&quot;</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 变量
+</span><span style="font-style:italic;color:#5f697a;"># 在函数中使用变量的时候可以 `self.x` 或者直接使用 `x` 来请求访问。
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">## 数字
+</span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">a </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">5
+</span><span style="font-style:italic;color:#5f697a;">## 字符串
+</span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">s </span><span style="color:#adb7c9;">= </span><span style="color:#9acc76;">&quot;Hello&quot;
+</span><span style="font-style:italic;color:#5f697a;">## array 数组
+</span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">arr </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> [</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">2</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">3</span><span style="color:#abb2bf;">]
+</span><span style="font-style:italic;color:#5f697a;">## dict 字典
+</span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">dict </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">{</span><span style="color:#9acc76;">&quot;key&quot;</span><span style="color:#abb2bf;">: </span><span style="color:#9acc76;">&quot;value&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">2</span><span style="color:#abb2bf;">: </span><span style="color:#db9d63;">3</span><span style="color:#abb2bf;">}
+</span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">other_dict </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">{key = </span><span style="color:#9acc76;">&quot;value&quot;</span><span style="color:#abb2bf;">, other_key = </span><span style="color:#db9d63;">2</span><span style="color:#abb2bf;">}
+</span><span style="font-style:italic;color:#5f697a;">## 无初始化变量声明 null
+</span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">typed_var</span><span style="color:#abb2bf;">: </span><span style="color:#cd74e8;">int
+</span><span style="font-style:italic;color:#5f697a;">## 自动推导变量类型
+</span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">inferred_type</span><span style="color:#abb2bf;"> :</span><span style="color:#adb7c9;">= </span><span style="color:#9acc76;">&quot;String&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 常量 (大写处理)
+</span><span style="color:#cd74e8;">const </span><span style="color:#eb6772;">ANSWER </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">42
+</span><span style="color:#cd74e8;">const </span><span style="color:#eb6772;">THE_NAME </span><span style="color:#adb7c9;">= </span><span style="color:#9acc76;">&quot;Charly&quot; 
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 枚举类型, 从 0 开始
+</span><span style="color:#cd74e8;">enum </span><span style="color:#abb2bf;">{UNIT_NEUTRAL, UNIT_ENEMY, UNIT_ALLY}
+</span><span style="color:#cd74e8;">enum </span><span style="color:#abb2bf;">Named {THING_1, THING_2, ANOTHER_THING = </span><span style="color:#adb7c9;">-</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 内置的向量类型
+</span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">v2 </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">Vector2</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">2</span><span style="color:#abb2bf;">)
+</span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">v3 </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">Vector3</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">2</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">3</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 导出属性变量
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">## 无初始化值为 null
+</span><span style="color:#abb2bf;">@</span><span style="color:#cd74e8;">export var </span><span style="color:#eb6772;">number</span><span style="color:#abb2bf;">: </span><span style="color:#cd74e8;">int
+</span><span style="font-style:italic;color:#5f697a;">## 可以初始化数值
+</span><span style="color:#abb2bf;">@</span><span style="color:#cd74e8;">export var </span><span style="color:#eb6772;">number</span><span style="color:#abb2bf;">: </span><span style="color:#cd74e8;">int </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">5
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">#--&gt; 阅读 export 导出属性
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 初始化,在 init 前执行
+</span><span style="color:#abb2bf;">@</span><span style="color:#cd74e8;">onready var </span><span style="color:#eb6772;">carmera</span><span style="color:#abb2bf;">: Camera2D </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> $Line 
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 函数
+</span><span style="font-style:italic;color:#5f697a;"># 函数默认返回的是 -&gt; void
+</span><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">some_function</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">param1</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">param2</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">param3</span><span style="color:#abb2bf;">):
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;"># 内部常量
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">const </span><span style="color:#eb6772;">local_const </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">5
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;"># if 流程控制
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">if</span><span style="color:#abb2bf;"> param1 </span><span style="color:#adb7c9;">&lt;</span><span style="color:#abb2bf;"> local_const:
+</span><span style="color:#abb2bf;">        </span><span style="color:#eb6772;">print</span><span style="color:#abb2bf;">(param1)
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">elif</span><span style="color:#abb2bf;"> param2 </span><span style="color:#adb7c9;">&gt; </span><span style="color:#db9d63;">5</span><span style="color:#abb2bf;">:
+</span><span style="color:#abb2bf;">        </span><span style="color:#eb6772;">print</span><span style="color:#abb2bf;">(param2)
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">else</span><span style="color:#abb2bf;">:
+</span><span style="color:#abb2bf;">        </span><span style="color:#eb6772;">print</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;Fail!&quot;</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;"># for 循环
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">for</span><span style="color:#abb2bf;"> i </span><span style="color:#adb7c9;">in </span><span style="color:#eb6772;">range</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">20</span><span style="color:#abb2bf;">):
+</span><span style="color:#abb2bf;">        </span><span style="color:#eb6772;">print</span><span style="color:#abb2bf;">(i)
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;"># while 循环
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">while</span><span style="color:#abb2bf;"> param2 </span><span style="color:#adb7c9;">!= </span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">:
+</span><span style="color:#abb2bf;">        param2 </span><span style="color:#adb7c9;">-= </span><span style="color:#db9d63;">1
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;"># match 匹配 
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">match</span><span style="color:#abb2bf;"> param3:
+</span><span style="color:#abb2bf;">        </span><span style="color:#db9d63;">3</span><span style="color:#abb2bf;">:
+</span><span style="color:#abb2bf;">            </span><span style="color:#eb6772;">print</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;param3 is 3!&quot;</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">        _:
+</span><span style="color:#abb2bf;">            </span><span style="color:#eb6772;">print</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;param3 is not 3!&quot;</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">local_var </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> param1 </span><span style="color:#adb7c9;">+ </span><span style="color:#db9d63;">3
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">return</span><span style="color:#abb2bf;"> local_var
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 函数命名可以覆盖基类的同名函数
+</span><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">overwrite</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">param1</span><span style="color:#abb2bf;">: </span><span style="color:#eb6772;">int</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">param2</span><span style="color:#abb2bf;">: </span><span style="color:#eb6772;">String</span><span style="color:#abb2bf;">):
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;"># 可以使用 super(...) 来触发基类的函数
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">super</span><span style="color:#abb2bf;">(param1, param2)
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 参数默认值
+</span><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">function_var_def</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">param1</span><span style="color:#abb2bf;"> := 1) </span><span style="color:#adb7c9;">-&gt; </span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;">:
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">return </span><span style="color:#db9d63;">1
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># _init 在对象初始化的时候被调用
+</span><span style="font-style:italic;color:#5f697a;"># Constructor 是对象构造函数
+</span><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">_init</span><span style="color:#abb2bf;">():
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">pass
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># _ready 在脚本节点以及子节点进入场景树的时候被调用
+</span><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">_ready</span><span style="color:#abb2bf;">():
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">pass
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># _process 在每一帧上都被调用。
+</span><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">_process</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">delta</span><span style="color:#abb2bf;">):
+</span><span style="color:#abb2bf;">  </span><span style="font-style:italic;color:#5f697a;"># 传递给此函数的 delta 参数是时间，即从上一帧到当前帧经过的秒数。
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">print</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;Delta 时间为：&quot;</span><span style="color:#abb2bf;">, delta)
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># _physics_process 在每个物理帧上都被调用。
+</span><span style="font-style:italic;color:#5f697a;"># 这意味着 delta 应该是恒定的。
+</span><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">_physics_process</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">delta</span><span style="color:#abb2bf;">):
+</span><span style="color:#abb2bf;">  </span><span style="font-style:italic;color:#5f697a;"># 使用向量加法和乘法进行简单移动。
+</span><span style="color:#abb2bf;">  </span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">direction </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">Vector2</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">) </span><span style="font-style:italic;color:#5f697a;"># 或使用 Vector2.RIGHT
+</span><span style="color:#abb2bf;">  </span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">speed </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">100.0
+</span><span style="color:#abb2bf;">  self.global_position </span><span style="color:#adb7c9;">+=</span><span style="color:#abb2bf;"> direction </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> speed </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> delta
+</span><span style="color:#abb2bf;">  </span><span style="font-style:italic;color:#5f697a;"># self 指向当前类的实例
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 内部类
+</span><span style="color:#cd74e8;">class </span><span style="color:#f0c678;">InnerClass</span><span style="color:#abb2bf;">:
+</span><span style="color:#abb2bf;">  </span><span style="color:#cd74e8;">extends</span><span style="color:#9acc76;"> Object
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">  </span><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">hello</span><span style="color:#abb2bf;">():
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">print</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;来自内部类的 Hello！&quot;</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">use_inner_class</span><span style="color:#abb2bf;">():
+</span><span style="color:#abb2bf;">  </span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">ic </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> InnerClass.</span><span style="color:#eb6772;">new</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">  ic.</span><span style="color:#eb6772;">hello</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">  ic.</span><span style="color:#eb6772;">free</span><span style="color:#abb2bf;">() </span><span style="font-style:italic;color:#5f697a;"># 可以自行释放内存
+</span><span style="color:#abb2bf;">
+</span></code></pre>
+<h2 id="bian-liang-lei-xing">变量类型</h2>
+<p><strong>基础变量</strong></p>
+<table><thead><tr><th>类型</th><th>解释</th><th>例子</th></tr></thead><tbody>
+<tr><td>null</td><td>空值</td><td>null</td></tr>
+<tr><td>int</td><td>数值</td><td>1,-1,0xAF</td></tr>
+<tr><td>float</td><td>浮点值</td><td>1.23, 1e6</td></tr>
+<tr><td>bool</td><td>布尔值</td><td>true,false</td></tr>
+<tr><td>String</td><td>字符串</td><td>"hello world"</td></tr>
+</tbody></table>
+<p><strong>数值</strong>：</p>
+<ul>
+<li>1 十进制</li>
+<li>0x8f51 16进制</li>
+<li>0b101010 2进制</li>
+</ul>
+<p><strong>字符串</strong></p>
+<ul>
+<li>"hllo"</li>
+<li>"""dddd""" 长字符串</li>
+<li>&amp;"name" StringName 不可变的字符串</li>
+<li>^"name" 解析为路径 NodePath</li>
+<li>$NodePath get_node("NodePath")的快捷写法</li>
+</ul>
+<p>字符串的<strong>转义字符</strong></p>
+<table><thead><tr><th>转义字符</th><th>转义为</th></tr></thead><tbody>
+<tr><td>\n</td><td>Newline (line feed)</td></tr>
+<tr><td>\t</td><td>Horizontal tab character</td></tr>
+<tr><td>\r</td><td>Carriage return</td></tr>
+<tr><td>\a</td><td>Alert (beep/bell)</td></tr>
+<tr><td>\b</td><td>Backspace</td></tr>
+<tr><td>\f</td><td>Formfeed page break</td></tr>
+<tr><td>\v</td><td>Vertical tab character</td></tr>
+<tr><td>\"</td><td>Double quote</td></tr>
+<tr><td>\'</td><td>Single quote</td></tr>
+<tr><td>\\</td><td>Backslash</td></tr>
+<tr><td>\uXXXX</td><td>Unicode codepoint XXXX (hexadecimal, case-insensitive)</td></tr>
+</tbody></table>
+<h2 id="yun-suan-fu">运算符</h2>
+<p><strong>数学运算符</strong></p>
+<table><thead><tr><th>运算符</th><th>解释</th></tr></thead><tbody>
+<tr><td>+</td><td>加</td></tr>
+<tr><td>-</td><td>减</td></tr>
+<tr><td>*</td><td>成</td></tr>
+<tr><td>/</td><td>除</td></tr>
+<tr><td>%</td><td>求余</td></tr>
+<tr><td>-x</td><td>负处理</td></tr>
+</tbody></table>
+<p>支持便捷写法,<code>x %= 3</code> 等效与 <code>x = x % 3</code>。</p>
+<p><strong>布尔值运算符</strong></p>
+<table><thead><tr><th>运算符</th><th>解释</th></tr></thead><tbody>
+<tr><td>&lt; == &gt; != &gt;= &lt;=</td><td>比较运算符</td></tr>
+<tr><td>! not</td><td>否定</td></tr>
+<tr><td>&amp;&amp; and</td><td>并</td></tr>
+<tr><td>|| or</td><td>或</td></tr>
+</tbody></table>
+<p><strong>位运算符</strong></p>
+<table><thead><tr><th>运算符</th><th>解释</th><th>规则</th></tr></thead><tbody>
+<tr><td>~</td><td>取反</td><td>0变1,1变0</td></tr>
+<tr><td>&lt;&lt; &gt;&gt;</td><td>左移右移</td><td>移动后补0</td></tr>
+<tr><td>&amp;</td><td>逻辑与</td><td>1 1 的 1</td></tr>
+<tr><td>|</td><td>逻辑或</td><td>0 0 的 0</td></tr>
+<tr><td>^</td><td>逻辑异或</td><td>0 0 的 1</td></tr>
+</tbody></table>
+<p>支持快捷处理,比如 <code>a &amp;= b</code>。</p>
+<blockquote>
+<p>判定奇偶，末尾0偶数，1为奇数。
+<code>(a &amp; 1) == 0</code> 替代 <code>a % 2</code> 判定 a 是否为偶数。</p>
+</blockquote>
+<h2 id="setter-he-getter">setter 和 getter</h2>
+<p>使用<code>set</code>和<code>get</code>可以对变量设置和获取的时候进行额外的操作。</p>
+<pre data-lang="gd" style="background-color:#2b303b;color:#6c7079;" class="language-gd "><code class="language-gd" data-lang="gd"><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 作为属性的写法
+</span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">a</span><span style="color:#abb2bf;">: </span><span style="color:#cd74e8;">int </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">:
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">set</span><span style="color:#abb2bf;">(val):
+</span><span style="color:#abb2bf;">        </span><span style="font-style:italic;color:#5f697a;"># 其他的操作
+</span><span style="color:#abb2bf;">        a </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> val
+</span><span style="color:#abb2bf;">    get:
+</span><span style="color:#abb2bf;">        </span><span style="font-style:italic;color:#5f697a;"># 其他的操作
+</span><span style="color:#abb2bf;">        </span><span style="color:#cd74e8;">return</span><span style="color:#abb2bf;"> a
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 函数写法
+</span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">val</span><span style="color:#abb2bf;">: set</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">_set_val, get</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> _get_val
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">_set_val</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">new_value</span><span style="color:#abb2bf;">):
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">pass
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">_get_val</span><span style="color:#abb2bf;">():
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">return</span><span style="color:#abb2bf;"> val
+</span><span style="color:#abb2bf;">    
+</span></code></pre>
+<h2 id="zhu-jie-export-dao-chu-shu-xing">注解 export 导出属性</h2>
+<p>为类型提供外部设定的属性</p>
+<pre data-lang="gd" style="background-color:#2b303b;color:#6c7079;" class="language-gd "><code class="language-gd" data-lang="gd"><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">## 无初始化值为 null
+</span><span style="color:#abb2bf;">@</span><span style="color:#cd74e8;">export var </span><span style="color:#eb6772;">number</span><span style="color:#abb2bf;">: </span><span style="color:#cd74e8;">int
+</span><span style="font-style:italic;color:#5f697a;">## 可以初始化数值
+</span><span style="color:#abb2bf;">@</span><span style="color:#cd74e8;">export var </span><span style="color:#eb6772;">number</span><span style="color:#abb2bf;">: </span><span style="color:#cd74e8;">int </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">5
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">## 使用导入类型
+</span><span style="color:#abb2bf;">@</span><span style="color:#cd74e8;">export var </span><span style="color:#eb6772;">carmera</span><span style="color:#abb2bf;">: Camera2D
+</span><span style="color:#abb2bf;">@</span><span style="color:#cd74e8;">export var </span><span style="color:#eb6772;">node</span><span style="color:#abb2bf;">: Node
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">## 按组处理,这里是为UI进行类组处理
+</span><span style="color:#abb2bf;">@</span><span style="color:#eb6772;">export_group</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;属性组&quot;</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">@</span><span style="color:#cd74e8;">export var </span><span style="color:#eb6772;">t1</span><span style="color:#abb2bf;">: </span><span style="color:#cd74e8;">int
+</span><span style="color:#abb2bf;">@</span><span style="color:#eb6772;">export_subgroup</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;扩展组&quot;</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">@</span><span style="color:#cd74e8;">export var </span><span style="color:#eb6772;">string </span><span style="color:#adb7c9;">= </span><span style="color:#9acc76;">&quot;&quot;
+</span><span style="color:#abb2bf;">@</span><span style="color:#cd74e8;">export var </span><span style="color:#eb6772;">flag </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">false
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">## 属性分类（UI层）,可以内嵌组
+</span><span style="color:#abb2bf;">@</span><span style="color:#eb6772;">export_category</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;分类名称&quot;</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">@</span><span style="color:#cd74e8;">export var </span><span style="color:#eb6772;">t2</span><span style="color:#abb2bf;">: </span><span style="color:#cd74e8;">String
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">## 文件路径
+</span><span style="color:#abb2bf;">@export_file </span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">f
+</span><span style="color:#abb2bf;">@export_dir </span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">f 
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">## 枚举类型
+</span><span style="color:#cd74e8;">enum </span><span style="color:#abb2bf;">NamedEnum {THING_1, THING_2, ANOTHER_THING = </span><span style="color:#adb7c9;">-</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">@</span><span style="color:#cd74e8;">export var </span><span style="color:#eb6772;">x</span><span style="color:#abb2bf;">: NamedEnum
+</span><span style="font-style:italic;color:#5f697a;">## 枚举类型
+</span><span style="color:#abb2bf;">@</span><span style="color:#eb6772;">export_enum</span><span style="color:#abb2bf;">(UNIT_NEUTRAL, UNIT_ENEMY, UNIT_ALLY) </span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">t3
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span></code></pre>
+<h2 id="zhu-jie-onready">注解 onready</h2>
+<p>在 <code>_ready()</code> 前调用。</p>
+<pre data-lang="gd" style="background-color:#2b303b;color:#6c7079;" class="language-gd "><code class="language-gd" data-lang="gd"><span style="font-style:italic;color:#5f697a;"># 初始化获取 MyLabel 节点
+</span><span style="color:#abb2bf;">@</span><span style="color:#cd74e8;">onready var </span><span style="color:#eb6772;">my_label </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">get_node</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;MyLabel&quot;</span><span style="color:#abb2bf;">)
+</span></code></pre>
+<h2 id="xu-xing-xie-fa">续行写法</h2>
+<pre data-lang="gd" style="background-color:#2b303b;color:#6c7079;" class="language-gd "><code class="language-gd" data-lang="gd"><span style="font-style:italic;color:#5f697a;"># 单行
+</span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">a </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">1 </span><span style="color:#adb7c9;">+ </span><span style="color:#db9d63;">2
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 多行, 在行末尾使用 \
+</span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">a </span><span style="color:#adb7c9;">=  </span><span style="color:#db9d63;">1 </span><span style="color:#adb7c9;">+ </span><span style="color:#abb2bf;">\
+</span><span style="color:#db9d63;">2
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 多行
+</span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">a </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">1 </span><span style="color:#adb7c9;">+ </span><span style="color:#abb2bf;">\
+</span><span style="color:#db9d63;">4 </span><span style="color:#adb7c9;">+ </span><span style="color:#abb2bf;">\
+</span><span style="color:#db9d63;">4 </span><span style="color:#adb7c9;">+ </span><span style="color:#abb2bf;">\
+</span><span style="color:#db9d63;">4
+</span></code></pre>
+<h2 id="xiang-liang-lei-xing">向量类型</h2>
+<ul>
+<li>Vector2</li>
+<li>Vector2i</li>
+<li>Rect2</li>
+<li>Vector3</li>
+<li>Vector3i</li>
+<li>Transform2D</li>
+<li>Plane</li>
+<li>Quaternion</li>
+<li>AABB</li>
+<li>Basic</li>
+<li>Transform3D</li>
+</ul>
+<h2 id="yin-qing-nei-zhi-lei-xing">引擎内置类型</h2>
+<ul>
+<li>Color</li>
+<li>NodePath</li>
+<li>RID</li>
+<li>Object</li>
+</ul>
+<h2 id="rong-qi-lei-xing">容器类型</h2>
+<h3 id="array-shu-zu">Array 数组</h3>
+<h3 id="dictionary-zi-dian">Dictionary 字典</h3>
+<h3 id="signal-xin-hao">Signal 信号</h3>
+<h3 id="callable-ke-zhi-xing-han-shu">Callable 可执行函数</h3>
+<h2 id="yu-jia-ta-chang-jing-jiao-hu">与加它场景交互</h2>
+<pre data-lang="gd" style="background-color:#2b303b;color:#6c7079;" class="language-gd "><code class="language-gd" data-lang="gd"><span style="color:#eb6772;">get_tree</span><span style="color:#abb2bf;">().</span><span style="color:#eb6772;">change_scene</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;res://scene_b.tscn&quot;</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">get_tree</span><span style="color:#abb2bf;">().</span><span style="color:#eb6772;">reload_current_sence</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">
+</span></code></pre>
+<h2 id="qi-ta">其他</h2>
+<pre data-lang="gd" style="background-color:#2b303b;color:#6c7079;" class="language-gd "><code class="language-gd" data-lang="gd"><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">randomize</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># math 包
+</span><span style="color:#abb2bf;">math.PI
+</span><span style="color:#abb2bf;">
+</span></code></pre>
+
+
+
+  </div>
+</div>
+
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;helix&#x2F;tutor&#x2F;">
+    <i class="icon icon-left-open"></i>
+    helix editor 中文教程</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;mac-soft-sleepwatcher&#x2F;">
+    Mac 睡眠监控sleepwatcher和蓝牙控制
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-info" href="//erasin.wang/categories/game/">game</a>
+
+
+
+<a class="tag is-black" href="//erasin.wang/categories/script/">script</a>
+
+
+
+<a class="tag is-info" href="//erasin.wang/categories/godot/">godot</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-warning" href="//erasin.wang/tags/godot/">godot</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="ji-chu" href="//erasin.wang/godot/gdscript/#ji-chu">基础</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="bian-liang-lei-xing" href="//erasin.wang/godot/gdscript/#bian-liang-lei-xing">变量类型</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="yun-suan-fu" href="//erasin.wang/godot/gdscript/#yun-suan-fu">运算符</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="setter-he-getter" href="//erasin.wang/godot/gdscript/#setter-he-getter">setter 和 getter</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="zhu-jie-export-dao-chu-shu-xing" href="//erasin.wang/godot/gdscript/#zhu-jie-export-dao-chu-shu-xing">注解 export 导出属性</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="zhu-jie-onready" href="//erasin.wang/godot/gdscript/#zhu-jie-onready">注解 onready</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="xu-xing-xie-fa" href="//erasin.wang/godot/gdscript/#xu-xing-xie-fa">续行写法</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="xiang-liang-lei-xing" href="//erasin.wang/godot/gdscript/#xiang-liang-lei-xing">向量类型</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="yin-qing-nei-zhi-lei-xing" href="//erasin.wang/godot/gdscript/#yin-qing-nei-zhi-lei-xing">引擎内置类型</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="rong-qi-lei-xing" href="//erasin.wang/godot/gdscript/#rong-qi-lei-xing">容器类型</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="array-shu-zu" href="//erasin.wang/godot/gdscript/#array-shu-zu">Array 数组</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="dictionary-zi-dian" href="//erasin.wang/godot/gdscript/#dictionary-zi-dian">Dictionary 字典</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="signal-xin-hao" href="//erasin.wang/godot/gdscript/#signal-xin-hao">Signal 信号</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="callable-ke-zhi-xing-han-shu" href="//erasin.wang/godot/gdscript/#callable-ke-zhi-xing-han-shu">Callable 可执行函数</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="yu-jia-ta-chang-jing-jiao-hu" href="//erasin.wang/godot/gdscript/#yu-jia-ta-chang-jing-jiao-hu">与加它场景交互</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="qi-ta" href="//erasin.wang/godot/gdscript/#qi-ta">其他</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

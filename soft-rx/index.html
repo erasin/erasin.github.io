@@ -1,0 +1,615 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  rx 像素编辑器 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="rx 一款现代简约的像素（pixel）编辑器。" property="description" />
+
+  
+    <meta content="pixel" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> rx 像素编辑器 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      RX 像素编辑器
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2020-03-17
+    </div>
+  </div>
+
+  <div class="post-content  " 
+    style="background-image:url(https:&#x2F;&#x2F;rx.cloudhead.io&#x2F;images&#x2F;rx.png);background-size:100px;" >
+    <p>rx <a href="https://rx.cloudhead.io">site</a> <a href="https://github.com/cloudhead/rx">git</a> <a href="https://rx.cloudhead.io/guide.html">book</a><br />
+一款现代简约的像素（pixel）编辑器。<br />
+一款开源的免费软件，由 rust-lang 编程语言开发。</p>
+<ul>
+<li>绘图,对称绘图， 多帧绘图</li>
+<li>视图编辑</li>
+<li>调色版</li>
+<li>脚本</li>
+</ul>
+<span id="continue-reading"></span>
+<p><img src="https://rx.cloudhead.io/gifs/demo.gif" alt="demo" /></p>
+<h2 id="an-zhuang">安装</h2>
+<p>使用命令行安装</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">cargo install \
+</span><span style="color:#abb2bf;">    --git https://github.com/cloudhead/rx \
+</span><span style="color:#abb2bf;">    --tag v0.4.0
+</span></code></pre>
+<p>或者获取源码编译安装，需要安装rust环境。</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">git clone https://github.com/cloudhead/rx
+</span><span style="color:#abb2bf;">cd rx 
+</span><span style="color:#abb2bf;">cargo install --path .
+</span></code></pre>
+<p>命令软件会自动安装到 <code>~/.cargo/bin/</code> 文件夹中，需要将该路径加入 环境变量 <code>$PATH</code> 中。</p>
+<h2 id="shi-yong">使用</h2>
+<p><code>rx</code> 命令来打开编辑器,这是一个基于命令的编辑器，现阶段类似于 <code>vim</code> 方式来操作。</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">rx 
+</span></code></pre>
+<p>默认的配置文件夹 <code>~/.config/rx</code> 。
+<code>~/.config/rx/palettes/</code> 中可以放置 <code>palette</code> 配色版，然后可以在编辑器中调用。</p>
+<h3 id="mo-shi">模式</h3>
+<ul>
+<li>normal 默认模式， 其他模式下按 <code>ESC</code> 来退入到 normal 模式。</li>
+<li>visual 视图模式, 输入<code>:visual</code>或者快捷键 <code>v</code> 进入视图模式。</li>
+<li>command 命令模式 , 类似vim 输入 <code>:</code> 进入命令模式，输入命令后回车执行。</li>
+</ul>
+<table><thead><tr><th style="text-align: center">mode</th><th>command</th><th style="text-align: center">shortcuts</th><th>note</th></tr></thead><tbody>
+<tr><td style="text-align: center">N,V</td><td>:zoom -</td><td style="text-align: center">,</td><td>缩小视图</td></tr>
+<tr><td style="text-align: center">N,V</td><td>:zoom +</td><td style="text-align: center">.</td><td>放大视图</td></tr>
+<tr><td style="text-align: center">N</td><td>:zoom 1.0</td><td style="text-align: center">/</td><td>默认大小视图</td></tr>
+<tr><td style="text-align: center">N</td><td>:pan <code>&lt;x&gt;</code> <code>&lt;y&gt;</code></td><td style="text-align: center"></td><td>空间移动</td></tr>
+<tr><td style="text-align: center"></td><td></td><td style="text-align: center">up,down,left,right</td><td>移动视图</td></tr>
+<tr><td style="text-align: center"></td><td></td><td style="text-align: center">space</td><td>鼠标移动视图</td></tr>
+<tr><td style="text-align: center">N,V</td><td>:v/center</td><td style="text-align: center">z</td><td>居中活动视图</td></tr>
+<tr><td style="text-align: center">N</td><td>:v/prev</td><td style="text-align: center">tab</td><td>上一个视图</td></tr>
+<tr><td style="text-align: center">N</td><td>:v/next</td><td style="text-align: center"></td><td>下一个视图</td></tr>
+</tbody></table>
+<div class="center bili video" >
+	<iframe src="//player.bilibili.com/player.html?bvid=BV1f741117yT&page=1&high_quality=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="300" width="500"> </iframe>
+	
+	<a class="video-btn" style="position: relative; font-size: 1.5rem; left: -4rem; top: -19rem;text-shadow: -1px 0 #e5ecf0, 0 1px #e5ecf0, 1px 0 #e5ecf0, 0 -1px #e5ecf0;" href="https://www.bilibili.com/video/BV1f741117yT/" target="_blank"><i class="icon icon-forward"></i></a>
+	
+</div><h3 id="hui-tu">绘图</h3>
+<table><thead><tr><th style="text-align: center">mode</th><th>command</th><th style="text-align: center">shortcuts</th><th>note</th></tr></thead><tbody>
+<tr><td style="text-align: center">N</td><td>:brush/size -</td><td style="text-align: center"><code>[</code></td><td>画笔缩小</td></tr>
+<tr><td style="text-align: center">N</td><td>:brush/size +</td><td style="text-align: center"><code>]</code></td><td>画笔放大</td></tr>
+<tr><td style="text-align: center">N</td><td>:brush/set <code>&lt;m&gt;</code></td><td style="text-align: center"></td><td>设置模式（可叠加）</td></tr>
+<tr><td style="text-align: center">N</td><td>:brush/set multi</td><td style="text-align: center">shift</td><td>同时多个帧处理</td></tr>
+<tr><td style="text-align: center">N</td><td>:brush/set perfect</td><td style="text-align: center">=</td><td></td></tr>
+<tr><td style="text-align: center">N</td><td>:brush/unset <code>&lt;m&gt;</code></td><td style="text-align: center"></td><td>取消行文模式</td></tr>
+<tr><td style="text-align: center">N</td><td>:brush/toggle <code>&lt;m&gt;</code></td><td style="text-align: center"></td><td>切换模式</td></tr>
+<tr><td style="text-align: center">N</td><td></td><td style="text-align: center">ctrl</td><td>取色</td></tr>
+<tr><td style="text-align: center">N</td><td>:swap</td><td style="text-align: center">x</td><td>前景色背景色互换</td></tr>
+<tr><td style="text-align: center">N</td><td>:undo</td><td style="text-align: center">u</td><td>取消</td></tr>
+<tr><td style="text-align: center">N</td><td>:redo</td><td style="text-align: center">r</td><td>充值</td></tr>
+<tr><td style="text-align: center">N</td><td>:set checker=on</td><td style="text-align: center"></td><td>打开检查器</td></tr>
+</tbody></table>
+<ul>
+<li>erase: 擦除像素，实际为设置透明像素</li>
+<li>multi: 在多帧视图上同时操作 , 使用 <code>shift</code> 按键可以实现</li>
+<li>xsym: x轴 水平对称绘画</li>
+<li>ysym: y轴 垂直对称绘画</li>
+<li>perfect: "pixel-perfect" mode.</li>
+<li>xray: see the underlying pixel color at all times.</li>
+</ul>
+<div class="center bili video" >
+	<iframe src="//player.bilibili.com/player.html?bvid=BV1f741117yT&page=2&high_quality=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="300" width="500"> </iframe>
+	
+	<a class="video-btn" style="position: relative; font-size: 1.5rem; left: -4rem; top: -19rem;text-shadow: -1px 0 #e5ecf0, 0 1px #e5ecf0, 1px 0 #e5ecf0, 0 -1px #e5ecf0;" href="https://www.bilibili.com/video/BV1f741117yT/" target="_blank"><i class="icon icon-forward"></i></a>
+	
+</div><h3 id="wang-ge-grid">网格 Grid</h3>
+<table><thead><tr><th style="text-align: center">mode</th><th>command</th><th style="text-align: center">shortcuts</th><th>note</th></tr></thead><tbody>
+<tr><td style="text-align: center">N</td><td>:set grid</td><td style="text-align: center"></td><td>打开网格</td></tr>
+<tr><td style="text-align: center">N</td><td>:set grid/spacing = <code>&lt;w&gt;</code> <code>&lt;h&gt;</code></td><td style="text-align: center"></td><td>网格大小</td></tr>
+<tr><td style="text-align: center">N</td><td>:set grid/color = #ff0000</td><td style="text-align: center"></td><td>网格颜色</td></tr>
+</tbody></table>
+<h3 id="dong-hua-animation">动画 Animation</h3>
+<table><thead><tr><th style="text-align: center">mode</th><th>command</th><th style="text-align: center">shortcuts</th><th>note</th></tr></thead><tbody>
+<tr><td style="text-align: center">N</td><td>:set animation/delay = 250</td><td style="text-align: center"></td><td>设定时间 millisconds</td></tr>
+<tr><td style="text-align: center">N</td><td>:f/add</td><td style="text-align: center">return</td><td>为当前视图追加帧</td></tr>
+<tr><td style="text-align: center">N</td><td>:f/remove</td><td style="text-align: center">backspace</td><td>删除</td></tr>
+<tr><td style="text-align: center">N</td><td>:f/clone</td><td style="text-align: center"></td><td>当前视图复制帧</td></tr>
+</tbody></table>
+<blockquote>
+<p>常按 <code>shift</code> 实现 <code>:brush/set multi</code> 多帧绘制模式。</p>
+</blockquote>
+<h3 id="shi-tu-mo-shi">视图模式</h3>
+<p>视图边框变为红色，鼠标可以选择，移动操作。</p>
+<table><thead><tr><th style="text-align: center">mode</th><th>command</th><th style="text-align: center">shortcuts</th><th>note</th></tr></thead><tbody>
+<tr><td style="text-align: center">N</td><td>:visual</td><td style="text-align: center">v</td><td>视图模式进入</td></tr>
+<tr><td style="text-align: center">V</td><td>:selection/expand</td><td style="text-align: center"><code>\</code></td><td>向上选择视图</td></tr>
+<tr><td style="text-align: center">V</td><td>:selection/jump</td><td style="text-align: center">w, b</td><td>视图切换帧</td></tr>
+<tr><td style="text-align: center">V</td><td>:selection/jump</td><td style="text-align: center">h,j,k,l</td><td>像素单位移动</td></tr>
+<tr><td style="text-align: center">V</td><td>:selection/yank</td><td style="text-align: center">y</td><td>复制选择的范围</td></tr>
+<tr><td style="text-align: center">V</td><td>:selection/paste</td><td style="text-align: center">p</td><td>粘贴复制的范围</td></tr>
+<tr><td style="text-align: center">V</td><td></td><td style="text-align: center"><code>[</code></td><td>缩小选择的范围</td></tr>
+<tr><td style="text-align: center">V</td><td></td><td style="text-align: center"><code>]</code></td><td>放大选择的范围</td></tr>
+<tr><td style="text-align: center">V</td><td></td><td style="text-align: center"><code>f</code></td><td>前景色填充选择的范围</td></tr>
+<tr><td style="text-align: center">V</td><td></td><td style="text-align: center"><code>d</code></td><td>剪切选择的范围</td></tr>
+<tr><td style="text-align: center">V</td><td></td><td style="text-align: center"><code>e</code></td><td>删除选择的范围</td></tr>
+</tbody></table>
+<blockquote>
+<p>esc 退出<br />
+视图模式下十分类似 <code>vim</code> 操作</p>
+</blockquote>
+<h3 id="wen-jian-bao-cun-he-jia-zai">文件保存和加载</h3>
+<table><thead><tr><th>command</th><th>note</th></tr></thead><tbody>
+<tr><td>:e <code>&lt;file&gt;</code></td><td>保存文件，默认 png</td></tr>
+<tr><td>:w <code>[&lt;file&gt;]</code></td><td>新建/编辑文件</td></tr>
+<tr><td>:slice <code>&lt;size&gt;</code></td><td>文件视图分割</td></tr>
+<tr><td>:f/resize <code>&lt;size&gt;</code> <code>&lt;size&gt;</code></td><td>文件视图帧尺寸</td></tr>
+<tr><td>:cd <code>&lt;dir&gt;</code></td><td>切换目录</td></tr>
+<tr><td>:q</td><td>退出视图</td></tr>
+<tr><td>:q!</td><td>强制退出视图</td></tr>
+<tr><td>:qa!</td><td>强制退出所有视图</td></tr>
+</tbody></table>
+<h3 id="she-ding">设定</h3>
+<table><thead><tr><th>command</th><th>note</th></tr></thead><tbody>
+<tr><td>:set <code>&lt;command&gt; [= value]</code></td><td>设定, on/off 可以省略</td></tr>
+<tr><td>:unset <code>&lt;command&gt;</code></td><td>取消设定</td></tr>
+<tr><td>:set background = <code>&lt;color&gt;</code></td><td>十六进制背景色</td></tr>
+<tr><td>:set vsync = <code>&lt;bool&gt;</code></td><td>垂直刷新  on/off</td></tr>
+<tr><td>:toggle    <code>&lt;command&gt;</code></td><td>on/off 命令的反选</td></tr>
+<tr><td>:echo <code>&lt;command&gt;</code></td><td>显示设定的值</td></tr>
+<tr><td>:source <code>&lt;file.rx&gt;</code></td><td>加载脚本</td></tr>
+<tr><td>:help</td><td>帮助</td></tr>
+</tbody></table>
+<ul>
+<li>config/dir 配置所在</li>
+</ul>
+<h3 id="map-ying-she-kuai-jie-jian">map 映射快捷键</h3>
+<p>语法</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">-- 设定快捷键执行命令
+</span><span style="color:#abb2bf;">:map &lt;key&gt; &lt;:command&gt;  
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">-- 设定快捷键  按下(pressed) 执行命令1，released(松开按键) 执行命令2
+</span><span style="color:#abb2bf;">:map &lt;key&gt; &lt;:command1&gt;  {&lt;:command2&gt;} 
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">-- 清除命令映射
+</span><span style="color:#abb2bf;">:map/clear!
+</span><span style="color:#abb2bf;">
+</span></code></pre>
+<p>例如</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">map e :brush/set erase {:brush/unset erase}
+</span></code></pre>
+<h3 id="palettes-diao-se-ban">palettes 调色板</h3>
+<table><thead><tr><th>command</th><th>note</th></tr></thead><tbody>
+<tr><td>:p/clear</td><td>清空调色板</td></tr>
+<tr><td>:p/add <code>&lt;color&gt;</code></td><td>追加色彩</td></tr>
+<tr><td>:p/sample</td><td>加载</td></tr>
+<tr><td>:p/sort</td><td>排序</td></tr>
+<tr><td>:p/write <code>&lt;path&gt;</code></td><td>保存调色板</td></tr>
+</tbody></table>
+<h3 id="rx-jiao-ben">rx 脚本</h3>
+<p>通过 <code>:source xxx.rx</code> 加载 rx 脚本，rx 命令是以 <code>:</code> 开始，脚本则不需要，注释使用 <code>--</code> 开头。</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">set checker
+</span><span style="color:#abb2bf;">p/clear
+</span><span style="color:#abb2bf;">p/add #ff0000
+</span><span style="color:#abb2bf;">p/add #00ff00
+</span><span style="color:#abb2bf;">p/add #0000ff
+</span></code></pre>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;soft-rx&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;soft-rx&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2020-03-17
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;osx-other&#x2F;">
+    <i class="icon icon-left-open"></i>
+    IOS MAC 的一些处理</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;go-jet&#x2F;">
+    jet - golang 动态模板引擎
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-light" href="//erasin.wang/categories/hui-hua/">绘画</a>
+
+
+
+<a class="tag is-dark" href="//erasin.wang/categories/xiang-su/">像素</a>
+
+
+
+<a class="tag is-success" href="//erasin.wang/categories/pixel/">pixel</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-link" href="//erasin.wang/tags/pixel/">pixel</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="an-zhuang" href="//erasin.wang/soft-rx/#an-zhuang">安装</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="shi-yong" href="//erasin.wang/soft-rx/#shi-yong">使用</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="mo-shi" href="//erasin.wang/soft-rx/#mo-shi">模式</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="hui-tu" href="//erasin.wang/soft-rx/#hui-tu">绘图</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="wang-ge-grid" href="//erasin.wang/soft-rx/#wang-ge-grid">网格 Grid</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="dong-hua-animation" href="//erasin.wang/soft-rx/#dong-hua-animation">动画 Animation</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="shi-tu-mo-shi" href="//erasin.wang/soft-rx/#shi-tu-mo-shi">视图模式</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="wen-jian-bao-cun-he-jia-zai" href="//erasin.wang/soft-rx/#wen-jian-bao-cun-he-jia-zai">文件保存和加载</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="she-ding" href="//erasin.wang/soft-rx/#she-ding">设定</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="map-ying-she-kuai-jie-jian" href="//erasin.wang/soft-rx/#map-ying-she-kuai-jie-jian">map 映射快捷键</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="palettes-diao-se-ban" href="//erasin.wang/soft-rx/#palettes-diao-se-ban">palettes 调色板</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="rx-jiao-ben" href="//erasin.wang/soft-rx/#rx-jiao-ben">rx 脚本</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

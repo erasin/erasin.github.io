@@ -1,0 +1,925 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  Golang Cheetsheet - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="" property="description" />
+
+  
+    <meta content="golang" name="keywords" />
+  
+
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> Golang Cheetsheet </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      GOLANG CHEETSHEET
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2019-12-19
+    </div>
+  </div>
+
+  <div class="post-content  " 
+    style="background-image:url(&#x27;&#x2F;assets&#x2F;img&#x2F;go-mod.svg&#x27;)" >
+    <h1 id="baisc-ji-chu">Baisc 基础</h1>
+<h2 id="hello-world">Hello world</h2>
+<p><strong>hello.go</strong></p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">package </span><span style="color:#eb6772;">main
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">import </span><span style="color:#9acc76;">&quot;fmt&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">main</span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">message </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">greetMe</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;world&quot;</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">fmt</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Println</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">message</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">greetMe</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">name </span><span style="color:#cd74e8;">string</span><span style="color:#abb2bf;">) </span><span style="color:#cd74e8;">string </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">  </span><span style="color:#cd74e8;">return </span><span style="color:#9acc76;">&quot;Hello, &quot; </span><span style="color:#adb7c9;">+ </span><span style="color:#eb6772;">name </span><span style="color:#adb7c9;">+ </span><span style="color:#9acc76;">&quot;!&quot;
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<span id="continue-reading"></span>
+<p><strong>cli</strong></p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">$</span><span style="color:#abb2bf;"> go build
+</span></code></pre>
+<h2 id="variables-bian-liang">Variables 变量</h2>
+<p>Variable declaration</p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">msg </span><span style="color:#cd74e8;">string
+</span><span style="color:#eb6772;">msg </span><span style="color:#adb7c9;">= </span><span style="color:#9acc76;">&quot;Hello&quot;
+</span></code></pre>
+<p>Shortcut of above (Infers type)</p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#eb6772;">msg </span><span style="color:#adb7c9;">:= </span><span style="color:#9acc76;">&quot;Hello&quot;
+</span></code></pre>
+<h2 id="constants-chang-liang">Constants 常量</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">const </span><span style="color:#eb6772;">Phi </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">1.618
+</span></code></pre>
+<blockquote>
+<p>Constants can be character, string, boolean, or numeric values.</p>
+</blockquote>
+<h1 id="basic-types-ji-chu-lei-xing">Basic types 基础类型</h1>
+<h2 id="strings-zi-fu-chuan">Strings 字符串</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#eb6772;">str </span><span style="color:#adb7c9;">:= </span><span style="color:#9acc76;">&quot;Hello&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">str </span><span style="color:#adb7c9;">:= </span><span style="color:#9acc76;">`Multiline
+</span><span style="color:#9acc76;">string`
+</span></code></pre>
+<p>Strings are of type string.</p>
+<h2 id="numbers-shu-zi-lei-xing">Numbers  数字类型</h2>
+<p>Typical types</p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#eb6772;">num </span><span style="color:#adb7c9;">:= </span><span style="color:#db9d63;">3          </span><span style="font-style:italic;color:#5f697a;">// int 整数
+</span><span style="color:#eb6772;">num </span><span style="color:#adb7c9;">:= </span><span style="color:#db9d63;">3.         </span><span style="font-style:italic;color:#5f697a;">// float64  浮点
+</span><span style="color:#eb6772;">num </span><span style="color:#adb7c9;">:= </span><span style="color:#db9d63;">3 </span><span style="color:#adb7c9;">+ </span><span style="color:#db9d63;">4</span><span style="color:#cd74e8;">i     </span><span style="font-style:italic;color:#5f697a;">// complex128  复数
+</span><span style="color:#eb6772;">num </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">byte</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">&#39;a&#39;</span><span style="color:#abb2bf;">)  </span><span style="font-style:italic;color:#5f697a;">// byte (alias for uint8)  字节类型
+</span></code></pre>
+<p>Other types</p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">u </span><span style="color:#cd74e8;">uint </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">7        </span><span style="font-style:italic;color:#5f697a;">// uint (unsigned)
+</span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">p </span><span style="color:#cd74e8;">float32 </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">22.7  </span><span style="font-style:italic;color:#5f697a;">// 32-bit float
+</span></code></pre>
+<h2 id="arrays-shu-zu">Arrays 数组</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="font-style:italic;color:#5f697a;">// var numbers [5]int
+</span><span style="color:#eb6772;">numbers </span><span style="color:#adb7c9;">:= </span><span style="color:#abb2bf;">[</span><span style="color:#adb7c9;">...</span><span style="color:#abb2bf;">]</span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;">{</span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p><span class="en">Arrays have a fixed size. </span></p>
+<p>数组类型是固定长度， 不同长度的数组是不同的类型的数组。</p>
+<h2 id="slices-qie-pian">Slices 切片</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#eb6772;">slice </span><span style="color:#adb7c9;">:= </span><span style="color:#abb2bf;">[]</span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;">{</span><span style="color:#db9d63;">2</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">3</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">4</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">slice </span><span style="color:#adb7c9;">:= </span><span style="color:#abb2bf;">[]</span><span style="color:#cd74e8;">byte</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;Hello&quot;</span><span style="color:#abb2bf;">)
+</span></code></pre>
+<p>切片数组是动态长度。
+Slices have a dynamic size, unlike arrays.</p>
+<h2 id="pointers">Pointers</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">main </span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">b </span><span style="color:#adb7c9;">:= *</span><span style="color:#eb6772;">getPointer</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">fmt</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Println</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;Value is&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">b</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;"> 
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">getPointer </span><span style="color:#abb2bf;">() (</span><span style="color:#eb6772;">myPointer </span><span style="color:#adb7c9;">*</span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;">) {
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">a </span><span style="color:#adb7c9;">:= </span><span style="color:#db9d63;">234
+</span><span style="color:#abb2bf;">  </span><span style="color:#cd74e8;">return </span><span style="color:#adb7c9;">&amp;</span><span style="color:#eb6772;">a
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>Pointers point to a memory location of a variable. Go is fully garbage-collected.</p>
+<p>See: Pointers</p>
+<h2 id="type-conversions">Type conversions</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#eb6772;">i </span><span style="color:#adb7c9;">:= </span><span style="color:#db9d63;">2
+</span><span style="color:#eb6772;">f </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">float64</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">i</span><span style="color:#abb2bf;">)
+</span><span style="color:#eb6772;">u </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">uint</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">i</span><span style="color:#abb2bf;">)
+</span></code></pre>
+<p>See: Type conversions</p>
+<h1 id="flow-control">Flow control</h1>
+<h2 id="conditional">Conditional</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">if </span><span style="color:#eb6772;">day </span><span style="color:#adb7c9;">== </span><span style="color:#9acc76;">&quot;sunday&quot; </span><span style="color:#adb7c9;">|| </span><span style="color:#eb6772;">day </span><span style="color:#adb7c9;">== </span><span style="color:#9acc76;">&quot;saturday&quot; </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">rest</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">} </span><span style="color:#cd74e8;">else if </span><span style="color:#eb6772;">day </span><span style="color:#adb7c9;">== </span><span style="color:#9acc76;">&quot;monday&quot; </span><span style="color:#adb7c9;">&amp;&amp; </span><span style="color:#eb6772;">isTired</span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">groan</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">} </span><span style="color:#cd74e8;">else </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">work</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>See: If</p>
+<h2 id="statements-in-if">Statements in if</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">if </span><span style="color:#eb6772;">_</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">getResult</span><span style="color:#abb2bf;">(); </span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">!= </span><span style="color:#db9d63;">nil </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">fmt</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Println</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;Uh oh&quot;</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>A condition in an if statement can be preceded with a statement before a ;.</p>
+<p>See: If with a short statement</p>
+<h2 id="switch">Switch</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">switch </span><span style="color:#eb6772;">day </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">  </span><span style="color:#cd74e8;">case </span><span style="color:#9acc76;">&quot;sunday&quot;</span><span style="color:#abb2bf;">:
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// cases don&#39;t &quot;fall through&quot; by default!
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">fallthrough
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">  </span><span style="color:#cd74e8;">case </span><span style="color:#9acc76;">&quot;saturday&quot;</span><span style="color:#abb2bf;">:
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">rest</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">  </span><span style="color:#cd74e8;">default</span><span style="color:#abb2bf;">:
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">work</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>See: Switch</p>
+<h2 id="for-loop">For loop</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#abb2bf;">  </span><span style="color:#cd74e8;">for </span><span style="color:#eb6772;">count </span><span style="color:#adb7c9;">:= </span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">; </span><span style="color:#eb6772;">count </span><span style="color:#adb7c9;">&lt;= </span><span style="color:#db9d63;">10</span><span style="color:#abb2bf;">; </span><span style="color:#eb6772;">count</span><span style="color:#adb7c9;">++ </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">		</span><span style="color:#eb6772;">fmt</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Println</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;My counter is at&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">count</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">    }
+</span></code></pre>
+<p>See: For loops</p>
+<h2 id="range-li-pian">range 历谝</h2>
+<p>For-Range loop</p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">entry </span><span style="color:#adb7c9;">:= </span><span style="color:#abb2bf;">[]</span><span style="color:#cd74e8;">string</span><span style="color:#abb2bf;">{</span><span style="color:#9acc76;">&quot;Jack&quot;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&quot;John&quot;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&quot;Jones&quot;</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">  </span><span style="color:#cd74e8;">for </span><span style="color:#eb6772;">i</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">val </span><span style="color:#adb7c9;">:= </span><span style="color:#cd74e8;">range </span><span style="color:#eb6772;">entry </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">fmt</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Printf</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;At position </span><span style="color:#db9d63;">%d</span><span style="color:#9acc76;">, the character </span><span style="color:#db9d63;">%s</span><span style="color:#9acc76;"> is present</span><span style="color:#5ebfcc;">\n</span><span style="color:#9acc76;">&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">i</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">val</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">  }
+</span></code></pre>
+<p>See: For-Range loops</p>
+<h1 id="han-shu-functions">函数 Functions</h1>
+<h2 id="bi-bao-han-shu-lambdas">闭包函数 Lambdas</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#eb6772;">myfunc </span><span style="color:#adb7c9;">:= </span><span style="color:#cd74e8;">func</span><span style="color:#abb2bf;">() </span><span style="color:#cd74e8;">bool </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">  </span><span style="color:#cd74e8;">return </span><span style="color:#eb6772;">x </span><span style="color:#adb7c9;">&gt; </span><span style="color:#db9d63;">10000
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>Functions are first class objects.</p>
+<h2 id="duo-ge-fan-hui">多个返回</h2>
+<p>Multiple return types</p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#eb6772;">a</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">b </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">getMessage</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">getMessage</span><span style="color:#abb2bf;">() (</span><span style="color:#eb6772;">a </span><span style="color:#cd74e8;">string</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">b </span><span style="color:#cd74e8;">string</span><span style="color:#abb2bf;">) {
+</span><span style="color:#abb2bf;">  </span><span style="color:#cd74e8;">return </span><span style="color:#9acc76;">&quot;Hello&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;World&quot;
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<h2 id="ming-ming-fan-hui">命名返回</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">split</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">sum </span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;">) (</span><span style="color:#eb6772;">x</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">y </span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;">) {
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">x </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">sum </span><span style="color:#adb7c9;">* </span><span style="color:#db9d63;">4 </span><span style="color:#adb7c9;">/ </span><span style="color:#db9d63;">9
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">y </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">sum </span><span style="color:#adb7c9;">- </span><span style="color:#eb6772;">x
+</span><span style="color:#abb2bf;">  </span><span style="color:#cd74e8;">return
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>使用命名返回数据，在使用 <code>return</code> 不用使用标记，自动返回命名对象。</p>
+<h1 id="packages">Packages</h1>
+<h2 id="importing">Importing</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">import </span><span style="color:#9acc76;">&quot;fmt&quot;
+</span><span style="color:#cd74e8;">import </span><span style="color:#9acc76;">&quot;math/rand&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">import </span><span style="color:#abb2bf;">(
+</span><span style="color:#abb2bf;">  </span><span style="color:#9acc76;">&quot;fmt&quot;        </span><span style="font-style:italic;color:#5f697a;">// gives fmt.Println
+</span><span style="color:#abb2bf;">  </span><span style="color:#9acc76;">&quot;math/rand&quot;  </span><span style="font-style:italic;color:#5f697a;">// gives rand.Intn
+</span><span style="color:#abb2bf;">)
+</span></code></pre>
+<p>Both are the same.</p>
+<p>See: Importing</p>
+<h2 id="aliases">Aliases</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">import </span><span style="color:#eb6772;">r </span><span style="color:#9acc76;">&quot;math/rand&quot;
+</span><span style="color:#abb2bf;"> 
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">r</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Intn</span><span style="color:#abb2bf;">()
+</span></code></pre>
+<h2 id="exporting-names">Exporting names</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">Hello </span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">  ···
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>Exported names begin with capital letters.</p>
+<p>See: Exported names</p>
+<h2 id="packages-1">Packages</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">package </span><span style="color:#eb6772;">hello
+</span></code></pre>
+<p>Every package file has to start with package.</p>
+<h1 id="concurrency">Concurrency</h1>
+<h2 id="goroutines">Goroutines</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">main</span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">  </span><span style="font-style:italic;color:#5f697a;">// A &quot;channel&quot;
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">ch </span><span style="color:#adb7c9;">:= </span><span style="color:#5ebfcc;">make</span><span style="color:#abb2bf;">(</span><span style="color:#cd74e8;">chan string</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">  </span><span style="font-style:italic;color:#5f697a;">// Start concurrent routines
+</span><span style="color:#abb2bf;">  </span><span style="color:#cd74e8;">go </span><span style="color:#eb6772;">push</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;Moe&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">ch</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">  </span><span style="color:#cd74e8;">go </span><span style="color:#eb6772;">push</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;Larry&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">ch</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">  </span><span style="color:#cd74e8;">go </span><span style="color:#eb6772;">push</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;Curly&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">ch</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">  </span><span style="font-style:italic;color:#5f697a;">// Read 3 results
+</span><span style="color:#abb2bf;">  </span><span style="font-style:italic;color:#5f697a;">// (Since our goroutines are concurrent,
+</span><span style="color:#abb2bf;">  </span><span style="font-style:italic;color:#5f697a;">// the order isn&#39;t guaranteed!)
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">fmt</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Println</span><span style="color:#abb2bf;">(</span><span style="color:#adb7c9;">&lt;-</span><span style="color:#eb6772;">ch</span><span style="color:#abb2bf;">, </span><span style="color:#adb7c9;">&lt;-</span><span style="color:#eb6772;">ch</span><span style="color:#abb2bf;">, </span><span style="color:#adb7c9;">&lt;-</span><span style="color:#eb6772;">ch</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">push</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">name </span><span style="color:#cd74e8;">string</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">ch </span><span style="color:#cd74e8;">chan string</span><span style="color:#abb2bf;">) {
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">msg </span><span style="color:#adb7c9;">:= </span><span style="color:#9acc76;">&quot;Hey, &quot; </span><span style="color:#adb7c9;">+ </span><span style="color:#eb6772;">name
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">ch </span><span style="color:#adb7c9;">&lt;- </span><span style="color:#eb6772;">msg
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>Channels are concurrency-safe communication objects, used in goroutines.</p>
+<p>See: Goroutines, Channels</p>
+<h2 id="buffered-channels">Buffered channels</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#eb6772;">ch </span><span style="color:#adb7c9;">:= </span><span style="color:#5ebfcc;">make</span><span style="color:#abb2bf;">(</span><span style="color:#cd74e8;">chan int</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">2</span><span style="color:#abb2bf;">)
+</span><span style="color:#eb6772;">ch </span><span style="color:#adb7c9;">&lt;- </span><span style="color:#db9d63;">1
+</span><span style="color:#eb6772;">ch </span><span style="color:#adb7c9;">&lt;- </span><span style="color:#db9d63;">2
+</span><span style="color:#eb6772;">ch </span><span style="color:#adb7c9;">&lt;- </span><span style="color:#db9d63;">3
+</span><span style="font-style:italic;color:#5f697a;">// fatal error:
+</span><span style="font-style:italic;color:#5f697a;">// all goroutines are asleep - deadlock!
+</span></code></pre>
+<p>Buffered channels limit the amount of messages it can keep.</p>
+<p>See: Buffered channels</p>
+<h2 id="closing-channels">Closing channels</h2>
+<p>Closes a channel</p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#eb6772;">ch </span><span style="color:#adb7c9;">&lt;- </span><span style="color:#db9d63;">1
+</span><span style="color:#eb6772;">ch </span><span style="color:#adb7c9;">&lt;- </span><span style="color:#db9d63;">2
+</span><span style="color:#eb6772;">ch </span><span style="color:#adb7c9;">&lt;- </span><span style="color:#db9d63;">3
+</span><span style="color:#5ebfcc;">close</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">ch</span><span style="color:#abb2bf;">)
+</span></code></pre>
+<p>Iterates across a channel until its closed</p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">for </span><span style="color:#eb6772;">i </span><span style="color:#adb7c9;">:= </span><span style="color:#cd74e8;">range </span><span style="color:#eb6772;">ch </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">  ···
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>Closed if ok == false</p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#eb6772;">v</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">ok </span><span style="color:#adb7c9;">:= &lt;- </span><span style="color:#eb6772;">ch
+</span></code></pre>
+<p>See: Range and close</p>
+<h1 id="error-control">Error control</h1>
+<h2 id="defer">Defer</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">main</span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">  </span><span style="color:#cd74e8;">defer </span><span style="color:#eb6772;">fmt</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Println</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;Done&quot;</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">fmt</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Println</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;Working...&quot;</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>Defers running a function until the surrounding function returns. The arguments are evaluated immediately, but the function call is not ran until later.</p>
+<p>See: Defer, panic and recover</p>
+<h2 id="deferring-functions">Deferring functions</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">main</span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">  </span><span style="color:#cd74e8;">defer func</span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">fmt</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Println</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;Done&quot;</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">  }()
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">fmt</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Println</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;Working...&quot;</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>Lambdas are better suited for defer blocks.</p>
+<h1 id="structs">Structs</h1>
+<h2 id="defining">Defining</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">type </span><span style="color:#abb2bf;">Vertex </span><span style="color:#cd74e8;">struct </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">X </span><span style="color:#cd74e8;">int
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">Y </span><span style="color:#cd74e8;">int
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;"> 
+</span><span style="color:#abb2bf;"> 
+</span><span style="color:#abb2bf;"> 
+</span><span style="color:#abb2bf;"> 
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">main</span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">v </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">Vertex</span><span style="color:#abb2bf;">{</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">2</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">v</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">X </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">4
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">fmt</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Println</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">v</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">X</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">v</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Y</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>See: Structs</p>
+<h2 id="literals">Literals</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#eb6772;">v </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">Vertex</span><span style="color:#abb2bf;">{</span><span style="color:#eb6772;">X</span><span style="color:#abb2bf;">: </span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">Y</span><span style="color:#abb2bf;">: </span><span style="color:#db9d63;">2</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// Field names can be omitted
+</span><span style="color:#eb6772;">v </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">Vertex</span><span style="color:#abb2bf;">{</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">2</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// Y is implicit
+</span><span style="color:#eb6772;">v </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">Vertex</span><span style="color:#abb2bf;">{</span><span style="color:#eb6772;">X</span><span style="color:#abb2bf;">: </span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>You can also put field names.</p>
+<h2 id="pointers-to-structs">Pointers to structs</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#eb6772;">v </span><span style="color:#adb7c9;">:= &amp;</span><span style="color:#eb6772;">Vertex</span><span style="color:#abb2bf;">{</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">2</span><span style="color:#abb2bf;">}
+</span><span style="color:#eb6772;">v</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">X </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">2
+</span></code></pre>
+<p>Doing <code>v.X</code> is the same as doing <code>(*v).X</code>, when v is a pointer.</p>
+<h1 id="methods">Methods</h1>
+<h2 id="receivers">Receivers</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">type </span><span style="color:#abb2bf;">Vertex </span><span style="color:#cd74e8;">struct </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">X</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">Y </span><span style="color:#cd74e8;">float64
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">func </span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">v </span><span style="color:#cd74e8;">Vertex</span><span style="color:#abb2bf;">) </span><span style="color:#5cb3fa;">Abs</span><span style="color:#abb2bf;">() </span><span style="color:#cd74e8;">float64 </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">  </span><span style="color:#cd74e8;">return </span><span style="color:#eb6772;">math</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Sqrt</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">v</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">X </span><span style="color:#adb7c9;">* </span><span style="color:#eb6772;">v</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">X </span><span style="color:#adb7c9;">+ </span><span style="color:#eb6772;">v</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Y </span><span style="color:#adb7c9;">* </span><span style="color:#eb6772;">v</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Y</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;"> 
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">v</span><span style="color:#abb2bf;">: </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">Vertex</span><span style="color:#abb2bf;">{</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">2</span><span style="color:#abb2bf;">}
+</span><span style="color:#eb6772;">v</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Abs</span><span style="color:#abb2bf;">()
+</span></code></pre>
+<p>There are no classes, but you can define functions with receivers.</p>
+<p>See: Methods</p>
+<h2 id="mutation">Mutation</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">func </span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">v </span><span style="color:#adb7c9;">*</span><span style="color:#cd74e8;">Vertex</span><span style="color:#abb2bf;">) </span><span style="color:#5cb3fa;">Scale</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">f </span><span style="color:#cd74e8;">float64</span><span style="color:#abb2bf;">) {
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">v</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">X </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">v</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">X </span><span style="color:#adb7c9;">* </span><span style="color:#eb6772;">f
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">v</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Y </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">v</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Y </span><span style="color:#adb7c9;">* </span><span style="color:#eb6772;">f
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;"> 
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">v </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">Vertex</span><span style="color:#abb2bf;">{</span><span style="color:#db9d63;">6</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">12</span><span style="color:#abb2bf;">}
+</span><span style="color:#eb6772;">v</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Scale</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">0.5</span><span style="color:#abb2bf;">)
+</span><span style="font-style:italic;color:#5f697a;">// `v` is updated
+</span></code></pre>
+<p>By defining your receiver as a pointer (*Vertex), you can do mutations.</p>
+<p>See: Pointer receivers</p>
+<h1 id="references">References</h1>
+<ul>
+<li><a href="https://tour.golang.org/welcome/1">A tour of Go</a></li>
+<li><a href="https://github.com/golang/go/wiki/">Golang wiki</a></li>
+<li><a href="https://awesome-go.com/">Awesome Go</a></li>
+<li><a href="https://gobyexample.com/">Go by Example</a></li>
+<li><a href="https://golang.org/doc/effective_go.html">Effective Go</a></li>
+<li><a href="https://github.com/golang/go/wiki/CodeReviewComments">Style Guide</a></li>
+</ul>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;golang-cheetsheet&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;golang-cheetsheet&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2019-12-19
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;mysql-cheatsheet&#x2F;">
+    <i class="icon icon-left-open"></i>
+    Mysql Cheatsheet</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;git-cheatsheet&#x2F;">
+    Git 常用命令速查表
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-light" href="//erasin.wang/categories/golang/">golang</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-success" href="//erasin.wang/tags/golang/">golang</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="baisc-ji-chu" href="//erasin.wang/golang-cheetsheet/#baisc-ji-chu">Baisc 基础</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="hello-world" href="//erasin.wang/golang-cheetsheet/#hello-world">Hello world</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="variables-bian-liang" href="//erasin.wang/golang-cheetsheet/#variables-bian-liang">Variables 变量</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="constants-chang-liang" href="//erasin.wang/golang-cheetsheet/#constants-chang-liang">Constants 常量</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="basic-types-ji-chu-lei-xing" href="//erasin.wang/golang-cheetsheet/#basic-types-ji-chu-lei-xing">Basic types 基础类型</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="strings-zi-fu-chuan" href="//erasin.wang/golang-cheetsheet/#strings-zi-fu-chuan">Strings 字符串</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="numbers-shu-zi-lei-xing" href="//erasin.wang/golang-cheetsheet/#numbers-shu-zi-lei-xing">Numbers  数字类型</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="arrays-shu-zu" href="//erasin.wang/golang-cheetsheet/#arrays-shu-zu">Arrays 数组</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="slices-qie-pian" href="//erasin.wang/golang-cheetsheet/#slices-qie-pian">Slices 切片</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="pointers" href="//erasin.wang/golang-cheetsheet/#pointers">Pointers</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="type-conversions" href="//erasin.wang/golang-cheetsheet/#type-conversions">Type conversions</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="flow-control" href="//erasin.wang/golang-cheetsheet/#flow-control">Flow control</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="conditional" href="//erasin.wang/golang-cheetsheet/#conditional">Conditional</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="statements-in-if" href="//erasin.wang/golang-cheetsheet/#statements-in-if">Statements in if</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="switch" href="//erasin.wang/golang-cheetsheet/#switch">Switch</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="for-loop" href="//erasin.wang/golang-cheetsheet/#for-loop">For loop</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="range-li-pian" href="//erasin.wang/golang-cheetsheet/#range-li-pian">range 历谝</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="han-shu-functions" href="//erasin.wang/golang-cheetsheet/#han-shu-functions">函数 Functions</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="bi-bao-han-shu-lambdas" href="//erasin.wang/golang-cheetsheet/#bi-bao-han-shu-lambdas">闭包函数 Lambdas</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="duo-ge-fan-hui" href="//erasin.wang/golang-cheetsheet/#duo-ge-fan-hui">多个返回</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="ming-ming-fan-hui" href="//erasin.wang/golang-cheetsheet/#ming-ming-fan-hui">命名返回</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="packages" href="//erasin.wang/golang-cheetsheet/#packages">Packages</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="importing" href="//erasin.wang/golang-cheetsheet/#importing">Importing</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="aliases" href="//erasin.wang/golang-cheetsheet/#aliases">Aliases</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="exporting-names" href="//erasin.wang/golang-cheetsheet/#exporting-names">Exporting names</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="packages-1" href="//erasin.wang/golang-cheetsheet/#packages-1">Packages</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="concurrency" href="//erasin.wang/golang-cheetsheet/#concurrency">Concurrency</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="goroutines" href="//erasin.wang/golang-cheetsheet/#goroutines">Goroutines</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="buffered-channels" href="//erasin.wang/golang-cheetsheet/#buffered-channels">Buffered channels</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="closing-channels" href="//erasin.wang/golang-cheetsheet/#closing-channels">Closing channels</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="error-control" href="//erasin.wang/golang-cheetsheet/#error-control">Error control</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="defer" href="//erasin.wang/golang-cheetsheet/#defer">Defer</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="deferring-functions" href="//erasin.wang/golang-cheetsheet/#deferring-functions">Deferring functions</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="structs" href="//erasin.wang/golang-cheetsheet/#structs">Structs</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="defining" href="//erasin.wang/golang-cheetsheet/#defining">Defining</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="literals" href="//erasin.wang/golang-cheetsheet/#literals">Literals</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="pointers-to-structs" href="//erasin.wang/golang-cheetsheet/#pointers-to-structs">Pointers to structs</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="methods" href="//erasin.wang/golang-cheetsheet/#methods">Methods</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="receivers" href="//erasin.wang/golang-cheetsheet/#receivers">Receivers</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="mutation" href="//erasin.wang/golang-cheetsheet/#mutation">Mutation</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="references" href="//erasin.wang/golang-cheetsheet/#references">References</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

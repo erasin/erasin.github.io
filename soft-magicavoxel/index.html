@@ -1,0 +1,562 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  MagicaVoxel 像素体编辑器 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="" property="description" />
+
+  
+    <meta content="MagicaVoxel,pixel,软件,像素" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> MagicaVoxel 像素体编辑器 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      MAGICAVOXEL 像素体编辑器
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2020-04-09
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <p><strong>Magicavoxel</strong> 是一款开源免费的轻量级8-bit体素编辑器,基于GPU交互渲染实现；
+操作简便，轻松实现像素风效果。</p>
+<!-- images/Magicavoxel-snap2018-09-26-13-21-50.png -->
+<p><img src="https://i.loli.net/2020/04/09/1XAsCTjMxqLoR2p.png" alt="img" /></p>
+<p><strong>功能简介</strong></p>
+<p>· 可创建和编辑3D，8位模型
+· 自带渲染工具：可以呈现不同的光线条件、光照度、明暗度和锐度
+· 支持多种画笔工具，随时画出你理想中的效果
+· 内置一些基础模型，还支持插入预设形状及图案</p>
+<span id="continue-reading"></span>
+<p>官方站点：<a href="https://ephtracy.github.io/">https://ephtracy.github.io/</a>
+<a href="https://github.com/ephtracy/ephtracy.github.io/releases/tag/0.99.4">下载地址</a></p>
+<p><strong>MagicaVoxel 0.99版本 在 MacOs Catalina 版本下打开后黑屏</strong>，解决方式为，授权运行后，方法有二。</p>
+<p>一种法为进入命令行工具所在文件夹后执行命令。</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#6c7079;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#eb6772;">xattr -d</span><span style="color:#abb2bf;"> com.apple.quarantine MagicaVoxel.app
+</span></code></pre>
+<p>第二种方法为将 <code>MagicaVoxel.app</code> 移动到其他的文件下后，重新移动到 Application 文件夹中。</p>
+<h2 id="shi-yong-shuo-ming">使用说明</h2>
+<!-- /images/Magicavoxel.jpg -->
+<p><img src="https://i.loli.net/2020/04/09/UPi5xsdoQXvJfrj.jpg" alt="magic-tool" /></p>
+<p>笔刷模式：</p>
+<ul>
+<li>任意大小体素模型（V）、</li>
+<li>面模型（F）、</li>
+<li>单个模型（B）、</li>
+<li>线性模型（L）、</li>
+<li>圆模型（C）、</li>
+<li>库内已有图案模型（P）</li>
+</ul>
+<p>视图：</p>
+<ul>
+<li>鼠标右键-【旋转画布】</li>
+<li>空格+右键-【拖动画布】</li>
+<li>鼠标滚轮-【缩放画布】</li>
+</ul>
+<p>macOS: 使用 Command 替代 Ctrl
+可以配置 config/hotkey.txt 来改变快捷键使用</p>
+<table><thead><tr><th><strong>Key</strong></th><th><strong>Command</strong></th><th><strong>Modifier</strong></th></tr></thead><tbody>
+<tr><td>&gt;&gt; Global</td><td></td><td></td></tr>
+<tr><td>F1</td><td>activate console</td><td></td></tr>
+<tr><td>CTRL+Z</td><td>undo</td><td></td></tr>
+<tr><td>CTRL+Y</td><td>redo</td><td>=CTRL+SHIFT+Z</td></tr>
+<tr><td>F6 / 6</td><td>screenshot</td><td>+CTRL : for whole window</td></tr>
+<tr><td>TAB</td><td>switch between model and world editor</td><td></td></tr>
+<tr><td>CTRL +/-</td><td>Scale UI</td><td></td></tr>
+<tr><td>&gt;&gt; Renderer</td><td></td><td></td></tr>
+<tr><td>LButton</td><td>pick focus of Depth of Field</td><td></td></tr>
+<tr><td>ALT+LButton</td><td>pick voxel material</td><td></td></tr>
+<tr><td>CTRL+R</td><td><strong>R</strong>eset material</td><td></td></tr>
+<tr><td>CTRL+C</td><td><strong>C</strong>opy material</td><td></td></tr>
+<tr><td>CTRL+V</td><td>paste material</td><td></td></tr>
+<tr><td>&gt;&gt; Camera</td><td></td><td></td></tr>
+<tr><td>RButton</td><td>rotate camera</td><td></td></tr>
+<tr><td>MButton</td><td>move camera focus</td><td>=LButton+Space =WASDQE+Space</td></tr>
+<tr><td>LButton+X</td><td>set camera focus</td><td></td></tr>
+<tr><td>LButton+Ruler</td><td>snap camera angle to multiples of 5 degrees</td><td></td></tr>
+<tr><td>WASDQE</td><td>rotate camera / move camera (free mode)</td><td></td></tr>
+<tr><td>WHEEL</td><td>zoom in/out</td><td></td></tr>
+<tr><td>F4/4</td><td>recenter camera</td><td></td></tr>
+<tr><td>F5/5</td><td>reset camera to 90 degree views</td><td></td></tr>
+<tr><td>F7/7</td><td>save current camera pose</td><td></td></tr>
+<tr><td>F8/8</td><td>load current camera pose</td><td></td></tr>
+<tr><td>Numpad 0~9</td><td>change camera slot</td><td></td></tr>
+<tr><td>&gt;&gt; Project</td><td></td><td></td></tr>
+<tr><td>CTRL+S</td><td><strong>S</strong>ave project</td><td></td></tr>
+<tr><td>CTRL+SHIFT+S</td><td><strong>S</strong>ave project as</td><td></td></tr>
+<tr><td>CTRL+O</td><td><strong>O</strong>pen project</td><td></td></tr>
+<tr><td>CTRL+SHIFT+O</td><td>import project</td><td></td></tr>
+<tr><td>CTRL+P</td><td>new <strong>P</strong>roject</td><td></td></tr>
+<tr><td>CTRL+SHIFT+P</td><td>duplicate <strong>P</strong>roject</td><td></td></tr>
+<tr><td>&gt;&gt; Select</td><td></td><td></td></tr>
+<tr><td>CTRL+A</td><td>select <strong>A</strong>ll</td><td></td></tr>
+<tr><td>CTRL+I</td><td>select <strong>I</strong>nverse</td><td></td></tr>
+<tr><td>CTRL+D</td><td><strong>D</strong>eselect all</td><td></td></tr>
+<tr><td>CTRL+C</td><td><strong>C</strong>opy</td><td></td></tr>
+<tr><td>CTRL+X</td><td>cut</td><td></td></tr>
+<tr><td>CTRL+V</td><td>paste</td><td></td></tr>
+<tr><td>&gt;&gt; Edit [Model Editor]</td><td></td><td></td></tr>
+<tr><td>U</td><td>f<strong>U</strong>ll model</td><td></td></tr>
+<tr><td>I</td><td>f<strong>I</strong>ll model</td><td></td></tr>
+<tr><td>Backspace/Delete</td><td>delete voxels</td><td></td></tr>
+<tr><td>&gt;&gt; Edit [World Editor]</td><td></td><td></td></tr>
+<tr><td>TAB</td><td>enter group</td><td></td></tr>
+<tr><td>SHIFT+TAB</td><td>leave group</td><td></td></tr>
+<tr><td>U</td><td><strong>U</strong>nion combine objects into one object</td><td></td></tr>
+<tr><td>Arrow/Page</td><td>move object</td><td></td></tr>
+<tr><td>G</td><td>move object to the ground</td><td></td></tr>
+<tr><td>-/+</td><td>rotate object</td><td></td></tr>
+<tr><td>CTRL+H</td><td><strong>H</strong>ide object</td><td></td></tr>
+<tr><td>CTRL+SHIFT+H</td><td>un<strong>H</strong>ide object</td><td></td></tr>
+<tr><td>CTRL+N</td><td><strong>N</strong>ew object</td><td></td></tr>
+<tr><td>Backspace/Delete</td><td>delete object</td><td></td></tr>
+<tr><td>CTRL+T</td><td>conver<strong>T</strong> reference to duplicate</td><td></td></tr>
+<tr><td>CTRL+R</td><td>g<strong>R</strong>oup objects</td><td></td></tr>
+<tr><td>CTRL+SHIFT+R</td><td>ung<strong>R</strong>oup objects</td><td></td></tr>
+<tr><td>&gt;&gt; Brush [World Editor]</td><td></td><td></td></tr>
+<tr><td>ALT+LButton</td><td>pick voxel color</td><td></td></tr>
+<tr><td>CTRL+LButton</td><td>move object on the surface</td><td></td></tr>
+<tr><td>&gt;&gt; Brush [Model Editor]</td><td></td><td></td></tr>
+<tr><td>ALT+LButton</td><td>pick voxel color</td><td></td></tr>
+<tr><td>CTRL+LButton</td><td>move voxels</td><td>+SHIFT : move in normal direction</td></tr>
+<tr><td>T</td><td>a<strong>T</strong>tach brush</td><td>+SHIFT : temporally switch to Erase Brush</td></tr>
+<tr><td>R</td><td>e<strong>R</strong>ase brush</td><td>+SHIFT : temporally switch to Attach Brush</td></tr>
+<tr><td>G</td><td>paint brush</td><td></td></tr>
+<tr><td>N</td><td>selectio<strong>N</strong> brush</td><td>+SHIFT : add selection; +SHIFT+ALT : subtract selection</td></tr>
+<tr><td>&gt;&gt; Brush Mode</td><td></td><td></td></tr>
+<tr><td>V</td><td><strong>V</strong>oxel shape brush</td><td>+/- : resize brush</td></tr>
+<tr><td>F</td><td><strong>F</strong>ace shape brush</td><td></td></tr>
+<tr><td>B</td><td><strong>B</strong>ox shape brush</td><td></td></tr>
+<tr><td>L</td><td><strong>L</strong>ine shape brush</td><td></td></tr>
+<tr><td>C</td><td><strong>C</strong>enter shape brush</td><td></td></tr>
+<tr><td>P</td><td><strong>P</strong>attern shape brush</td><td>+/-, 9, 0 : rotate around z, x, y axis</td></tr>
+<tr><td></td><td></td><td>Arrow/Page keys : add local offset to pattern model</td></tr>
+<tr><td></td><td></td><td>Home key : reset local offset to 0</td></tr>
+<tr><td>&gt;&gt; Mirror Mode</td><td></td><td></td></tr>
+<tr><td>1</td><td>mirror x</td><td></td></tr>
+<tr><td>2</td><td>mirror y</td><td></td></tr>
+<tr><td>3</td><td>mirror z</td><td></td></tr>
+<tr><td>&gt;&gt; Axis Mode</td><td></td><td></td></tr>
+<tr><td>CTRL+1</td><td>axis x</td><td></td></tr>
+<tr><td>CTRL+2</td><td>axis y</td><td></td></tr>
+<tr><td>CTRL+3</td><td>axis z</td><td></td></tr>
+<tr><td>&gt;&gt; Display</td><td></td><td></td></tr>
+<tr><td>CTRL+E</td><td>display <strong>E</strong>dge</td><td></td></tr>
+<tr><td>CTRL+G</td><td>display <strong>G</strong>rid</td><td></td></tr>
+<tr><td>CTRL+F</td><td>display <strong>F</strong>rame</td><td></td></tr>
+<tr><td>CTRL+U</td><td>display gro<strong>U</strong>nd</td><td></td></tr>
+<tr><td>CTRL+B</td><td>display <strong>B</strong>ackground</td><td></td></tr>
+<tr><td>CTRL+W</td><td>display shado<strong>W</strong></td><td></td></tr>
+<tr><td>CTRL+M</td><td>display wirefra<strong>M</strong>e</td><td></td></tr>
+<tr><td>&gt;&gt; Palette</td><td></td><td></td></tr>
+<tr><td>ALT+DRAG</td><td>pick color from screen</td><td></td></tr>
+<tr><td>CTRL+DRAG</td><td>swap color</td><td></td></tr>
+<tr><td>CTRL+SHIFT+DRAG</td><td>duplicate color</td><td></td></tr>
+<tr><td>ALT+SHIFT+DRAG</td><td>fill gradient block</td><td></td></tr>
+</tbody></table>
+<h3 id="ming-ling">命令</h3>
+<p>Press TAB to Enable/Enter Commands<br />
+Press Enter to Confirm Commands<br />
+Press UP/DOWN to Select History Input</p>
+<table><thead><tr><th><strong>Command Format</strong></th><th><strong>Description</strong></th><th><strong>Example</strong></th></tr></thead><tbody>
+<tr><td>sel_none</td><td>select none</td><td></td></tr>
+<tr><td>sel_all</td><td>select all</td><td></td></tr>
+<tr><td>sel_inv</td><td>select inverse</td><td></td></tr>
+<tr><td>copy</td><td>copy voxels</td><td></td></tr>
+<tr><td>cut</td><td>cut voxels</td><td></td></tr>
+<tr><td>paste</td><td>paste voxels</td><td></td></tr>
+<tr><td>size [x y z]</td><td>resize model</td><td>size 45 60 120</td></tr>
+<tr><td>shrink</td><td>fit model size</td><td></td></tr>
+<tr><td>zero</td><td>clear all voxels</td><td></td></tr>
+<tr><td>full</td><td>full volume</td><td></td></tr>
+<tr><td>fill</td><td>paint all voxels with same color</td><td></td></tr>
+<tr><td>inv</td><td>inverse solid and empty space</td><td></td></tr>
+<tr><td>flip [axis]</td><td>flip model</td><td>flip x y</td></tr>
+<tr><td>loop [axis] [offset]</td><td>move model</td><td>loop z 1 x -2</td></tr>
+<tr><td>scale [xyz] [factor]</td><td>scale model (xyz is optional)</td><td>scale x 0.5 yz 2.8</td></tr>
+<tr><td>x2</td><td>double model size</td><td></td></tr>
+<tr><td>rot [axis] [degree]</td><td>rotate model</td><td>rot x 30</td></tr>
+<tr><td>rot90 [axis]</td><td>rotate model 90 degree</td><td>rot90 x</td></tr>
+<tr><td>repeat [xyz] [factor]</td><td>repeat model, negative value for mirror repeat (xyz is optional)</td><td>repeat xy 4 z -0.5</td></tr>
+<tr><td>mir [axis]</td><td>mirror symmetry, default axis is x</td><td>mir x</td></tr>
+<tr><td>dia [axis]</td><td>diagonal symmetry, default axis is z</td><td>dia x</td></tr>
+<tr><td>dil [axis]</td><td>dilation, +z : positive direction, -z : negative direction, z : both directions</td><td>dil +z</td></tr>
+<tr><td>ero [axis]</td><td>erosion, +z : positive direction, -z : negative direction, z : both directions</td><td>ero +z-yx</td></tr>
+<tr><td>flood [colorIndex]</td><td>if colorIndex == 0, remove all invisible voxels</td><td>flood 0</td></tr>
+<tr><td></td><td>otherwise, fill all invisible space with colorIndex</td><td>flood 73</td></tr>
+<tr><td>noise [seed scale min max]</td><td>default value : scale = 0.03 min = 0.2 max = 0.5</td><td>noise 123 0.03 0.2 0.5</td></tr>
+<tr><td>rand [min max]</td><td>paint model with random color index between min and max</td><td>rand 10 15</td></tr>
+<tr><td>maze [edge length]</td><td>generate maze shape</td><td>maze 8</td></tr>
+<tr><td>pal mask</td><td>mask out all unused color swatches</td><td></td></tr>
+<tr><td>pal fill [index]</td><td>fill palette with chosen color index</td><td>pal fill 100</td></tr>
+<tr><td>pal bw/mac</td><td>generate grey or default mac palette</td><td>pal bw</td></tr>
+<tr><td>o [file type]</td><td>export model</td><td>o obj</td></tr>
+<tr><td>odir [file type]</td><td>export all models in current folder displayed in model list</td><td>odir obj</td></tr>
+<tr><td>xs [option] [shader name] [arg0] [arg1] ...</td><td>generate model/anim by custom voxel shader in folder [shader/]</td><td>xs wave (-n : num interations; -prev : based on previoud frame; -cur : based on current frame )</td></tr>
+</tbody></table>
+
+
+
+  </div>
+</div>
+
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;otp&#x2F;">
+    <i class="icon icon-left-open"></i>
+    OTP 动态密码算法</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;godot-math&#x2F;">
+    Godot数学-线性插值
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-dark" href="//erasin.wang/categories/soft/">soft</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-info" href="//erasin.wang/tags/magicavoxel/">MagicaVoxel</a>
+
+
+
+<a class="tag is-light" href="//erasin.wang/tags/pixel/">pixel</a>
+
+
+
+<a class="tag is-danger" href="//erasin.wang/tags/ruan-jian/">软件</a>
+
+
+
+<a class="tag is-dark" href="//erasin.wang/tags/xiang-su/">像素</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="shi-yong-shuo-ming" href="//erasin.wang/soft-magicavoxel/#shi-yong-shuo-ming">使用说明</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="ming-ling" href="//erasin.wang/soft-magicavoxel/#ming-ling">命令</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

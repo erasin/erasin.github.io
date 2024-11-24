@@ -1,0 +1,134 @@
+<!-- 幻灯片 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link data-n-head="true" href="/favicon.ico" rel="icon" type="image/x-icon" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" name="viewport" />
+    <title>服务器部署方案</title>
+    <link href='//erasin.wang/icon.css' rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/reveal.js@3.8.0/css/reset.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/reveal.js@3.8.0/css/reveal.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/reveal.js@3.8.0/css/theme/league.css" rel="stylesheet" />
+    <!-- beige , black, blood, league, moon , night, serif, simple, sky, solarized, white-->
+    <style>
+        .home {
+            color: #fff;
+            font-size: 16px;
+            padding: 1rem;
+            display: block;
+            position: fixed;
+            z-index: 10;
+        }
+
+        a.home:hover {
+            color: #48c774;
+        }
+    </style>
+
+<body>
+    <a class="home" href="&#x2F;&#x2F;erasin.wang&#x2F;">
+        <i class="icon icon-home"></i>
+    </a>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+<h3 id="fu-wu-bu-shu">服务部署</h3>
+<ul>
+<li>多域名部署方案</li>
+<li>网络加速</li>
+<li>提升服务性能</li>
+</ul>
+</section>
+<span id="continue-reading"></span><section>
+<pre data-lang="bob" style="background-color:#2b303b;color:#6c7079;" class="language-bob "><code class="language-bob" data-lang="bob"><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">.----------.           
+</span><span style="color:#abb2bf;">|   用户   |  
+</span><span style="color:#abb2bf;">&#39;----------&#39;
+</span><span style="color:#abb2bf;">
+</span></code></pre>
+</section>
+<section>
+<h3 id="duo-yu-ming">多域名</h3>
+<ul>
+<li>前台 WWW</li>
+<li>后台 ADMIN</li>
+<li>接口 API</li>
+<li>静态 STATIC</li>
+<li>文件 UPLOAD</li>
+</ul>
+</section> 
+<section>
+<h3 id="wang-luo-jia-su">网络加速</h3>
+<ul>
+<li>静态资源整合</li>
+<li>站点特殊页面的静态化</li>
+<li>CDN 分布式节点资源</li>
+<li>域名 DNS 线路优化</li>
+</ul>
+</section>
+<section><section>
+<h3 id="ti-sheng-xing-neng">提升性能</h3>
+<ul>
+<li>服务分布式部署</li>
+<li>SLB 中心代理加速</li>
+<li>域名 DNS 线路优化</li>
+</ul>
+</section>
+<section>
+<h3 id="jie-kou-fu-wu">接口服务</h3>
+<ul>
+<li>微服务化</li>
+<li>功能隔离</li>
+</ul>
+</section>
+<section>
+<h3 id="shu-ju-you-hua">数据优化</h3>
+<ul>
+<li>分布式数据库</li>
+<li>数据分片</li>
+<li>读写分离</li>
+</ul>
+</section></section>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@3.8.0/js/reveal.min.js"></script>
+    <script>
+        // Full list of configuration options available at: https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+            transition: "slide",
+            // none/fade/slide/convex/concave/zoom math: {
+            //     mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+            //     config: 'TeX-AMS_HTML-full' ,
+            //     TeX: { Macros: macros }
+            // }, Optional reveal.js plugins
+            dependencies: [
+                // { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.8.0/lib/js/classList.js', condition: function() { return !document.body.classList; } }, { src:
+                // 'https://cdn.jsdelivr.net/npm/reveal.js@3.8.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } }, { src:
+                // 'https://cdn.jsdelivr.net/npm/reveal.js@3.8.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                {
+                    src: "https://cdn.jsdelivr.net/npm/reveal.js@3.8.0/plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function () {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function () {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                // { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.8.0/plugin/zoom-js/zoom.js', async: true }, { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.8.0/plugin/notes/notes.js', async:
+                // true } { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.8.0/plugin/math/math.js', async: true }
+            ]
+        });
+    </script>
+</body>
+</head>
+
+</html>

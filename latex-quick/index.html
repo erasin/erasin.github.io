@@ -1,0 +1,821 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  使用 tectonic 快速入门使用 latex - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="" property="description" />
+
+  
+    <meta content="soft,cli" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+    
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> 使用 tectonic 快速入门使用 latex </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      使用 TECTONIC 快速入门使用 LATEX
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2022-11-01
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <h2 id="li-jie-ji-ben">理解基本</h2>
+<p>latex 是一个文档准备系统 (document preparing system)，它非常适用于生成高印
+刷质 量的科技类和数学类文档。它也能够生成所有其他种类的文档，小到简单的信件，大
+到完整的书 籍。latex 使用 tex 作为它的排版引擎。</p>
+<p>latex 本质上是利用各种个这样的宏包提供的标记命令来标记文本，从而编译出对应的
+格 式,如果学习过 html 标签文本的同学会更加的了解这一书写规范。现代的文本编辑格
+式 从普不同文本，到简单的 markdown 以及其他的 markdown 变体，到复杂的 html 以及
+latex, 这样的纯文本加上标记的文档，实际上是让人更加的注重文章的内容，而不必去限
+定于某种软件才能编辑，无论是跨平台还是版本管理（vcs）上都是十分具有优势的。</p>
+<p>另外在学术领域上 latex 上应用比较广泛，markdown 则在程序开发者应用比较多。</p>
+<h2 id="gong-ju">工具</h2>
+<ul>
+<li>texlive <a href="https://www.tug.org/texlive/acquire-iso.html">https://www.tug.org/texlive/acquire-iso.html</a></li>
+<li>miktex <a href="https://miktex.org/download">https://miktex.org/download</a></li>
+<li>overleaf <a href="https://www.overleaf.com/">https://www.overleaf.com/</a></li>
+<li>tentonic <a href="https://tectonic-typesetting.github.io/">https://tectonic-typesetting.github.io/</a>
+下载安装 <code>curl --proto '=https' --tlsv1.2 -fssl https://drop-sh.fullyjustified.net |sh</code></li>
+<li>图书 <a href="https://github.com/ctex-org/lshort-zh-cn">一份不太简短的latex介绍</a></li>
+</ul>
+<h3 id="language-server-protocol-lsp-he-wen-ben-bian-ji-qi">language server protocol (lsp) 和 文本编辑器</h3>
+<p><a href="https://github.com/latex-lsp/texlab">texlab</a> 为 latex 提供了 语言服务器协议（lsp）。</p>
+<ul>
+<li>vscode <a href="https://marketplace.visualstudio.com/items?itemname=efoerster.texlab">texlab 扩展</a>
+也可使用 <a href="https://marketplace.visualstudio.com/items?itemname=james-yu.latex-workshop">latex workshop</a></li>
+<li><a href="https://github.com/helix-editor/helix">helix editor</a> 已经内置支持,安装texlab即可。</li>
+<li>vim/nvim <a href="https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#texlab">nvim-lspconfig</a> 配置项</li>
+</ul>
+<p>texlab 和 tectonic 一起使用 <a href="https://github.com/latex-lsp/texlab/wiki/tectonic">https://github.com/latex-lsp/texlab/wiki/tectonic</a> .</p>
+<span id="continue-reading"></span><h2 id="tectonic">tectonic</h2>
+<p>推荐使用 tentonic , 这是使用 rust 编写的更加现代化 tex 引擎，内部使用的 xetex 和 texlive 驱动。
+它会自动下载支持的文件，也就是不用自动管理资源文件了，编译文件十分的简单。</p>
+<p>比如编译单文件</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">user@host</span><span style="color:#abb2bf;"> $ tectonic paper.tex
+</span><span style="color:#eb6772;">running</span><span style="color:#abb2bf;"> tex ...
+</span><span style="color:#eb6772;">note:</span><span style="color:#abb2bf;"> warnings were issued by the tex engine</span><span style="color:#adb7c9;">; </span><span style="color:#eb6772;">use --print</span><span style="color:#abb2bf;"> and/or</span><span style="color:#eb6772;"> --keep-logs</span><span style="color:#abb2bf;"> for details.
+</span><span style="color:#eb6772;">running</span><span style="color:#abb2bf;"> bibtex ...
+</span><span style="color:#eb6772;">rerunning</span><span style="color:#abb2bf;"> tex because bibtex was run ...
+</span><span style="color:#eb6772;">rerunning</span><span style="color:#abb2bf;"> tex because </span><span style="color:#9acc76;">&quot;paper.aux&quot;</span><span style="color:#abb2bf;"> changed ...
+</span><span style="color:#eb6772;">rerunning</span><span style="color:#abb2bf;"> tex because </span><span style="color:#9acc76;">&quot;paper.aux&quot;</span><span style="color:#abb2bf;"> changed ...
+</span><span style="color:#eb6772;">running</span><span style="color:#abb2bf;"> xdvipdfmx ...
+</span><span style="color:#eb6772;">writing</span><span style="color:#abb2bf;"> paper.pdf (383521 bytes)
+</span><span style="color:#eb6772;">skipped</span><span style="color:#abb2bf;"> writing 3 intermediate files (use</span><span style="color:#eb6772;"> --keep-intermediates</span><span style="color:#abb2bf;"> to keep them)
+</span></code></pre>
+<h3 id="shi-yong-tectonic-v2-guan-li-xiang-mu">使用<strong>tectonic v2</strong> 管理项目</h3>
+<p><a href="https://tectonic-typesetting.github.io/book/latest/v2cli/build.html">tectonic v2文档</a></p>
+<p><code>tectonic -x</code> 是 v2 版本,提供了更加现代化的命令工具</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">tectonic -x</span><span style="color:#abb2bf;"> 0.12.0
+</span><span style="color:#eb6772;">process</span><span style="color:#abb2bf;"> (la)</span><span style="color:#eb6772;">tex</span><span style="color:#abb2bf;"> documents
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">usage:
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">tectonic -x </span><span style="color:#cd74e8;">[</span><span style="color:#abb2bf;">options</span><span style="color:#cd74e8;">] </span><span style="color:#adb7c9;">&lt;</span><span style="color:#abb2bf;">subcommand</span><span style="color:#adb7c9;">&gt;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">flags:
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">-h, --help</span><span style="color:#abb2bf;">       prints help information
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">-v, --version</span><span style="color:#abb2bf;">    prints version information
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">options:
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">-c, --chatter </span><span style="color:#adb7c9;">&lt;</span><span style="color:#abb2bf;">level</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;">    how much chatter to print when running </span><span style="color:#cd74e8;">[</span><span style="color:#abb2bf;">default: default</span><span style="color:#cd74e8;">]  [</span><span style="color:#abb2bf;">possible values: default, minimal</span><span style="color:#cd74e8;">]
+</span><span style="color:#abb2bf;">        </span><span style="color:#eb6772;">--color </span><span style="color:#adb7c9;">&lt;</span><span style="color:#abb2bf;">when</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;">       control colorization of output </span><span style="color:#cd74e8;">[</span><span style="color:#abb2bf;">default: auto</span><span style="color:#cd74e8;">]  [</span><span style="color:#abb2bf;">possible values: always, auto, never</span><span style="color:#cd74e8;">]
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">subcommands:
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">build</span><span style="color:#abb2bf;">      build a document 编译项目
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">bundle</span><span style="color:#abb2bf;">     commands relating to this document’s tex file bundle
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">compile</span><span style="color:#abb2bf;">    run a standalone (la)</span><span style="color:#eb6772;">tex</span><span style="color:#abb2bf;"> compilation
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">dump</span><span style="color:#abb2bf;">       run a partial compilation and output an intermediate file
+</span><span style="color:#abb2bf;">    </span><span style="color:#5ebfcc;">help</span><span style="color:#abb2bf;">       prints this message or the help of the given subcommand(s)
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">new</span><span style="color:#abb2bf;">        create a new document 创建新的项目
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">show</span><span style="color:#abb2bf;">       display various useful pieces of information
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">watch</span><span style="color:#abb2bf;">      watch input files and execute commands on change
+</span></code></pre>
+<h3 id="jian-dan-de-tex-xiang-mu">简单的 tex 项目</h3>
+<p><strong>创建项目</strong></p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">tectonic -x</span><span style="color:#abb2bf;"> new tex-demo
+</span></code></pre>
+<p>可以看到创建了文件项目 <code>tex-demo</code></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">tex-demo
+</span><span style="color:#abb2bf;">├── src
+</span><span style="color:#abb2bf;">│  ├── _postamble.tex
+</span><span style="color:#abb2bf;">│  ├── _preamble.tex
+</span><span style="color:#abb2bf;">│  └── index.tex
+</span><span style="color:#abb2bf;">└── tectonic.toml
+</span></code></pre>
+<p>查看配置文件 <code>tectonic.toml</code> 可以看到 <code>output</code>部分标记了输出的类型。<br />
+<code>src</code>文件夹内为文件内容，其中构建命令处理文件的顺序为：</p>
+<ol>
+<li>src/_preamble.tex</li>
+<li>src/index.tex</li>
+<li>src/_postamble.tex</li>
+</ol>
+<blockquote>
+<p>它这里处理主要是为了隔离内容与 latex 样板, 实际的项目中可以按照
+<code>\include{xxxx}</code>语法自行构建处理顺序。</p>
+</blockquote>
+<p><strong>编译个pdf</strong></p>
+<p>进入 <code>tex-demo</code> 文件夹的目录</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> tectonic </span><span style="color:#eb6772;">-x</span><span style="color:#abb2bf;"> build
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">note: </span><span style="color:#9acc76;">&quot;version 2&quot;</span><span style="color:#abb2bf;"> tectonic command-line interface activated
+</span><span style="color:#eb6772;">note:</span><span style="color:#abb2bf;"> connecting to https://data1.fullyjustified.net/tlextras-2022.0r0.tar
+</span><span style="color:#eb6772;">note:</span><span style="color:#abb2bf;"> downloading index https://data1.fullyjustified.net/tlextras-2022.0r0.tar.index.gz
+</span><span style="color:#eb6772;">note:</span><span style="color:#abb2bf;"> downloading sha256sum
+</span><span style="color:#eb6772;">running</span><span style="color:#abb2bf;"> tex ...
+</span><span style="color:#eb6772;">note:</span><span style="color:#abb2bf;"> downloading ts1cmr.fd
+</span><span style="color:#eb6772;">rerunning</span><span style="color:#abb2bf;"> tex because </span><span style="color:#9acc76;">&quot;default.aux&quot;</span><span style="color:#abb2bf;"> changed ...
+</span><span style="color:#eb6772;">running</span><span style="color:#abb2bf;"> xdvipdfmx ...
+</span><span style="color:#eb6772;">writing </span><span style="color:#abb2bf;">`</span><span style="color:#eb6772;">/...path.../tex-demo/build/default/default.pdf</span><span style="color:#abb2bf;">` (2.96 kib)
+</span><span style="color:#eb6772;">skipped</span><span style="color:#abb2bf;"> writing 1 intermediate files (use</span><span style="color:#eb6772;"> --keep-intermediates</span><span style="color:#abb2bf;"> to keep them)
+</span></code></pre>
+<p>可以看到输出的日志文件中显示已保存文件到 <code>build/default/default.pdf</code> 了。打开pdf文件，
+应该可以看到和 <code>src/index.tex</code> 中相同的文件。</p>
+<blockquote>
+<p>这里还无法编译中文，需要使用引入中文包才可以。</p>
+</blockquote>
+<h2 id="chang-jian-de-yu-fa">常见的语法</h2>
+<p>命令是以反斜杠`'开头</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">\命令名称[配置]{参数1,参数...} 
+</span></code></pre>
+<p><strong>注释</strong></p>
+<p>注释使用 <code>%</code> 开头开始标记</p>
+<p><strong>基础模板</strong></p>
+<pre data-lang="tex" style="background-color:#2b303b;color:#6c7079;" class="language-tex "><code class="language-tex" data-lang="tex"><span style="font-style:italic;color:#5f697a;">% 文档类型指定(ctexart中文支持)
+</span><span style="color:#cd74e8;">\documentclass</span><span style="color:#abb2bf;">[utf8]{</span><span style="color:#f0c678;">ctexart</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">% 前言区
+</span><span style="font-style:italic;color:#5f697a;">% 一般用于加载宏包以及设置，索引等
+</span><span style="color:#cd74e8;">\usepackage</span><span style="color:#abb2bf;">{</span><span style="color:#f0c678;">multicol</span><span style="color:#abb2bf;">} </span><span style="font-style:italic;color:#5f697a;">% 分栏
+</span><span style="color:#cd74e8;">\usepackage</span><span style="color:#abb2bf;">{</span><span style="color:#f0c678;">indentfirst</span><span style="color:#abb2bf;">} </span><span style="font-style:italic;color:#5f697a;">% 首行缩进
+</span><span style="color:#cd74e8;">\usepackage</span><span style="color:#abb2bf;">{</span><span style="color:#f0c678;">graphicx</span><span style="color:#abb2bf;">} </span><span style="font-style:italic;color:#5f697a;">% 图片引用
+</span><span style="color:#cd74e8;">\usepackage</span><span style="color:#abb2bf;">{</span><span style="color:#f0c678;">makeidx</span><span style="color:#abb2bf;">} </span><span style="font-style:italic;color:#5f697a;">% 调用 makeidx 宏包，用来处理索引 % 开启索引的收集
+</span><span style="color:#5ebfcc;">\makeindex </span><span style="font-style:italic;color:#5f697a;">% 开启索引
+</span><span style="color:#5ebfcc;">\bibliographystyle</span><span style="color:#abb2bf;">{plain} </span><span style="font-style:italic;color:#5f697a;">% 指定参考文献样式为 plain
+</span><span style="color:#5ebfcc;">\graphicspath</span><span style="color:#abb2bf;">{{../images}} </span><span style="font-style:italic;color:#5f697a;">% 设定图片目录
+</span><span style="color:#5ebfcc;">\pagestyle</span><span style="color:#abb2bf;">{plain} </span><span style="font-style:italic;color:#5f697a;">% 设定页码样式
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">\begin</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">document</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">% 正文区
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">\frontmatter </span><span style="font-style:italic;color:#5f697a;">% 前言部分, 页码使用小写罗马数字
+</span><span style="color:#5ebfcc;">\maketitle </span><span style="font-style:italic;color:#5f697a;">% 标题页
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">\include</span><span style="color:#abb2bf;">{preface} </span><span style="font-style:italic;color:#5f697a;">% 前言章节 preface.tex
+</span><span style="color:#abb2bf;">
+</span><span style="color:#5ebfcc;">\tableofcontents </span><span style="font-style:italic;color:#5f697a;">% 生成目录
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">\mainmatter  </span><span style="font-style:italic;color:#5f697a;">% 正文部分, 页码使用阿拉伯数字从1开始
+</span><span style="color:#cd74e8;">\include</span><span style="color:#abb2bf;">{chapter1} </span><span style="font-style:italic;color:#5f697a;">% 第一章 chapter1.tex 
+</span><span style="color:#cd74e8;">\include</span><span style="color:#abb2bf;">{chapter2} </span><span style="font-style:italic;color:#5f697a;">% 第二章 chapter2.tex
+</span><span style="color:#abb2bf;">...
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">\appendix </span><span style="font-style:italic;color:#5f697a;">% 附录
+</span><span style="color:#cd74e8;">\include</span><span style="color:#abb2bf;">{appendixa} </span><span style="font-style:italic;color:#5f697a;">% 附录 a appendixa.tex
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">...
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">\backmatter </span><span style="font-style:italic;color:#5f697a;">% 后记部分
+</span><span style="color:#cd74e8;">\include</span><span style="color:#abb2bf;">{epilogue} </span><span style="font-style:italic;color:#5f697a;">% 后记 epilogue.tex
+</span><span style="color:#abb2bf;">
+</span><span style="color:#5ebfcc;">\bibliography</span><span style="color:#abb2bf;">{books} </span><span style="font-style:italic;color:#5f697a;">% 利用 bibtex 工具从数据库文件 books.bib 生成参考文献 
+</span><span style="color:#cd74e8;">\printindex </span><span style="font-style:italic;color:#5f697a;">% 利用 makeindex 工具生成索引
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">\end</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">document</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>可以看出前言区域一般定义宏包以及配置，正文则调用宏包以及排版，而实际的内容则用
+<code>\include{}</code> 来调用和组织</p>
+<blockquote>
+<p><code>\begin{环境} ... \end{环境}</code> 来标记特殊环境</p>
+</blockquote>
+<h3 id="preamble-qian-yan-bu-fen">preamble 前言部分</h3>
+<p><strong>meta 信息</strong></p>
+<pre data-lang="tex" style="background-color:#2b303b;color:#6c7079;" class="language-tex "><code class="language-tex" data-lang="tex"><span style="color:#5ebfcc;">\title</span><span style="color:#abb2bf;">{文章标题}
+</span><span style="color:#5ebfcc;">\author</span><span style="color:#abb2bf;">{作者}
+</span><span style="color:#5ebfcc;">\date</span><span style="color:#abb2bf;">{</span><span style="color:#5ebfcc;">\today</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<blockquote>
+<p>这里的 <code>\today</code> 自动生成当天的日期.</p>
+</blockquote>
+<p>在正文中显示这些信息，需要追加 <code>\maketitle</code> 命令追加到正文。</p>
+<h3 id="zheng-wen-bu-fen">正文部分</h3>
+<p><strong>章节</strong></p>
+<pre data-lang="tex" style="background-color:#2b303b;color:#6c7079;" class="language-tex "><code class="language-tex" data-lang="tex"><span style="color:#5ebfcc;">\part</span><span style="color:#abb2bf;">{</span><span style="color:#5cb3fa;">部分</span><span style="color:#abb2bf;">}
+</span><span style="color:#5ebfcc;">\chapter</span><span style="color:#abb2bf;">{</span><span style="color:#5cb3fa;">大章</span><span style="color:#abb2bf;">}
+</span><span style="color:#5ebfcc;">\section</span><span style="color:#abb2bf;">{</span><span style="color:#5cb3fa;">章节</span><span style="color:#abb2bf;">}
+</span><span style="color:#5ebfcc;">\subsection</span><span style="color:#abb2bf;">{</span><span style="color:#5cb3fa;">子章节</span><span style="color:#abb2bf;">}
+</span><span style="color:#5ebfcc;">\subsubsection</span><span style="color:#abb2bf;">{</span><span style="color:#5cb3fa;">子章节</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">% 段落不会生成编号
+</span><span style="color:#5ebfcc;">\paragraph</span><span style="color:#abb2bf;">{</span><span style="color:#5cb3fa;">段落标题</span><span style="color:#abb2bf;">}
+</span><span style="color:#5ebfcc;">\subparagraph</span><span style="color:#abb2bf;">{</span><span style="color:#5cb3fa;">子段落标题</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">% 使用标记包 hyperref
+</span><span style="font-style:italic;color:#5f697a;">% 标记以供引用
+</span><span style="color:#cd74e8;">\label</span><span style="color:#abb2bf;">{标记内容}
+</span><span style="font-style:italic;color:#5f697a;">% 对应使用
+</span><span style="color:#cd74e8;">\ref</span><span style="color:#abb2bf;">{标记内容}
+</span></code></pre>
+<blockquote>
+<p>article 文档类带编号的层级为 \section / \subsection / \subsubsection 三级;<br />
+report / book 文档类带编号的层级为 \chapter / \section / \subsection 三级。</p>
+</blockquote>
+<p><strong>字体装饰</strong></p>
+<pre data-lang="tex" style="background-color:#2b303b;color:#6c7079;" class="language-tex "><code class="language-tex" data-lang="tex"><span style="color:#5ebfcc;">\ldots </span><span style="font-style:italic;color:#5f697a;">% 省略号
+</span><span style="color:#5ebfcc;">\underline</span><span style="color:#abb2bf;">{underlined} </span><span style="font-style:italic;color:#5f697a;">% 为参数部分追加下划线
+</span><span style="color:#5ebfcc;">\textbf</span><span style="color:#abb2bf;">{</span><span style="color:#f0c678;">粗体</span><span style="color:#abb2bf;">}
+</span><span style="color:#5ebfcc;">\textit</span><span style="color:#abb2bf;">{</span><span style="color:#cd74e8;">斜体</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">% 这里使用 `{ }` 来限定范围，否则宏命令后的部分都会改变，对于其他的宏命令也是可以使用
+</span><span style="font-style:italic;color:#5f697a;">% 类似的方式来限定范围
+</span><span style="color:#abb2bf;">{</span><span style="color:#5ebfcc;">\color</span><span style="color:#abb2bf;">{red} 红色}
+</span><span style="color:#abb2bf;">{</span><span style="color:#5ebfcc;">\color</span><span style="color:#abb2bf;">{blue} 蓝色}
+</span></code></pre>
+<p><strong>排版</strong></p>
+<pre data-lang="tex" style="background-color:#2b303b;color:#6c7079;" class="language-tex "><code class="language-tex" data-lang="tex"><span style="color:#db9d63;">\\</span><span style="color:#abb2bf;">[</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">] </span><span style="font-style:italic;color:#5f697a;">% 断行
+</span><span style="color:#5ebfcc;">\newline </span><span style="font-style:italic;color:#5f697a;">% 断行
+</span><span style="color:#5ebfcc;">\newpage </span><span style="font-style:italic;color:#5f697a;">% 断页
+</span><span style="color:#5ebfcc;">\clearpage </span><span style="font-style:italic;color:#5f697a;">% 断页
+</span><span style="color:#5ebfcc;">\- </span><span style="font-style:italic;color:#5f697a;">% 断词
+</span><span style="color:#abb2bf;">
+</span><span style="color:#5ebfcc;">\centering </span><span style="font-style:italic;color:#5f697a;">% 居中
+</span><span style="color:#5ebfcc;">\raggedleft </span><span style="font-style:italic;color:#5f697a;">% 左对齐
+</span><span style="color:#5ebfcc;">\raggedright </span><span style="font-style:italic;color:#5f697a;">% 右对齐
+</span></code></pre>
+<p><strong>列表环境</strong></p>
+<ul>
+<li>enumerate 有序列表</li>
+<li>itemize 无序列表</li>
+<li>description 描述</li>
+</ul>
+<pre data-lang="tex" style="background-color:#2b303b;color:#6c7079;" class="language-tex "><code class="language-tex" data-lang="tex"><span style="color:#cd74e8;">\begin</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">enumerate</span><span style="color:#abb2bf;">}
+</span><span style="color:#5ebfcc;">\item</span><span style="color:#abb2bf;"> ... 
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">% 可嵌套
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">\begin</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">itemize</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">    </span><span style="color:#5ebfcc;">\item</span><span style="color:#abb2bf;"> ... 
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">\end</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">itemize</span><span style="color:#abb2bf;">}
+</span><span style="color:#cd74e8;">\end</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">enumerate</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p><strong>常用环境</strong></p>
+<pre data-lang="tex" style="background-color:#2b303b;color:#6c7079;" class="language-tex "><code class="language-tex" data-lang="tex"><span style="color:#cd74e8;">\begin</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">center</span><span style="color:#abb2bf;">} ... </span><span style="color:#cd74e8;">\end</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">center</span><span style="color:#abb2bf;">} </span><span style="font-style:italic;color:#5f697a;">% 居中
+</span><span style="color:#cd74e8;">\begin</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">flushleft</span><span style="color:#abb2bf;">} ... </span><span style="color:#cd74e8;">\end</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">flushleft</span><span style="color:#abb2bf;">} </span><span style="font-style:italic;color:#5f697a;">% 左对齐
+</span><span style="color:#cd74e8;">\begin</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">flushright</span><span style="color:#abb2bf;">} ... </span><span style="color:#cd74e8;">\end</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">flushright</span><span style="color:#abb2bf;">} </span><span style="font-style:italic;color:#5f697a;">% 右对齐
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">\begin</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">quote</span><span style="color:#abb2bf;">} 引用较短的文字 </span><span style="color:#cd74e8;">\end</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">quote</span><span style="color:#abb2bf;">}
+</span><span style="color:#cd74e8;">\begin</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">quotation</span><span style="color:#abb2bf;">} 引用若干段落的文字,首行缩进 </span><span style="color:#cd74e8;">\end</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">quotation</span><span style="color:#abb2bf;">}
+</span><span style="color:#cd74e8;">\begin</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">verse</span><span style="color:#abb2bf;">} 引用若干段落的文字, 首行悬挂 </span><span style="color:#cd74e8;">\end</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">verse</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">\begin</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">verbatim</span><span style="color:#abb2bf;">} 引用代码 </span><span style="color:#cd74e8;">\end</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">verbatim</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p><strong>graphicx</strong> 图片包命令</p>
+<pre data-lang="tex" style="background-color:#2b303b;color:#6c7079;" class="language-tex "><code class="language-tex" data-lang="tex"><span style="font-style:italic;color:#5f697a;">% 引入图片, 可省略后缀
+</span><span style="font-style:italic;color:#5f697a;">% width=0.5\textwidth
+</span><span style="font-style:italic;color:#5f697a;">% height=
+</span><span style="font-style:italic;color:#5f697a;">% scale = 缩放
+</span><span style="font-style:italic;color:#5f697a;">% angle = 旋转
+</span><span style="color:#5ebfcc;">\includegraphics</span><span style="color:#abb2bf;">[</span><span style="color:#eb6772;">scale</span><span style="color:#abb2bf;">=0.5]{cat.png}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">% 居中 + 标题
+</span><span style="color:#cd74e8;">\begin</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">figure</span><span style="color:#abb2bf;">}
+</span><span style="color:#5ebfcc;">\centering
+</span><span style="color:#5ebfcc;">\includegraphics</span><span style="color:#abb2bf;">[</span><span style="color:#eb6772;">scale</span><span style="color:#abb2bf;">=0.5]{cat.png}
+</span><span style="color:#5ebfcc;">\caption</span><span style="color:#abb2bf;">{图片标题}
+</span><span style="color:#cd74e8;">\end</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">figure</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p><strong>表格</strong></p>
+<p>tabular 配置</p>
+<ul>
+<li>l/c/r 对齐方式 左中右</li>
+<li>p 为单元格宽度</li>
+<li>| 表示绘制竖线，可以使用 <code>@{内容}</code> 来自定义</li>
+</ul>
+<pre data-lang="tex" style="background-color:#2b303b;color:#6c7079;" class="language-tex "><code class="language-tex" data-lang="tex"><span style="font-style:italic;color:#5f697a;">% tabular 环境
+</span><span style="color:#cd74e8;">\begin</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">tabular</span><span style="color:#abb2bf;">}{</span><span style="color:#cd74e8;">l</span><span style="color:#adb7c9;">|</span><span style="color:#cd74e8;">c</span><span style="color:#adb7c9;">|</span><span style="color:#cd74e8;">r</span><span style="color:#adb7c9;">| </span><span style="color:#5ebfcc;">p</span><span style="color:#abb2bf;">{6em}} 
+</span><span style="color:#abb2bf;">
+</span><span style="color:#5ebfcc;">\hline </span><span style="font-style:italic;color:#5f697a;">% 画线 --- 横线
+</span><span style="font-style:italic;color:#5f697a;">% 内容 列 使用 `&amp;` 来分割， `\\` 用于换行
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">列1 </span><span style="color:#db9d63;">&amp;</span><span style="color:#abb2bf;"> 列2 </span><span style="color:#db9d63;">&amp;</span><span style="color:#abb2bf;"> 列3 
+</span><span style="color:#cd74e8;">\end</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">tabular</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>测试</p>
+<pre data-lang="tex" style="background-color:#2b303b;color:#6c7079;" class="language-tex "><code class="language-tex" data-lang="tex"><span style="color:#cd74e8;">\begin</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">table</span><span style="color:#abb2bf;">}
+</span><span style="color:#cd74e8;">\begin</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">center</span><span style="color:#abb2bf;">}
+</span><span style="color:#cd74e8;">\begin</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">tabular</span><span style="color:#abb2bf;">}{</span><span style="color:#cd74e8;">l</span><span style="color:#adb7c9;">|</span><span style="color:#cd74e8;">c</span><span style="color:#adb7c9;">|</span><span style="color:#cd74e8;">r</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">t1111 </span><span style="color:#db9d63;">&amp;</span><span style="color:#abb2bf;"> t2 </span><span style="color:#db9d63;">&amp;</span><span style="color:#abb2bf;"> t3 </span><span style="color:#db9d63;">\\ </span><span style="color:#5ebfcc;">\hline
+</span><span style="color:#abb2bf;">c1 </span><span style="color:#db9d63;">&amp;</span><span style="color:#abb2bf;"> cccc2 </span><span style="color:#db9d63;">&amp;</span><span style="color:#abb2bf;"> c3 </span><span style="color:#db9d63;">\\
+</span><span style="color:#abb2bf;">c1111 </span><span style="color:#db9d63;">&amp;</span><span style="color:#abb2bf;"> c2 </span><span style="color:#db9d63;">&amp;</span><span style="color:#abb2bf;"> c3 </span><span style="color:#db9d63;">\\ </span><span style="color:#5ebfcc;">\cline</span><span style="color:#abb2bf;">{2-3}
+</span><span style="color:#abb2bf;">c1 </span><span style="color:#db9d63;">&amp;</span><span style="color:#abb2bf;"> c2 </span><span style="color:#db9d63;">&amp;</span><span style="color:#abb2bf;"> c33333 </span><span style="color:#db9d63;">\\ </span><span style="color:#5ebfcc;">\hline
+</span><span style="color:#cd74e8;">\end</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">tabular</span><span style="color:#abb2bf;">}
+</span><span style="color:#5ebfcc;">\caption</span><span style="color:#abb2bf;">{标题}
+</span><span style="color:#cd74e8;">\end</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">center</span><span style="color:#abb2bf;">}
+</span><span style="color:#cd74e8;">\end</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">table</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p><strong>数学</strong></p>
+<pre data-lang="tex" style="background-color:#2b303b;color:#6c7079;" class="language-tex "><code class="language-tex" data-lang="tex"><span style="font-style:italic;color:#5f697a;">% 行间公式 \( ... \)
+</span><span style="color:#abb2bf;">行间公式 </span><span style="color:#9acc76;">\(</span><span style="color:#eb6772;">x</span><span style="color:#adb7c9;">^</span><span style="color:#db9d63;">2 </span><span style="color:#adb7c9;">+ </span><span style="color:#eb6772;">y</span><span style="color:#adb7c9;">^</span><span style="color:#db9d63;">2 </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">z</span><span style="color:#adb7c9;">^</span><span style="color:#db9d63;">2</span><span style="color:#9acc76;">\)</span><span style="color:#abb2bf;"> ....
+</span><span style="font-style:italic;color:#5f697a;">% 或者使用 $ ... $
+</span><span style="color:#abb2bf;">公式 </span><span style="color:#9acc76;">$</span><span style="color:#eb6772;">a</span><span style="color:#adb7c9;">^</span><span style="color:#db9d63;">2 </span><span style="color:#adb7c9;">+ </span><span style="color:#eb6772;">b</span><span style="color:#adb7c9;">^</span><span style="color:#db9d63;">2 </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">c</span><span style="color:#adb7c9;">^</span><span style="color:#db9d63;">2</span><span style="color:#9acc76;">$</span><span style="color:#abb2bf;"> 使用...
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">% 段落居中 \[ ... \]
+</span><span style="color:#9acc76;">\[ </span><span style="color:#eb6772;">x</span><span style="color:#adb7c9;">^</span><span style="color:#eb6772;">n </span><span style="color:#adb7c9;">+ </span><span style="color:#eb6772;">y</span><span style="color:#adb7c9;">^</span><span style="color:#eb6772;">n </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">z</span><span style="color:#adb7c9;">^</span><span style="color:#eb6772;">n </span><span style="color:#9acc76;">\]
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">% 使用公式环境
+</span><span style="font-style:italic;color:#5f697a;">% 这个等效与 \[...\]
+</span><span style="color:#cd74e8;">\begin</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">equation</span><span style="color:#abb2bf;">}  ... </span><span style="color:#cd74e8;">\end</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">equation</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">% 比如多行环境
+</span><span style="color:#cd74e8;">\begin</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">align</span><span style="color:#abb2bf;">} 
+</span><span style="color:#eb6772;">a </span><span style="color:#db9d63;">&amp; </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">b </span><span style="color:#adb7c9;">+ </span><span style="color:#eb6772;">c </span><span style="color:#db9d63;">\\ 
+</span><span style="color:#db9d63;">&amp;</span><span style="color:#adb7c9;">=</span><span style="color:#eb6772;">d</span><span style="color:#adb7c9;">+</span><span style="color:#eb6772;">e
+</span><span style="color:#cd74e8;">\end</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">align</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<h2 id="mo-ban">模板</h2>
+<p>中文支持</p>
+<pre data-lang="tex" style="background-color:#2b303b;color:#6c7079;" class="language-tex "><code class="language-tex" data-lang="tex"><span style="font-style:italic;color:#5f697a;">% 图书排版
+</span><span style="color:#cd74e8;">\documentclass</span><span style="color:#abb2bf;">[utf8]{</span><span style="color:#f0c678;">ctexbook</span><span style="color:#abb2bf;">}
+</span><span style="font-style:italic;color:#5f697a;">% 文章排版
+</span><span style="color:#cd74e8;">\documentclass</span><span style="color:#abb2bf;">[utf8]{</span><span style="color:#f0c678;">ctexart</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<blockquote>
+<p>站点 <a href="https://www.latexstudio.net/category/latex-templates.html">latex 工作室</a> 提供了不少模板可供使用。</p>
+</blockquote>
+<h2 id="sheng-cheng-pdf">生成pdf</h2>
+<p>tectonic 会自动下载需要包进行编译处理</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#5f697a;"># 使用 v1 直接编译 tex 文件
+</span><span style="color:#eb6772;">tectonic</span><span style="color:#abb2bf;"> xxx.tex
+</span><span style="font-style:italic;color:#5f697a;"># 使用 v2 编译项目
+</span><span style="color:#eb6772;">tectonic -x</span><span style="color:#abb2bf;"> build
+</span></code></pre>
+<h2 id="jie-yu">结语</h2>
+<p>latex 是一套非常先进的排版系统，但是也是一个非常复杂的系统（84年），编译速度也
+在现代也 不是十分具有优势。在国外已经有一些组织想要重写，以及移植或者在想着替代
+它了，虽然发展很缓慢，以后被替 代或者被迫改变的可能性还是很大的。</p>
+<ul>
+<li><a href="https://typst.app">https://typst.app</a> 这是一个想要替代 latex 的系统，主打易用性和编译速度，画的
+饼很大，但是github中也在迭代，非常早期的一个项目。
+<blockquote>
+<p>其中数学部分的解析器非常的棒</p>
+</blockquote>
+</li>
+<li><a href="https://news.ycombinator.com/item?id=25328874">https://news.ycombinator.com/item?id=25328874</a> 讨论使用 xyz 重写 latex，多数
+人都有提到速度的问题</li>
+</ul>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;latex-quick&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;latex-quick&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2022-11-01
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;mac-soft-sleepwatcher&#x2F;">
+    <i class="icon icon-left-open"></i>
+    Mac 睡眠监控sleepwatcher和蓝牙控制</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;rust-extphp-rs&#x2F;">
+    ext-php-rs 使用 RUST 更加方便的构建 PHP 扩展
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+<div class="no-print">
+  
+  <script src="https://giscus.app/client.js" data-repo="erasin/erasin.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnk3MzE0Mzg3Mw==" data-category="article" data-category-id="" data-mapping="pathname"
+    data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light"
+    data-lang="zh-CN" crossorigin="anonymous" async>
+    </script>
+  <style>
+    .utterances {
+      max-width: initial;
+    }
+  </style>
+  
+  
+</div>
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-primary" href="//erasin.wang/categories/soft/">soft</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-black" href="//erasin.wang/tags/soft/">soft</a>
+
+
+
+<a class="tag is-black" href="//erasin.wang/tags/cli/">cli</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="li-jie-ji-ben" href="//erasin.wang/latex-quick/#li-jie-ji-ben">理解基本</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="gong-ju" href="//erasin.wang/latex-quick/#gong-ju">工具</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="language-server-protocol-lsp-he-wen-ben-bian-ji-qi" href="//erasin.wang/latex-quick/#language-server-protocol-lsp-he-wen-ben-bian-ji-qi">language server protocol (lsp) 和 文本编辑器</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="tectonic" href="//erasin.wang/latex-quick/#tectonic">tectonic</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="shi-yong-tectonic-v2-guan-li-xiang-mu" href="//erasin.wang/latex-quick/#shi-yong-tectonic-v2-guan-li-xiang-mu">使用tectonic v2 管理项目</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="jian-dan-de-tex-xiang-mu" href="//erasin.wang/latex-quick/#jian-dan-de-tex-xiang-mu">简单的 tex 项目</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="chang-jian-de-yu-fa" href="//erasin.wang/latex-quick/#chang-jian-de-yu-fa">常见的语法</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="preamble-qian-yan-bu-fen" href="//erasin.wang/latex-quick/#preamble-qian-yan-bu-fen">preamble 前言部分</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="zheng-wen-bu-fen" href="//erasin.wang/latex-quick/#zheng-wen-bu-fen">正文部分</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="mo-ban" href="//erasin.wang/latex-quick/#mo-ban">模板</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="sheng-cheng-pdf" href="//erasin.wang/latex-quick/#sheng-cheng-pdf">生成pdf</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="jie-yu" href="//erasin.wang/latex-quick/#jie-yu">结语</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

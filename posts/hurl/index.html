@@ -1,0 +1,554 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  HURL 中文指南 Restclient 接口测试工具  - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="hurl 是一个用于接口测试工具，支持 cli 与链式测试" property="description" />
+
+  
+    <meta content="cli,hurl,http" name="keywords" />
+  
+
+  
+
+  
+    
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> HURL 中文指南 Restclient 接口测试工具  </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      HURL 中文指南 RESTCLIENT 接口测试工具 
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2023-06-07
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <p><a href="https://hurl.dev">Hurl</a> 是一款定义脚本，用于测试 HTTP 请求的工具，提供了命令工具 helix 和格式化工具 hurlfmt。</p>
+<h2 id="jian-dan-de-hurl-wen-jian">简单的 Hurl 文件</h2>
+<p>创建文件 <code>get.hurl</code>, 追加下面的内容。</p>
+<pre data-lang="hurl" style="background-color:#2b303b;color:#6c7079;" class="language-hurl "><code class="language-hurl" data-lang="hurl"><span style="color:#abb2bf;"># test httpbin.org
+</span><span style="color:#abb2bf;">GET https://httpbin/org/get
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"># 响应
+</span><span style="color:#abb2bf;">HTTP/2 200 # 判定响应 
+</span><span style="color:#abb2bf;">[Asserts] # 判定内容
+</span><span style="color:#abb2bf;">jsonpath &quot;$.url&quot; == &quot;https://httpbin/org/get&quot;
+</span></code></pre>
+<span id="continue-reading"></span>
+<p>使用 <code>hurl</code> 命令执行脚本,具体可以对比下面的四种执行方式。</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#6c7079;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="font-style:italic;color:#5f697a;"># 请求接口，默认返回响应的主体
+</span><span style="color:#eb6772;">hurl</span><span style="color:#abb2bf;"> get.hurl 
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 测试接口，只有 `[Asserts]` 部分的判定通过后 sucess
+</span><span style="color:#eb6772;">hurl --test</span><span style="color:#abb2bf;"> get.hurl 
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 测试接口，显示请求的详情
+</span><span style="color:#eb6772;">hurl --test -v</span><span style="color:#abb2bf;"> get.hurl 
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 测试接口，显示请求的详情, 显示响应的详情
+</span><span style="color:#eb6772;">hurl --test --very-verbose</span><span style="color:#abb2bf;"> get.hurl
+</span></code></pre>
+<p>其中使用 <code>--test</code> 参数的时候，会返回 <code>[Asserts]</code> 断言结果。</p>
+<pre data-lang="text" style="background-color:#2b303b;color:#6c7079;" class="language-text "><code class="language-text" data-lang="text"><span style="color:#abb2bf;">❯ hurl --test get.hurl
+</span><span style="color:#abb2bf;">get.hurl: Running [1/1]
+</span><span style="color:#abb2bf;">get.hurl: Success (1 request(s) in 2238 ms)
+</span><span style="color:#abb2bf;">--------------------------------------------------------------------------------
+</span><span style="color:#abb2bf;">Executed files:  1
+</span><span style="color:#abb2bf;">Succeeded files: 1 (100.0%)
+</span><span style="color:#abb2bf;">Failed files:    0 (0.0%)
+</span><span style="color:#abb2bf;">Duration:        2240 ms
+</span></code></pre>
+<h2 id="hurl-ming-ling">hurl 命令</h2>
+<p>使用 <code>hurl -h</code> 查看命令详情</p>
+<p>常用的参数</p>
+<ul>
+<li><code>--cookie &lt;FILE&gt;</code></li>
+<li><code>-o</code> <code>--output &lt;FILE&gt;</code> 输出结果到文件</li>
+<li><code>-x</code> <code>--proxy &lt;PROTOCOL&gt;</code> 使用代理</li>
+<li><code>--test</code> 测试模式</li>
+<li><code>-u</code> <code>--user &lt;USER:PASSWORD&gt;</code> basic 验证</li>
+<li><code>--variable &lt;NAME=VALUE&gt;</code> 变量</li>
+<li><code>--variables-file &lt;FILE&gt;</code> 变量文件</li>
+<li><code>-v</code> <code>--verbose</code> 详情</li>
+<li><code>--very-verbose</code> 包括响应详情</li>
+</ul>
+<h2 id="hurl-jiao-ben">Hurl 脚本</h2>
+<p>Hurl 文件默认使用utf-8。</p>
+<p>hurl 的脚本是由一个或多个请求（entry）组成，每个请求的结构大概是由下面几个元素组成。</p>
+<ul>
+<li>注释说明, 以 <code>#</code> 开始标记注释</li>
+<li>接口请求 Request
+<ul>
+<li>query</li>
+<li>header</li>
+<li>参数 [Options]</li>
+</ul>
+</li>
+<li>接口响应 Response
+<ul>
+<li>捕捉数据 [Captures]</li>
+<li>判定数据 [Asserts]</li>
+<li>过滤器支持 [Filters]</li>
+</ul>
+</li>
+</ul>
+<h3 id="tiao-mu-entry">条目 Entry</h3>
+<p>hurl 文件多个 Entry 组成，这些请求条目在执行的时候共用同个 cookies 以及变量等环境。</p>
+<p>大概结构是：</p>
+<pre data-lang="hurl" style="background-color:#2b303b;color:#6c7079;" class="language-hurl "><code class="language-hurl" data-lang="hurl"><span style="color:#abb2bf;"># Request 请求
+</span><span style="color:#abb2bf;"># Method URL Query
+</span><span style="color:#abb2bf;">PUT https://sample.net
+</span><span style="color:#abb2bf;"># headers
+</span><span style="color:#abb2bf;">x-powered-by: Express
+</span><span style="color:#abb2bf;"># 参数
+</span><span style="color:#abb2bf;">[Options]
+</span><span style="color:#abb2bf;">...
+</span><span style="color:#abb2bf;"># Query
+</span><span style="color:#abb2bf;">[QueryStringParams]
+</span><span style="color:#abb2bf;">...
+</span><span style="color:#abb2bf;"># 表单
+</span><span style="color:#abb2bf;">[FormParams]
+</span><span style="color:#abb2bf;">...
+</span><span style="color:#abb2bf;"># 身份验证
+</span><span style="color:#abb2bf;">[BasicAuth]
+</span><span style="color:#abb2bf;">...
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">[Cookies]
+</span><span style="color:#abb2bf;">...
+</span><span style="color:#abb2bf;"># body
+</span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">  &quot;type&quot;: &quot;FOO&quot;,
+</span><span style="color:#abb2bf;">  &quot;value&quot;: 356789,
+</span><span style="color:#abb2bf;">  &quot;ordered&quot;: true,
+</span><span style="color:#abb2bf;">  &quot;index&quot;: 10
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"># Response 响应处理
+</span><span style="color:#abb2bf;"># o code
+</span><span style="color:#abb2bf;">HTTP/2 200
+</span><span style="color:#abb2bf;"># 捕捉变量
+</span><span style="color:#abb2bf;">[Captures]
+</span><span style="color:#abb2bf;">...
+</span><span style="color:#abb2bf;"># 断言测试
+</span><span style="color:#abb2bf;">[Asserts]
+</span><span style="color:#abb2bf;">...
+</span></code></pre>
+<p>下面我们详细介绍这些结构。</p>
+<p>比如登录验证：</p>
+<pre data-lang="hurl" style="background-color:#2b303b;color:#6c7079;" class="language-hurl "><code class="language-hurl" data-lang="hurl"><span style="color:#abb2bf;"># Create a new job
+</span><span style="color:#abb2bf;">GET https://httpbin.org/basic-auth/user1/passwd1
+</span><span style="color:#abb2bf;">Content-Type: application/json
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">[Options]
+</span><span style="color:#abb2bf;">very-verbose: true
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">[BasicAuth]
+</span><span style="color:#abb2bf;">user1: passwd1 
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">HTTP/2 200
+</span><span style="color:#abb2bf;">[Captures]
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">[Asserts]
+</span><span style="color:#abb2bf;">jsonpath &quot;$.user&quot; == &quot;user1&quot;
+</span></code></pre>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;posts&#x2F;hurl&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;posts&#x2F;hurl&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2023-06-07
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;game&#x2F;godot-study&#x2F;">
+    <i class="icon icon-left-open"></i>
+    Godot 学习路径</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;helix&#x2F;helix-zen-mode-like&#x2F;">
+    给 helix 追加类 Zen Mode 模式
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+<div class="no-print">
+  
+  <script src="https://giscus.app/client.js" data-repo="erasin/erasin.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnk3MzE0Mzg3Mw==" data-category="article" data-category-id="" data-mapping="pathname"
+    data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light"
+    data-lang="zh-CN" crossorigin="anonymous" async>
+    </script>
+  <style>
+    .utterances {
+      max-width: initial;
+    }
+  </style>
+  
+  
+</div>
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-info" href="//erasin.wang/categories/cli/">cli</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-warning" href="//erasin.wang/tags/cli/">cli</a>
+
+
+
+<a class="tag is-primary" href="//erasin.wang/tags/hurl/">hurl</a>
+
+
+
+<a class="tag is-black" href="//erasin.wang/tags/http/">http</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="jian-dan-de-hurl-wen-jian" href="//erasin.wang/posts/hurl/#jian-dan-de-hurl-wen-jian">简单的 Hurl 文件</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="hurl-ming-ling" href="//erasin.wang/posts/hurl/#hurl-ming-ling">hurl 命令</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="hurl-jiao-ben" href="//erasin.wang/posts/hurl/#hurl-jiao-ben">Hurl 脚本</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="tiao-mu-entry" href="//erasin.wang/posts/hurl/#tiao-mu-entry">条目 Entry</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

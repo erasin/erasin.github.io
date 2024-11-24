@@ -1,0 +1,849 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  unicode 对照表  - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="特殊字符对照 &amp;191;" property="description" />
+
+  
+    <meta content="web,html,font" name="keywords" />
+  
+
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> unicode 对照表  </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      UNICODE 对照表 
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2019-12-16
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <h2 id="zhuan-yi-zi-fu">转义字符</h2>
+<p>在 html 中使用特殊字符 比如 <code>♬  9836  266C</code>,如果要显示 <code>&amp;9836;</code>，是无法使用键盘输入，需要使用输入法中特殊字符处理才能数据，使用十进制(<code>&amp;#9836;</code>) 或 十六进制 (<code>&amp;#x266C;</code>) 的 <code>code</code> 来输入，并在html上转义显示。</p>
+<table><thead><tr><th style="text-align: right">字符</th><th>&amp;# <code>code</code> ;</th><th>&amp;#x <code>code</code> ;</th></tr></thead><tbody>
+<tr><td style="text-align: right">♬</td><td>9836</td><td>266C</td></tr>
+<tr><td style="text-align: right">♬</td><td>&amp;#9836;</td><td>&amp;#x266C;</td></tr>
+<tr><td style="text-align: right">♬</td><td>♬</td><td>♬</td></tr>
+</tbody></table>
+<span id="continue-reading"></span><h2 id="biao-dian">标点</h2>
+<table><thead><tr><th style="text-align: right">字符</th><th>code</th><th>x code</th></tr></thead><tbody>
+<tr><td style="text-align: right">«</td><td>171</td><td>00AB</td></tr>
+<tr><td style="text-align: right">»</td><td>187</td><td>00BB</td></tr>
+<tr><td style="text-align: right">‹</td><td>139</td><td>008B</td></tr>
+<tr><td style="text-align: right">›</td><td>155</td><td>009B</td></tr>
+<tr><td style="text-align: right">“</td><td>8220</td><td>201C</td></tr>
+<tr><td style="text-align: right">”</td><td>8221</td><td>201D</td></tr>
+<tr><td style="text-align: right">‘</td><td>8216</td><td>2018</td></tr>
+<tr><td style="text-align: right">’</td><td>8217</td><td>2019</td></tr>
+<tr><td style="text-align: right">•</td><td>8226</td><td>2022</td></tr>
+<tr><td style="text-align: right">◦</td><td>9702</td><td>25E6</td></tr>
+<tr><td style="text-align: right">¡</td><td>161</td><td>00A1</td></tr>
+<tr><td style="text-align: right">¿</td><td>191</td><td>00BF</td></tr>
+<tr><td style="text-align: right">℅</td><td>8453</td><td>2105</td></tr>
+<tr><td style="text-align: right">№</td><td>8470</td><td>2116</td></tr>
+<tr><td style="text-align: right">&amp;</td><td>38</td><td>0026</td></tr>
+<tr><td style="text-align: right">@</td><td>64</td><td>0040</td></tr>
+<tr><td style="text-align: right">℞</td><td>8478</td><td>211E</td></tr>
+<tr><td style="text-align: right">℃</td><td>8451</td><td>2103</td></tr>
+<tr><td style="text-align: right">℉</td><td>8457</td><td>2109</td></tr>
+<tr><td style="text-align: right">°</td><td>176</td><td>00B0</td></tr>
+<tr><td style="text-align: right"></td><td>124</td><td>007C</td></tr>
+<tr><td style="text-align: right">¦</td><td>166</td><td>00A6</td></tr>
+<tr><td style="text-align: right">–</td><td>8211</td><td>2013</td></tr>
+<tr><td style="text-align: right">—</td><td>8212</td><td>2014</td></tr>
+<tr><td style="text-align: right">…</td><td>8230</td><td>2026</td></tr>
+<tr><td style="text-align: right">¶</td><td>182</td><td>00B6</td></tr>
+<tr><td style="text-align: right">∼</td><td>8764</td><td>223C</td></tr>
+<tr><td style="text-align: right">≠</td><td>8800</td><td>2260</td></tr>
+</tbody></table>
+<h2 id="fa-lu-fu-hao">法律符号</h2>
+<table><thead><tr><th style="text-align: right">字符</th><th>code</th><th>x code</th></tr></thead><tbody>
+<tr><td style="text-align: right">®</td><td>174</td><td>00AE</td></tr>
+<tr><td style="text-align: right">©</td><td>169</td><td>00A9</td></tr>
+<tr><td style="text-align: right">℗</td><td>8471</td><td>2117</td></tr>
+<tr><td style="text-align: right">™</td><td>153</td><td>0099</td></tr>
+<tr><td style="text-align: right">℠</td><td>8480</td><td>2120</td></tr>
+</tbody></table>
+<h2 id="huo-bi">货币</h2>
+<table><thead><tr><th style="text-align: right">字符</th><th>code</th><th>x code</th></tr></thead><tbody>
+<tr><td style="text-align: right">$</td><td>36</td><td>0024</td></tr>
+<tr><td style="text-align: right">¢</td><td>162</td><td>00A2</td></tr>
+<tr><td style="text-align: right">£</td><td>163</td><td>00A3</td></tr>
+<tr><td style="text-align: right">¤</td><td>164</td><td>00A4</td></tr>
+<tr><td style="text-align: right">€</td><td>8364</td><td>20AC</td></tr>
+<tr><td style="text-align: right">¥</td><td>165</td><td>00A5</td></tr>
+<tr><td style="text-align: right">₱</td><td>8369</td><td>20B1</td></tr>
+<tr><td style="text-align: right">₹</td><td>8377</td><td>20B9</td></tr>
+</tbody></table>
+<h2 id="ge-chong-jian-tou">各种箭头</h2>
+<table><thead><tr><th style="text-align: right">字符</th><th>code</th><th>x code</th></tr></thead><tbody>
+<tr><td style="text-align: right">⇠</td><td>8672</td><td>21E0</td></tr>
+<tr><td style="text-align: right">⇢</td><td>8674</td><td>21E2</td></tr>
+<tr><td style="text-align: right">⇡</td><td>8673</td><td>21E1</td></tr>
+<tr><td style="text-align: right">⇣</td><td>8675</td><td>21E3</td></tr>
+<tr><td style="text-align: right">↞</td><td>8606</td><td>219E</td></tr>
+<tr><td style="text-align: right">↠</td><td>8608</td><td>21A0</td></tr>
+<tr><td style="text-align: right">↟</td><td>8607</td><td>219F</td></tr>
+<tr><td style="text-align: right">↡</td><td>8609</td><td>21A1</td></tr>
+<tr><td style="text-align: right">←</td><td>8592</td><td>2190</td></tr>
+<tr><td style="text-align: right">→</td><td>8594</td><td>2192</td></tr>
+<tr><td style="text-align: right">↑</td><td>8593</td><td>2191</td></tr>
+<tr><td style="text-align: right">↓</td><td>8595</td><td>2193</td></tr>
+<tr><td style="text-align: right">↔</td><td>8596</td><td>2194</td></tr>
+<tr><td style="text-align: right">↕</td><td>8597</td><td>2195</td></tr>
+<tr><td style="text-align: right">⇄</td><td>8644</td><td>21C4</td></tr>
+<tr><td style="text-align: right">⇅</td><td>8645</td><td>21C5</td></tr>
+<tr><td style="text-align: right">↢</td><td>8610</td><td>21A2</td></tr>
+<tr><td style="text-align: right">↣</td><td>8611</td><td>21A3</td></tr>
+<tr><td style="text-align: right">⇞</td><td>8670</td><td>21DE</td></tr>
+<tr><td style="text-align: right">⇟</td><td>8671</td><td>21DF</td></tr>
+<tr><td style="text-align: right">↫</td><td>8619</td><td>21AB</td></tr>
+<tr><td style="text-align: right">↬</td><td>8620</td><td>21AC</td></tr>
+<tr><td style="text-align: right">⇜</td><td>8668</td><td>21DC</td></tr>
+<tr><td style="text-align: right">⇝</td><td>8669</td><td>21DD</td></tr>
+<tr><td style="text-align: right">↚</td><td>8602</td><td>219A</td></tr>
+<tr><td style="text-align: right">↛</td><td>8603</td><td>219B</td></tr>
+<tr><td style="text-align: right">↮</td><td>8622</td><td>21AE</td></tr>
+<tr><td style="text-align: right">↭</td><td>8621</td><td>21AD</td></tr>
+</tbody></table>
+<h2 id="xing-zhuang">形状</h2>
+<table><thead><tr><th style="text-align: right">字符</th><th>code</th><th>x code</th></tr></thead><tbody>
+<tr><td style="text-align: right">⇦</td><td>8678</td><td>21E6</td></tr>
+<tr><td style="text-align: right">⇨</td><td>8680</td><td>21E8</td></tr>
+<tr><td style="text-align: right">⇧</td><td>8679</td><td>21E7</td></tr>
+<tr><td style="text-align: right">⇩</td><td>8681</td><td>21E9</td></tr>
+<tr><td style="text-align: right">↷</td><td>8631</td><td>21B7</td></tr>
+<tr><td style="text-align: right">↶</td><td>8630</td><td>21B6</td></tr>
+<tr><td style="text-align: right">↻</td><td>8635</td><td>21BB</td></tr>
+<tr><td style="text-align: right">↺</td><td>8634</td><td>21BA</td></tr>
+<tr><td style="text-align: right">⟳</td><td>10227</td><td>27F3</td></tr>
+<tr><td style="text-align: right">⟲</td><td>10226</td><td>27F2</td></tr>
+<tr><td style="text-align: right">⟰</td><td>10224</td><td>27F0</td></tr>
+<tr><td style="text-align: right">⟱</td><td>10225</td><td>27F1</td></tr>
+<tr><td style="text-align: right">↵</td><td>8629</td><td>21B5</td></tr>
+<tr><td style="text-align: right">↯</td><td>8623</td><td>21AF</td></tr>
+<tr><td style="text-align: right">⇵</td><td>8693</td><td>21F5</td></tr>
+</tbody></table>
+<h2 id="xiang-you-de-jian-tou">向右的箭头</h2>
+<table><thead><tr><th style="text-align: right">字符</th><th>code</th><th>x code</th></tr></thead><tbody>
+<tr><td style="text-align: right">➔</td><td>10132</td><td>2794</td></tr>
+<tr><td style="text-align: right">➙</td><td>10137</td><td>2799</td></tr>
+<tr><td style="text-align: right">➨</td><td>10152</td><td>27A8</td></tr>
+<tr><td style="text-align: right">➲</td><td>10162</td><td>27B2</td></tr>
+<tr><td style="text-align: right">➜</td><td>10140</td><td>279C</td></tr>
+<tr><td style="text-align: right">➞</td><td>10142</td><td>279E</td></tr>
+<tr><td style="text-align: right">➟</td><td>10143</td><td>279F</td></tr>
+<tr><td style="text-align: right">➠</td><td>10144</td><td>27A0</td></tr>
+<tr><td style="text-align: right">➤</td><td>10148</td><td>27A4</td></tr>
+<tr><td style="text-align: right">➥</td><td>10149</td><td>27A5</td></tr>
+<tr><td style="text-align: right">➦</td><td>10150</td><td>27A6</td></tr>
+<tr><td style="text-align: right">➧</td><td>10151</td><td>27A7</td></tr>
+<tr><td style="text-align: right">➵</td><td>10165</td><td>27B5</td></tr>
+<tr><td style="text-align: right">➸</td><td>10168</td><td>27B8</td></tr>
+<tr><td style="text-align: right">➼</td><td>10172</td><td>27BC</td></tr>
+<tr><td style="text-align: right">➽</td><td>10173</td><td>27BD</td></tr>
+<tr><td style="text-align: right">➺</td><td>10170</td><td>27BA</td></tr>
+<tr><td style="text-align: right">➳</td><td>10163</td><td>27B3</td></tr>
+<tr><td style="text-align: right">➾</td><td>10174</td><td>27BE</td></tr>
+</tbody></table>
+<h2 id="ji-ben-xing-zhuang">基本形状</h2>
+<table><thead><tr><th style="text-align: right">字符</th><th>code</th><th>x code</th></tr></thead><tbody>
+<tr><td style="text-align: right">▲</td><td>9650</td><td>25B2</td></tr>
+<tr><td style="text-align: right">►</td><td>9658</td><td>25BA</td></tr>
+<tr><td style="text-align: right">▼</td><td>9660</td><td>25BC</td></tr>
+<tr><td style="text-align: right">◄</td><td>9668</td><td>25C4</td></tr>
+<tr><td style="text-align: right">❤</td><td>10084</td><td>2764</td></tr>
+<tr><td style="text-align: right">✈</td><td>9992</td><td>2708</td></tr>
+<tr><td style="text-align: right">★</td><td>9733</td><td>2605</td></tr>
+<tr><td style="text-align: right">✦</td><td>10022</td><td>2726</td></tr>
+<tr><td style="text-align: right">☀</td><td>9728</td><td>2600</td></tr>
+<tr><td style="text-align: right">◆</td><td>9670</td><td>25C6</td></tr>
+<tr><td style="text-align: right">◈</td><td>9672</td><td>25C8</td></tr>
+<tr><td style="text-align: right">▣</td><td>9635</td><td>25A3</td></tr>
+</tbody></table>
+<h2 id="shu-xue">数学</h2>
+<table><thead><tr><th style="text-align: right">字符</th><th>code</th><th>x code</th></tr></thead><tbody>
+<tr><td style="text-align: right">½</td><td>189</td><td>00BD</td></tr>
+<tr><td style="text-align: right">¼</td><td>188</td><td>00BC</td></tr>
+<tr><td style="text-align: right">¾</td><td>190</td><td>00BE</td></tr>
+<tr><td style="text-align: right">⅓</td><td>8531</td><td>2153</td></tr>
+<tr><td style="text-align: right">⅔</td><td>8532</td><td>2154</td></tr>
+<tr><td style="text-align: right">⅛</td><td>8539</td><td>215B</td></tr>
+<tr><td style="text-align: right">⅜</td><td>8540</td><td>215C</td></tr>
+<tr><td style="text-align: right">⅝</td><td>8541</td><td>215D</td></tr>
+<tr><td style="text-align: right">‰</td><td>8240</td><td>2030</td></tr>
+<tr><td style="text-align: right">%</td><td>37</td><td>0025</td></tr>
+<tr><td style="text-align: right">&lt;</td><td>60</td><td>003C</td></tr>
+<tr><td style="text-align: right">&gt;</td><td>62</td><td>003E</td></tr>
+</tbody></table>
+<h2 id="yin-le-fu-hao">音乐符号</h2>
+<table><thead><tr><th style="text-align: right">字符</th><th>code</th><th>x code</th></tr></thead><tbody>
+<tr><td style="text-align: right">♩</td><td>9833</td><td>2669</td></tr>
+<tr><td style="text-align: right">♪</td><td>9834</td><td>266A</td></tr>
+<tr><td style="text-align: right">♫</td><td>9835</td><td>266B</td></tr>
+<tr><td style="text-align: right">♬</td><td>9836</td><td>266C</td></tr>
+<tr><td style="text-align: right">♭</td><td>9837</td><td>266D</td></tr>
+<tr><td style="text-align: right">♯</td><td>9839</td><td>266F</td></tr>
+</tbody></table>
+<h2 id="dui-hao-cuo-hao">对号、错号</h2>
+<table><thead><tr><th style="text-align: right">字符</th><th>code</th><th>x code</th></tr></thead><tbody>
+<tr><td style="text-align: right"> </td><td>160</td><td>00A0</td></tr>
+<tr><td style="text-align: right">☐</td><td>9744</td><td>2610</td></tr>
+<tr><td style="text-align: right">☑</td><td>9745</td><td>2611</td></tr>
+<tr><td style="text-align: right">☒</td><td>9746</td><td>2612</td></tr>
+<tr><td style="text-align: right">✓</td><td>10003</td><td>2713</td></tr>
+<tr><td style="text-align: right">✔</td><td>10004</td><td>2714</td></tr>
+<tr><td style="text-align: right">✕</td><td>10005</td><td>10005</td></tr>
+<tr><td style="text-align: right">✖</td><td>10006</td><td>2716</td></tr>
+<tr><td style="text-align: right">✗</td><td>10007</td><td>2717</td></tr>
+<tr><td style="text-align: right">✘</td><td>10008</td><td>2718</td></tr>
+</tbody></table>
+<h2 id="shi-zi">十字</h2>
+<table><thead><tr><th style="text-align: right">字符</th><th>code</th><th>x code</th></tr></thead><tbody>
+<tr><td style="text-align: right">☨</td><td>9768</td><td>2628</td></tr>
+<tr><td style="text-align: right">☩</td><td>9769</td><td>2629</td></tr>
+<tr><td style="text-align: right">✝</td><td>10013</td><td>271D</td></tr>
+<tr><td style="text-align: right">✞</td><td>10014</td><td>271E</td></tr>
+<tr><td style="text-align: right">✟</td><td>10015</td><td>271F</td></tr>
+<tr><td style="text-align: right">✠</td><td>10016</td><td>2720</td></tr>
+<tr><td style="text-align: right">✚</td><td>10010</td><td>271A</td></tr>
+<tr><td style="text-align: right">†</td><td>8224</td><td>2020</td></tr>
+<tr><td style="text-align: right">✢</td><td>10018</td><td>2722</td></tr>
+<tr><td style="text-align: right">✤</td><td>10020</td><td>2724</td></tr>
+<tr><td style="text-align: right">✣</td><td>10019</td><td>2723</td></tr>
+<tr><td style="text-align: right">✥</td><td>10021</td><td>2725</td></tr>
+</tbody></table>
+<h2 id="xing-xing-xing-hao-xue-hua">星星、星号、雪花</h2>
+<table><thead><tr><th style="text-align: right">字符</th><th>code</th><th>x code</th></tr></thead><tbody>
+<tr><td style="text-align: right">★</td><td>9733</td><td>2605</td></tr>
+<tr><td style="text-align: right">✭</td><td>10029</td><td>272D</td></tr>
+<tr><td style="text-align: right">✮</td><td>10030</td><td>272E</td></tr>
+<tr><td style="text-align: right">☆</td><td>9734</td><td>2606</td></tr>
+<tr><td style="text-align: right">✪</td><td>10026</td><td>272A</td></tr>
+<tr><td style="text-align: right">✡</td><td>10017</td><td>2721</td></tr>
+<tr><td style="text-align: right">✯</td><td>10031</td><td>272F</td></tr>
+<tr><td style="text-align: right">✵</td><td>10037</td><td>2735</td></tr>
+<tr><td style="text-align: right">✶</td><td>10038</td><td>2736</td></tr>
+<tr><td style="text-align: right">✸</td><td>10040</td><td>2738</td></tr>
+<tr><td style="text-align: right">✹</td><td>10041</td><td>2739</td></tr>
+<tr><td style="text-align: right">✺</td><td>10042</td><td>273A</td></tr>
+<tr><td style="text-align: right">✱</td><td>10033</td><td>2731</td></tr>
+<tr><td style="text-align: right">✲</td><td>10034</td><td>2732</td></tr>
+<tr><td style="text-align: right">✴</td><td>10036</td><td>2734</td></tr>
+<tr><td style="text-align: right">✳</td><td>10035</td><td>2733</td></tr>
+<tr><td style="text-align: right">✻</td><td>10043</td><td>273B</td></tr>
+<tr><td style="text-align: right">✽</td><td>10045</td><td>273D</td></tr>
+<tr><td style="text-align: right">❋</td><td>10059</td><td>274B</td></tr>
+<tr><td style="text-align: right">❆</td><td>10054</td><td>2746</td></tr>
+<tr><td style="text-align: right">❄</td><td>10052</td><td>2744</td></tr>
+<tr><td style="text-align: right">❅</td><td>10053</td><td>2745</td></tr>
+</tbody></table>
+<h2 id="za-xiang">杂项</h2>
+<table><thead><tr><th style="text-align: right">字符</th><th>code</th><th>x code</th></tr></thead><tbody>
+<tr><td style="text-align: right">☻</td><td>9787</td><td>263B</td></tr>
+<tr><td style="text-align: right">☺</td><td>9786</td><td>263A</td></tr>
+<tr><td style="text-align: right">☹</td><td>9785</td><td>2639</td></tr>
+<tr><td style="text-align: right">✉</td><td>9993</td><td>2709</td></tr>
+<tr><td style="text-align: right">☎</td><td>9742</td><td>260E</td></tr>
+<tr><td style="text-align: right">☏</td><td>9743</td><td>260F</td></tr>
+<tr><td style="text-align: right">✆</td><td>9990</td><td>2706</td></tr>
+<tr><td style="text-align: right">�</td><td>65533</td><td>FFFD</td></tr>
+<tr><td style="text-align: right">☁</td><td>9729</td><td>2601</td></tr>
+<tr><td style="text-align: right">☂</td><td>9730</td><td>2602</td></tr>
+<tr><td style="text-align: right">❄</td><td>10052</td><td>2744</td></tr>
+<tr><td style="text-align: right">☃</td><td>9731</td><td>2603</td></tr>
+<tr><td style="text-align: right">❈</td><td>10056</td><td>2748</td></tr>
+<tr><td style="text-align: right">✿</td><td>10047</td><td>273F</td></tr>
+<tr><td style="text-align: right">❀</td><td>10048</td><td>2740</td></tr>
+<tr><td style="text-align: right">❁</td><td>10049</td><td>2741</td></tr>
+<tr><td style="text-align: right">☘</td><td>9752</td><td>2618</td></tr>
+<tr><td style="text-align: right">❦</td><td>10086</td><td>2766</td></tr>
+<tr><td style="text-align: right">☕</td><td>9749</td><td>9749</td></tr>
+<tr><td style="text-align: right">❂</td><td>10050</td><td>2742</td></tr>
+<tr><td style="text-align: right">☥</td><td>9765</td><td>2625</td></tr>
+<tr><td style="text-align: right">☮</td><td>9774</td><td>262E</td></tr>
+<tr><td style="text-align: right">☯</td><td>9775</td><td>262F</td></tr>
+<tr><td style="text-align: right">☪</td><td>9770</td><td>262A</td></tr>
+<tr><td style="text-align: right">☤</td><td>9764</td><td>2624</td></tr>
+<tr><td style="text-align: right">✄</td><td>9988</td><td>2704</td></tr>
+<tr><td style="text-align: right">✂</td><td>9986</td><td>2702</td></tr>
+<tr><td style="text-align: right">☸</td><td>9784</td><td>2638</td></tr>
+<tr><td style="text-align: right">⚓</td><td>9875</td><td>2693</td></tr>
+<tr><td style="text-align: right">☣</td><td>9763</td><td>2623</td></tr>
+<tr><td style="text-align: right">⚠</td><td>9888</td><td>26A0</td></tr>
+<tr><td style="text-align: right">⚡</td><td>9889</td><td>26A1</td></tr>
+<tr><td style="text-align: right">☢</td><td>9762</td><td>2622</td></tr>
+<tr><td style="text-align: right">♻</td><td>9851</td><td>267B</td></tr>
+<tr><td style="text-align: right">♿</td><td>9855</td><td>267F</td></tr>
+<tr><td style="text-align: right">☠</td><td>9760</td><td>2620</td></tr>
+</tbody></table>
+<h2 id="shou-xing-qian-bi-bi">手型、铅笔、笔</h2>
+<table><thead><tr><th style="text-align: right">字符</th><th>code</th><th>x code</th></tr></thead><tbody>
+<tr><td style="text-align: right">☜</td><td>9756</td><td>261C</td></tr>
+<tr><td style="text-align: right">☞</td><td>9758</td><td>261E</td></tr>
+<tr><td style="text-align: right">☝</td><td>9757</td><td>261D</td></tr>
+<tr><td style="text-align: right">☟</td><td>9759</td><td>261F</td></tr>
+<tr><td style="text-align: right">✌</td><td>9996</td><td>270C</td></tr>
+<tr><td style="text-align: right">✍</td><td>9997</td><td>270D</td></tr>
+<tr><td style="text-align: right">✎</td><td>9998</td><td>270E</td></tr>
+<tr><td style="text-align: right">✐</td><td>10000</td><td>2710</td></tr>
+<tr><td style="text-align: right">✏</td><td>9999</td><td>270F</td></tr>
+<tr><td style="text-align: right">✑</td><td>10001</td><td>2711</td></tr>
+<tr><td style="text-align: right">✒</td><td>10002</td><td>2712</td></tr>
+</tbody></table>
+<h2 id="tian-kong-zhi-wu">天空、植物</h2>
+<table><thead><tr><th style="text-align: right">字符</th><th>code</th><th>x code</th></tr></thead><tbody>
+<tr><td style="text-align: right">☽</td><td>9789</td><td>263D</td></tr>
+<tr><td style="text-align: right">☾</td><td>9790</td><td>263E</td></tr>
+<tr><td style="text-align: right">♂</td><td>9794</td><td>2642</td></tr>
+<tr><td style="text-align: right">♀</td><td>9792</td><td>2640</td></tr>
+<tr><td style="text-align: right">☿</td><td>9791</td><td>263F</td></tr>
+<tr><td style="text-align: right">♁</td><td>9793</td><td>2641</td></tr>
+<tr><td style="text-align: right">♃</td><td>9795</td><td>2643</td></tr>
+<tr><td style="text-align: right">♄</td><td>9796</td><td>2644</td></tr>
+<tr><td style="text-align: right">♅</td><td>9797</td><td>2645</td></tr>
+<tr><td style="text-align: right">♆</td><td>9798</td><td>2646</td></tr>
+<tr><td style="text-align: right">♇</td><td>9799</td><td>2647</td></tr>
+</tbody></table>
+<h2 id="xing-zuo">星座</h2>
+<table><thead><tr><th style="text-align: right">字符</th><th>code</th><th>x code</th></tr></thead><tbody>
+<tr><td style="text-align: right">♈</td><td>9800</td><td>2648</td></tr>
+<tr><td style="text-align: right">♉</td><td>9801</td><td>2649</td></tr>
+<tr><td style="text-align: right">♊</td><td>9802</td><td>264A</td></tr>
+<tr><td style="text-align: right">♋</td><td>9803</td><td>264B</td></tr>
+<tr><td style="text-align: right">♌</td><td>9804</td><td>264C</td></tr>
+<tr><td style="text-align: right">♍</td><td>9805</td><td>264D</td></tr>
+<tr><td style="text-align: right">♎</td><td>9806</td><td>264E</td></tr>
+<tr><td style="text-align: right">♏</td><td>9807</td><td>264F</td></tr>
+<tr><td style="text-align: right">♑</td><td>9809</td><td>2651</td></tr>
+<tr><td style="text-align: right">♒</td><td>9810</td><td>2652</td></tr>
+<tr><td style="text-align: right">♓</td><td>9811</td><td>2653</td></tr>
+</tbody></table>
+<h2 id="xiang-qi-bu-ke-pai">象棋，扑克牌</h2>
+<table><thead><tr><th style="text-align: right">字符</th><th>code</th><th>x code</th></tr></thead><tbody>
+<tr><td style="text-align: right">♚</td><td>9818</td><td>265A</td></tr>
+<tr><td style="text-align: right">♛</td><td>9819</td><td>265B</td></tr>
+<tr><td style="text-align: right">♜</td><td>9820</td><td>265C</td></tr>
+<tr><td style="text-align: right">♝</td><td>9821</td><td>265D</td></tr>
+<tr><td style="text-align: right">♞</td><td>9822</td><td>265E</td></tr>
+<tr><td style="text-align: right">♟</td><td>9823</td><td>265F</td></tr>
+<tr><td style="text-align: right">♔</td><td>9812</td><td>2654</td></tr>
+<tr><td style="text-align: right">♕</td><td>9813</td><td>2655</td></tr>
+<tr><td style="text-align: right">♖</td><td>9814</td><td>2656</td></tr>
+<tr><td style="text-align: right">♗</td><td>9815</td><td>2657</td></tr>
+<tr><td style="text-align: right">♘</td><td>9816</td><td>2658</td></tr>
+<tr><td style="text-align: right">♙</td><td>9817</td><td>2659</td></tr>
+<tr><td style="text-align: right">♠</td><td>9824</td><td>2660</td></tr>
+<tr><td style="text-align: right">♣</td><td>9827</td><td>2663</td></tr>
+<tr><td style="text-align: right">♥</td><td>9829</td><td>2665</td></tr>
+<tr><td style="text-align: right">♦</td><td>9830</td><td>2666</td></tr>
+<tr><td style="text-align: right">♤</td><td>9828</td><td>2664</td></tr>
+<tr><td style="text-align: right">♧</td><td>9831</td><td>2667</td></tr>
+<tr><td style="text-align: right">♡</td><td>9825</td><td>2661</td></tr>
+<tr><td style="text-align: right">♢</td><td>9826</td><td>2662</td></tr>
+</tbody></table>
+<h2 id="xi-la-zi-mu">希腊字母</h2>
+<table><thead><tr><th style="text-align: right">字符</th><th>code</th><th>x code</th></tr></thead><tbody>
+<tr><td style="text-align: right">Α</td><td>913</td><td>0391</td></tr>
+<tr><td style="text-align: right">Β</td><td>914</td><td>0392</td></tr>
+<tr><td style="text-align: right">Γ</td><td>915</td><td>0393</td></tr>
+<tr><td style="text-align: right">Δ</td><td>916</td><td>0394</td></tr>
+<tr><td style="text-align: right">Ε</td><td>917</td><td>0395</td></tr>
+<tr><td style="text-align: right">Ζ</td><td>918</td><td>0396</td></tr>
+<tr><td style="text-align: right">Η</td><td>919</td><td>0397</td></tr>
+<tr><td style="text-align: right">Θ</td><td>920</td><td>0398</td></tr>
+<tr><td style="text-align: right">Ι</td><td>921</td><td>0399</td></tr>
+<tr><td style="text-align: right">Κ</td><td>922</td><td>039A</td></tr>
+<tr><td style="text-align: right">Λ</td><td>923</td><td>039B</td></tr>
+<tr><td style="text-align: right">Μ</td><td>924</td><td>039C</td></tr>
+<tr><td style="text-align: right">Ν</td><td>925</td><td>039D</td></tr>
+<tr><td style="text-align: right">Ξ</td><td>926</td><td>039E</td></tr>
+<tr><td style="text-align: right">Ο</td><td>927</td><td>039F</td></tr>
+<tr><td style="text-align: right">Π</td><td>928</td><td>03A0</td></tr>
+<tr><td style="text-align: right">Ρ</td><td>929</td><td>03A1</td></tr>
+<tr><td style="text-align: right">Σ</td><td>931</td><td>03A3</td></tr>
+<tr><td style="text-align: right">Τ</td><td>932</td><td>03A4</td></tr>
+<tr><td style="text-align: right">Υ</td><td>933</td><td>03A5</td></tr>
+<tr><td style="text-align: right">Φ</td><td>934</td><td>03A6</td></tr>
+<tr><td style="text-align: right">Χ</td><td>935</td><td>03A7</td></tr>
+<tr><td style="text-align: right">Ψ</td><td>936</td><td>03A8</td></tr>
+<tr><td style="text-align: right">Ω</td><td>937</td><td>03A9</td></tr>
+</tbody></table>
+
+
+
+  </div>
+</div>
+
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;regex-unicode&#x2F;">
+    <i class="icon icon-left-open"></i>
+    unicode 编码范围</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;mathtex&#x2F;">
+    Mathtex 数学公式处理
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-primary" href="//erasin.wang/categories/web/">web</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-danger" href="//erasin.wang/tags/web/">web</a>
+
+
+
+<a class="tag is-danger" href="//erasin.wang/tags/html/">html</a>
+
+
+
+<a class="tag is-danger" href="//erasin.wang/tags/font/">font</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="zhuan-yi-zi-fu" href="//erasin.wang/font-char-unicode/#zhuan-yi-zi-fu">转义字符</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="biao-dian" href="//erasin.wang/font-char-unicode/#biao-dian">标点</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="fa-lu-fu-hao" href="//erasin.wang/font-char-unicode/#fa-lu-fu-hao">法律符号</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="huo-bi" href="//erasin.wang/font-char-unicode/#huo-bi">货币</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="ge-chong-jian-tou" href="//erasin.wang/font-char-unicode/#ge-chong-jian-tou">各种箭头</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="xing-zhuang" href="//erasin.wang/font-char-unicode/#xing-zhuang">形状</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="xiang-you-de-jian-tou" href="//erasin.wang/font-char-unicode/#xiang-you-de-jian-tou">向右的箭头</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="ji-ben-xing-zhuang" href="//erasin.wang/font-char-unicode/#ji-ben-xing-zhuang">基本形状</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="shu-xue" href="//erasin.wang/font-char-unicode/#shu-xue">数学</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="yin-le-fu-hao" href="//erasin.wang/font-char-unicode/#yin-le-fu-hao">音乐符号</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="dui-hao-cuo-hao" href="//erasin.wang/font-char-unicode/#dui-hao-cuo-hao">对号、错号</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="shi-zi" href="//erasin.wang/font-char-unicode/#shi-zi">十字</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="xing-xing-xing-hao-xue-hua" href="//erasin.wang/font-char-unicode/#xing-xing-xing-hao-xue-hua">星星、星号、雪花</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="za-xiang" href="//erasin.wang/font-char-unicode/#za-xiang">杂项</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="shou-xing-qian-bi-bi" href="//erasin.wang/font-char-unicode/#shou-xing-qian-bi-bi">手型、铅笔、笔</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="tian-kong-zhi-wu" href="//erasin.wang/font-char-unicode/#tian-kong-zhi-wu">天空、植物</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="xing-zuo" href="//erasin.wang/font-char-unicode/#xing-zuo">星座</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="xiang-qi-bu-ke-pai" href="//erasin.wang/font-char-unicode/#xiang-qi-bu-ke-pai">象棋，扑克牌</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="xi-la-zi-mu" href="//erasin.wang/font-char-unicode/#xi-la-zi-mu">希腊字母</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

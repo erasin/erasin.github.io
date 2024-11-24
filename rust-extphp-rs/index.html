@@ -1,0 +1,532 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  ext-php-rs 使用 RUST 更加方便的构建 PHP 扩展 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="更加易于使用rust 编写 php 扩展构建库" property="description" />
+
+  
+    <meta content="php,rust" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+    
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> ext-php-rs 使用 RUST 更加方便的构建 PHP 扩展 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      EXT-PHP-RS 使用 RUST 更加方便的构建 PHP 扩展
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2022-10-31
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <p>ext-php-rs 是一个用于构建PHP扩展的RUST库，比起其他的php的绑定库，该库使用起来
+更加的方便和快捷。</p>
+<ul>
+<li><a href="https://github.com/davidcole1340/ext-php-rs">ext-php-rs</a></li>
+<li><a href="https://davidcole1340.github.io/ext-php-rs/introduction.html">官方文档</a></li>
+</ul>
+<p>官方宣称的特性为：</p>
+<ul>
+<li>易于使用，内置的宏抽象了 zend API，特别是参数类型交互</li>
+<li>轻量级，该库会自动编写胶水代码,只需要写功能即可。</li>
+<li>可扩展，可以使用 <code>IntoZval</code> 和 <code>FromZval</code> 定义自己的类型用于参数和返回类型。</li>
+</ul>
+<blockquote>
+<p>迄今为止, 使用rust写php扩展，并没有太好的方式与php进行交互，建议使用rust写
+基础类库。</p>
+</blockquote>
+<span id="continue-reading"></span><h2 id="cargo-php-ming-ling-gong-ju">cargo-php 命令工具</h2>
+<p>ext-php-rs 提供了 <code>cargo-php</code> 工具, 它提供了功能</p>
+<ul>
+<li>生成扩展的 <code>Stubs</code> 文件, 为 IDE 进行支持。(参考 <a href="https://github.com/JetBrains/phpstorm-stubs#readme">phpstorm-stubs</a>)</li>
+<li>安装扩展</li>
+<li>移除扩展</li>
+</ul>
+<blockquote>
+<p>现仅支持 macos, linux 暂时不支持 windows</p>
+</blockquote>
+<p>使用 cargo 安装</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">cargo</span><span style="color:#abb2bf;"> install cargo-php
+</span></code></pre>
+<h2 id="hello-world">hello world</h2>
+<ol>
+<li>创建项目</li>
+</ol>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">cargo new extphpdmeo --lib
+</span></code></pre>
+<ol start="2">
+<li>配置</li>
+</ol>
+<p>追加到 <code>Cargo.toml</code></p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#6c7079;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="font-style:italic;color:#5f697a;"># 引入扩展
+</span><span style="color:#abb2bf;">[dependencies]
+</span><span style="color:#eb6772;">ext-php-rs </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;*&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 输出类型
+</span><span style="color:#abb2bf;">[lib]
+</span><span style="color:#eb6772;">crate-type </span><span style="color:#abb2bf;">= [</span><span style="color:#9acc76;">&quot;cdylib&quot;</span><span style="color:#abb2bf;">]
+</span></code></pre>
+<p>修改编译选项，在项目的根目录创建 <code>.cargo/config.toml</code></p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#6c7079;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#abb2bf;">[target.</span><span style="color:#9acc76;">&#39;cfg(not(target_os = &quot;windows&quot;))&#39;</span><span style="color:#abb2bf;">]
+</span><span style="color:#eb6772;">rustflags </span><span style="color:#abb2bf;">= [</span><span style="color:#9acc76;">&quot;-C&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;link-arg=-Wl,-undefined,dynamic_lookup&quot;</span><span style="color:#abb2bf;">]
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">[target.x86_64-pc-windows-msvc]
+</span><span style="color:#eb6772;">linker </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;rust-lld&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">[target.i686-pc-windows-msvc]
+</span><span style="color:#eb6772;">linker </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;rust-lld&quot;
+</span></code></pre>
+<ol start="3">
+<li>写 hello_world， 修改 <code>lib.rs</code></li>
+</ol>
+<pre data-lang="rust" style="background-color:#2b303b;color:#6c7079;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#abb2bf;">#![</span><span style="color:#eb6772;">cfg_attr</span><span style="color:#abb2bf;">(windows, </span><span style="color:#eb6772;">feature</span><span style="color:#abb2bf;">(abi_vectorcall))]
+</span><span style="color:#cd74e8;">use </span><span style="color:#abb2bf;">ext_php_rs::prelude::</span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">#[</span><span style="color:#eb6772;">php_function</span><span style="color:#abb2bf;">]
+</span><span style="color:#cd74e8;">pub fn </span><span style="color:#5cb3fa;">hello_world</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">name</span><span style="color:#abb2bf;">: </span><span style="color:#adb7c9;">&amp;</span><span style="color:#cd74e8;">str</span><span style="color:#abb2bf;">) -&gt; String {
+</span><span style="color:#abb2bf;">    format!(</span><span style="color:#9acc76;">&quot;hello -&gt; </span><span style="color:#db9d63;">{}</span><span style="color:#9acc76;">&quot;</span><span style="color:#abb2bf;">, name)
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">#[</span><span style="color:#eb6772;">php_module</span><span style="color:#abb2bf;">]
+</span><span style="color:#cd74e8;">pub fn </span><span style="color:#5cb3fa;">get_module</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">module</span><span style="color:#abb2bf;">: ModuleBuilder) -&gt; ModuleBuilder {
+</span><span style="color:#abb2bf;">    module
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<ol start="4">
+<li>编译测试</li>
+</ol>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#5f697a;"># 编译
+</span><span style="color:#eb6772;">cargo</span><span style="color:#abb2bf;"> build 
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 安装扩展
+</span><span style="color:#eb6772;">cargo</span><span style="color:#abb2bf;"> php install
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 创建 stubs
+</span><span style="color:#eb6772;">cargo</span><span style="color:#abb2bf;"> php stubs 
+</span></code></pre>
+<blockquote>
+<p>生成的 stubs文件后， 最好自己使用 <code>composer</code> 创建stubs项目进行组织，以备给需要扩展的项目使用,
+可以参考 <a href="https://github.com/phalcon/ide-stubs">phalcon/ide-stubs</a></p>
+</blockquote>
+<p>使用 <code>php-config</code> 获取扩展安装的位置</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#5f697a;"># 获取扩展位置
+</span><span style="color:#eb6772;">php-config --extension-dir
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 检查php_info,扩展是否存在
+</span><span style="color:#eb6772;">php -i </span><span style="color:#adb7c9;">| </span><span style="color:#eb6772;">grep </span><span style="color:#9acc76;">&quot;extphp&quot; 
+</span></code></pre>
+<p>创建临时的测试文件 <code>test.php</code></p>
+<pre data-lang="php" style="background-color:#2b303b;color:#6c7079;" class="language-php "><code class="language-php" data-lang="php"><span style="color:#c94e42;">&lt;?php
+</span><span style="color:#5ebfcc;">var_dump</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">hello_world</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;go&quot;</span><span style="color:#abb2bf;">));
+</span></code></pre>
+<p>执行测试</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">php -e</span><span style="color:#abb2bf;"> test.php
+</span></code></pre>
+<p>结果应该为</p>
+<pre data-lang="text" style="background-color:#2b303b;color:#6c7079;" class="language-text "><code class="language-text" data-lang="text"><span style="color:#abb2bf;">string(11) &quot;hello -&gt; go
+</span></code></pre>
+<h2 id="jie-yu">结语</h2>
+<p>总而言之 <code>ext-php-rs</code> 扩展对于使用rust构建php扩展是目前来说比较符合rust工程学的库。</p>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;rust-extphp-rs&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;rust-extphp-rs&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2022-10-31
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;latex-quick&#x2F;">
+    <i class="icon icon-left-open"></i>
+    使用 tectonic 快速入门使用 latex</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;dot&#x2F;">
+    Graphviz Dot UML 编程工具
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+<div class="no-print">
+  
+  <script src="https://giscus.app/client.js" data-repo="erasin/erasin.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnk3MzE0Mzg3Mw==" data-category="article" data-category-id="" data-mapping="pathname"
+    data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light"
+    data-lang="zh-CN" crossorigin="anonymous" async>
+    </script>
+  <style>
+    .utterances {
+      max-width: initial;
+    }
+  </style>
+  
+  
+</div>
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-dark" href="//erasin.wang/categories/php/">php</a>
+
+
+
+<a class="tag is-light" href="//erasin.wang/categories/rustlang/">rustlang</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-black" href="//erasin.wang/tags/php/">php</a>
+
+
+
+<a class="tag is-warning" href="//erasin.wang/tags/rust/">rust</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="cargo-php-ming-ling-gong-ju" href="//erasin.wang/rust-extphp-rs/#cargo-php-ming-ling-gong-ju">cargo-php 命令工具</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="hello-world" href="//erasin.wang/rust-extphp-rs/#hello-world">hello world</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="jie-yu" href="//erasin.wang/rust-extphp-rs/#jie-yu">结语</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

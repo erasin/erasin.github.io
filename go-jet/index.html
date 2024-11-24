@@ -1,0 +1,1018 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  jet - golang 动态模板引擎 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="golang template engine, go语言模板引擎" property="description" />
+
+  
+    <meta content="golang,template" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> jet - golang 动态模板引擎 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      JET - GOLANG 动态模板引擎
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2020-03-03
+    </div>
+  </div>
+
+  <div class="post-content  " 
+    style="background-image:url(&#x27;&#x2F;assets&#x2F;img&#x2F;go-mod.svg&#x27;);background-size:200px;" >
+    <p><strong>Jet</strong> v3   <a href="https://github.com/CloudyKit/jet">git</a> <a href="https://github.com/CloudyKit/jet/wiki/">docs</a></p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">import </span><span style="color:#9acc76;">&quot;github.com/CloudyKit/jet/v3&quot;
+</span></code></pre>
+<ul>
+<li>动态开发，静态加载，灵活的开发模式和快速运行。</li>
+<li>语法和默认模板类似，支持通道运算 <code>{{ expression|pipe|pipe }}</code></li>
+<li><code>yield</code>（渲染调用） , <code>block</code>(组件布局) 多种组合功能。</li>
+<li>局部变量，内置函数，类似<code>len</code>,<code>isset</code>等</li>
+<li>字符串处理，省略<code>printf</code>功能，直接 <code>"song" + filed</code> 输出字符串</li>
+<li>isset 变量检测，支持三元运算</li>
+<li>自定义扩展支持 <code>imported</code>,<code>included</code>,<code>extends</code>，文件名 <code>.jet</code>, <code>.html.jet</code> , <code>.jet.html</code></li>
+</ul>
+<span id="continue-reading"></span><h2 id="kai-shi">开始</h2>
+<ul>
+<li>使用 <code>jet.NewHTMLSet(path)</code> 设定要监控的目录。</li>
+<li>创建模板文件</li>
+<li>实例化模板文件</li>
+</ul>
+<p><strong>main.go</strong></p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">import </span><span style="color:#9acc76;">&quot;github.com/CloudyKit/jet/v3&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// 定义模板路径 
+</span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">tpls </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">jet</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">NewHTMLSet</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;./tpls&quot;</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// 初始化模板
+</span><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">initView</span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">// 设定开发模式 动态更新
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">tpls</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">SetDevelopmentMode</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">true</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">// 修改定界符 {{  }} 为 {{  }}
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">// tpls.Delims(&quot;{%&quot;, &quot;%}&quot;)
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// 追加全局变量
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">tpls</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">AddGlobal</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;HOST&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;http://127.0.0.1/&quot;</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// 追加全局函数
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">tpls</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">AddGlobalFunc</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;timeFmt&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">jet</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Func</span><span style="color:#abb2bf;">(</span><span style="color:#cd74e8;">func</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">args jet</span><span style="color:#abb2bf;">.</span><span style="color:#cd74e8;">Arguments</span><span style="color:#abb2bf;">) </span><span style="color:#eb6772;">reflect</span><span style="color:#abb2bf;">.</span><span style="color:#cd74e8;">Value </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">		</span><span style="color:#eb6772;">expression </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">args</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Get</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">).</span><span style="color:#eb6772;">Interface</span><span style="color:#abb2bf;">().(</span><span style="color:#eb6772;">time</span><span style="color:#abb2bf;">.</span><span style="color:#cd74e8;">Time</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">		</span><span style="color:#cd74e8;">return </span><span style="color:#eb6772;">reflect</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">ValueOf</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">expression</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Format</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;2006-01-02&quot;</span><span style="color:#abb2bf;">))
+</span><span style="color:#abb2bf;">	}))
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// 首页部分
+</span><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">home</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">w http</span><span style="color:#abb2bf;">.</span><span style="color:#cd74e8;">ResponseWriter</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">r </span><span style="color:#adb7c9;">*</span><span style="color:#eb6772;">http</span><span style="color:#abb2bf;">.</span><span style="color:#cd74e8;">Request</span><span style="color:#abb2bf;">) {
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">templateName </span><span style="color:#adb7c9;">:= </span><span style="color:#9acc76;">&quot;home.jet&quot;
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">view</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">tpls</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">GetTemplate</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">templateName</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">if </span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">!= </span><span style="color:#db9d63;">nil </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">		</span><span style="font-style:italic;color:#5f697a;">// 模板加载错误处理
+</span><span style="color:#abb2bf;">	}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">// 变量设定
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">vars </span><span style="color:#adb7c9;">:= </span><span style="color:#5ebfcc;">make</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">jet</span><span style="color:#abb2bf;">.</span><span style="color:#cd74e8;">VarMap</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">vars</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Set</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;anum&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">// 数据设定
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">context </span><span style="color:#adb7c9;">:= </span><span style="color:#cd74e8;">struct </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">		</span><span style="color:#eb6772;">Data </span><span style="color:#cd74e8;">string
+</span><span style="color:#abb2bf;">	}{
+</span><span style="color:#abb2bf;">		</span><span style="color:#eb6772;">Data</span><span style="color:#abb2bf;">: </span><span style="color:#9acc76;">&quot;apples&quot;</span><span style="color:#abb2bf;">,
+</span><span style="color:#abb2bf;">	}
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">if </span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">view</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Execute</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">w</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">vars</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">context</span><span style="color:#abb2bf;">); </span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">!= </span><span style="color:#db9d63;">nil </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">		</span><span style="font-style:italic;color:#5f697a;">// 模板渲染错误处理
+</span><span style="color:#abb2bf;">	}
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">main</span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">http</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">HandleFunc</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;/&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">home</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">log</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Fatal</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">http</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">ListenAndServe</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;:8080&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">nil</span><span style="color:#abb2bf;">))
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<ul>
+<li><code>jet.NewHTMLSet</code> 设置模板路径，初始化模板。</li>
+<li><code>tpls.SetDevelopmentMode(true)</code> 设定开发模式，可以动态加载 <code>jet</code> 模板文件，在不重启服务情况下调试模板文件。</li>
+<li><code>tpls.Delims("{%", "%}")</code> 修改模板定界符</li>
+<li><code>jet.VarMap</code> 用于向模板传输变量，在模板中直接访问。</li>
+<li><code>view.Execute</code> 模板写入 <code>io.Writer</code>。</li>
+</ul>
+<p><strong>layout.jet</strong></p>
+<blockquote>
+<p>模板文件类型为 <code>jet</code> 语法格式采用类似 <code>jinja</code> 模板类型</p>
+</blockquote>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">&lt;!</span><span style="color:#eb6772;">DOCTYPE</span><span style="color:#abb2bf;"> html&gt;
+</span><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">html</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">  &lt;</span><span style="color:#eb6772;">head</span><span style="color:#abb2bf;">&gt;&lt;/</span><span style="color:#eb6772;">head</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">  &lt;</span><span style="color:#eb6772;">body</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">    {{</span><span style="color:#eb6772;">yield body</span><span style="color:#abb2bf;">()}}
+</span><span style="color:#abb2bf;">  &lt;/</span><span style="color:#eb6772;">body</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">&lt;/</span><span style="color:#eb6772;">html</span><span style="color:#abb2bf;">&gt;
+</span></code></pre>
+<p><strong>home.jet</strong></p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">extends </span><span style="color:#9acc76;">&quot;layout.jet&quot;</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">block body</span><span style="color:#abb2bf;">()}}
+</span><span style="color:#abb2bf;">  &lt;</span><span style="color:#eb6772;">main</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">    在 body 布局中渲染。  
+</span><span style="color:#abb2bf;">  &lt;/</span><span style="color:#eb6772;">main</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">  测试变量: {{ </span><span style="color:#eb6772;">anum </span><span style="color:#abb2bf;">}}。
+</span><span style="color:#abb2bf;">  &lt;</span><span style="color:#eb6772;">div</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">  测试数据: {{ </span><span style="color:#eb6772;">.Data </span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">  &lt;/</span><span style="color:#eb6772;">div</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span></code></pre>
+<ul>
+<li><code>extends</code> 继承模板文件</li>
+<li><code>block body</code>  实现了 <code>yield body</code> 部分</li>
+</ul>
+<h2 id="mo-ban-xuan-ran">模板渲染</h2>
+<p>通过阅读文件 <code>main.go</code> 中 <code>home</code> 部分</p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#eb6772;">templateName </span><span style="color:#adb7c9;">:= </span><span style="color:#9acc76;">&quot;home.jet&quot;
+</span><span style="color:#eb6772;">view</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">tpls</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">GetTemplate</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">templateName</span><span style="color:#abb2bf;">)
+</span><span style="color:#cd74e8;">if </span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">!= </span><span style="color:#db9d63;">nil </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">// 模板加载错误处理
+</span><span style="color:#abb2bf;">}
+</span><span style="font-style:italic;color:#5f697a;">// var b bytes.Buffer
+</span><span style="font-style:italic;color:#5f697a;">// 变量设定
+</span><span style="color:#eb6772;">vars </span><span style="color:#adb7c9;">:= </span><span style="color:#5ebfcc;">make</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">jet</span><span style="color:#abb2bf;">.</span><span style="color:#cd74e8;">VarMap</span><span style="color:#abb2bf;">)
+</span><span style="color:#eb6772;">vars</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Set</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;anum&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// 数据设定
+</span><span style="color:#eb6772;">context </span><span style="color:#adb7c9;">:= </span><span style="color:#cd74e8;">struct </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">Data </span><span style="color:#cd74e8;">string
+</span><span style="color:#abb2bf;">}{
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">Data</span><span style="color:#abb2bf;">: </span><span style="color:#9acc76;">&quot;apples&quot;</span><span style="color:#abb2bf;">,
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">if </span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">view</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Execute</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">w</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">vars</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">context</span><span style="color:#abb2bf;">); </span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">!= </span><span style="color:#db9d63;">nil </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">// 模板渲染错误处理
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p><code>Execute</code> 用来渲染模板, 参数分别为 写入对象， 变量， 数据。</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">func (t *Template) Execute(w io.Writer, variables VarMap, data interface{}) error
+</span></code></pre>
+<ul>
+<li>使用 <code>jet.VarMap</code> 字典类型设定输出到模板中的变量,一般使用 <code>vars.Set("field",interface{})</code> 来输出数据到模板, 访问直接使用 <code>{{ field }}</code>。</li>
+<li>context 模板上下文数据，自定义结构 ,在模板数据中使用 <code>{{ .data }}</code> 来渲染显示（类似原生模板数据渲染）。</li>
+</ul>
+<blockquote>
+<p>jet 参数部分，模板中设计<code>block/yield</code> 和 Execute 都类似，参数部分和上下文部分
+来传输数据结构，具体的使用，按照使用内容而定，上下文一般用于约定好格式的数据内
+容，参数的定义更接近函数的使用方式。参照 <a href="//erasin.wang/go-jet/#blocks-mo-ban-zu-jian">block</a> 语法。</p>
+</blockquote>
+<h2 id="yu-fa-gui-ze">语法规则</h2>
+<p>下方 <code>tpls</code> 为 <code> jet.NewHTMLSet("./tpls")</code> 实例。</p>
+<h3 id="she-ding">设定</h3>
+<ul>
+<li><strong>开发模</strong>式，动态加载模板</li>
+</ul>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#eb6772;">tpls</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">SetDevelopmentMode</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">true</span><span style="color:#abb2bf;">) 
+</span></code></pre>
+<ul>
+<li><strong>Delimiters 界定符号</strong>，默认为 <code>{{</code>和<code>}}</code> ,可以使用 <code>tpls.Delims("{%","%}")</code> 来设定自己的界定符。如果兼容 vue/js 的话,定界符可能会冲突，建议模板中使用 <code>{%</code>,<code>%}</code>作为定界符。</li>
+</ul>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#eb6772;">tpls</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Delims</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;{%&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;%}&quot;</span><span style="color:#abb2bf;">)
+</span></code></pre>
+<ul>
+<li><strong>模板注释</strong>, 使用 <code>{* 注释内容 *}</code>。</li>
+</ul>
+<h3 id="mo-ban-shu-chu">模板输出</h3>
+<p><strong>全局变量 Global Variables</strong></p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#eb6772;">tpls</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">AddGlobal</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;version&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;v1.1.145&quot;</span><span style="color:#abb2bf;">)
+</span></code></pre>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">footer</span><span style="color:#abb2bf;">&gt;Version: {{ </span><span style="color:#eb6772;">version </span><span style="color:#abb2bf;">}}&lt;/</span><span style="color:#eb6772;">footer</span><span style="color:#abb2bf;">&gt;
+</span></code></pre>
+<p><strong>全局函数 Global Functions</strong></p>
+<p>定义函数有两种方式，<code>AddGlobal</code>, <code>AddGlobalFunc</code>,官方言明第二种更有有效率，在解析上执行效率更好。</p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#eb6772;">tpls</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">AddGlobal</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;noblue&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#cd74e8;">func</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">s </span><span style="color:#cd74e8;">string</span><span style="color:#abb2bf;">) </span><span style="color:#cd74e8;">string </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">return </span><span style="color:#eb6772;">strings</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Replace</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">s</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;blue&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#adb7c9;">-</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">})
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// 考虑执行效率使用 GlobalFunc
+</span><span style="color:#eb6772;">tpls</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">AddGlobalFunc</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;noblue&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#cd74e8;">func</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">args jet</span><span style="color:#abb2bf;">.</span><span style="color:#cd74e8;">Arguments</span><span style="color:#abb2bf;">) </span><span style="color:#eb6772;">reflect</span><span style="color:#abb2bf;">.</span><span style="color:#cd74e8;">Value </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">args</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">RequireNumOfArguments</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;noblue&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">s </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">args</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Get</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">).</span><span style="color:#eb6772;">String</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">return </span><span style="color:#eb6772;">reflect</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">ValueOf</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">strings</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Replace</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">s</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;blue&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;b2&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#adb7c9;">-</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">))
+</span><span style="color:#abb2bf;">})
+</span></code></pre>
+<blockquote>
+<p>全局函数还是放在一个模板的字典中，同变量相同使用健值来调用，同样健值会覆盖之前的变量。</p>
+</blockquote>
+<p>在模板中调用函数,一种普通的方式，另一种为类似管道(pipelining)的语法调用，后者可以递进使用多个函数。</p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">div</span><span style="color:#abb2bf;">&gt;{{ </span><span style="color:#eb6772;">noblue</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;red blue green&quot;</span><span style="color:#abb2bf;">) }}&lt;/</span><span style="color:#eb6772;">div</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">div</span><span style="color:#abb2bf;">&gt;{{ </span><span style="color:#9acc76;">&quot;red blue green&quot;</span><span style="color:#abb2bf;">|</span><span style="color:#eb6772;">noblue </span><span style="color:#abb2bf;">}}&lt;/</span><span style="color:#eb6772;">div</span><span style="color:#abb2bf;">&gt;
+</span></code></pre>
+<p><strong>模板变量 Varmap</strong></p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#eb6772;">vars </span><span style="color:#adb7c9;">:= </span><span style="color:#5ebfcc;">make</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">jet</span><span style="color:#abb2bf;">.</span><span style="color:#cd74e8;">VarMap</span><span style="color:#abb2bf;">)
+</span><span style="color:#eb6772;">vars</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Set</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;user&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#adb7c9;">&amp;</span><span style="color:#eb6772;">User</span><span style="color:#abb2bf;">{})
+</span></code></pre>
+<p><code>Set(key, value)</code> 追加变量，在模板中直接使用 <code>key</code> 调用。</p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">div</span><span style="color:#abb2bf;">&gt;{{ </span><span style="color:#eb6772;">user </span><span style="color:#abb2bf;">}}&lt;/</span><span style="color:#eb6772;">div</span><span style="color:#abb2bf;">&gt;
+</span></code></pre>
+<p><strong>上下文数据 Context</strong></p>
+<p>该数据为 <code>Execute</code> 第三参数，用于作为 <code>.</code> 起始传入模板的结构体。</p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#eb6772;">data </span><span style="color:#adb7c9;">:= &amp;</span><span style="color:#eb6772;">http</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Request</span><span style="color:#abb2bf;">{</span><span style="color:#eb6772;">Method</span><span style="color:#abb2bf;">: </span><span style="color:#eb6772;">http</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">MethodPost</span><span style="color:#abb2bf;">}
+</span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">t</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Execute</span><span style="color:#abb2bf;">(</span><span style="color:#adb7c9;">&amp;</span><span style="color:#eb6772;">w</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">vars</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">data</span><span style="color:#abb2bf;">)
+</span></code></pre>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">div</span><span style="color:#abb2bf;">&gt;Request method is: {{ </span><span style="color:#eb6772;">.Method </span><span style="color:#abb2bf;">}}&lt;/</span><span style="color:#eb6772;">div</span><span style="color:#abb2bf;">&gt; </span><span style="font-style:italic;color:#5f697a;">&lt;!-- Would be &quot;POST&quot; --&gt;
+</span></code></pre>
+<h3 id="biao-da-shi-expressions">表达式 Expressions</h3>
+<p><strong>算数</strong></p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">{{ </span><span style="color:#eb6772;">1</span><span style="color:#abb2bf;"> + </span><span style="color:#eb6772;">2</span><span style="color:#abb2bf;"> * </span><span style="color:#eb6772;">3</span><span style="color:#abb2bf;"> - </span><span style="color:#eb6772;">4 </span><span style="color:#abb2bf;">}} </span><span style="font-style:italic;color:#5f697a;">&lt;!-- 结果 3 --&gt;
+</span><span style="color:#abb2bf;">{{ (</span><span style="color:#eb6772;">1</span><span style="color:#abb2bf;"> + </span><span style="color:#eb6772;">2</span><span style="color:#abb2bf;">) * </span><span style="color:#eb6772;">3</span><span style="color:#abb2bf;"> - </span><span style="color:#eb6772;">4.1 </span><span style="color:#abb2bf;">}} </span><span style="font-style:italic;color:#5f697a;">&lt;!-- 结果 4.9 --&gt;
+</span></code></pre>
+<p><strong>字符串连接</strong></p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">{{ </span><span style="color:#9acc76;">&quot;HELLO&quot;</span><span style="color:#abb2bf;">+</span><span style="color:#9acc76;">&quot; WORLD!&quot; </span><span style="color:#abb2bf;">}} 
+</span></code></pre>
+<p><strong>比较运算符</strong></p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">{{ </span><span style="color:#eb6772;">if item</span><span style="color:#abb2bf;"> == </span><span style="color:#eb6772;">true</span><span style="color:#abb2bf;"> || !</span><span style="color:#eb6772;">item2</span><span style="color:#abb2bf;"> &amp;&amp; </span><span style="color:#eb6772;">item3</span><span style="color:#abb2bf;"> != </span><span style="color:#9acc76;">&quot;test&quot; </span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">{{ </span><span style="color:#eb6772;">if item</span><span style="color:#abb2bf;"> &gt;= </span><span style="color:#eb6772;">12.5</span><span style="color:#abb2bf;"> || </span><span style="color:#eb6772;">item</span><span style="color:#abb2bf;"> &lt; </span><span style="color:#eb6772;">6 </span><span style="color:#abb2bf;">}}
+</span></code></pre>
+<p><strong>变量声明</strong></p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">{* VarMap *}
+</span><span style="color:#abb2bf;">{{ </span><span style="color:#eb6772;">item</span><span style="color:#abb2bf;"> := </span><span style="color:#eb6772;">item</span><span style="color:#abb2bf;">[</span><span style="color:#eb6772;">1</span><span style="color:#abb2bf;">] }} 
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">{* Context 数据 *}
+</span><span style="color:#abb2bf;">{{ </span><span style="color:#eb6772;">item2</span><span style="color:#abb2bf;"> := .[</span><span style="color:#9acc76;">&quot;test&quot;</span><span style="color:#abb2bf;">] }}
+</span></code></pre>
+<p><strong>三元表达式</strong></p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">{{ </span><span style="color:#eb6772;">.HasTitle</span><span style="color:#abb2bf;"> ? </span><span style="color:#eb6772;">.Title</span><span style="color:#abb2bf;"> : </span><span style="color:#9acc76;">&quot;标题不存在&quot;</span><span style="color:#abb2bf;">}}
+</span></code></pre>
+<p><strong>切片表达式</strong></p>
+<p>对于数组和切片(slice)类型数据, 可以使用类似 Go 语言中 <code>[start:end)</code> 语法,其中 end 不在范围之内.</p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">range v</span><span style="color:#abb2bf;"> := .[</span><span style="color:#eb6772;">1</span><span style="color:#abb2bf;">:</span><span style="color:#eb6772;">3</span><span style="color:#abb2bf;">]}}{{ </span><span style="color:#eb6772;">v </span><span style="color:#abb2bf;">}}{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}} 
+</span><span style="font-style:italic;color:#5f697a;">&lt;!-- context is []string{&quot;0&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;}, will print &quot;12&quot; --&gt;
+</span></code></pre>
+<p><strong>管道Pipe</strong></p>
+<p>函数调用基本方式为 管道前为管道之后函数的参数使用，其他的参数使用<code>:</code>跟随。</p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">{{ </span><span style="color:#9acc76;">&quot;HELLO WORLD&quot;</span><span style="color:#abb2bf;">|</span><span style="color:#eb6772;">lower </span><span style="color:#abb2bf;">}} </span><span style="font-style:italic;color:#5f697a;">&lt;!-- &quot;hello world&quot; --&gt;
+</span></code></pre>
+<p>参数表达，<code>func(args,...)</code> 也有 <code>func:args,...</code> 方式。</p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">chaining: {{ </span><span style="color:#9acc76;">&quot;HELLO&quot;</span><span style="color:#abb2bf;">|</span><span style="color:#eb6772;">lower</span><span style="color:#abb2bf;">|</span><span style="color:#eb6772;">repeat</span><span style="color:#abb2bf;">:</span><span style="color:#eb6772;">2 </span><span style="color:#abb2bf;">}} &lt;</span><span style="color:#eb6772;">br</span><span style="color:#abb2bf;">/&gt;</span><span style="font-style:italic;color:#5f697a;">&lt;!-- hellohello --&gt;
+</span><span style="color:#abb2bf;">prefix: {{ </span><span style="color:#eb6772;">lower</span><span style="color:#abb2bf;">:</span><span style="color:#9acc76;">&quot;Hello&quot;</span><span style="color:#abb2bf;">|</span><span style="color:#eb6772;">upper</span><span style="color:#abb2bf;">|</span><span style="color:#eb6772;">repeat</span><span style="color:#abb2bf;">:</span><span style="color:#eb6772;">2 </span><span style="color:#abb2bf;">}} &lt;</span><span style="color:#eb6772;">br</span><span style="color:#abb2bf;">/&gt;</span><span style="font-style:italic;color:#5f697a;">&lt;!-- HELLOHELLO --&gt;
+</span><span style="color:#abb2bf;">prefix2: {{ </span><span style="color:#eb6772;">repeat</span><span style="color:#abb2bf;">:</span><span style="color:#9acc76;">&quot;Hello&quot;</span><span style="color:#abb2bf;">,</span><span style="color:#eb6772;">2 </span><span style="color:#abb2bf;">}} &lt;</span><span style="color:#eb6772;">br</span><span style="color:#abb2bf;">/&gt; </span><span style="font-style:italic;color:#5f697a;">&lt;!-- HelloHello --&gt;
+</span><span style="color:#abb2bf;">simple function call: {{ </span><span style="color:#eb6772;">lower</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;HELLO&quot;</span><span style="color:#abb2bf;">) }} </span><span style="font-style:italic;color:#5f697a;">&lt;!-- hello --&gt;
+</span></code></pre>
+<p>使用 <code>raw</code> , <code>unsafe</code> 转义函数的时候必须为管道最后执行。</p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">{{ </span><span style="color:#9acc76;">&quot;hello&quot;</span><span style="color:#abb2bf;">|</span><span style="color:#eb6772;">upper</span><span style="color:#abb2bf;">|</span><span style="color:#eb6772;">raw </span><span style="color:#abb2bf;">}} </span><span style="font-style:italic;color:#5f697a;">&lt;!-- valid --&gt;
+</span><span style="color:#abb2bf;">{{ </span><span style="color:#eb6772;">raw</span><span style="color:#abb2bf;">:</span><span style="color:#9acc76;">&quot;hello&quot; </span><span style="color:#abb2bf;">}}       </span><span style="font-style:italic;color:#5f697a;">&lt;!-- valid --&gt;
+</span><span style="color:#abb2bf;">{{ </span><span style="color:#eb6772;">raw</span><span style="color:#abb2bf;">:</span><span style="color:#9acc76;">&quot;hello&quot;</span><span style="color:#abb2bf;">|</span><span style="color:#eb6772;">upper </span><span style="color:#abb2bf;">}} </span><span style="font-style:italic;color:#5f697a;">&lt;!-- invalid --&gt;
+</span></code></pre>
+<h3 id="bian-li-shu-ju-traversing-data">遍历数据 Traversing Data</h3>
+<p><strong>结构 Struct</strong></p>
+<p>可以调用字段和方法</p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">The user&#39;s firstname is {{ </span><span style="color:#eb6772;">user.Firstname </span><span style="color:#abb2bf;">}}.
+</span><span style="color:#abb2bf;">The user&#39;s name is {{ </span><span style="color:#eb6772;">user.Fullname</span><span style="color:#abb2bf;">() }}.
+</span><span style="color:#abb2bf;">Now his name is {{ </span><span style="color:#eb6772;">user.Rename</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;Frederick&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;Johnson&quot;</span><span style="color:#abb2bf;">) }}.
+</span></code></pre>
+<p><strong>字典 Maps</strong></p>
+<p>使用 <code>[]</code> 调用字段</p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">The test map&#39;s value is {{ </span><span style="color:#eb6772;">testMap</span><span style="color:#abb2bf;">[</span><span style="color:#9acc76;">&quot;testKey&quot;</span><span style="color:#abb2bf;">] }}.
+</span></code></pre>
+<p>也可以使用二值反馈判定结果, 也可以使用 <code>isset() ? a : b</code>达到同样的效果。</p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">if v</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">ok</span><span style="color:#abb2bf;"> := </span><span style="color:#eb6772;">testMap</span><span style="color:#abb2bf;">[</span><span style="color:#9acc76;">&quot;testKey&quot;</span><span style="color:#abb2bf;">]; </span><span style="color:#eb6772;">ok</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">  {{ </span><span style="color:#eb6772;">v </span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span></code></pre>
+<p><strong>数组 Slices and Arrays</strong></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">The test slice&#39;s value is {{ testSlice[0] }}.
+</span></code></pre>
+<p><strong>遍历 maps 和 slices</strong></p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">range</span><span style="color:#abb2bf;"> .}}
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">{* 赋值遍历 *}
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">range value</span><span style="color:#abb2bf;"> := .}}
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">{* 健值/索引，赋值，遍历 map,slice *}
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">range keyOrIndex</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">value</span><span style="color:#abb2bf;"> := .}}
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">{* 这里的 . 会根据上下本判定显示内容，类似赋值遍历 *}
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">range favoriteColors</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">  &lt;</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;I like {{</span><span style="color:#eb6772;">.</span><span style="color:#abb2bf;">}}&lt;/</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span></code></pre>
+<p>如果遍历的值为空对象可以执行 <code>else</code>部分的渲染。</p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">range index</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">value</span><span style="color:#abb2bf;"> := .}}
+</span><span style="color:#abb2bf;">{{else}}
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span></code></pre>
+<p><strong>自定义</strong></p>
+<p>jet 提供 <code>interface jet.Ranger</code> 可以定义自己的遍历方法。</p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">type </span><span style="color:#abb2bf;">Ranger </span><span style="color:#cd74e8;">interface </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">    </span><span style="color:#5cb3fa;">Range</span><span style="color:#abb2bf;">() (</span><span style="color:#eb6772;">reflect</span><span style="color:#abb2bf;">.</span><span style="color:#cd74e8;">Value</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">reflect</span><span style="color:#abb2bf;">.</span><span style="color:#cd74e8;">Value</span><span style="color:#abb2bf;">, </span><span style="color:#cd74e8;">bool</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<h3 id="kong-zhi-jie-gou">控制结构</h3>
+<p><code>if</code>, <code>else</code>, 和 <code>else if</code></p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">if expression</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">{* assignment is possible as well *}
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">if ok</span><span style="color:#abb2bf;"> := </span><span style="color:#eb6772;">expression</span><span style="color:#abb2bf;">; </span><span style="color:#eb6772;">ok </span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">{{else if </span><span style="color:#eb6772;">expression</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">{{else}}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span></code></pre>
+<h3 id="block-yield-mo-ban-zu-jian">block/yield 模板组件</h3>
+<p><code>block</code> 可以定义部分模板，类似前端中 <code>components</code> 组件, 定义 <code>block</code> 片段后，使用 <code>yield</code> 调用即可渲染。</p>
+<blockquote>
+<p>jet 中包装代码块都是以 <code>{{end}}</code> 来结束。下方 <code>yield</code> 没有包装内容则不需要 <code>end</code>。</p>
+</blockquote>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="font-style:italic;color:#5f697a;">&lt;!-- 定义 命名为 copyright 的 block --&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">block copyright</span><span style="color:#abb2bf;">()}}
+</span><span style="color:#abb2bf;">  &lt;</span><span style="color:#eb6772;">div</span><span style="color:#abb2bf;">&gt;© ACME, Inc. 2018&lt;/</span><span style="color:#eb6772;">div</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">&lt;!-- 通过 &quot;yield&quot; 调用--&gt;
+</span><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">footer</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">  {{</span><span style="color:#eb6772;">yield copyright</span><span style="color:#abb2bf;">()}}
+</span><span style="color:#abb2bf;">&lt;/</span><span style="color:#eb6772;">footer</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">&lt;!-- 输出结果 --&gt;
+</span><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">footer</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">  &lt;</span><span style="color:#eb6772;">div</span><span style="color:#abb2bf;">&gt;© ACME, Inc. 2018&lt;/</span><span style="color:#eb6772;">div</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">&lt;/</span><span style="color:#eb6772;">footer</span><span style="color:#abb2bf;">&gt;
+</span></code></pre>
+<blockquote>
+<p>想要调用定义的 <code>block</code> , 需要 <code>yield</code> 和 <code>block</code> 在同级别模块中调用，可以参考 <code>Import</code> 语法来导入需要调用的 <code>block</code>。<br />
+block 中无法定义 block, block 中可以存在 yield 调用。</p>
+</blockquote>
+<p><strong>定义block</strong></p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">block inputField</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">type</span><span style="color:#db9d63;">=</span><span style="color:#9acc76;">&quot;text&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">label</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">id</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">value</span><span style="color:#db9d63;">=</span><span style="color:#9acc76;">&quot;&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">required</span><span style="color:#db9d63;">=</span><span style="color:#eb6772;">false</span><span style="color:#abb2bf;">)}}
+</span><span style="color:#abb2bf;">  &lt;</span><span style="color:#eb6772;">div </span><span style="color:#db9d63;">class=</span><span style="color:#9acc76;">&quot;form-field&quot;</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">    &lt;</span><span style="color:#eb6772;">label </span><span style="color:#db9d63;">for=</span><span style="color:#9acc76;">&quot;{{ </span><span style="color:#eb6772;">id </span><span style="color:#9acc76;">}}&quot;</span><span style="color:#abb2bf;">&gt;{{ </span><span style="color:#eb6772;">label </span><span style="color:#abb2bf;">}}&lt;/</span><span style="color:#eb6772;">label</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">    &lt;</span><span style="color:#eb6772;">input </span><span style="color:#db9d63;">type=</span><span style="color:#9acc76;">&quot;{{ </span><span style="color:#eb6772;">type </span><span style="color:#9acc76;">}}&quot; </span><span style="color:#db9d63;">value=</span><span style="color:#9acc76;">&quot;{{ </span><span style="color:#eb6772;">value </span><span style="color:#9acc76;">}}&quot; </span><span style="color:#db9d63;">id</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;{{ </span><span style="color:#eb6772;">id </span><span style="color:#9acc76;">}}&quot; </span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">if required</span><span style="color:#abb2bf;">}}required{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}} /&gt;
+</span><span style="color:#abb2bf;">  &lt;/</span><span style="color:#eb6772;">div</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span></code></pre>
+<p>定义 <code>block</code> 同函数相同，参数可以设定默认值，但参数没有顺序之分，参数默认值可以为任意表达式。</p>
+<p>参数值定义：</p>
+<ul>
+<li>全局或者局部变量</li>
+<li>函数表达式</li>
+<li>isset 定义</li>
+</ul>
+<p>block 的命名不可以为 jet 的关键词。</p>
+<p><strong>调用block</strong></p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">yield inputField</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">id</span><span style="color:#db9d63;">=</span><span style="color:#9acc76;">&quot;firstname&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">label</span><span style="color:#db9d63;">=</span><span style="color:#9acc76;">&quot;First name&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">required</span><span style="color:#db9d63;">=</span><span style="color:#eb6772;">true</span><span style="color:#abb2bf;">)}}
+</span></code></pre>
+<p>使用 yield 来调用 block ，参数没有顺序之分，单是没有默认值的参数必须提供值，否则回渲染错误。</p>
+<p>另外 block 也支持上下文 <code>context</code> 传参。</p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="font-style:italic;color:#5f697a;">&lt;!-- Define block --&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">block buff</span><span style="color:#abb2bf;">()}}
+</span><span style="color:#abb2bf;">  &lt;</span><span style="color:#eb6772;">strong</span><span style="color:#abb2bf;">&gt;{{</span><span style="color:#eb6772;">.</span><span style="color:#abb2bf;">}}&lt;/</span><span style="color:#eb6772;">strong</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">&lt;!-- Invoke &amp; provide a context --&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">yield buff</span><span style="color:#abb2bf;">() </span><span style="color:#9acc76;">&quot;Man&quot;</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">&lt;!-- Output --&gt;
+</span><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">strong</span><span style="color:#abb2bf;">&gt;Man&lt;/</span><span style="color:#eb6772;">strong</span><span style="color:#abb2bf;">&gt;
+</span></code></pre>
+<p><strong>递归调用</strong></p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="font-style:italic;color:#5f697a;">&lt;!-- Define a block which calls itself --&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">block menu</span><span style="color:#abb2bf;">()}}
+</span><span style="color:#abb2bf;">  &lt;</span><span style="color:#eb6772;">ul</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">    {{</span><span style="color:#eb6772;">range</span><span style="color:#abb2bf;"> .}}
+</span><span style="color:#abb2bf;">      &lt;</span><span style="color:#eb6772;">li</span><span style="color:#abb2bf;">&gt;{{ </span><span style="color:#eb6772;">.Text </span><span style="color:#abb2bf;">}}{{</span><span style="color:#eb6772;">if len</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">.Children</span><span style="color:#abb2bf;">)}}{{</span><span style="color:#eb6772;">yield menu</span><span style="color:#abb2bf;">() </span><span style="color:#eb6772;">.Children</span><span style="color:#abb2bf;">}}{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}&lt;/</span><span style="color:#eb6772;">li</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">    {{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">  &lt;/</span><span style="color:#eb6772;">ul</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">&lt;!-- Invoke --&gt;
+</span><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">nav</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">  {{</span><span style="color:#eb6772;">yield menu</span><span style="color:#abb2bf;">() </span><span style="color:#eb6772;">navItems</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">&lt;/</span><span style="color:#eb6772;">nav</span><span style="color:#abb2bf;">&gt;
+</span></code></pre>
+<p><strong>包装调用</strong></p>
+<p>有需要将 <code>yield</code>包装的内容直接传递到 <code>block</code> 中的情况下, 在<code>block</code>使用 <code>{{yield content}}</code>来渲染 ,即使用 <code>content</code> 作为上下文数据传递到 <code>block</code> 中 调用渲染。</p>
+<blockquote>
+<p><code>yield</code> 包含内容的时候需要 <code>{{end}}</code> 来结束<code>块</code>。</p>
+</blockquote>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="font-style:italic;color:#5f697a;">&lt;!-- Define block --&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">block link</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">target</span><span style="color:#abb2bf;">)}}
+</span><span style="color:#abb2bf;">  &lt;</span><span style="color:#eb6772;">a </span><span style="color:#db9d63;">href=</span><span style="color:#9acc76;">&quot;{{</span><span style="color:#eb6772;">target</span><span style="color:#9acc76;">}}&quot;</span><span style="color:#abb2bf;">&gt;{{</span><span style="color:#eb6772;">yield content</span><span style="color:#abb2bf;">}}&lt;/</span><span style="color:#eb6772;">a</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">&lt;!-- Invoke --&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">yield link</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">target</span><span style="color:#db9d63;">=</span><span style="color:#9acc76;">&quot;https://www.example.com&quot;</span><span style="color:#abb2bf;">) </span><span style="color:#eb6772;">content</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">  Example.com
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">&lt;!-- Output --&gt;
+</span><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">a </span><span style="color:#db9d63;">href=</span><span style="color:#9acc76;">&quot;https://www.example.com&quot;</span><span style="color:#abb2bf;">&gt;Example.com&lt;/</span><span style="color:#eb6772;">a</span><span style="color:#abb2bf;">&gt;
+</span></code></pre>
+<p>一个更加复杂的完整实例</p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="font-style:italic;color:#5f697a;">&lt;!-- Define block --&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">block cols</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">class</span><span style="color:#db9d63;">=</span><span style="color:#9acc76;">&quot;col-md-12&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">wrapInContainer</span><span style="color:#db9d63;">=</span><span style="color:#eb6772;">false</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">wrapInRow</span><span style="color:#db9d63;">=</span><span style="color:#eb6772;">true</span><span style="color:#abb2bf;">)}}
+</span><span style="color:#abb2bf;">  {{</span><span style="color:#eb6772;">if wrapInContainer</span><span style="color:#abb2bf;">}}&lt;</span><span style="color:#eb6772;">div </span><span style="color:#db9d63;">class=</span><span style="color:#9acc76;">&quot;container&quot;</span><span style="color:#abb2bf;">&gt;{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">    {{</span><span style="color:#eb6772;">if wrapInRow</span><span style="color:#abb2bf;">}}&lt;</span><span style="color:#eb6772;">div </span><span style="color:#db9d63;">class=</span><span style="color:#9acc76;">&quot;row&quot;</span><span style="color:#abb2bf;">&gt;{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">      &lt;</span><span style="color:#eb6772;">div </span><span style="color:#db9d63;">class=</span><span style="color:#9acc76;">&quot;{{ </span><span style="color:#eb6772;">class </span><span style="color:#9acc76;">}}&quot;</span><span style="color:#abb2bf;">&gt;{{</span><span style="color:#eb6772;">yield content</span><span style="color:#abb2bf;">}}&lt;/</span><span style="color:#eb6772;">div</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">    {{</span><span style="color:#eb6772;">if wrapInRow</span><span style="color:#abb2bf;">}}&lt;/</span><span style="color:#eb6772;">div</span><span style="color:#abb2bf;">&gt;{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">  {{</span><span style="color:#eb6772;">if wrapInContainer</span><span style="color:#abb2bf;">}}&lt;/</span><span style="color:#eb6772;">div</span><span style="color:#abb2bf;">&gt;{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">&lt;!-- Invoke --&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">yield cols</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">class</span><span style="color:#db9d63;">=</span><span style="color:#9acc76;">&quot;col-xs-12&quot;</span><span style="color:#abb2bf;">) </span><span style="color:#eb6772;">content</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">  &lt;</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;This content will be wrapped.&lt;/</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">&lt;!-- Output --&gt;
+</span><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">div </span><span style="color:#db9d63;">class=</span><span style="color:#9acc76;">&quot;row&quot;</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">  &lt;</span><span style="color:#eb6772;">div </span><span style="color:#db9d63;">class=</span><span style="color:#9acc76;">&quot;col-xs-12&quot;</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">    &lt;</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;This content will be wrapped.&lt;/</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">  &lt;/</span><span style="color:#eb6772;">div</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">&lt;/</span><span style="color:#eb6772;">div</span><span style="color:#abb2bf;">&gt;
+</span></code></pre>
+<blockquote>
+<p>这种上下文传递的方式比参数传输性能更好，在第一次调用渲染的时候就已经缓存处理，block中调用就不需要额外的处理了。</p>
+</blockquote>
+<p><strong>同时定义和调用</strong></p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">block pageHeader</span><span style="color:#abb2bf;">() </span><span style="color:#eb6772;">.Header</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">  {{ </span><span style="color:#eb6772;">.Title </span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span></code></pre>
+<p>这是一种表达式定义上下文的一种方式。</p>
+<h3 id="include-sheng-ming">include 声明</h3>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">include filepath context</span><span style="color:#abb2bf;">}}
+</span></code></pre>
+<p><code>include</code> 和其他的模板语言类似，都是将模板文件插入到现有的模板中，可以使用全局和局部的变量，类似将代码块存放到特定的文件中。 <code>include</code> 最后的参数可以传递上下文。</p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="font-style:italic;color:#5f697a;">&lt;!-- file: &quot;views/users/_user.jet&quot; --&gt;
+</span><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">div </span><span style="color:#db9d63;">class=</span><span style="color:#9acc76;">&quot;user&quot;</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">  {{ </span><span style="color:#eb6772;">.Firstname </span><span style="color:#abb2bf;">}} {{ </span><span style="color:#eb6772;">.Lastname </span><span style="color:#abb2bf;">}}: {{ </span><span style="color:#eb6772;">.Email </span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">&lt;/</span><span style="color:#eb6772;">div</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">&lt;!-- file: &quot;views/users/index.jet&quot; --&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">range user</span><span style="color:#abb2bf;"> := </span><span style="color:#eb6772;">users</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">  {{</span><span style="color:#eb6772;">include </span><span style="color:#9acc76;">&quot;users/_user.jet&quot; </span><span style="color:#eb6772;">user</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span></code></pre>
+<p><strong>IncludeIfExists</strong></p>
+<p>当不确认要插入的模板存在与否，可以使用 <code>IncludeIfExists</code> 代码块来使用</p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">if ok</span><span style="color:#abb2bf;"> := </span><span style="color:#eb6772;">includeIfExists</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;sidebars/&quot;</span><span style="color:#abb2bf;">+</span><span style="color:#eb6772;">user.ID</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">user</span><span style="color:#abb2bf;">); !</span><span style="color:#eb6772;">ok</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;The template does not exist.&lt;/</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span></code></pre>
+<h3 id="import-sheng-ming">import 声明</h3>
+<p><code>import</code> 用来导入已经定义的 <code>block</code> 来渲染当前的模板。</p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="font-style:italic;color:#5f697a;">&lt;!-- file: &quot;views/common/_menu.jet&quot; --&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">block menu</span><span style="color:#abb2bf;">()}}
+</span><span style="color:#abb2bf;">  &lt;</span><span style="color:#eb6772;">ul</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">    {{</span><span style="color:#eb6772;">range</span><span style="color:#abb2bf;"> .}}
+</span><span style="color:#abb2bf;">      &lt;</span><span style="color:#eb6772;">li</span><span style="color:#abb2bf;">&gt;{{ </span><span style="color:#eb6772;">.Text </span><span style="color:#abb2bf;">}}{{</span><span style="color:#eb6772;">if len</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">.Children</span><span style="color:#abb2bf;">)}}{{</span><span style="color:#eb6772;">yield menu</span><span style="color:#abb2bf;">() </span><span style="color:#eb6772;">.Children</span><span style="color:#abb2bf;">}}{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}&lt;/</span><span style="color:#eb6772;">li</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">    {{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">  &lt;/</span><span style="color:#eb6772;">ul</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">&lt;!-- file: &quot;views/home.jet&quot; --&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">import </span><span style="color:#9acc76;">&quot;common/_menu.jet&quot;</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">yield menu</span><span style="color:#abb2bf;">() </span><span style="color:#eb6772;">navItems</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">main</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">  Content.
+</span><span style="color:#abb2bf;">&lt;/</span><span style="color:#eb6772;">main</span><span style="color:#abb2bf;">&gt;
+</span></code></pre>
+<blockquote>
+<p>利用 import 和 include 基本上就组成了组件系统，用 block 来定义组件，yield 渲染，即可完成多数的功能。</p>
+</blockquote>
+<h3 id="extends-sheng-ming">extends 声明</h3>
+<p>extends 扩展模板，用来布局使用。可以理解为模板文件A 在 extend 另一个模板文件B的时候，基本继承B的布局结构。 实际上是 B 来渲染 A。</p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="font-style:italic;color:#5f697a;">&lt;!-- file: &quot;views/layouts/application.jet&quot; --&gt;
+</span><span style="color:#abb2bf;">&lt;!</span><span style="color:#eb6772;">DOCTYPE</span><span style="color:#abb2bf;"> html&gt;
+</span><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">html</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">  &lt;</span><span style="color:#eb6772;">head</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">    &lt;</span><span style="color:#eb6772;">title</span><span style="color:#abb2bf;">&gt;{{</span><span style="color:#eb6772;">yield title</span><span style="color:#abb2bf;">()}}&lt;/</span><span style="color:#eb6772;">title</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">  &lt;/</span><span style="color:#eb6772;">head</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">  &lt;</span><span style="color:#eb6772;">body</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">    {{</span><span style="color:#eb6772;">yield body</span><span style="color:#abb2bf;">()}}
+</span><span style="color:#abb2bf;">  &lt;/</span><span style="color:#eb6772;">body</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">&lt;/</span><span style="color:#eb6772;">html</span><span style="color:#abb2bf;">&gt;
+</span></code></pre>
+<p>使用该布局，则需要为该布局的 yield 实现 block。</p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="font-style:italic;color:#5f697a;">&lt;!-- file: &quot;views/home.jet&quot; --&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">extends </span><span style="color:#9acc76;">&quot;layouts/application.jet&quot;</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">block title</span><span style="color:#abb2bf;">()}}My title{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">block body</span><span style="color:#abb2bf;">()}}
+</span><span style="color:#abb2bf;">  &lt;</span><span style="color:#eb6772;">main</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">    This content will be yielded in the layout above.
+</span><span style="color:#abb2bf;">  &lt;/</span><span style="color:#eb6772;">main</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span></code></pre>
+<p>继承了布局，意味只能继承一个模板，在实际应用的时候可以扩展多层模板来满足需要。</p>
+<h3 id="mo-ban-xiang-dui-lu-jing-cha-zhao">模板相对路径查找</h3>
+<p>模板中 <code>include/import/extends</code> 参数跟随的是 jet 模板文件路径，其查找方式根据当前模板文件的相对路径文件进行查找。</p>
+<pre data-lang="handlebars" style="background-color:#2b303b;color:#6c7079;" class="language-handlebars "><code class="language-handlebars" data-lang="handlebars"><span style="font-style:italic;color:#5f697a;">&lt;!-- file: &quot;views/auth/_logo.jet&quot; --&gt;
+</span><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">img </span><span style="color:#db9d63;">src=</span><span style="color:#9acc76;">&quot;{{ </span><span style="color:#eb6772;">.LogoURL </span><span style="color:#9acc76;">}}&quot;</span><span style="color:#abb2bf;"> /&gt;
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">&lt;!-- file: &quot;views/auth/login.jet&quot; --&gt;
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">extends </span><span style="color:#9acc76;">&quot;layouts/application.jet&quot;</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">block body</span><span style="color:#abb2bf;">()}}
+</span><span style="color:#abb2bf;">  {{</span><span style="color:#eb6772;">include </span><span style="color:#9acc76;">&quot;_logo&quot; </span><span style="color:#eb6772;">company</span><span style="color:#abb2bf;">}}
+</span><span style="color:#abb2bf;">{{</span><span style="color:#eb6772;">end</span><span style="color:#abb2bf;">}}
+</span></code></pre>
+<p>如果文件名称后缀为<code>.jet</code>,<code>.html.jet</code> 或 <code>.html.jet</code> 可以省略模板的后缀文件。</p>
+<h2 id="nei-zhi-han-shu">内置函数</h2>
+<p>jet 模板提供了一些基本的模板函数。</p>
+<p><strong>isset</strong>()</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">isset(var) // variables
+</span><span style="color:#abb2bf;">isset(.var) // struct
+</span><span style="color:#abb2bf;">isset(.[&quot;key&quot;])  // map
+</span></code></pre>
+<p><strong>len</strong>()</p>
+<p>计算元素长度， 适用于 arrays, channels, slices, maps, and strings. 如果是 struct 则返回字段数量。</p>
+<p><strong>String</strong></p>
+<ul>
+<li>lower (strings.ToLower)</li>
+<li>upper (strings.ToUpper)</li>
+<li>hasPrefix (strings.HasPrefix)</li>
+<li>hasSuffix (strings.HasSuffix)</li>
+<li>repeat (strings.Repeat)</li>
+<li>replace (strings.Replace)</li>
+<li>split (strings.Split)</li>
+<li>trimSpace (strings.TrimSpace)</li>
+</ul>
+<p><strong>其他</strong></p>
+<ul>
+<li>html (html.EscapeString)</li>
+<li>url (url.QueryEscape)</li>
+<li>safeHtml (escape HTML)</li>
+<li>safeJs (escape JavaScript)</li>
+<li>raw, unsafe (no escaping)</li>
+<li>writeJson, json to dump variables as JSON strings</li>
+<li>map: map(key1, value1, key2, value2) – use with caution because accessing these is slow when used with lots of elements and checked/read in loops.</li>
+</ul>
+<h2 id="kuo-zhan-he-zi-ding-yi">扩展和自定义</h2>
+<h3 id="han-shu-ding-yi">函数定义</h3>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#eb6772;">views</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">AddGlobalFunc</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;base64&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#cd74e8;">func</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">args jet</span><span style="color:#abb2bf;">.</span><span style="color:#cd74e8;">Arguments</span><span style="color:#abb2bf;">) </span><span style="color:#eb6772;">reflect</span><span style="color:#abb2bf;">.</span><span style="color:#cd74e8;">Value </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">args</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">RequireNumOfArguments</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;base64&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">buffer </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">bytes</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">NewBuffer</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">nil</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">fmt</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Fprint</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">buffer</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">args</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Get</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">))
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">return </span><span style="color:#eb6772;">reflect</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">ValueOf</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">base64</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">URLEncoding</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">EncodeToString</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">buffer</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Bytes</span><span style="color:#abb2bf;">()))
+</span><span style="color:#abb2bf;">})
+</span></code></pre>
+<p>定义快速函数，参数由 <code>args.RequireNumOfArguments</code> 来定义函数参数的长度, <code>0</code> 不限制。参数获取使用index索引 <code>args.Get(index)</code> 获取。</p>
+<p>另外可以扩展的部分还有</p>
+<ul>
+<li><code>jet.Ranger</code></li>
+<li><code>jet.Renderer</code></li>
+<li><code>SafeWriter</code></li>
+</ul>
+<p>模板变量保护互斥锁处理，可以<a href="https://github.com/CloudyKit/jet/wiki/Appendix:-Mutex-Protected-Variable-Map">参考官方文档</a></p>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;go-jet&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;go-jet&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2020-03-03
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;soft-rx&#x2F;">
+    <i class="icon icon-left-open"></i>
+    rx 像素编辑器</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;search&#x2F;">
+    搜索
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-light" href="//erasin.wang/categories/golang/">golang</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-primary" href="//erasin.wang/tags/golang/">golang</a>
+
+
+
+<a class="tag is-success" href="//erasin.wang/tags/template/">template</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="kai-shi" href="//erasin.wang/go-jet/#kai-shi">开始</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="mo-ban-xuan-ran" href="//erasin.wang/go-jet/#mo-ban-xuan-ran">模板渲染</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="yu-fa-gui-ze" href="//erasin.wang/go-jet/#yu-fa-gui-ze">语法规则</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="she-ding" href="//erasin.wang/go-jet/#she-ding">设定</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="mo-ban-shu-chu" href="//erasin.wang/go-jet/#mo-ban-shu-chu">模板输出</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="biao-da-shi-expressions" href="//erasin.wang/go-jet/#biao-da-shi-expressions">表达式 Expressions</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="bian-li-shu-ju-traversing-data" href="//erasin.wang/go-jet/#bian-li-shu-ju-traversing-data">遍历数据 Traversing Data</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="kong-zhi-jie-gou" href="//erasin.wang/go-jet/#kong-zhi-jie-gou">控制结构</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="block-yield-mo-ban-zu-jian" href="//erasin.wang/go-jet/#block-yield-mo-ban-zu-jian">block&#x2F;yield 模板组件</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="include-sheng-ming" href="//erasin.wang/go-jet/#include-sheng-ming">include 声明</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="import-sheng-ming" href="//erasin.wang/go-jet/#import-sheng-ming">import 声明</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="extends-sheng-ming" href="//erasin.wang/go-jet/#extends-sheng-ming">extends 声明</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="mo-ban-xiang-dui-lu-jing-cha-zhao" href="//erasin.wang/go-jet/#mo-ban-xiang-dui-lu-jing-cha-zhao">模板相对路径查找</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="nei-zhi-han-shu" href="//erasin.wang/go-jet/#nei-zhi-han-shu">内置函数</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="kuo-zhan-he-zi-ding-yi" href="//erasin.wang/go-jet/#kuo-zhan-he-zi-ding-yi">扩展和自定义</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="han-shu-ding-yi" href="//erasin.wang/go-jet/#han-shu-ding-yi">函数定义</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

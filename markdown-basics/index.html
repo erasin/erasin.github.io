@@ -1,0 +1,623 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  markdown 基础 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="" property="description" />
+
+  
+    <meta content="markdown" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+    
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> markdown 基础 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      MARKDOWN 基础
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2021-01-19
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <h1 id="markdown-zhong-wen-ji-chu-jiao-cheng-wen-dang">Markdown 中文基础教程文档</h1>
+<p>本文来自于：<a href="http://daringfireball.net/projects/markdown/basics">Markdown basics</a></p>
+<p>使用转换工具：<a href="http://michelf.com/projects/php-markdown/dingus/" title="Markdown 转换html工具"> Php Markdown Dingus</a></p>
+<p>使用markdown插件：<a href="http://michelf.com/projects/php-markdown/" title="wordpress Markdown plugin 插件"> Php Markdown </a></p>
+<h2 id="duan-luo-paragraphs-huan-xing-br-biao-ti-headers-yin-yong-kuai-blockquotes">段落 Paragraphs,换行 br 标题 Headers , 引用块 Blockquotes</h2>
+<p>一个<strong>段落</strong>(<code>&lt;p&gt;</code>)是一行活多行文字和一个空行来表示，并且段落开始位置没有空白缩进和空格。</p>
+<p><strong>换行符</strong>（<code>&lt;br&gt;</code>）在文字的末尾处使用双空格或多空格，并且下一行非空行。</p>
+<p>对于标题(<code>&lt;h1~2&gt;</code>)，Markdown 提供了两种方式 <em>Setext</em> 和 <em>atx</em></p>
+<p><strong>Setext-style样式</strong> 使用平衡符号‘========’ 和‘-----------’放在标题文字的下方分别来表示标题1和标题2</p>
+<p><strong>atx-style</strong> 则使用相应个数的‘<code>#</code>’（marks）来标记开始和结束标题文本来对应标题1到标题6.</p>
+<p><strong>引用块</strong>(<code>&lt;blockquote&gt;</code>) email-style '<code>&gt;</code>' angle brackets.</p>
+<span id="continue-reading"></span>
+<p>Markdown:</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#6c7079;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="color:#abb2bf;"> 标题1级别
+</span><span style="color:#abb2bf;"> ====================
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"> 标题2界别
+</span><span style="background-color:#515151;color:#adb7c9;"> ---------------------
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">  这只是一个普通的段落，下面是个空行
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"> #标题1#
+</span><span style="color:#abb2bf;"> ##标题2##
+</span><span style="color:#abb2bf;"> ###标题3###
+</span><span style="color:#abb2bf;">
+</span><span style="color:#db9d63;"> &gt; 这是一个引用块blockquote.
+</span><span style="color:#db9d63;"> &gt; 
+</span><span style="color:#db9d63;"> &gt; 块中的第二个引用段落.
+</span><span style="color:#db9d63;"> &gt;
+</span><span style="color:#db9d63;"> &gt; </span><span style="color:#5cb3fa;">##也可以使用标题##
+</span></code></pre>
+<p>Output:</p>
+<pre data-lang="html" style="background-color:#2b303b;color:#6c7079;" class="language-html "><code class="language-html" data-lang="html"><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">h1</span><span style="color:#abb2bf;">&gt;标题1级别&lt;/</span><span style="color:#eb6772;">h1</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">h2</span><span style="color:#abb2bf;">&gt;标题2界别&lt;/</span><span style="color:#eb6772;">h2</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;这只是一个普通的段落，下面是个空行&lt;/</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">h1</span><span style="color:#abb2bf;">&gt;标题1&lt;/</span><span style="color:#eb6772;">h1</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">h2</span><span style="color:#abb2bf;">&gt;标题2&lt;/</span><span style="color:#eb6772;">h2</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">h3</span><span style="color:#abb2bf;">&gt;标题3&lt;/</span><span style="color:#eb6772;">h3</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">blockquote</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">   &lt;</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;这是一个引用块blockquote.&lt;/</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">   &lt;</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;块中的第二个引用段落.&lt;/</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">   &lt;</span><span style="color:#eb6772;">h2</span><span style="color:#abb2bf;">&gt;也可以使用标题&lt;/</span><span style="color:#eb6772;">h2</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;"> &lt;/</span><span style="color:#eb6772;">blockquote</span><span style="color:#abb2bf;">&gt;
+</span></code></pre>
+<h2 id="phrase-emphasis-jia-qiang-yu-qi">Phrase Emphasis 加强语气</h2>
+<p>Markdown 使用**星号(<code>*</code>)**来表示加强语气<code>&lt;strong&gt;</code>和斜体字<code>&lt;em&gt;</code></p>
+<p>Markdown:</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#6c7079;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="color:#abb2bf;"> 单星号斜体 *斜体字符*.
+</span><span style="color:#abb2bf;"> 或者单下划线 _一样的斜体字符_.
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"> 使用双星号加粗 **强调语气**.
+</span><span style="color:#abb2bf;"> 或者 __使用双下划线加粗__.
+</span></code></pre>
+<p>Output:</p>
+<pre data-lang="html" style="background-color:#2b303b;color:#6c7079;" class="language-html "><code class="language-html" data-lang="html"><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;Some of these words &lt;</span><span style="color:#eb6772;">em</span><span style="color:#abb2bf;">&gt;斜体字符&lt;/</span><span style="color:#eb6772;">em</span><span style="color:#abb2bf;">&gt;.
+</span><span style="color:#abb2bf;"> 或者单下划线&lt;</span><span style="color:#eb6772;">em</span><span style="color:#abb2bf;">&gt;一样的斜体字符&lt;/</span><span style="color:#eb6772;">em</span><span style="color:#abb2bf;">&gt;.&lt;/</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;使用双星号加粗 &lt;</span><span style="color:#eb6772;">strong</span><span style="color:#abb2bf;">&gt;强调语气&lt;/</span><span style="color:#eb6772;">strong</span><span style="color:#abb2bf;">&gt;.
+</span><span style="color:#abb2bf;"> 或者 &lt;</span><span style="color:#eb6772;">strong</span><span style="color:#abb2bf;">&gt;使用双下划线加粗&lt;/</span><span style="color:#eb6772;">strong</span><span style="color:#abb2bf;">&gt;.&lt;/</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;
+</span></code></pre>
+<h2 id="lists-lie-biao">Lists 列表</h2>
+<p><strong>无序列表</strong>使用 (<code>*</code>,<code>+</code>, 和 <code>-</code>) 后加上空格 来标记列表内容，例如:</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#6c7079;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="color:#eb6772;"> *   Candy.
+</span><span style="color:#eb6772;"> *   Gum.
+</span><span style="color:#eb6772;"> *   Booze.
+</span></code></pre>
+<p>和:</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#6c7079;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="color:#eb6772;"> +   Candy.
+</span><span style="color:#eb6772;"> +   Gum.
+</span><span style="color:#eb6772;"> +   Booze.
+</span></code></pre>
+<p>和:</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#6c7079;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="color:#eb6772;"> -   Candy.
+</span><span style="color:#eb6772;"> -   Gum.
+</span><span style="color:#eb6772;"> -   Booze.
+</span></code></pre>
+<p>结果都为无序列表:</p>
+<pre data-lang="html" style="background-color:#2b303b;color:#6c7079;" class="language-html "><code class="language-html" data-lang="html"><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">ul</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">li</span><span style="color:#abb2bf;">&gt;Candy.&lt;/</span><span style="color:#eb6772;">li</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">li</span><span style="color:#abb2bf;">&gt;Gum.&lt;/</span><span style="color:#eb6772;">li</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">li</span><span style="color:#abb2bf;">&gt;Booze.&lt;/</span><span style="color:#eb6772;">li</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;"> &lt;/</span><span style="color:#eb6772;">ul</span><span style="color:#abb2bf;">&gt;
+</span></code></pre>
+<p>使用<strong>数字加英文标点加空格</strong> 来标记<strong>有序列表</strong>的内容:</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#6c7079;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="color:#eb6772;"> 1.  Red
+</span><span style="color:#eb6772;"> 2.  Green
+</span><span style="color:#eb6772;"> 3.  Blue
+</span></code></pre>
+<p>Output:</p>
+<pre data-lang="html" style="background-color:#2b303b;color:#6c7079;" class="language-html "><code class="language-html" data-lang="html"><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">ol</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">li</span><span style="color:#abb2bf;">&gt;Red&lt;/</span><span style="color:#eb6772;">li</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">li</span><span style="color:#abb2bf;">&gt;Green&lt;/</span><span style="color:#eb6772;">li</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">li</span><span style="color:#abb2bf;">&gt;Blue&lt;/</span><span style="color:#eb6772;">li</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;"> &lt;/</span><span style="color:#eb6772;">ol</span><span style="color:#abb2bf;">&gt;
+</span></code></pre>
+<p>如果一个列表内容包含多个段落的时候第二段落前使用<strong>4格空格或者1个缩进</strong>符即可。</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#6c7079;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="color:#eb6772;"> *   一个列表项目.
+</span><span style="color:#eb6772;">
+</span><span style="color:#eb6772;">     包含多个段落.
+</span><span style="color:#eb6772;">
+</span><span style="color:#eb6772;"> *   另外一个列表内容.
+</span></code></pre>
+<p>Output:</p>
+<pre data-lang="html" style="background-color:#2b303b;color:#6c7079;" class="language-html "><code class="language-html" data-lang="html"><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">ul</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">li</span><span style="color:#abb2bf;">&gt;&lt;</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;一个列表项目.&lt;/</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;包含多个段落.&lt;/</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;&lt;/</span><span style="color:#eb6772;">li</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">li</span><span style="color:#abb2bf;">&gt;&lt;</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;另外一个列表内容.&lt;/</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;&lt;/</span><span style="color:#eb6772;">li</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;"> &lt;/</span><span style="color:#eb6772;">ul</span><span style="color:#abb2bf;">&gt;
+</span></code></pre>
+<p>多级表的列表表示方法和列表项目包含段落相同。</p>
+<h2 id="links-lian-jie">Links 链接</h2>
+<p>Markdown 为链接提供了2种方式输出 <em>inline 内嵌式</em> 和 <em>reference 参考式</em></p>
+<p><strong>内嵌样式</strong>表示方法为 中括号标记显示的链接文本，中括号后紧跟括号包括的链接，如果链接有title属性，在链接后使用空格+"title属性"即可。</p>
+<p>例如：</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#6c7079;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="color:#abb2bf;"> 连接到[百度](http://www.baidu.com/)吧!  
+</span><span style="color:#abb2bf;"> 连接到[百度](http://www.baidu.com/ &quot;百度是拥有中国市场最大的搜索引擎&quot;)吧!  
+</span></code></pre>
+<p>输出样式为:</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#6c7079;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;连接到&lt;</span><span style="color:#eb6772;">a </span><span style="color:#db9d63;">href</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;http://example.com/&quot;</span><span style="color:#abb2bf;">&gt;百度&lt;/</span><span style="color:#eb6772;">a</span><span style="color:#abb2bf;">&gt;吧!&lt;</span><span style="color:#eb6772;">br</span><span style="color:#abb2bf;">/&gt;
+</span><span style="color:#abb2bf;"> 连接到&lt;</span><span style="color:#eb6772;">a </span><span style="color:#db9d63;">href</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;http://example.com/&quot; </span><span style="color:#db9d63;">title</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;百度是拥有中国市场最大的搜索引擎&quot;</span><span style="color:#abb2bf;">&gt;百度&lt;/</span><span style="color:#eb6772;">a</span><span style="color:#abb2bf;">&gt;吧!&lt;/</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;
+</span></code></pre>
+<p><strong>参考样式</strong>，我觉得称为引用样式更好些，一般应用于当多个不同位置地址相同的链接。</p>
+<p>使用的方法为,制作一个链接辞典列表，之后使用中括号引用。</p>
+<p>Markdown：</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#6c7079;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="color:#abb2bf;"> 搜索的结果上 [Google][1] 要比 [Yahoo][2] 和 [MSN][3] 好的多，不过在中国，[百度][baidu]更加稳定一些.
+</span><span style="color:#abb2bf;">
+</span><span style="color:#db9d63;"> [1]:http://google.com/         </span><span style="color:#eb6772;">&quot;Google&quot;
+</span><span style="color:#db9d63;"> [2]:http://search.yahoo.com/  </span><span style="color:#eb6772;">&quot;Yahoo Search&quot;
+</span><span style="color:#db9d63;"> [3]:http://search.msn.com/     </span><span style="color:#eb6772;">&quot;MSN Search&quot;
+</span><span style="color:#db9d63;"> [baidu]:http://www.baidu.com/     </span><span style="color:#eb6772;">&quot;百度引擎&quot;
+</span></code></pre>
+<p>输出:</p>
+<pre data-lang="html" style="background-color:#2b303b;color:#6c7079;" class="language-html "><code class="language-html" data-lang="html"><span style="color:#abb2bf;"> 搜索的结果上 &lt;</span><span style="color:#eb6772;">a </span><span style="color:#db9d63;">href</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;http://google.com/&quot;</span><span style="color:#db9d63;">title</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;Google&quot;</span><span style="color:#abb2bf;">&gt;Google&lt;/</span><span style="color:#eb6772;">a</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;"> than from &lt;</span><span style="color:#eb6772;">a </span><span style="color:#db9d63;">href</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;http://search.yahoo.com/&quot;</span><span style="color:#db9d63;">title</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;Yahoo Search&quot;</span><span style="color:#abb2bf;">&gt;Yahoo&lt;/</span><span style="color:#eb6772;">a</span><span style="color:#abb2bf;">&gt; 
+</span><span style="color:#abb2bf;"> 和 &lt;</span><span style="color:#eb6772;">a </span><span style="color:#db9d63;">href</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;http://search.msn.com/&quot; </span><span style="color:#db9d63;">title</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;MSN Search&quot;</span><span style="color:#abb2bf;">&gt;MSN&lt;/</span><span style="color:#eb6772;">a</span><span style="color:#abb2bf;">&gt; 好的多，
+</span><span style="color:#abb2bf;"> 不过在中国，&lt;</span><span style="color:#eb6772;">a </span><span style="color:#db9d63;">href</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;http://www.baidu.com/&quot; </span><span style="color:#db9d63;">title</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;百度引擎&quot;</span><span style="color:#abb2bf;">&gt;百度&lt;/</span><span style="color:#eb6772;">a</span><span style="color:#abb2bf;">&gt;更加稳定一些.
+</span></code></pre>
+<p>引用辞典中id可以包含数字，英文和空格，但是在使用包含空格中不对其敏感。</p>
+<h2 id="images-tu-pian">Images 图片</h2>
+<p>图片的使用基本上和链接相似，在中括号前添加了<strong>叹号(<code>!</code>)</strong>。</p>
+<p>内联样式:</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#6c7079;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="color:#abb2bf;"> ![alt 替代文本](/path/to/img.jpg &quot;Title 标题文本&quot;)
+</span></code></pre>
+<p>参考样式:</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#6c7079;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="color:#abb2bf;"> ![alt 替代文本][id]
+</span><span style="color:#abb2bf;">
+</span><span style="color:#db9d63;"> [id]: /path/to/img.jpg </span><span style="color:#eb6772;">&quot;标题文本&quot;
+</span></code></pre>
+<p>上面两种输出的结果都为</p>
+<pre data-lang="html" style="background-color:#2b303b;color:#6c7079;" class="language-html "><code class="language-html" data-lang="html"><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">img </span><span style="color:#db9d63;">src</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;/path/to/img.jpg&quot; </span><span style="color:#db9d63;">alt</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;alt 替代文本&quot; </span><span style="color:#db9d63;">title</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;Title 标题文本&quot; </span><span style="color:#abb2bf;">/&gt;
+</span></code></pre>
+<h2 id="code-dai-ma">Code 代码</h2>
+<p>在常规的段落中使用 <strong>反引号</strong> 标记包括文字，可以将任意符号转换为实体字符比如 (<code># &amp; &gt;</code>);这样更为方便了html代码的输出。</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#6c7079;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="color:#abb2bf;"> 我强力的建议在markdown中不要使用任何 `&lt;blink&gt;` 标记.
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"> 显示实体字符 `&amp;mdash;`
+</span><span style="color:#abb2bf;"> 使用十进制的实体 `&amp;#8212;`.
+</span></code></pre>
+<p>输出:</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#6c7079;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;我强力的建议在markdown中不要使用任何&lt;</span><span style="color:#eb6772;">code</span><span style="color:#abb2bf;">&gt;</span><span style="color:#db9d63;">&amp;lt;</span><span style="color:#abb2bf;">blink</span><span style="color:#db9d63;">&amp;gt;</span><span style="color:#abb2bf;">&lt;/</span><span style="color:#eb6772;">code</span><span style="color:#abb2bf;">&gt; tags.&lt;/</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;显示实体字符&lt;</span><span style="color:#eb6772;">code</span><span style="color:#abb2bf;">&gt;</span><span style="color:#db9d63;">&amp;amp;</span><span style="color:#abb2bf;">mdash;&lt;/</span><span style="color:#eb6772;">code</span><span style="color:#abb2bf;">&gt; 
+</span><span style="color:#abb2bf;"> 使用十进制的实体 &lt;</span><span style="color:#eb6772;">code</span><span style="color:#abb2bf;">&gt;</span><span style="color:#db9d63;">&amp;amp;</span><span style="color:#abb2bf;">#8212;&lt;/</span><span style="color:#eb6772;">code</span><span style="color:#abb2bf;">&gt;.&lt;/</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;
+</span></code></pre>
+<p>如果使用<strong>预格式化标签</strong><code>&lt;pre&gt;</code>则是在每一行文字前添加<strong>4格空格</strong>或者1一个缩进符，默认会将实体字符自动转化。</p>
+<p>Markdown:</p>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#6c7079;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="color:#abb2bf;"> If you want your page to validate under XHTML 1.0 Strict,
+</span><span style="color:#abb2bf;"> you&#39;ve got to put paragraph tags in your blockquotes:
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">     &lt;blockquote&gt;
+</span><span style="color:#abb2bf;">          &lt;p&gt;For example.&lt;/p&gt;
+</span><span style="color:#abb2bf;">     &lt;/blockquote&gt;
+</span></code></pre>
+<p>Output:</p>
+<pre data-lang="html" style="background-color:#2b303b;color:#6c7079;" class="language-html "><code class="language-html" data-lang="html"><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;If you want your page to validate under XHTML 1.0 Strict,
+</span><span style="color:#abb2bf;"> you&#39;ve got to put paragraph tags in your blockquotes:&lt;/</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"> &lt;</span><span style="color:#eb6772;">pre</span><span style="color:#abb2bf;">&gt;&lt;</span><span style="color:#eb6772;">code</span><span style="color:#abb2bf;">&gt;</span><span style="color:#db9d63;">&amp;lt;</span><span style="color:#abb2bf;">blockquote</span><span style="color:#db9d63;">&amp;gt;
+</span><span style="color:#abb2bf;">     </span><span style="color:#db9d63;">&amp;lt;</span><span style="color:#abb2bf;">p</span><span style="color:#db9d63;">&amp;gt;</span><span style="color:#abb2bf;">For example.</span><span style="color:#db9d63;">&amp;lt;</span><span style="color:#abb2bf;">/p</span><span style="color:#db9d63;">&amp;gt;
+</span><span style="color:#abb2bf;"> </span><span style="color:#db9d63;">&amp;lt;</span><span style="color:#abb2bf;">/blockquote</span><span style="color:#db9d63;">&amp;gt;
+</span><span style="color:#abb2bf;"> &lt;/</span><span style="color:#eb6772;">code</span><span style="color:#abb2bf;">&gt;&lt;/</span><span style="color:#eb6772;">pre</span><span style="color:#abb2bf;">&gt;
+</span></code></pre>
+<h3 id="qi-ta">其他</h3>
+<p>使用 星号空格星号空格星号空格 <code>( * * * )</code>多个可以输出 <code>&lt;hr&gt;</code></p>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;markdown-basics&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;markdown-basics&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2021-01-19
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;books&#x2F;">
+    <i class="icon icon-left-open"></i>
+    开源书籍镜像</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;soft-caddy2&#x2F;">
+    Caddy2
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+<div class="no-print">
+  
+  <script src="https://giscus.app/client.js" data-repo="erasin/erasin.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnk3MzE0Mzg3Mw==" data-category="article" data-category-id="" data-mapping="pathname"
+    data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light"
+    data-lang="zh-CN" crossorigin="anonymous" async>
+    </script>
+  <style>
+    .utterances {
+      max-width: initial;
+    }
+  </style>
+  
+  
+</div>
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-black" href="//erasin.wang/categories/markdown/">markdown</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-light" href="//erasin.wang/tags/markdown/">markdown</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="markdown-zhong-wen-ji-chu-jiao-cheng-wen-dang" href="//erasin.wang/markdown-basics/#markdown-zhong-wen-ji-chu-jiao-cheng-wen-dang">Markdown 中文基础教程文档</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="duan-luo-paragraphs-huan-xing-br-biao-ti-headers-yin-yong-kuai-blockquotes" href="//erasin.wang/markdown-basics/#duan-luo-paragraphs-huan-xing-br-biao-ti-headers-yin-yong-kuai-blockquotes">段落 Paragraphs,换行 br 标题 Headers , 引用块 Blockquotes</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="phrase-emphasis-jia-qiang-yu-qi" href="//erasin.wang/markdown-basics/#phrase-emphasis-jia-qiang-yu-qi">Phrase Emphasis 加强语气</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="lists-lie-biao" href="//erasin.wang/markdown-basics/#lists-lie-biao">Lists 列表</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="links-lian-jie" href="//erasin.wang/markdown-basics/#links-lian-jie">Links 链接</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="images-tu-pian" href="//erasin.wang/markdown-basics/#images-tu-pian">Images 图片</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="code-dai-ma" href="//erasin.wang/markdown-basics/#code-dai-ma">Code 代码</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,737 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  Godot 学习路径 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="Godot引擎的路线: 以下是一个基本的学习路径，以帮助你开始使用Godot进行游戏开发" property="description" />
+
+  
+    <meta content="game,godot" name="keywords" />
+  
+
+  
+
+  
+    
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> Godot 学习路径 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      GODOT 学习路径
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2023-06-30
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <p>Godot引擎的路线: 以下是一个基本的学习路径，以帮助你开始使用Godot进行游戏开发：</p>
+<ol>
+<li>
+<p>学习基础知识：</p>
+<ul>
+<li>了解Godot引擎的基本概念和术语，例如场景、节点和脚本等。</li>
+<li>学习Godot的用户界面，包括编辑器的各个部分和常用工具。</li>
+</ul>
+</li>
+<li>
+<p>掌握场景和节点：</p>
+<ul>
+<li>理解场景和节点的概念，以及它们之间的层次结构关系。</li>
+<li>学习如何创建、组织和管理场景中的节点。</li>
+<li>实践使用不同类型的节点，例如精灵、碰撞体和摄像机等。</li>
+</ul>
+</li>
+<li>
+<p>使用GDScript进行编程：</p>
+<ul>
+<li>学习Godot的脚本语言GDScript，它类似于Python。</li>
+<li>了解GDScript的语法、变量、控制流和函数等基本概念。</li>
+<li>实践使用GDScript编写简单的脚本来控制游戏对象的行为。</li>
+</ul>
+</li>
+<li>
+<p>掌握游戏逻辑和交互：</p>
+<ul>
+<li>学习如何处理用户输入，例如键盘、鼠标和触摸屏等。</li>
+<li>掌握游戏逻辑的设计和实现，例如角色移动、敌人行为和碰撞检测等。</li>
+<li>实践创建简单的游戏场景，并实现基本的玩法和交互。</li>
+</ul>
+</li>
+<li>
+<p>图形和动画效果：</p>
+<ul>
+<li>学习使用Godot的绘图工具和特效来创建游戏中的图形和动画效果。</li>
+<li>了解如何加载和渲染纹理、精灵和动画等资源。</li>
+<li>实践创建各种图形效果，如粒子效果、渐变和过渡动画等。</li>
+</ul>
+</li>
+<li>
+<p>音频和音效：</p>
+<ul>
+<li>学习如何在游戏中添加音频和音效。</li>
+<li>掌握Godot的音频系统，包括音乐、声音效果和音频管理等方面。</li>
+<li>实践将音频资源添加到游戏中，并实现音频的播放和控制。</li>
+</ul>
+</li>
+<li>
+<p>游戏发布和部署：</p>
+<ul>
+<li>学习如何将游戏打包并发布到不同平台，如Windows、Mac、Linux和移动设备等。</li>
+<li>了解发布过程中的常见问题和最佳实践。</li>
+<li>实践将你的游戏导出并在目标平台上进行测试和部署。</li>
+</ul>
+</li>
+</ol>
+<span id="continue-reading"></span>
+<p>当你按照这个学习路径逐步学习和实践时，你将逐渐掌握Godot引擎的基本功能</p>
+<p>当学习Godot的基础知识时，以下是你需要掌握的一些重要概念和技能：</p>
+<ol>
+<li>
+<p>理解Godot的用户界面：</p>
+<ul>
+<li>了解Godot编辑器的各个部分，如场景编辑器、节点树、属性检查器和脚本编辑器等。</li>
+<li>熟悉工具栏和面板的功能，例如资源浏览器、节点库和导航器等。</li>
+</ul>
+</li>
+<li>
+<p>掌握场景和节点的概念：</p>
+<ul>
+<li>理解场景是游戏世界的容器，节点是场景中的对象。</li>
+<li>学习如何创建新场景、添加节点和组织节点层次结构。</li>
+<li>熟悉不同类型的节点，如精灵(Sprite)、碰撞体(CollisionShape)、摄像机(Camera)和节点2D(Node2D)等。</li>
+</ul>
+</li>
+<li>
+<p>熟悉Godot的资源管理：</p>
+<ul>
+<li>学习如何导入和管理各种资源，如纹理、声音、脚本和场景等。</li>
+<li>理解资源的引用和实例化的概念，并学会在场景中使用它们。</li>
+</ul>
+</li>
+<li>
+<p>了解脚本编程和GDScript语言：</p>
+<ul>
+<li>学习Godot使用的脚本语言GDScript，它类似于Python。</li>
+<li>掌握GDScript的基本语法，包括变量、数据类型、运算符和控制流等。</li>
+<li>学习如何创建脚本文件、附加脚本到节点，并编写基本的脚本逻辑。</li>
+</ul>
+</li>
+<li>
+<p>学习处理用户输入：</p>
+<ul>
+<li>了解如何获取用户输入，例如键盘按键、鼠标移动和点击等。</li>
+<li>掌握输入事件的处理和响应，例如在脚本中捕获和处理输入事件。</li>
+</ul>
+</li>
+<li>
+<p>掌握常见的节点组件和功能：</p>
+<ul>
+<li>学习如何使用节点组件，例如碰撞体组件、刚体组件和动画组件等。</li>
+<li>熟悉节点的属性和方法，例如位置、旋转、缩放和可见性等。</li>
+</ul>
+</li>
+<li>
+<p>了解场景管理和切换：</p>
+<ul>
+<li>学习如何加载和切换场景，以及在场景之间进行传递数据。</li>
+<li>掌握场景之间的通信和事件处理机制。</li>
+</ul>
+</li>
+</ol>
+<p>这些是Godot基础知识中的一些关键点，掌握它们将使你能够开始构建简单的游戏和实现基本的交互。当你熟悉了这些概念后，你可以进一步深入学习Godot的高级功能和特性。</p>
+<p>在Godot中，有许多常用且高频使用的节点可用于创建游戏和交互。以下是其中一些节点的示例：</p>
+<ol>
+<li>
+<p>精灵（Sprite）：</p>
+<ul>
+<li>用于渲染2D图像或纹理的节点。</li>
+<li>可以在场景中显示图像、精灵动画或静态图片。</li>
+</ul>
+</li>
+<li>
+<p>刚体（RigidBody）：</p>
+<ul>
+<li>提供物理效果的节点，使对象可以受到重力、碰撞和其他物理力的影响。</li>
+<li>可以模拟物体的运动、碰撞和力学特性。</li>
+</ul>
+</li>
+<li>
+<p>碰撞体（CollisionShape）：</p>
+<ul>
+<li>用于检测碰撞和触发碰撞事件的节点。</li>
+<li>可以附加到精灵或刚体等节点上，并定义其碰撞形状。</li>
+</ul>
+</li>
+<li>
+<p>节点2D（Node2D）：</p>
+<ul>
+<li>2D节点的基类，提供了基本的2D变换和功能。</li>
+<li>可以用作组织其他节点的容器或添加自定义行为的基础节点。</li>
+</ul>
+</li>
+<li>
+<p>动画播放器（AnimationPlayer）：</p>
+<ul>
+<li>用于创建和控制动画的节点。</li>
+<li>可以定义属性的关键帧动画，并在场景中播放和控制它们。</li>
+</ul>
+</li>
+<li>
+<p>摄像机（Camera）：</p>
+<ul>
+<li>用于定义场景的可视化视角和投影方式的节点。</li>
+<li>可以设置摄像机的位置、旋转和投影属性，以控制游戏视觉效果。</li>
+</ul>
+</li>
+<li>
+<p>碰撞形状（CollisionShape2D）：</p>
+<ul>
+<li>2D碰撞检测的节点，用于处理碰撞检测和响应。</li>
+<li>可以附加到精灵或刚体等节点上，并定义其碰撞形状。</li>
+</ul>
+</li>
+<li>
+<p>控制器（Controller）：</p>
+<ul>
+<li>用于处理游戏手柄或键盘控制输入的节点。</li>
+<li>可以接收和处理用户输入，并将其转换为游戏中的操作。</li>
+</ul>
+</li>
+</ol>
+<p>这只是一些常用的和高频使用的节点示例，Godot还提供了许多其他节点类型和功能，如音频节点、UI节点、粒子节点等。具体使用哪些节点取决于你的游戏需求和设计。</p>
+<h2 id="wen-jian-jie-gou">文件结构</h2>
+<p>组织良好的文件结构是一个项目的基础，可以提高代码的可维护性和可扩展性。以下是一些建议，可以帮助你有效地组织文件结构：</p>
+<ol>
+<li>
+<p>按功能模块组织：</p>
+<ul>
+<li>将代码和资源按照其功能和关联性分组。</li>
+<li>创建文件夹来表示不同的模块或子系统，例如游戏逻辑、角色管理、UI等。</li>
+</ul>
+</li>
+<li>
+<p>分离代码和资源：</p>
+<ul>
+<li>将脚本文件、样式表和配置文件等源代码文件与图像、声音和模型等资源文件分开存放。</li>
+<li>可以在项目根目录下创建不同的文件夹，例如"scripts"和"resources"，以保持清晰的分离。</li>
+</ul>
+</li>
+<li>
+<p>使用子文件夹进行分类：</p>
+<ul>
+<li>在每个功能模块的文件夹中，根据需要创建子文件夹来进一步分类组织。</li>
+<li>比如在游戏逻辑模块中，可以有"player"文件夹用于存放与玩家相关的代码和资源。</li>
+</ul>
+</li>
+<li>
+<p>使用命名约定：</p>
+<ul>
+<li>使用一致的命名约定来命名文件和文件夹，以提高可读性和可维护性。</li>
+<li>可以使用有意义的名称来描述文件或文件夹的内容，并避免使用含糊或重复的命名。</li>
+</ul>
+</li>
+<li>
+<p>保持扁平化结构：</p>
+<ul>
+<li>尽量避免过多的嵌套层次，保持文件结构的扁平化。</li>
+<li>过度的嵌套可能会导致查找和管理文件变得困难。</li>
+</ul>
+</li>
+<li>
+<p>使用版本控制工具：</p>
+<ul>
+<li>使用版本控制工具（如Git）来管理项目的文件结构和变更历史。</li>
+<li>提交代码时保持文件结构的整洁和一致性。</li>
+</ul>
+</li>
+<li>
+<p>文档和注释：</p>
+<ul>
+<li>在关键位置添加文档和注释，以解释文件结构的用途和关系。</li>
+<li>在代码文件中添加适当的注释，以帮助其他开发人员理解代码的功能和作用。</li>
+</ul>
+</li>
+</ol>
+<p>这些建议可以帮助你建立一个有序和易于管理的文件结构。根据你的项目需求，你可以根据需要进行适当的调整和扩展。关键是保持一致性和可读性，以便团队成员或其他开发人员能够轻松理解和维护项目。</p>
+<p>当然！以下是一个常用的文件结构模板示例，可用于组织一个基于Godot的游戏项目：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">- assets/
+</span><span style="color:#abb2bf;">  - sprites/
+</span><span style="color:#abb2bf;">  - audio/
+</span><span style="color:#abb2bf;">  - animations/
+</span><span style="color:#abb2bf;">  - fonts/
+</span><span style="color:#abb2bf;">  - ...
+</span><span style="color:#abb2bf;">- scripts/
+</span><span style="color:#abb2bf;">  - player/
+</span><span style="color:#abb2bf;">    - PlayerController.gd
+</span><span style="color:#abb2bf;">    - PlayerMovement.gd
+</span><span style="color:#abb2bf;">    - PlayerCollision.gd
+</span><span style="color:#abb2bf;">    - ...
+</span><span style="color:#abb2bf;">  - enemy/
+</span><span style="color:#abb2bf;">    - EnemyAI.gd
+</span><span style="color:#abb2bf;">    - EnemyHealth.gd
+</span><span style="color:#abb2bf;">    - ...
+</span><span style="color:#abb2bf;">  - ui/
+</span><span style="color:#abb2bf;">    - UIManager.gd
+</span><span style="color:#abb2bf;">    - MainMenu.gd
+</span><span style="color:#abb2bf;">    - HUD.gd
+</span><span style="color:#abb2bf;">    - ...
+</span><span style="color:#abb2bf;">  - game/
+</span><span style="color:#abb2bf;">    - LevelManager.gd
+</span><span style="color:#abb2bf;">    - GameManager.gd
+</span><span style="color:#abb2bf;">    - ...
+</span><span style="color:#abb2bf;">- scenes/
+</span><span style="color:#abb2bf;">  - main/
+</span><span style="color:#abb2bf;">    - MainMenu.tscn
+</span><span style="color:#abb2bf;">    - ...
+</span><span style="color:#abb2bf;">  - game/
+</span><span style="color:#abb2bf;">    - Level1.tscn
+</span><span style="color:#abb2bf;">    - Level2.tscn
+</span><span style="color:#abb2bf;">    - ...
+</span><span style="color:#abb2bf;">- config/
+</span><span style="color:#abb2bf;">  - game_settings.cfg
+</span><span style="color:#abb2bf;">- README.md
+</span><span style="color:#abb2bf;">- LICENSE
+</span></code></pre>
+<p>上述示例模板包含以下几个主要部分：</p>
+<ul>
+<li><code>assets/</code>：存放游戏资源，如精灵、音频、动画、字体等。</li>
+<li><code>scripts/</code>：存放游戏逻辑脚本，按照功能模块进行分组，如玩家、敌人、UI等。</li>
+<li><code>scenes/</code>：存放游戏场景文件，按照主要场景或关卡进行分组。</li>
+<li><code>config/</code>：存放游戏配置文件，如游戏设置、存档等。</li>
+<li><code>README.md</code>：项目说明文档，可以包含项目概述、使用说明和注意事项等。</li>
+<li><code>LICENSE</code>：项目许可证文件，声明项目的使用权限和限制。</li>
+</ul>
+<p>请注意，这只是一个基本的模板示例，你可以根据自己的项目需求进行适当调整和扩展。根据项目的规模和复杂性，你可能需要进一步细分和组织文件夹，以满足特定的需求。</p>
+<p>在实际使用时，你可以根据模板的结构将文件和资源放入相应的文件夹中，并根据需要创建子文件夹进行更细粒度的组织。重要的是保持一致性和清晰度，以便团队成员或其他开发人员能够轻松地理解和管理项目。</p>
+<h2 id="chang-jing-zu-zhi">场景组织</h2>
+<p>在组织场景时，以下是一些最佳实践和建议，可以帮助你保持场景的组织结构清晰和可维护性高：</p>
+<ol>
+<li>
+<p>分层结构：</p>
+<ul>
+<li>使用层次化结构来组织场景元素，以便更好地管理和编辑场景。</li>
+<li>例如，可以将背景元素放在一个层级，角色和物体放在另一个层级，UI元素放在另一个层级，等等。</li>
+<li>这样可以更轻松地控制元素的可见性、排序和交互。</li>
+</ul>
+</li>
+<li>
+<p>使用命名规范：</p>
+<ul>
+<li>为场景中的节点和资源使用有意义的名称，并遵循一致的命名规范。</li>
+<li>使用清晰、简洁且易于理解的命名，以便团队成员或其他开发人员能够快速理解节点的用途和功能。</li>
+<li>可以使用前缀或缩写来指示节点的类型或作用，例如"BG_"表示背景，"Char_"表示角色等。</li>
+</ul>
+</li>
+<li>
+<p>使用节点组：</p>
+<ul>
+<li>使用节点组（Node Groups）将相关的节点进行分组和归类。</li>
+<li>例如，将所有敌人节点放入一个名为"Enemies"的节点组中，将所有平台节点放入一个名为"Platforms"的节点组中。</li>
+<li>这样可以更方便地管理和操作相关的节点集合。</li>
+</ul>
+</li>
+<li>
+<p>避免过度嵌套：</p>
+<ul>
+<li>尽量避免过度嵌套节点，保持场景结构的简洁性。</li>
+<li>过度嵌套可能会导致节点之间的关系复杂化，难以理解和维护。</li>
+</ul>
+</li>
+<li>
+<p>使用场景分割：</p>
+<ul>
+<li>如果场景非常大或复杂，可以考虑将其分割为多个子场景，以便更好地管理和编辑。</li>
+<li>每个子场景可以代表不同的关卡、区域或功能模块。</li>
+<li>使用主场景作为容器，将子场景作为实例化的子节点进行组合。</li>
+</ul>
+</li>
+<li>
+<p>注释和文档：</p>
+<ul>
+<li>在场景中使用注释或节点属性来提供额外的说明和文档。</li>
+<li>这对于团队合作和项目维护非常重要，可以帮助其他开发人员了解场景的设计和实现细节。</li>
+</ul>
+</li>
+</ol>
+<p>总之，最佳的场景组织方式是结合团队和项目需求来确定的。保持清晰、一致和易于理解是关键，以便团队成员能够方便地使用和维护场景。与团队成员进行沟通，并根据项目的特定需求和约定来制定适合项目的场景组织方式。</p>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;game&#x2F;godot-study&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;game&#x2F;godot-study&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2023-06-30
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;posts&#x2F;vscode-wayland&#x2F;">
+    <i class="icon icon-left-open"></i>
+    vscode 在linux wayland 环境的处理</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;posts&#x2F;hurl&#x2F;">
+    HURL 中文指南 Restclient 接口测试工具 
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+<div class="no-print">
+  
+  <script src="https://giscus.app/client.js" data-repo="erasin/erasin.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnk3MzE0Mzg3Mw==" data-category="article" data-category-id="" data-mapping="pathname"
+    data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light"
+    data-lang="zh-CN" crossorigin="anonymous" async>
+    </script>
+  <style>
+    .utterances {
+      max-width: initial;
+    }
+  </style>
+  
+  
+</div>
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-warning" href="//erasin.wang/categories/godot/">godot</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-success" href="//erasin.wang/tags/game/">game</a>
+
+
+
+<a class="tag is-warning" href="//erasin.wang/tags/godot/">godot</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="wen-jian-jie-gou" href="//erasin.wang/game/godot-study/#wen-jian-jie-gou">文件结构</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="chang-jing-zu-zhi" href="//erasin.wang/game/godot-study/#chang-jing-zu-zhi">场景组织</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

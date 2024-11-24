@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="255px" preserveAspectRatio="none" style="width:131px;height:255px;" version="1.1" viewBox="0 0 131 255" width="131px" zoomAndPan="magnify"><defs><filter height="300%" id="fnnzzh9201gy5" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="41" x="45.5" y="23.5352">seq_6</text><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="31" x2="31" y1="68.9766" y2="214.9766"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="94" x2="94" y1="68.9766" y2="214.9766"/><rect fill="#FEFECE" filter="url(#fnnzzh9201gy5)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="42" x="8" y="33.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="28" x="15" y="54.0234">客户</text><rect fill="#FEFECE" filter="url(#fnnzzh9201gy5)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="42" x="8" y="213.9766"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="28" x="15" y="234.5117">客户</text><rect fill="#FEFECE" filter="url(#fnnzzh9201gy5)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="56" x="64" y="33.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="42" x="71" y="54.0234">服务端</text><rect fill="#FEFECE" filter="url(#fnnzzh9201gy5)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="56" x="64" y="213.9766"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="42" x="71" y="234.5117">服务端</text><polygon fill="#A80036" points="82,80.9766,92,84.9766,82,88.9766,86,84.9766" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="31" x2="88" y1="84.9766" y2="84.9766"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="92" x2="82" y1="98.9766" y2="94.9766"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="92" x2="82" y1="98.9766" y2="102.9766"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="31" x2="93" y1="98.9766" y2="98.9766"/><polygon fill="#A80036" points="82,108.9766,92,112.9766,82,112.9766" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="31" x2="93" y1="112.9766" y2="112.9766"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="31" x2="41" y1="126.9766" y2="130.9766"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="31" x2="93" y1="126.9766" y2="126.9766"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="31" x2="41" y1="140.9766" y2="136.9766"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="31" x2="93" y1="140.9766" y2="140.9766"/><ellipse cx="93.5" cy="154.2266" fill="none" rx="4" ry="4" style="stroke: #A80036; stroke-width: 1.5;"/><polygon fill="#A80036" points="76.5,150.9766,86.5,154.9766,76.5,158.9766,80.5,154.9766" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="31" x2="82.5" y1="154.9766" y2="154.9766"/><ellipse cx="30.5" cy="168.2266" fill="none" rx="4" ry="4" style="stroke: #A80036; stroke-width: 1.5;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="36.5" x2="46.5" y1="168.9766" y2="172.9766"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="31" x2="93" y1="168.9766" y2="168.9766"/><polygon fill="#A80036" points="42,178.9766,32,182.9766,42,186.9766,38,182.9766" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="82,178.9766,92,182.9766,82,186.9766,86,182.9766" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="36" x2="88" y1="182.9766" y2="182.9766"/><polygon fill="#A80036" points="42,192.9766,32,196.9766,42,200.9766,38,196.9766" style="stroke: #A80036; stroke-width: 1.0;"/><ellipse cx="93.5" cy="196.2266" fill="none" rx="4" ry="4" style="stroke: #A80036; stroke-width: 1.5;"/><polygon fill="#A80036" points="76.5,192.9766,86.5,196.9766,76.5,200.9766,80.5,196.9766" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="36" x2="82.5" y1="196.9766" y2="196.9766"/><!--
+@startuml
+title seq_6
+
+客户 -> 服务端
+客户 ->> 服务端
+客户 -\ 服务端
+客户 \\- 服务端
+客户 //- - 服务端
+
+客户 ->o 服务端
+客户 o\\- - 服务端
+
+客户 <-> 服务端
+客户 <->o 服务端
+@enduml
+
+PlantUML version 1.2017.19(Sun Nov 12 19:46:22 CST 2017)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 1.8.0_112-b16
+Operating System: Mac OS X
+OS Version: 10.12.6
+Default Encoding: UTF-8
+Language: zh
+Country: CN
+--></g></svg>

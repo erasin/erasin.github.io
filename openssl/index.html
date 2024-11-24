@@ -1,0 +1,761 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  OpenSSL 证书 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="ssl" property="description" />
+
+  
+    <meta content="openssl" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> OpenSSL 证书 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      OPENSSL 证书
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2020-01-10
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <p>SSL是Secure Sockets Layer（安全套接层协议）的缩写，可以在Internet上提供秘密性传输。Netscape公司在推出第一个Web浏览器的同时，提出了SSL协议标准。其目标是保证两个应用间通信的保密性和可靠性,可在服务器端和用户端同时实现支持。已经成为Internet上保密通讯的工业标准。</p>
+<p>OpenSSL是一个开放源代码的软件库，应用程序可以使用openssl来进行确认另一端连接者的身份,进而安全通信。</p>
+<ul>
+<li>数据保密性</li>
+<li>数据完整性</li>
+<li>安全验证</li>
+</ul>
+<span id="continue-reading"></span><h2 id="jian-li-ca">建立 CA</h2>
+<p>建立 CA 目录结构</p>
+<p>按照 OpenSSL 的默认配置建立 CA ，需要在文件系统中建立相应的目录结构。相关的配置内容一般位于 /usr/ssl/openssl.cnf 内，详情可参见 config (1) 。在终端中使用如下命令建立目录结构：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">$ mkdir -p ./demoCA/{private,newcerts}
+</span><span style="color:#abb2bf;">$ touch ./demoCA/index.txt
+</span><span style="color:#abb2bf;">$ echo 01 &gt; ./demoCA/serial
+</span></code></pre>
+<p>产生的目录结构如下：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">.
+</span><span style="color:#abb2bf;">`-- demoCA/
+</span><span style="color:#abb2bf;">    |-- index.txt
+</span><span style="color:#abb2bf;">    |-- newcerts/ 
+</span><span style="color:#abb2bf;">    |-- private/
+</span><span style="color:#abb2bf;">    `-- serial
+</span></code></pre>
+<p>生成 CA 证书的 RSA 密钥对</p>
+<p>首先，我们要为 CA 建立 RSA 密钥对。打开终端，使用如下命令生成 RSA 密钥对：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">$ openssl genrsa -des3 -out ./demoCA/private/cakey.pem 2048
+</span></code></pre>
+<p>参数解释</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">genrsa
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    用于生成 RSA 密钥对的 OpenSSL 命令。
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">-des3
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    使用 3-DES 对称加密算法加密密钥对，该参数需要用户在密钥生成过程中输入一个口令用于加密。今后使用该密钥对时，需要输入相应的口令。如果不加该选项，则不对密钥进行加密。
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">-out ./demoCA/private/cakey.pem
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    令生成的密钥对保存到文件 ./demoCA/private/cakey.pem 。
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">2048
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    RSA 模数位数，在一定程度上表征了密钥强度。
+</span></code></pre>
+<p>该命令输出如下，用户应输入自己的密钥口令并确认：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">Generating RSA private key, 2048 bit long modulus
+</span><span style="color:#abb2bf;">................................................+++
+</span><span style="color:#abb2bf;">.........................+++
+</span><span style="color:#abb2bf;">e is 65537 (0x10001)
+</span><span style="color:#abb2bf;">Enter pass phrase for ./demoCA/private/cakey.pem:&lt;enter your pass-phrase&gt;
+</span><span style="color:#abb2bf;">Verifying - Enter pass phrase for ./demoCA/private/cakey.pem:&lt;re-enter your pass-phrase&gt;
+</span></code></pre>
+<h2 id="sheng-cheng-ca-zheng-shu-qing-qiu">生成 CA 证书请求</h2>
+<p>为了获取一个 CA 根证书，我们需要先制作一份证书请求。先前生成的 CA 密钥对被用于对证书请求签名。</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">$ openssl req -new -days 365 -key ./demoCA/private/cakey.pem -out careq.pem
+</span></code></pre>
+<p>参数解释</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">req
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    用于生成证书请求的 OpenSSL 命令。
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">-new
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    生成一个新的证书请求。该参数将令 OpenSSL 在证书请求生成过程中要求用户填写一些相应的字段。
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">-days 365
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    从生成之时算起，证书时效为 365 天。
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">-key ./demoCA/private/cakey.pem
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    指定 ./demoCA/private/cakey.pem 为证书所使用的密钥对文件。
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">-out careq.pem
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    令生成的证书请求保存到文件 careq.pem 。
+</span></code></pre>
+<p>该命令将提示用户输入密钥口令并填写证书相关信息字段，输出如下：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">Enter pass phrase for ./demoCA/private/cakey.pem:&lt;enter you pass-phrase&gt;
+</span><span style="color:#abb2bf;">You are about to be asked to enter information that will be incorporated
+</span><span style="color:#abb2bf;">into your certificate request.
+</span><span style="color:#abb2bf;">What you are about to enter is what is called a Distinguished Name or a DN.
+</span><span style="color:#abb2bf;">There are quite a few fields but you can leave some blank
+</span><span style="color:#abb2bf;">For some fields there will be a default value,
+</span><span style="color:#abb2bf;">If you enter &#39;.&#39;, the field will be left blank.
+</span><span style="color:#abb2bf;">-----
+</span><span style="color:#abb2bf;">Country Name (2 letter code) [AU]:CN
+</span><span style="color:#abb2bf;">State or Province Name (full name) [Some-State]:ZJ
+</span><span style="color:#abb2bf;">Locality Name (eg, city) []:HZ
+</span><span style="color:#abb2bf;">Organization Name (eg, company) [Internet Widgits Pty Ltd]:Some Ltd. Corp.
+</span><span style="color:#abb2bf;">Organizational Unit Name (eg, section) []:Some Unit
+</span><span style="color:#abb2bf;">Common Name (eg, YOUR name) []:Someone
+</span><span style="color:#abb2bf;">Email Address []:some@email.com
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">Please enter the following &#39;extra&#39; attributes
+</span><span style="color:#abb2bf;">to be sent with your certificate request
+</span><span style="color:#abb2bf;">A challenge password []:
+</span><span style="color:#abb2bf;">An optional company name []:
+</span></code></pre>
+<h2 id="dui-ca-zheng-shu-qing-qiu-jin-xing-qian-ming">对 CA 证书请求进行签名</h2>
+<p>在实际应用中，用户可以通过向知名 CA 递交证书请求来申请证书。但是在这里，我们需要建立的是一个根 CA ，只能由我们自己来对证书请求进行签名。所以我们让 OpenSSL 使用证书请求中附带的密钥对对该请求进行签名，也就是所谓的“ self sign ”：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">$ openssl ca -selfsign -in careq.pem -out cacert.pem
+</span></code></pre>
+<p>参数解释</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">ca
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    用于执行 CA 相关操作的 OpenSSL 命令。
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">-selfsign
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    使用对证书请求进行签名的密钥对来签发证书。
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">-in careq.pem
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    指定 careq.pem 为证书请求文件。
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">-out ./demoCA/cacert.pem
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    指定 ./demoCA/cacert.pem 为输出的证书。
+</span></code></pre>
+<p>该命令要求用户输入密钥口令并输出相关证书信息，请求用户确认：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">Using configuration from /usr/lib/ssl/openssl.cnf
+</span><span style="color:#abb2bf;">Enter pass phrase for ./demoCA/private/cakey.pem:&lt;enter your pass-phrase&gt;
+</span><span style="color:#abb2bf;">Check that the request matches the signature
+</span><span style="color:#abb2bf;">Signature ok
+</span><span style="color:#abb2bf;">Certificate Details:
+</span><span style="color:#abb2bf;">        Serial Number: 2 (0x2)
+</span><span style="color:#abb2bf;">        Validity
+</span><span style="color:#abb2bf;">            Not Before: Jan 16 13:05:09 2008 GMT
+</span><span style="color:#abb2bf;">            Not After : Jan 15 13:05:09 2009 GMT
+</span><span style="color:#abb2bf;">        Subject:
+</span><span style="color:#abb2bf;">            countryName = CN
+</span><span style="color:#abb2bf;">            stateOrProvinceName = ZJ
+</span><span style="color:#abb2bf;">            organizationName = Some Ltd. Corp.
+</span><span style="color:#abb2bf;">            organizationalUnitName = Some Unit
+</span><span style="color:#abb2bf;">            commonName = Someone
+</span><span style="color:#abb2bf;">            emailAddress = some@email.com
+</span><span style="color:#abb2bf;">        X509v3 extensions:
+</span><span style="color:#abb2bf;">            X509v3 Basic Constraints:
+</span><span style="color:#abb2bf;">                CA:FALSE
+</span><span style="color:#abb2bf;">            Netscape Comment:
+</span><span style="color:#abb2bf;">                OpenSSL Generated Certificate
+</span><span style="color:#abb2bf;">            X509v3 Subject Key Identifier:
+</span><span style="color:#abb2bf;">                75:F5:3C:CC:C1:5E:6D:C3:8B:46:A8:08:E6:EA:29:E8:22:7E:70:03
+</span><span style="color:#abb2bf;">            X509v3 Authority Key Identifier:
+</span><span style="color:#abb2bf;">                keyid:75:F5:3C:CC:C1:5E:6D:C3:8B:46:A8:08:E6:EA:29:E8:22:7E:70:03
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">Certificate is to be certified until Jan 15 13:05:09 2009 GMT (365 days)
+</span><span style="color:#abb2bf;">Sign the certificate? [y/n]:y
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">1 out of 1 certificate requests certified, commit? [y/n]y
+</span><span style="color:#abb2bf;">Write out database with 1 new entries
+</span><span style="color:#abb2bf;">Data Base Updated
+</span></code></pre>
+<p>一步完成 CA 证书请求生成及签名</p>
+<p>以上两个步骤可以合二为一。利用 ca 命令的 -x509 参数，通过以下命令同时完成证书请求生成和签名从而生成 CA 根证书：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">$ openssl req -new -x509 -days 365 -key ./demoCA/private/cakey.pem -out ./demoCA/cacert.pem
+</span></code></pre>
+<p>参数解释</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">req
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    用于生成证书请求的 OpenSSL 命令。
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">-new
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    生成一个新的证书请求。该参数将令 OpenSSL 在证书请求生成过程中要求用户填写一些相应的字段。
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">-x509
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    生成一份 X.509 证书。
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">-days 365
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    从生成之时算起，证书时效为 365 天。
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">-key ./demoCA/private/cakey.pem
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    指定 cakey.pem 为证书所使用的密钥对文件。
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">-out ./demoCA/cacert.pem
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    令生成的证书保存到文件 ./demoCA/cacert.pem 。
+</span></code></pre>
+<p>该命令输出如下，用户应输入相应的字段：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">Enter pass phrase for ./demoCA/private/cakey.pem:
+</span><span style="color:#abb2bf;">You are about to be asked to enter information that will be incorporated
+</span><span style="color:#abb2bf;">into your certificate request.
+</span><span style="color:#abb2bf;">What you are about to enter is what is called a Distinguished Name or a DN.
+</span><span style="color:#abb2bf;">There are quite a few fields but you can leave some blank
+</span><span style="color:#abb2bf;">For some fields there will be a default value,
+</span><span style="color:#abb2bf;">If you enter &#39;.&#39;, the field will be left blank.
+</span><span style="color:#abb2bf;">-----
+</span><span style="color:#abb2bf;">Country Name (2 letter code) [AU]:CN
+</span><span style="color:#abb2bf;">State or Province Name (full name) [Some-State]:ZJ
+</span><span style="color:#abb2bf;">Locality Name (eg, city) []:HZ
+</span><span style="color:#abb2bf;">Organization Name (eg, company) [Internet Widgits Pty Ltd]:Some Ltd. Corp.
+</span><span style="color:#abb2bf;">Organizational Unit Name (eg, section) []:Some Unit
+</span><span style="color:#abb2bf;">Common Name (eg, YOUR name) []:Someone
+</span><span style="color:#abb2bf;">Email Address []:some@email.com
+</span></code></pre>
+<p>至此，我们便已成功建立了一个私有根 CA 。在这个过程中，我们获得了一份 CA 密钥对文件 ./demoCA/private/cakey.pem 以及一份由此密钥对签名的 CA 根证书文件 ./demoCA/cacert.pem ，得到的 CA 目录结构如下：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">.
+</span><span style="color:#abb2bf;">|-- careq.pem
+</span><span style="color:#abb2bf;">`-- demoCA/
+</span><span style="color:#abb2bf;">	|-- cacert.pem
+</span><span style="color:#abb2bf;">	|-- index.txt
+</span><span style="color:#abb2bf;">	|-- index.txt.attr
+</span><span style="color:#abb2bf;">	|-- index.txt.old
+</span><span style="color:#abb2bf;">	|-- newcerts/
+</span><span style="color:#abb2bf;">	|   `-- 01.pem
+</span><span style="color:#abb2bf;">	|-- private/
+</span><span style="color:#abb2bf;">	|   `-- cakey.pem
+</span><span style="color:#abb2bf;">	|-- serial
+</span><span style="color:#abb2bf;">	`-- serial.old
+</span></code></pre>
+<p>注：如果在 CA 建立过程中跳过证书请求生成的步骤，则不会产生 careq.pem 文件。
+签发证书</p>
+<p>下面我们就可以利用建立起来的 CA 进行证书签发了。
+生成用户证书 RSA 密钥对</p>
+<p>参照 CA 的 RSA 密钥对生成过程，使用如下命令生成新的密钥对：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">$ openssl genrsa -des3 -out userkey.pem
+</span><span style="color:#abb2bf;">Generating RSA private key, 512 bit long modulus
+</span><span style="color:#abb2bf;">....++++++++++++
+</span><span style="color:#abb2bf;">...++++++++++++
+</span><span style="color:#abb2bf;">e is 65537 (0x10001)
+</span><span style="color:#abb2bf;">Enter pass phrase for userkey.pem:&lt;enter your pass-phrase&gt;
+</span><span style="color:#abb2bf;">Verifying - Enter pass phrase for userkey.pem:&lt;re-enter your pass-phrase&gt;
+</span></code></pre>
+<h2 id="sheng-cheng-yong-hu-zheng-shu-qing-qiu">生成用户证书请求</h2>
+<p>参照 CA 的证书请求生成过程，使用如下命令生成新的证书请求：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">$ openssl req -new -days 365 -key userkey.pem -out userreq.pem
+</span><span style="color:#abb2bf;">Enter pass phrase for userkey.pem:&lt;enter your pass-phrase&gt;
+</span><span style="color:#abb2bf;">You are about to be asked to enter information that will be incorporated
+</span><span style="color:#abb2bf;">into your certificate request.
+</span><span style="color:#abb2bf;">What you are about to enter is what is called a Distinguished Name or a DN.
+</span><span style="color:#abb2bf;">There are quite a few fields but you can leave some blank
+</span><span style="color:#abb2bf;">For some fields there will be a default value,
+</span><span style="color:#abb2bf;">If you enter &#39;.&#39;, the field will be left blank.
+</span><span style="color:#abb2bf;">-----
+</span><span style="color:#abb2bf;">Country Name (2 letter code) [AU]:CN
+</span><span style="color:#abb2bf;">State or Province Name (full name) [Some-State]:ZJ
+</span><span style="color:#abb2bf;">Locality Name (eg, city) []:HZ
+</span><span style="color:#abb2bf;">Organization Name (eg, company) [Internet Widgits Pty Ltd]:Some Ltd. Corp.
+</span><span style="color:#abb2bf;">Organizational Unit Name (eg, section) []:Some Other Unit
+</span><span style="color:#abb2bf;">Common Name (eg, YOUR name) []:Another
+</span><span style="color:#abb2bf;">Email Address []:another@email.com
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">Please enter the following &#39;extra&#39; attributes
+</span><span style="color:#abb2bf;">to be sent with your certificate request
+</span><span style="color:#abb2bf;">A challenge password []:
+</span><span style="color:#abb2bf;">An optional company name []:
+</span></code></pre>
+<h2 id="qian-fa-yong-hu-zheng-shu">签发用户证书</h2>
+<p>现在，我们可以用先前建立的 CA 来对用户的证书请求进行签名来为用户签发证书了。使用如下命令：</p>
+<p>$ openssl ca -in userreq.pem -out usercert.pem
+参数解释</p>
+<p>ca</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">用于执行 CA 相关操作的 OpenSSL 命令。
+</span></code></pre>
+<p>-in userreq.pem</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">指定用户证书请求文件为 userreq.pem 。
+</span></code></pre>
+<p>-out usercert.pem</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">指定输出的用户证书文件为 usercert.pem 。
+</span></code></pre>
+<p>该命令要求用户输入密钥口令并输出相关证书信息，请求用户确认：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">Using configuration from /usr/lib/ssl/openssl.cnf
+</span><span style="color:#abb2bf;">Enter pass phrase for ./demoCA/private/cakey.pem:&lt;enter your pass-phrase&gt;
+</span><span style="color:#abb2bf;">Check that the request matches the signature
+</span><span style="color:#abb2bf;">Signature ok
+</span><span style="color:#abb2bf;">Certificate Details:
+</span><span style="color:#abb2bf;">		Serial Number: 2 (0x2)
+</span><span style="color:#abb2bf;">		Validity
+</span><span style="color:#abb2bf;">			Not Before: Jan 16 14:50:22 2008 GMT
+</span><span style="color:#abb2bf;">			Not After : Jan 15 14:50:22 2009 GMT
+</span><span style="color:#abb2bf;">		Subject:
+</span><span style="color:#abb2bf;">			countryName               = CN
+</span><span style="color:#abb2bf;">			stateOrProvinceName       = ZJ
+</span><span style="color:#abb2bf;">			organizationName          = Some Ltd. Corp.
+</span><span style="color:#abb2bf;">			organizationalUnitName    = Some Other Unit
+</span><span style="color:#abb2bf;">			commonName                = Another
+</span><span style="color:#abb2bf;">			emailAddress              = another@email.com
+</span><span style="color:#abb2bf;">		X509v3 extensions:
+</span><span style="color:#abb2bf;">			X509v3 Basic Constraints:
+</span><span style="color:#abb2bf;">				CA:FALSE
+</span><span style="color:#abb2bf;">			Netscape Comment:
+</span><span style="color:#abb2bf;">				OpenSSL Generated Certificate
+</span><span style="color:#abb2bf;">			X509v3 Subject Key Identifier:
+</span><span style="color:#abb2bf;">				97:E7:8E:84:B1:45:27:83:94:A0:DC:24:79:7B:83:97:99:0B:36:A9
+</span><span style="color:#abb2bf;">			X509v3 Authority Key Identifier:
+</span><span style="color:#abb2bf;">				keyid:D9:87:12:94:B2:20:C7:22:AB:D4:D5:DF:33:DB:84:F3:B0:4A:EC:A2
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">Certificate is to be certified until Jan 15 14:50:22 2009 GMT (365 days)
+</span><span style="color:#abb2bf;">Sign the certificate? [y/n]:y
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">1 out of 1 certificate requests certified, commit? [y/n]y
+</span><span style="color:#abb2bf;">Write out database with 1 new entries
+</span><span style="color:#abb2bf;">Data Base Updated
+</span></code></pre>
+<h2 id="bu-zou">步骤</h2>
+<p>至此，我们便完成了 CA 的建立及用户证书签发的全部工作。不妨把所有 shell 命令放到一起纵览一下：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"># 建立 CA 目录结构
+</span><span style="color:#abb2bf;">mkdir -p ./demoCA/{private,newcerts}
+</span><span style="color:#abb2bf;">touch ./demoCA/index.txt
+</span><span style="color:#abb2bf;">echo 01 &gt; ./demoCA/serial
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"># 生成 CA 的 RSA 密钥对
+</span><span style="color:#abb2bf;">openssl genrsa -des3 -out ./demoCA/private/cakey.pem 2048
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"># 生成 CA 证书请求
+</span><span style="color:#abb2bf;">openssl req -new -days 365 -key ./demoCA/private/cakey.pem -out careq.pem
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"># 自签发 CA 证书
+</span><span style="color:#abb2bf;">openssl ca -selfsign -in careq.pem -out ./demoCA/cacert.pem
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"># 以上两步可以合二为一
+</span><span style="color:#abb2bf;">openssl req -new -x509 -days 365 -key ./demoCA/private/cakey.pem -out ./demoCA/cacert.pem
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"># 生成用户的 RSA 密钥对
+</span><span style="color:#abb2bf;">openssl genrsa -des3 -out userkey.pem
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"># 生成用户证书请求
+</span><span style="color:#abb2bf;">openssl req -new -days 365 -key userkey.pem -out userreq.pem
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"># 使用 CA 签发用户证书
+</span><span style="color:#abb2bf;">openssl ca -in userreq.pem -out usercert.pem
+</span></code></pre>
+<p>了解了这些基础步骤之后，就可以通过脚本甚至 makefile 的方式来将这些工作自动化。 CA.pl 和 CA.sh 便是对 OpenSSL 的 CA 相关功能的简单封装，在 Debian 系统中，安装了 OpenSSL 后，可以在 /usr/lib/ssl/misc/ 目录下找到这两个文件。而 makefile 的解决方案则可以参考这里。</p>
+<h2 id="can-kao">参考</h2>
+<ul>
+<li><a href="https://baike.baidu.com/item/openssl">百度百科</a></li>
+<li><a href="https://wiki.archlinux.org/index.php/OpenSSL">wiki openSSL</a>)</li>
+<li><a href="http://rhythm-zju.blog.163.com/blog/static/310042008015115718637/">生成证书</a></li>
+</ul>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;openssl&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;openssl&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2020-01-10
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;soft-cmus&#x2F;">
+    <i class="icon icon-left-open"></i>
+    CMUS 终端音乐播放器</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;go-grpc&#x2F;">
+    PHP to Golang 使用 goridge rpc通信 PHP
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-info" href="//erasin.wang/categories/server/">server</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-dark" href="//erasin.wang/tags/openssl/">openssl</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="jian-li-ca" href="//erasin.wang/openssl/#jian-li-ca">建立 CA</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="sheng-cheng-ca-zheng-shu-qing-qiu" href="//erasin.wang/openssl/#sheng-cheng-ca-zheng-shu-qing-qiu">生成 CA 证书请求</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="dui-ca-zheng-shu-qing-qiu-jin-xing-qian-ming" href="//erasin.wang/openssl/#dui-ca-zheng-shu-qing-qiu-jin-xing-qian-ming">对 CA 证书请求进行签名</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="sheng-cheng-yong-hu-zheng-shu-qing-qiu" href="//erasin.wang/openssl/#sheng-cheng-yong-hu-zheng-shu-qing-qiu">生成用户证书请求</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="qian-fa-yong-hu-zheng-shu" href="//erasin.wang/openssl/#qian-fa-yong-hu-zheng-shu">签发用户证书</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="bu-zou" href="//erasin.wang/openssl/#bu-zou">步骤</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="can-kao" href="//erasin.wang/openssl/#can-kao">参考</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

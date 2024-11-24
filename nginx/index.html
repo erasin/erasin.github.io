@@ -1,0 +1,743 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  Nginx Web 服务配置 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="nginx 基础知识" property="description" />
+
+  
+    <meta content="draft,web,server" name="keywords" />
+  
+
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> Nginx Web 服务配置 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      NGINX WEB 服务配置
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2019-12-24
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <p>安装，服务管理，配置选项...</p>
+<p><strong>环境：</strong> CentOS</p>
+<span id="continue-reading"></span><h2 id="1-an-zhuang">1. 安装</h2>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">yum install nginx
+</span></code></pre>
+<h2 id="2-fu-wu">2. 服务</h2>
+<p><code>systemd</code> 的nginx配置文件地址 <code>/lib/systemd/system/nginx.service</code></p>
+<pre data-lang="ini" style="background-color:#2b303b;color:#6c7079;" class="language-ini "><code class="language-ini" data-lang="ini"><span style="color:#cd74e8;">[Unit]
+</span><span style="color:#eb6772;">Description</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">The NGINX HTTP and reverse proxy server
+</span><span style="color:#eb6772;">After</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">syslog</span><span style="color:#adb7c9;">.</span><span style="color:#abb2bf;">target network</span><span style="color:#adb7c9;">.</span><span style="color:#abb2bf;">target remote</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">fs</span><span style="color:#adb7c9;">.</span><span style="color:#abb2bf;">target nss</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">lookup</span><span style="color:#adb7c9;">.</span><span style="color:#abb2bf;">target
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">[Service]
+</span><span style="color:#eb6772;">Type</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">forking
+</span><span style="color:#eb6772;">PIDFile</span><span style="color:#adb7c9;">=/</span><span style="color:#abb2bf;">run</span><span style="color:#adb7c9;">/</span><span style="color:#abb2bf;">nginx</span><span style="color:#adb7c9;">.</span><span style="color:#abb2bf;">pid
+</span><span style="color:#eb6772;">ExecStartPre</span><span style="color:#adb7c9;">=/</span><span style="color:#abb2bf;">usr</span><span style="color:#adb7c9;">/</span><span style="color:#abb2bf;">sbin</span><span style="color:#adb7c9;">/</span><span style="color:#abb2bf;">nginx </span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">t
+</span><span style="color:#eb6772;">ExecStart</span><span style="color:#adb7c9;">=/</span><span style="color:#abb2bf;">usr</span><span style="color:#adb7c9;">/</span><span style="color:#abb2bf;">sbin</span><span style="color:#adb7c9;">/</span><span style="color:#abb2bf;">nginx
+</span><span style="color:#eb6772;">ExecReload</span><span style="color:#adb7c9;">=/</span><span style="color:#abb2bf;">usr</span><span style="color:#adb7c9;">/</span><span style="color:#abb2bf;">sbin</span><span style="color:#adb7c9;">/</span><span style="color:#abb2bf;">nginx </span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">s reload
+</span><span style="color:#eb6772;">ExecStop</span><span style="color:#adb7c9;">=/</span><span style="color:#abb2bf;">bin</span><span style="color:#adb7c9;">/</span><span style="color:#abb2bf;">kill </span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">s QUIT </span><span style="color:#cd74e8;">$MAINPID
+</span><span style="color:#eb6772;">PrivateTmp</span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">true
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">[Install]
+</span><span style="color:#eb6772;">WantedBy</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">multi</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">user</span><span style="color:#adb7c9;">.</span><span style="color:#abb2bf;">target
+</span></code></pre>
+<p>服务的控制</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">systemctl</span><span style="color:#abb2bf;"> start nginx    </span><span style="font-style:italic;color:#5f697a;"># nginx 开启
+</span><span style="color:#eb6772;">systemctl</span><span style="color:#abb2bf;"> stop nginx     </span><span style="font-style:italic;color:#5f697a;"># 关闭
+</span><span style="color:#eb6772;">systemctl</span><span style="color:#abb2bf;"> restart nginx  </span><span style="font-style:italic;color:#5f697a;"># 重启
+</span></code></pre>
+<h2 id="3-pei-zhi">3. 配置</h2>
+<p>配置文件地址 <code>/etc/nginx/</code> 中。</p>
+<p><strong>运行用户</strong></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">user www-data;   
+</span></code></pre>
+<p><strong>启动进程,通常设置成和cpu的数量相等</strong></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">worker_processes  1;
+</span></code></pre>
+<p><strong>全局错误日志及PID文件</strong></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">error_log  /var/log/nginx/error.log;  
+</span><span style="color:#abb2bf;">pid        /var/run/nginx.pid;  
+</span></code></pre>
+<p><strong>events #工作模式及连接数上限</strong></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">events {  
+</span><span style="color:#abb2bf;">    use   epoll;             
+</span><span style="color:#abb2bf;">    # 单个后台 worker process 进程的最大并发链接数  
+</span><span style="color:#abb2bf;">    worker_connections  1024;
+</span><span style="color:#abb2bf;">    # multi_accept on;  
+</span><span style="color:#abb2bf;">}  
+</span></code></pre>
+<p>epoll是多路复用IO(I/O Multiplexing)中的一种方式,但是仅用于linux2.6以上内核,可以大大提高nginx的性能。</p>
+<h3 id="3-1-pei-zhi-qiang-zhi-yu-ming-fang-wen">3.1. 配置 强制域名访问</h3>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">if ($http_host !~ &quot;^www\.domain\.com$&quot;) {
+</span><span style="color:#abb2bf;">    rewrite ^(.*) http://www.domain.com$1 permanent;
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">if (!-e $request_filename){
+</span><span style="color:#abb2bf;">    rewrite ^/(.*)$ /index.php/$1 last;
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<h3 id="3-2-fan-xiang-dai-li">3.2. 反向代理</h3>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">upstream proxyName{
+</span><span style="color:#abb2bf;">    server 192.168.1.4:8099;
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">location / {
+</span><span style="color:#abb2bf;">    proxy_pass http://proxyName;
+</span><span style="color:#abb2bf;">    proxy_redirect          default ;
+</span><span style="color:#abb2bf;">    proxy.conf
+</span><span style="color:#abb2bf;">    proxy_set_header        Host            $host;
+</span><span style="color:#abb2bf;">    proxy_set_header        X-Real-IP       $remote_addr;
+</span><span style="color:#abb2bf;">    proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+</span><span style="color:#abb2bf;">    client_max_body_size    10m;
+</span><span style="color:#abb2bf;">    client_body_buffer_size 128k;
+</span><span style="color:#abb2bf;">    proxy_connect_timeout   90;
+</span><span style="color:#abb2bf;">    proxy_send_timeout      90;
+</span><span style="color:#abb2bf;">    proxy_read_timeout      90;
+</span><span style="color:#abb2bf;">    proxy_buffers           32 4k;
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<h4 id="3-2-1-404">3.2.1. 404</h4>
+<p>为php节点添加</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">try_files $uri =404;
+</span></code></pre>
+<h2 id="4-htpasswd-httpyan-zheng">4. htpasswd HTTP验证</h2>
+<p><strong>安装</strong> <code>apache2-utils</code></p>
+<p>使用apache htpasswd来创建用户登陆访问</p>
+<p><strong>创建</strong>一个用户密码文件</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">cd /var/www/mywebsite.com/
+</span><span style="color:#abb2bf;">htpasswd -c htpasswd.mywebsite username
+</span><span style="color:#abb2bf;"># username 密码输入
+</span><span style="color:#abb2bf;"># 继续创建
+</span><span style="color:#abb2bf;">htpasswd htpasswd.mywebsite user2
+</span><span style="color:#abb2bf;">...
+</span></code></pre>
+<p><strong>修改</strong> <code>htpasswd.mywebsite</code>文件的对应权限,并保证nginx用户可以访问该文件的路径。</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">sudo chown http:http htpasswd.mywebsite
+</span><span style="color:#abb2bf;">sudo chmod 640 htpasswd.mywebsite
+</span></code></pre>
+<p>上面的 <code>http:http</code> 为 nginx的进程用户，修改为自己系统的默认。</p>
+<p><strong>添加到配置</strong></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">auth_basic &quot;Restricted 限制注释&quot;;
+</span><span style="color:#abb2bf;">auth_basic_user_file /var/www/mywwebsite.com/htpasswd.mywebsite;
+</span></code></pre>
+<h2 id="5-error">5. error</h2>
+<p>查看错误日志<code>/var/log/nginx/error.log</code></p>
+<p>错误502</p>
+<p><strong>upstream sent too big header while reading response header from upstream</strong></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">fastcgi_buffer_size 128k;
+</span><span style="color:#abb2bf;">fastcgi_buffers 32 32k;
+</span></code></pre>
+<p><code>fastcgi_*</code> 可以理解成nginx接受client请求时的响应使用的。proxy是nginx作为client转发时使用的，如果header过大，超出了默认的1k，就会引发上述的 upstream sent too big header。</p>
+<h2 id="6-dao-lian">6. 盗链</h2>
+<p>常见的防盗链设置如下:</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">location ~* \.(gif|jpg|png|swf|flv)$ {
+</span><span style="color:#abb2bf;">    valid_referers none blocked www.demo1.com www.demo2.net;
+</span><span style="color:#abb2bf;">    if ($invalid_referer) {
+</span><span style="color:#abb2bf;">        rewrite ^/ http://www.demo1.com/403.html;
+</span><span style="color:#abb2bf;">        #return 404;
+</span><span style="color:#abb2bf;">    }
+</span><span style="color:#abb2bf;">    expires 3d;
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>第一行表示对gif、jpg、png、swf、flv后缀的文件实行防盗链</p>
+<p>第二行表示对两个域名这两个来路进行判断</p>
+<p>if{}里面内容意思是：如果来入不是指定判断的来路时跳转到错误页面。</p>
+<h2 id="7-access-control-allow-origin">7. Access-Control-Allow-Origin</h2>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">add_header Access-Control-Allow-Origin *;
+</span></code></pre>
+<h2 id="8-shang-chuan">8. 上传</h2>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">client_max_body_size 35m;        #客户端上传文件大小设为35M
+</span></code></pre>
+<h2 id="9-lian-jie-shu">9. 连接数</h2>
+<p>worker_rlimit_nofile
+注意：设置了这个后，你修改worker_connections值时，是不能超过worker_rlimit_nofile的这个值，不然又会有前面的那个warn提示。
+保存配置文件，退出重启nginx。</p>
+<p>如果nginx 中worker_connections 值设置是1024，worker_processes 值设置是4，按反向代理模式下最大连接数的理论计算公式：
+最大连接数 = worker_processes * worker_connections/4
+查看相关资料，生产环境中worker_connections 建议值最好超过9000，计划将一台nginx 设置为10240，再观察一段时间。</p>
+<h2 id="10-yin-cang-ban-ben-hao">10. 隐藏版本号</h2>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">server_tokens off;
+</span></code></pre>
+<p>php 则 expose_php = Off</p>
+<h2 id="11-demo-nginx-pei-zhi">11. DEMO NGINX 配置</h2>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">#运行用户
+</span><span style="color:#abb2bf;">user www-data;   
+</span><span style="color:#abb2bf;">#启动进程,通常设置成和cpu的数量相等
+</span><span style="color:#abb2bf;">worker_processes  1;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">#全局错误日志及PID文件
+</span><span style="color:#abb2bf;">error_log  /var/log/nginx/error.log;
+</span><span style="color:#abb2bf;">pid        /var/run/nginx.pid;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">#工作模式及连接数上限
+</span><span style="color:#abb2bf;">events {
+</span><span style="color:#abb2bf;">    use   epoll;              #epoll是多路复用IO(I/O Multiplexing)中的一种方式,但是仅用于linux2.6以上内核,可以大大提高nginx的性能
+</span><span style="color:#abb2bf;">    worker_connections  1024; #单个后台worker process进程的最大并发链接数
+</span><span style="color:#abb2bf;">    # multi_accept on;
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">#设定http服务器，利用它的反向代理功能提供负载均衡支持
+</span><span style="color:#abb2bf;">http {
+</span><span style="color:#abb2bf;">    #设定mime类型,类型由mime.type文件定义
+</span><span style="color:#abb2bf;">    include       /etc/nginx/mime.types;
+</span><span style="color:#abb2bf;">    default_type  application/octet-stream;
+</span><span style="color:#abb2bf;">    #设定日志格式
+</span><span style="color:#abb2bf;">    access_log    /var/log/nginx/access.log;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    #sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件，对于普通应用，
+</span><span style="color:#abb2bf;">    #必须设为 on,如果用来进行下载等应用磁盘IO重负载应用，可设置为 off，以平衡磁盘与网络I/O处理速度，降低系统的uptime.
+</span><span style="color:#abb2bf;">    sendfile        on;
+</span><span style="color:#abb2bf;">    #tcp_nopush     on;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    #连接超时时间
+</span><span style="color:#abb2bf;">    #keepalive_timeout  0;
+</span><span style="color:#abb2bf;">    keepalive_timeout  65;
+</span><span style="color:#abb2bf;">    tcp_nodelay        on;
+</span><span style="color:#abb2bf;">    
+</span><span style="color:#abb2bf;">    #开启gzip压缩
+</span><span style="color:#abb2bf;">    gzip  on;
+</span><span style="color:#abb2bf;">    gzip_disable &quot;MSIE [1-6]\.(?!.*SV1)&quot;;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    #设定请求缓冲
+</span><span style="color:#abb2bf;">    client_header_buffer_size    1k;
+</span><span style="color:#abb2bf;">    large_client_header_buffers  4 4k;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    include /etc/nginx/conf.d/*.conf;
+</span><span style="color:#abb2bf;">    include /etc/nginx/sites-enabled/*;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    #设定负载均衡的服务器列表
+</span><span style="color:#abb2bf;">    upstream mysvr {
+</span><span style="color:#abb2bf;">        #weigth参数表示权值，权值越高被分配到的几率越大
+</span><span style="color:#abb2bf;">        #本机上的Squid开启3128端口
+</span><span style="color:#abb2bf;">        server 192.168.8.1:3128 weight=5;
+</span><span style="color:#abb2bf;">        server 192.168.8.2:80  weight=1;
+</span><span style="color:#abb2bf;">        server 192.168.8.3:80  weight=6;
+</span><span style="color:#abb2bf;">    }
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    # 服务
+</span><span style="color:#abb2bf;">    server {
+</span><span style="color:#abb2bf;">        #侦听80端口
+</span><span style="color:#abb2bf;">        listen       80;
+</span><span style="color:#abb2bf;">        #定义使用www.xx.com访问
+</span><span style="color:#abb2bf;">        server_name  www.xx.com;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">        #设定本虚拟主机的访问日志
+</span><span style="color:#abb2bf;">        access_log  logs/www.xx.com.access.log  main;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">        #默认请求
+</span><span style="color:#abb2bf;">        location / {
+</span><span style="color:#abb2bf;">            root   /root;      #定义服务器的默认网站根目录位置
+</span><span style="color:#abb2bf;">            index index.php index.html index.htm;   #定义首页索引文件的名称
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">            fastcgi_pass  www.xx.com;
+</span><span style="color:#abb2bf;">            fastcgi_param  SCRIPT_FILENAME  $document_root/$fastcgi_script_name;
+</span><span style="color:#abb2bf;">            include /etc/nginx/fastcgi_params;
+</span><span style="color:#abb2bf;">        }
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">        # 定义错误提示页面
+</span><span style="color:#abb2bf;">        error_page   500 502 503 504 /50x.html; 
+</span><span style="color:#abb2bf;">            location = /50x.html {
+</span><span style="color:#abb2bf;">            root   /root;
+</span><span style="color:#abb2bf;">        }
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">        #静态文件，nginx自己处理
+</span><span style="color:#abb2bf;">        location ~ ^/(images|javascript|js|css|flash|media|static)/ {
+</span><span style="color:#abb2bf;">            root /var/www/virtual/htdocs;
+</span><span style="color:#abb2bf;">            #过期30天，静态文件不怎么更新，过期可以设大一点，如果频繁更新，则可以设置得小一点。
+</span><span style="color:#abb2bf;">            expires 30d;
+</span><span style="color:#abb2bf;">        }
+</span><span style="color:#abb2bf;">        #PHP 脚本请求全部转发到 FastCGI处理. 使用FastCGI默认配置.
+</span><span style="color:#abb2bf;">        location ~ \.php$ {
+</span><span style="color:#abb2bf;">            root /root;
+</span><span style="color:#abb2bf;">            fastcgi_pass 127.0.0.1:9000;
+</span><span style="color:#abb2bf;">            fastcgi_index index.php;
+</span><span style="color:#abb2bf;">            fastcgi_param SCRIPT_FILENAME /home/www/www$fastcgi_script_name;
+</span><span style="color:#abb2bf;">            include fastcgi_params;
+</span><span style="color:#abb2bf;">        }
+</span><span style="color:#abb2bf;">        #设定查看Nginx状态的地址
+</span><span style="color:#abb2bf;">        location /NginxStatus {
+</span><span style="color:#abb2bf;">            stub_status            on;
+</span><span style="color:#abb2bf;">            access_log              on;
+</span><span style="color:#abb2bf;">            auth_basic              &quot;NginxStatus&quot;;
+</span><span style="color:#abb2bf;">            auth_basic_user_file  conf/htpasswd;
+</span><span style="color:#abb2bf;">        }
+</span><span style="color:#abb2bf;">        #禁止访问 .htxxx 文件
+</span><span style="color:#abb2bf;">        location ~ /\.ht {
+</span><span style="color:#abb2bf;">            deny all;
+</span><span style="color:#abb2bf;">        }
+</span><span style="color:#abb2bf;">    
+</span><span style="color:#abb2bf;">    }
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<h2 id="12-php-shang-chuan-xian-zhi">12. PHP 上传限制</h2>
+<h3 id="12-1-php-ini">12.1. php.ini</h3>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">; 开启上传
+</span><span style="color:#abb2bf;">file_uploads = On
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">; 上传暂存目录
+</span><span style="color:#abb2bf;">;upload_tmp_dir =
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">; 上传文件最大值
+</span><span style="color:#abb2bf;">upload_max_filesize = 120M
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">; 一次性上传文件数量
+</span><span style="color:#abb2bf;">max_file_uploads = 20
+</span></code></pre>
+<h3 id="12-2-nginx">12.2. nginx</h3>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"># 上传文件最大值
+</span><span style="color:#abb2bf;">client_max_body_size 120M;  
+</span><span style="color:#abb2bf;"># 设置临时目录
+</span><span style="color:#abb2bf;"># client_body_temp_path /home/www/nginx_temp;
+</span></code></pre>
+
+
+
+  </div>
+</div>
+
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;chess&#x2F;">
+    <i class="icon icon-left-open"></i>
+    国际象棋术语</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;mysql-cheatsheet&#x2F;">
+    Mysql Cheatsheet
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-info" href="//erasin.wang/categories/server/">server</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-info" href="//erasin.wang/tags/draft/">draft</a>
+
+
+
+<a class="tag is-success" href="//erasin.wang/tags/web/">web</a>
+
+
+
+<a class="tag is-light" href="//erasin.wang/tags/server/">server</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="1-an-zhuang" href="//erasin.wang/nginx/#1-an-zhuang">1. 安装</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="2-fu-wu" href="//erasin.wang/nginx/#2-fu-wu">2. 服务</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="3-pei-zhi" href="//erasin.wang/nginx/#3-pei-zhi">3. 配置</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="3-1-pei-zhi-qiang-zhi-yu-ming-fang-wen" href="//erasin.wang/nginx/#3-1-pei-zhi-qiang-zhi-yu-ming-fang-wen">3.1. 配置 强制域名访问</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="3-2-fan-xiang-dai-li" href="//erasin.wang/nginx/#3-2-fan-xiang-dai-li">3.2. 反向代理</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="4-htpasswd-httpyan-zheng" href="//erasin.wang/nginx/#4-htpasswd-httpyan-zheng">4. htpasswd HTTP验证</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="5-error" href="//erasin.wang/nginx/#5-error">5. error</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="6-dao-lian" href="//erasin.wang/nginx/#6-dao-lian">6. 盗链</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="7-access-control-allow-origin" href="//erasin.wang/nginx/#7-access-control-allow-origin">7. Access-Control-Allow-Origin</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="8-shang-chuan" href="//erasin.wang/nginx/#8-shang-chuan">8. 上传</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="9-lian-jie-shu" href="//erasin.wang/nginx/#9-lian-jie-shu">9. 连接数</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="10-yin-cang-ban-ben-hao" href="//erasin.wang/nginx/#10-yin-cang-ban-ben-hao">10. 隐藏版本号</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="11-demo-nginx-pei-zhi" href="//erasin.wang/nginx/#11-demo-nginx-pei-zhi">11. DEMO NGINX 配置</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="12-php-shang-chuan-xian-zhi" href="//erasin.wang/nginx/#12-php-shang-chuan-xian-zhi">12. PHP 上传限制</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="12-1-php-ini" href="//erasin.wang/nginx/#12-1-php-ini">12.1. php.ini</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="12-2-nginx" href="//erasin.wang/nginx/#12-2-nginx">12.2. nginx</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

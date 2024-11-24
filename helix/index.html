@@ -1,0 +1,814 @@
+<!DOCTYPE html> 
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title> helix editor 新一代的编辑器 - 编程与开发 </title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta property="description" content="helix editor 是基于vim&#x2F;kak的现代编辑器" />
+
+  
+  <meta name="keywords" content="helix,vim,erasin" />
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+
+
+
+
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> helix editor 新一代的编辑器 </a>
+</nav>
+
+
+
+
+
+
+
+<div class="posts col">
+  
+  <div class="post odd  " >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/helix/hx-lsp/" >hx-lsp 为 Helix editor 提供 snippets 和 actions
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2024-04-29</div>
+    </div>
+    
+    <div class="post-content ">
+      <p>一个提供了自定义代码片段 snippets 和 Code Action 的 lsp 工具。</p>
+<h2 id="gong-neng">功能</h2>
+<ul>
+<li>Completion: snippets
+<ul>
+<li>自定义片段</li>
+<li>全局片段</li>
+</ul>
+</li>
+<li>CodeAction: actions
+<ul>
+<li>实现 run code</li>
+<li>通过参数实现各种脚本运行</li>
+</ul>
+</li>
+</ul>
+<h2 id="an-zhuang">安装</h2>
+<pre data-lang="sh" style="background-color:#2b303b;color:#6c7079;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#eb6772;">git</span><span style="color:#abb2bf;"> clone https://github.com/erasin/hx-lsp.git
+</span><span style="color:#5ebfcc;">cd</span><span style="color:#abb2bf;"> hx-lsp
+</span><span style="color:#eb6772;">cargo</span><span style="color:#abb2bf;"> install</span><span style="color:#eb6772;"> --path</span><span style="color:#abb2bf;"> .
+</span></code></pre>
+<blockquote>
+<p>在 https://github.com/erasin/helix-config/ 中有示例代码，另外我自己使用的分支已经合并了 <a href="https://github.com/helix-editor/helix/pull/9801">helix#9081 Add a snippet system</a>。</p>
+</blockquote>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/helix/hx-lsp/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+  <div class="post even " >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/helix/ime-switch/" >在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2024-02-22</div>
+    </div>
+    
+    <div class="post-content ">
+      <p>在支持模态文本编辑的编辑器，比如 vim, helix， vscode的vim模式等，在使用 <code>esc</code>键后会进入默认的普通模式(normal mode)，这个时候的操作基本是在英文输入状态下完成操作。再使用 ime 中文输入法的情况下，我们使用<code>esc</code>后必须切换回英文输入，无疑对模态操作多了一次步骤。这里我们可以在使用<code>esc</code>时同时切换输入法来解决该问题。</p>
+<p>大致的解决办法是：</p>
+<ol>
+<li>利用脚本以及 cli 命令 来切换系统输入法</li>
+<li>编辑器插入模式，为 esc 配置命令切换为回英文，并记录当前的输入法</li>
+<li>在编辑进入插入模式的时候，读取上次插入模式下的输入法并切换</li>
+</ol>
+<p>下面介绍 Linux ，osx 下的切换输入法方法。</p>
+<h2 id="linux-gnome-huan-jing-ibus">Linux gnome 环境 ibus</h2>
+<p><a href="https://wiki.archlinuxcn.org/wiki/IBus">IBus</a> 是一款输入法框架。具体使用可以参考 <a href="https://wiki.archlinuxcn.org/wiki/IBus">wiki-ibus</a> 。</p>
+<p>ibus 提供了工具 <code>ibus engine</code> 查看当前的输入法标识，使用 <code>ibus engine rime</code> 切换输入法为rime。  但在 <code>gnome 4</code> 版本中，该命令无法和<code>gnome-shell</code>中的系统状态的输入法保持一致。这个时候我们使用一款 <a href="https://extensions.gnome.org/extension/5497/ibus-switcher/">gnome-shell-ibus-switcher</a> 插件来解决该问题。
+<a href="https://github.com/kevinhwang91/gnome-shell-ibus-switcher">ibus-switcher</a> 为 gnome-shell 42 版本后 提供了利用 <code>d-bus</code> 切换输入法的方式，从而切换系统输入法</p>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/helix/ime-switch/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+  <div class="post odd  " >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/helix/helix-zen-mode-like/" >给 helix 追加类 Zen Mode 模式
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2023-04-01</div>
+    </div>
+    
+    <div class="post-content ">
+      <p>Zen Mode 具体我也不太清楚, 之前在 vscode 中使用过, 但是不是太好就没有再使用了. Helix(23.03) 现在还不支持窗口尺寸变更, 我在 PR 中查阅到有人提起 Zen Mode.</p>
+<p>这里我利用了编辑器的配置项最大行长度 <code>text-width</code> 和虚拟字符后支持的软换行(soft wrap)功能中的配置项 <code>soft-wrap.wrap-at-text-width</code>, 其中软换行的这个选项是指在设置的<code>text-width</code>长度位置进行换行, 而非默认的视图位置换行.</p>
+<p><img src="https://user-images.githubusercontent.com/716514/228216931-6f194897-2c5b-472a-b155-67e7625d8411.png" alt="zen-mode" /></p>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/helix/helix-zen-mode-like/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+  <div class="post even " >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/helix/helix-start/" >开始使用 HELIX EDITOR 编辑器
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2023-02-17</div>
+    </div>
+    
+    <div class="post-content ">
+      <p>在工作的十来年内，我使用过各种各样的文本编辑器，从最开始的nodepad以及网页三剑客，到sublime2，sublime3，vim, neovim, atom, vscode, 特别是在使用 vscode 的时候, vim 键盘布局的兼容，加上逐渐丰富的插件系统，使用起来非常的好，可以说是我近年来使用过最好编辑器了。但是随着使用时间的加深，vscode 使用 electron 在我的电脑上也开始出现了隔上一段时间就会出现一次小小的卡顿，最开始的时候还能够忍受，当你的输入被打断的时候，就变得非常的不爽了，然后重新回到了 neovim 编辑器。</p>
+<p>Neovim 和 vim 相同，初始仅提供了模态编辑功能，优秀的键盘布局通过练习后会形成一套肌肉记忆，让编辑文本变得更加的有效率，这也是近年来多数商业的编辑器也都支持了vim mode 的原因。</p>
+<p>Neovim 支持 lua 来配置，这比之前的vim配置有效率的多，也诞生了不少<code>框架</code>，比如<a href="https://github.com/NvChad/NvChad">NvChad</a>，有这些框架的支持，最少也不用重新开始配置了,然后就是查询 neovim 的最优插件，tree-sitter 语法支持，lsp 支持，为使用到的语言配置。然后更新，修改配置。然后就是维护这套配置。这无疑会话费大量的时间。</p>
+<p>去年五月份的时候，我在github上发现了<a href="https://github.com/helix-editor/helix">Helix</a>编辑器项目，当时已经有 <strong>10K STAR</strong> 了，下载后自己编译了文件，发现编辑器和 vim 非常的类似，仅仅是部分操作有所差别，官方提供了更加现代化的提示，可以说非常的友好，可以看出它融合了很多现代编辑器以及vim插件的特性，这些我们下面再说。</p>
+<p>Vim 的操作模式是多数是 <strong>动作 --&gt; 对象</strong>, 默认情况下除了编辑器下方的动词，你没有任何的提示，需要我们自己来确认需要处理的选择对象。</p>
+<p>而 Helix 是 <strong>选择操作的对象 --&gt; 动作</strong>, 是先要明确要操作的对象，然后才是输入动作，这样在多光标多个选区的时候是非常有效和明确的。Helix 编辑器和 Kakoune 相同是以多光标操作为核心，允许多个选区同时操作的编辑器。而 Vim 则需要通过插件实现多光标模式，所以操作上也有一定的差异。</p>
+<p>在使用了 Helix 的几个月内，一定程度上变成了我主要编辑器，因为 Debugger (DAP) 还不成熟，Debug 我还在用 Vscode。下面让我快速的介绍下这款编辑器吧。</p>
+<img src='https://raw.githubusercontent.com/helix-editor/helix/master/logo.svg'  style='width:100%;max-width:200px;' />
+
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/helix/helix-start/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+  <div class="post odd  " >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/helix/tutor/" >helix editor 中文教程
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2023-02-02</div>
+    </div>
+    
+    <div class="post-content ">
+      <pre data-lang="bob" style="background-color:#2b303b;color:#6c7079;" class="language-bob "><code class="language-bob" data-lang="bob"><span style="color:#abb2bf;">     _   _                 __    __
+</span><span style="color:#abb2bf;">    | | | |         _      \ \  / /
+</span><span style="color:#abb2bf;">    | |_| |  ____  | | (_)  \ \/ /
+</span><span style="color:#abb2bf;">    |  _  | /  _ \ | |  _    )  (
+</span><span style="color:#abb2bf;">    | | | | |  __/ | | | |  / /\ \
+</span><span style="color:#abb2bf;">    |_| |_|  \___| |_| |_| /_/  \_\
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">        一个后现代模态文本编辑器
+</span><span style="color:#abb2bf;">            version 22.12 
+</span></code></pre>
+<blockquote>
+<p>本文已经提交 PR<a href="https://github.com/helix-editor/helix/pull/5199">#5199</a>
+建议本地合并PR，编译后使用 <code>:tutor zh_cn</code> 使用本教程。</p>
+</blockquote>
+<p>欢迎使用 Helix 编辑器！Helix 不同于其他的编辑器，它是有模态的，
+也就是它在编辑文本的时候有不同的模式，最常用的模式有<strong>普通模式</strong>
+（<strong>Normal mode</strong>）和<strong>插入模式</strong>(<strong>Insert mode</strong>)。普通模式下您输入的按键
+实际上不会输入任何文本，而会对文本进行各种操作。这样可让您进行
+更加高效率的操作。本教程将教您如何使用 Helix 的模态编辑功能。</p>
+<p>现在，现在请确保您的 <code>CapsLock</code> (大小写锁定键) 没有被按下，然后
+按下 j 键，直到第一节课的内容完全显示。</p>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/helix/tutor/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+</div>
+
+
+
+
+
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+
+
+<div class="box mini-hide">
+  <h3 class="header"> <i class="icon icon-bookmark"></i> 分类 <a class="more"
+      href='//erasin.wang/categories'>MORE</a></h3>
+  <div class="box-body">
+    
+
+<ul class="ui list tree">
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/ai/">AI 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/algorithm/">algorithm 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/art/">art 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/article/">article 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/awesome/">awesome 
+
+
+
+
+</a>
+    <span class="sub-num"> 6</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/book/">book 
+
+<i class="icon icon-book"></i> 
+
+</a>
+    <span class="sub-num"> 8</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/cheatsheet/">cheatsheet 
+
+
+
+
+</a>
+    <span class="sub-num"> 6</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/cli/">cli 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    <span class="sub-num"> 10</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/database/">database 
+
+<i class="icon icon-database"></i> 
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/datetime/">datetime 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/docs/">docs 
+
+<i class="icon icon-paperclip"></i> 
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/game/">game 
+
+<i class="icon icon-gamepad"></i> 
+
+</a>
+    <span class="sub-num"> 7</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/godot/">godot 
+
+
+
+
+</a>
+    <span class="sub-num"> 5</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/golang/">golang 
+
+<i class="icon icon-go"></i> 
+
+</a>
+    <span class="sub-num"> 6</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/gong-ju/">工具 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/helix/">helix 
+
+
+
+
+</a>
+    <span class="sub-num"> 5</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/hui-hua/">绘画 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/javascript/">javascript 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/kai-yuan/">开源 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/linux/">linux 
+
+
+
+
+</a>
+    <span class="sub-num"> 5</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/lu-fa/">律法 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/mac/">mac 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/markdown/">markdown 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/math/">math 
+
+<i class="icon icon-pi"></i> 
+
+</a>
+    <span class="sub-num"> 4</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/mirror/">mirror 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/osx/">osx 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/php/">php 
+
+
+
+
+</a>
+    <span class="sub-num"> 4</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/pixel/">pixel 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/python/">python 
+
+<i class="icon icon-python"></i> 
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/ruan-jian/">软件 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/rustlang/">rustlang 
+
+<i class="icon icon-rust"></i> 
+
+</a>
+    <span class="sub-num"> 9</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/script/">script 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/server/">server 
+
+<i class="icon icon-server"></i> 
+
+</a>
+    <span class="sub-num"> 8</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/sheng-huo/">生活 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/soft/">soft 
+
+
+
+
+</a>
+    <span class="sub-num"> 17</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/sql/">SQL 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/suan-fa/">算法 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/tool/">Tool 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/video/">video 
+
+<i class="icon icon-youtube"></i> 
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/web/">web 
+
+<i class="icon icon-network"></i> 
+
+</a>
+    <span class="sub-num"> 4</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/xiang-su/">像素 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

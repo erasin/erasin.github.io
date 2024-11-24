@@ -1,0 +1,734 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  Mysql Cheatsheet - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="" property="description" />
+
+  
+    <meta content="SQL,database" name="keywords" />
+  
+
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> Mysql Cheatsheet </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      MYSQL CHEATSHEET
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2019-12-20
+    </div>
+  </div>
+
+  <div class="post-content  " 
+    style="background-image:url(&#x2F;assets&#x2F;img&#x2F;database.svg); background-size:150px;" >
+    <h2 id="chuang-jian-shan-chu-shu-ju-ku">创建/删除 数据库</h2>
+<blockquote>
+<p>Create / Delete Database</p>
+</blockquote>
+<pre data-lang="sql" style="background-color:#2b303b;color:#6c7079;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#cd74e8;">CREATE DATABASE </span><span style="color:#5cb3fa;">dbNameYouWant </span><span style="font-style:italic;color:#5f697a;">-- 创建数据库
+</span><span style="color:#cd74e8;">CREATE DATABASE </span><span style="color:#abb2bf;">dbNameYouWant CHARACTER SET </span><span style="color:#5cb3fa;">utf8 </span><span style="font-style:italic;color:#5f697a;">-- 创建并设定字符
+</span><span style="color:#cd74e8;">DROP DATABASE</span><span style="color:#abb2bf;"> dbNameYouWant </span><span style="font-style:italic;color:#5f697a;">-- 删除
+</span><span style="color:#cd74e8;">ALTER DATABASE </span><span style="color:#abb2bf;">dbNameYouWant CHARACTER </span><span style="color:#cd74e8;">SET</span><span style="color:#abb2bf;"> utf8 </span><span style="font-style:italic;color:#5f697a;">-- 修改
+</span><span style="color:#abb2bf;">USE dbNameYouWant </span><span style="font-style:italic;color:#5f697a;">-- 使用数据库作为默认操作对象，如果要操作数据表
+</span></code></pre>
+<h2 id="bei-fen-shu-ju-ku-dao-sql-wen-jian">备份数据库到 sql 文件</h2>
+<blockquote>
+<p>Backup Database to SQL File</p>
+</blockquote>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">mysqldump -u</span><span style="color:#abb2bf;"> Username</span><span style="color:#eb6772;"> -p</span><span style="color:#abb2bf;"> dbNameYouWant </span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> databasename_backup.sql
+</span></code></pre>
+<span id="continue-reading"></span><h2 id="cong-bei-fen-zhong-hui-fu-shu-ju">从备份中恢复数据</h2>
+<p>如果是要导入数据，需要先确认数据库的存在，然后导入数据。</p>
+<blockquote>
+<p>Restore from backup SQL File</p>
+</blockquote>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">mysql</span><span style="color:#abb2bf;"> - u Username</span><span style="color:#eb6772;"> -p</span><span style="color:#abb2bf;"> dbNameYouWant </span><span style="color:#adb7c9;">&lt;</span><span style="color:#abb2bf;"> databasename_backup.sql
+</span></code></pre>
+<h2 id="xiu-fu-shu-ju-biao">修复数据表</h2>
+<blockquote>
+<p>Repair Tables After Unclean Shutdown</p>
+</blockquote>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">mysqlcheck --all-databases
+</span><span style="color:#eb6772;">mysqlcheck --all-databases --fast
+</span></code></pre>
+<h2 id="fu-wu-shu-ju">服务数据</h2>
+<pre data-lang="sql" style="background-color:#2b303b;color:#6c7079;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="font-style:italic;color:#5f697a;">-- 注释
+</span><span style="color:#abb2bf;">SHOW DATABASES </span><span style="font-style:italic;color:#5f697a;">-- 显示数据库
+</span><span style="color:#abb2bf;">SHOW TABLES </span><span style="font-style:italic;color:#5f697a;">-- 显示数据表
+</span><span style="color:#abb2bf;">SHOW FIELDS </span><span style="color:#cd74e8;">FROM</span><span style="color:#abb2bf;"> table </span><span style="color:#adb7c9;">/</span><span style="color:#abb2bf;"> DESCRIBE table </span><span style="font-style:italic;color:#5f697a;">-- 显示表结构
+</span><span style="color:#abb2bf;">SHOW PROCESSLIST </span><span style="font-style:italic;color:#5f697a;">-- 显示连接的用户进程
+</span><span style="color:#abb2bf;">KILL process_number </span><span style="font-style:italic;color:#5f697a;">-- 删除连接
+</span></code></pre>
+<h2 id="shu-ju-biao-yuan-cao-zuo">数据表元操作</h2>
+<blockquote>
+<p>Create / Delete / Modify Table</p>
+</blockquote>
+<h3 id="chuang-jian-biao">创建表</h3>
+<pre data-lang="sql" style="background-color:#2b303b;color:#6c7079;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="font-style:italic;color:#5f697a;">-- 创建表格
+</span><span style="color:#cd74e8;">CREATE TABLE </span><span style="color:#5cb3fa;">table</span><span style="color:#abb2bf;"> (field1 type1, field2 type2, ...)
+</span><span style="font-style:italic;color:#5f697a;">-- 设定 index 索引
+</span><span style="color:#cd74e8;">CREATE TABLE </span><span style="color:#5cb3fa;">table</span><span style="color:#abb2bf;"> (field1 type1, field2 type2, ..., INDEX (field))
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">-- 设定主键
+</span><span style="color:#cd74e8;">CREATE TABLE </span><span style="color:#5cb3fa;">table</span><span style="color:#abb2bf;"> (field1 type1, field2 type2, ..., </span><span style="color:#cd74e8;">PRIMARY KEY</span><span style="color:#abb2bf;"> (field1))
+</span><span style="color:#cd74e8;">CREATE TABLE </span><span style="color:#5cb3fa;">table</span><span style="color:#abb2bf;"> (field1 type1, field2 type2, ..., </span><span style="color:#cd74e8;">PRIMARY KEY</span><span style="color:#abb2bf;"> (field1,
+</span><span style="color:#abb2bf;">field2))
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">CREATE TABLE </span><span style="color:#5cb3fa;">table1</span><span style="color:#abb2bf;"> (fk_field1 type1, field2 type2, ...,
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">FOREIGN KEY</span><span style="color:#abb2bf;"> (fk_field1) </span><span style="color:#cd74e8;">REFERENCES</span><span style="color:#abb2bf;"> table2 (t2_fieldA))
+</span><span style="color:#abb2bf;">    [</span><span style="color:#cd74e8;">ON UPDATE</span><span style="color:#abb2bf;">|</span><span style="color:#cd74e8;">ON DELETE</span><span style="color:#abb2bf;">] [CASCADE|</span><span style="color:#cd74e8;">SET </span><span style="color:#db9d63;">NULL</span><span style="color:#abb2bf;">]
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">CREATE TABLE </span><span style="color:#5cb3fa;">table1</span><span style="color:#abb2bf;"> (fk_field1 type1, fk_field2 type2, ...,
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">FOREIGN KEY</span><span style="color:#abb2bf;"> (fk_field1, fk_field2) </span><span style="color:#cd74e8;">REFERENCES</span><span style="color:#abb2bf;"> table2 (t2_fieldA, t2_fieldB))
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">CREATE TABLE </span><span style="color:#abb2bf;">table IF NOT </span><span style="color:#5cb3fa;">EXISTS</span><span style="color:#abb2bf;"> (...)
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">CREATE TEMPORARY TABLE table (...)
+</span></code></pre>
+<h3 id="shan-chu-biao">删除表</h3>
+<pre data-lang="sql" style="background-color:#2b303b;color:#6c7079;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#cd74e8;">DROP TABLE</span><span style="color:#abb2bf;"> table
+</span><span style="color:#cd74e8;">DROP TABLE</span><span style="color:#abb2bf;"> IF </span><span style="color:#adb7c9;">EXISTS</span><span style="color:#abb2bf;"> table
+</span><span style="color:#cd74e8;">DROP TABLE</span><span style="color:#abb2bf;"> table1, table2, ...
+</span></code></pre>
+<h3 id="xiu-gai-biao">修改表</h3>
+<pre data-lang="sql" style="background-color:#2b303b;color:#6c7079;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#cd74e8;">ALTER TABLE </span><span style="color:#abb2bf;">table MODIFY field1 type1
+</span><span style="color:#cd74e8;">ALTER TABLE </span><span style="color:#abb2bf;">table MODIFY field1 type1 </span><span style="color:#adb7c9;">NOT </span><span style="color:#db9d63;">NULL</span><span style="color:#abb2bf;"> ...
+</span><span style="color:#cd74e8;">ALTER TABLE </span><span style="color:#abb2bf;">table CHANGE old_name_field1 new_name_field1 type1
+</span><span style="color:#cd74e8;">ALTER TABLE </span><span style="color:#abb2bf;">table CHANGE old_name_field1 new_name_field1 type1 </span><span style="color:#adb7c9;">NOT </span><span style="color:#db9d63;">NULL</span><span style="color:#abb2bf;"> ...
+</span><span style="color:#cd74e8;">ALTER TABLE </span><span style="color:#abb2bf;">table ALTER field1 </span><span style="color:#cd74e8;">SET DEFAULT</span><span style="color:#abb2bf;"> ...
+</span><span style="color:#cd74e8;">ALTER TABLE </span><span style="color:#abb2bf;">table ALTER field1 DROP </span><span style="color:#cd74e8;">DEFAULT
+</span><span style="color:#cd74e8;">ALTER TABLE </span><span style="color:#abb2bf;">table ADD new_name_field1 type1
+</span><span style="color:#cd74e8;">ALTER TABLE </span><span style="color:#abb2bf;">table ADD new_name_field1 type1 FIRST
+</span><span style="color:#cd74e8;">ALTER TABLE </span><span style="color:#abb2bf;">table ADD new_name_field1 type1 AFTER another_field
+</span><span style="color:#cd74e8;">ALTER TABLE </span><span style="color:#abb2bf;">table DROP field1
+</span><span style="color:#cd74e8;">ALTER TABLE </span><span style="color:#abb2bf;">table ADD INDEX (field);
+</span></code></pre>
+<h3 id="xiu-gai-zi-duan-shun-xu">修改字段顺序</h3>
+<pre data-lang="sql" style="background-color:#2b303b;color:#6c7079;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#cd74e8;">ALTER TABLE </span><span style="color:#abb2bf;">table MODIFY field1 type1 FIRST
+</span><span style="color:#cd74e8;">ALTER TABLE </span><span style="color:#abb2bf;">table MODIFY field1 type1 AFTER another_field
+</span><span style="color:#cd74e8;">ALTER TABLE </span><span style="color:#abb2bf;">table CHANGE old_name_field1 new_name_field1 type1 FIRST
+</span><span style="color:#cd74e8;">ALTER TABLE </span><span style="color:#abb2bf;">table CHANGE old_name_field1 new_name_field1 type1 AFTER
+</span><span style="color:#abb2bf;">    another_field
+</span></code></pre>
+<h3 id="jian-zhi-keys">键值 Keys</h3>
+<pre data-lang="sql" style="background-color:#2b303b;color:#6c7079;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#cd74e8;">CREATE TABLE </span><span style="color:#5cb3fa;">table</span><span style="color:#abb2bf;"> (..., </span><span style="color:#cd74e8;">PRIMARY KEY</span><span style="color:#abb2bf;"> (field1, field2))
+</span><span style="color:#cd74e8;">CREATE TABLE </span><span style="color:#5cb3fa;">table</span><span style="color:#abb2bf;"> (..., </span><span style="color:#cd74e8;">FOREIGN KEY</span><span style="color:#abb2bf;"> (field1, field2) </span><span style="color:#cd74e8;">REFERENCES</span><span style="color:#abb2bf;"> table2
+</span><span style="color:#abb2bf;">(t2_field1, t2_field2))
+</span></code></pre>
+<h2 id="zeng-shan-gai-cha">增删改查</h2>
+<h3 id="cha-xun-select">查询 Select</h3>
+<pre data-lang="sql" style="background-color:#2b303b;color:#6c7079;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#cd74e8;">SELECT </span><span style="color:#eb6772;">* </span><span style="color:#cd74e8;">FROM</span><span style="color:#abb2bf;"> table
+</span><span style="color:#cd74e8;">SELECT </span><span style="color:#eb6772;">* </span><span style="color:#cd74e8;">FROM</span><span style="color:#abb2bf;"> table1, table2, ...
+</span><span style="color:#cd74e8;">SELECT</span><span style="color:#abb2bf;"> field1, field2, ... </span><span style="color:#cd74e8;">FROM</span><span style="color:#abb2bf;"> table1, table2, ...
+</span><span style="color:#cd74e8;">SELECT</span><span style="color:#abb2bf;"> ... </span><span style="color:#cd74e8;">FROM</span><span style="color:#abb2bf;"> ... </span><span style="color:#cd74e8;">WHERE</span><span style="color:#abb2bf;"> condition
+</span><span style="color:#cd74e8;">SELECT</span><span style="color:#abb2bf;"> ... </span><span style="color:#cd74e8;">FROM</span><span style="color:#abb2bf;"> ... </span><span style="color:#cd74e8;">WHERE</span><span style="color:#abb2bf;"> condition GROUPBY field
+</span><span style="color:#cd74e8;">SELECT</span><span style="color:#abb2bf;"> ... </span><span style="color:#cd74e8;">FROM</span><span style="color:#abb2bf;"> ... </span><span style="color:#cd74e8;">WHERE</span><span style="color:#abb2bf;"> condition GROUPBY field </span><span style="color:#adb7c9;">HAVING</span><span style="color:#abb2bf;"> condition2
+</span><span style="color:#cd74e8;">SELECT</span><span style="color:#abb2bf;"> ... </span><span style="color:#cd74e8;">FROM</span><span style="color:#abb2bf;"> ... </span><span style="color:#cd74e8;">WHERE</span><span style="color:#abb2bf;"> condition </span><span style="color:#cd74e8;">ORDER BY</span><span style="color:#abb2bf;"> field1, field2
+</span><span style="color:#cd74e8;">SELECT</span><span style="color:#abb2bf;"> ... </span><span style="color:#cd74e8;">FROM</span><span style="color:#abb2bf;"> ... </span><span style="color:#cd74e8;">WHERE</span><span style="color:#abb2bf;"> condition </span><span style="color:#cd74e8;">ORDER BY</span><span style="color:#abb2bf;"> field1, field2 </span><span style="color:#cd74e8;">DESC
+</span><span style="color:#cd74e8;">SELECT</span><span style="color:#abb2bf;"> ... </span><span style="color:#cd74e8;">FROM</span><span style="color:#abb2bf;"> ... </span><span style="color:#cd74e8;">WHERE</span><span style="color:#abb2bf;"> condition </span><span style="color:#cd74e8;">LIMIT </span><span style="color:#db9d63;">10
+</span><span style="color:#cd74e8;">SELECT DISTINCT</span><span style="color:#abb2bf;"> field1 </span><span style="color:#cd74e8;">FROM</span><span style="color:#abb2bf;"> ...
+</span><span style="color:#cd74e8;">SELECT DISTINCT</span><span style="color:#abb2bf;"> field1, field2 </span><span style="color:#cd74e8;">FROM</span><span style="color:#abb2bf;"> ...
+</span></code></pre>
+<h3 id="lian-he-cha-xun-select-join">联合查询 Select - Join</h3>
+<pre data-lang="sql" style="background-color:#2b303b;color:#6c7079;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#cd74e8;">SELECT</span><span style="color:#abb2bf;"> ... </span><span style="color:#cd74e8;">FROM</span><span style="color:#abb2bf;"> t1 </span><span style="color:#cd74e8;">JOIN</span><span style="color:#abb2bf;"> t2 ON </span><span style="color:#db9d63;">t1</span><span style="color:#abb2bf;">.</span><span style="color:#db9d63;">id1 </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">t2</span><span style="color:#abb2bf;">.</span><span style="color:#db9d63;">id2 </span><span style="color:#cd74e8;">WHERE</span><span style="color:#abb2bf;"> condition
+</span><span style="color:#cd74e8;">SELECT</span><span style="color:#abb2bf;"> ... </span><span style="color:#cd74e8;">FROM</span><span style="color:#abb2bf;"> t1 </span><span style="color:#cd74e8;">LEFT JOIN</span><span style="color:#abb2bf;"> t2 ON </span><span style="color:#db9d63;">t1</span><span style="color:#abb2bf;">.</span><span style="color:#db9d63;">id1 </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">t2</span><span style="color:#abb2bf;">.</span><span style="color:#db9d63;">id2 </span><span style="color:#cd74e8;">WHERE</span><span style="color:#abb2bf;"> condition
+</span><span style="color:#cd74e8;">SELECT</span><span style="color:#abb2bf;"> ... </span><span style="color:#cd74e8;">FROM</span><span style="color:#abb2bf;"> t1 </span><span style="color:#cd74e8;">JOIN</span><span style="color:#abb2bf;"> (t2 </span><span style="color:#cd74e8;">JOIN</span><span style="color:#abb2bf;"> t3 ON ...) ON ...
+</span></code></pre>
+<h3 id="tiao-jian-biao-da-shi-conditions">条件表达式 Conditions</h3>
+<pre data-lang="sql" style="background-color:#2b303b;color:#6c7079;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#abb2bf;">field1 </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> value1
+</span><span style="color:#abb2bf;">field1 </span><span style="color:#adb7c9;">&lt;&gt;</span><span style="color:#abb2bf;"> value1
+</span><span style="color:#abb2bf;">field1 </span><span style="color:#adb7c9;">LIKE </span><span style="color:#9acc76;">&#39;value _ %&#39;
+</span><span style="color:#abb2bf;">field1 </span><span style="color:#adb7c9;">IS </span><span style="color:#db9d63;">NULL
+</span><span style="color:#abb2bf;">field1 </span><span style="color:#adb7c9;">IS NOT </span><span style="color:#db9d63;">NULL
+</span><span style="color:#abb2bf;">field1 IS </span><span style="color:#adb7c9;">IN</span><span style="color:#abb2bf;"> (value1, value2)
+</span><span style="color:#abb2bf;">field1 IS NOT </span><span style="color:#adb7c9;">IN</span><span style="color:#abb2bf;"> (value1, value2)
+</span><span style="color:#abb2bf;">condition1 </span><span style="color:#adb7c9;">AND</span><span style="color:#abb2bf;"> condition2
+</span><span style="color:#abb2bf;">condition1 </span><span style="color:#adb7c9;">OR</span><span style="color:#abb2bf;"> condition2
+</span></code></pre>
+<h3 id="cha-ru-shu-ju-insert">插入数据 Insert</h3>
+<pre data-lang="sql" style="background-color:#2b303b;color:#6c7079;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#cd74e8;">INSERT INTO</span><span style="color:#abb2bf;"> table1 (field1, field2, ...) </span><span style="color:#cd74e8;">VALUES</span><span style="color:#abb2bf;"> (value1, value2, ...)
+</span></code></pre>
+<h3 id="shan-chu-shu-ju-delete">删除数据 Delete</h3>
+<pre data-lang="sql" style="background-color:#2b303b;color:#6c7079;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#cd74e8;">DELETE FROM</span><span style="color:#abb2bf;"> table1 </span><span style="color:#adb7c9;">/ </span><span style="color:#cd74e8;">TRUNCATE</span><span style="color:#abb2bf;"> table1
+</span><span style="color:#cd74e8;">DELETE FROM</span><span style="color:#abb2bf;"> table1 </span><span style="color:#cd74e8;">WHERE</span><span style="color:#abb2bf;"> condition
+</span><span style="color:#cd74e8;">DELETE FROM</span><span style="color:#abb2bf;"> table1, table2 </span><span style="color:#cd74e8;">FROM</span><span style="color:#abb2bf;"> table1, table2 </span><span style="color:#cd74e8;">WHERE </span><span style="color:#db9d63;">table1</span><span style="color:#abb2bf;">.</span><span style="color:#db9d63;">id1 </span><span style="color:#adb7c9;">=
+</span><span style="color:#abb2bf;">    </span><span style="color:#db9d63;">table2</span><span style="color:#abb2bf;">.</span><span style="color:#db9d63;">id2 </span><span style="color:#adb7c9;">AND</span><span style="color:#abb2bf;"> condition
+</span></code></pre>
+<h3 id="geng-xin-shu-ju-update">更新数据 Update</h3>
+<pre data-lang="sql" style="background-color:#2b303b;color:#6c7079;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#cd74e8;">UPDATE</span><span style="color:#abb2bf;"> table1 </span><span style="color:#cd74e8;">SET</span><span style="color:#abb2bf;"> field1</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">new_value1 </span><span style="color:#cd74e8;">WHERE</span><span style="color:#abb2bf;"> condition
+</span><span style="color:#cd74e8;">UPDATE</span><span style="color:#abb2bf;"> table1, table2 </span><span style="color:#cd74e8;">SET</span><span style="color:#abb2bf;"> field1</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">new_value1, field2</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">new_value2, ... </span><span style="color:#cd74e8;">WHERE
+</span><span style="color:#abb2bf;">    </span><span style="color:#db9d63;">table1</span><span style="color:#abb2bf;">.</span><span style="color:#db9d63;">id1 </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">table2</span><span style="color:#abb2bf;">.</span><span style="color:#db9d63;">id2 </span><span style="color:#adb7c9;">AND</span><span style="color:#abb2bf;"> condition
+</span></code></pre>
+<h3 id="cha-ru-cun-zai-ze-geng-xin">插入存在则更新</h3>
+<blockquote>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/insert-on-duplicate.html">insert-on-duplicate</a></p>
+</blockquote>
+<pre data-lang="sql" style="background-color:#2b303b;color:#6c7079;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#cd74e8;">INSERT INTO</span><span style="color:#abb2bf;"> table1 (field1,field2,field3) </span><span style="color:#cd74e8;">VALUES</span><span style="color:#abb2bf;"> (value1,value2,value3)
+</span><span style="color:#abb2bf;">  ON DUPLICATE KEY </span><span style="color:#cd74e8;">UPDATE</span><span style="color:#abb2bf;"> field1</span><span style="color:#adb7c9;">=</span><span style="color:#cd74e8;">VALUES</span><span style="color:#abb2bf;">(field1);
+</span></code></pre>
+<pre data-lang="sql" style="background-color:#2b303b;color:#6c7079;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#cd74e8;">INSERT INTO</span><span style="color:#abb2bf;"> table1 (field1,field2,field3) </span><span style="color:#cd74e8;">VALUES</span><span style="color:#abb2bf;"> (value1,value2,value3)
+</span><span style="color:#abb2bf;">  ON DUPLICATE KEY </span><span style="color:#cd74e8;">UPDATE</span><span style="color:#abb2bf;"> field1</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">value1;
+</span></code></pre>
+<p>使用 <code>UNION</code> 合并处理</p>
+<pre data-lang="sql" style="background-color:#2b303b;color:#6c7079;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#cd74e8;">INSERT INTO</span><span style="color:#abb2bf;"> table1 (field1, field2)
+</span><span style="color:#cd74e8;">SELECT </span><span style="color:#eb6772;">* </span><span style="color:#cd74e8;">FROM
+</span><span style="color:#abb2bf;">  (</span><span style="color:#cd74e8;">SELECT</span><span style="color:#abb2bf;"> field3, field4 </span><span style="color:#cd74e8;">FROM</span><span style="color:#abb2bf;"> table2
+</span><span style="color:#abb2bf;">   </span><span style="color:#cd74e8;">UNION
+</span><span style="color:#abb2bf;">   </span><span style="color:#cd74e8;">SELECT</span><span style="color:#abb2bf;"> field5, field6 </span><span style="color:#cd74e8;">FROM</span><span style="color:#abb2bf;"> table3) </span><span style="color:#adb7c9;">AS</span><span style="color:#abb2bf;"> dt
+</span><span style="color:#abb2bf;">ON DUPLICATE KEY </span><span style="color:#cd74e8;">UPDATE</span><span style="color:#abb2bf;"> field1 </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> field4 </span><span style="color:#adb7c9;">+</span><span style="color:#abb2bf;"> field3;
+</span></code></pre>
+<h2 id="yong-hu-he-quan-xian">用户和权限</h2>
+<blockquote>
+<p>Users and Privileges</p>
+</blockquote>
+<pre data-lang="sql" style="background-color:#2b303b;color:#6c7079;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#cd74e8;">GRANT</span><span style="color:#abb2bf;"> ALL PRIVILEGES ON base.</span><span style="color:#eb6772;">*</span><span style="color:#abb2bf;"> TO </span><span style="color:#9acc76;">&#39;user&#39;</span><span style="color:#abb2bf;">@</span><span style="color:#9acc76;">&#39;localhost&#39;</span><span style="color:#abb2bf;"> IDENTIFIED BY </span><span style="color:#9acc76;">&#39;password&#39;</span><span style="color:#abb2bf;">;
+</span><span style="color:#cd74e8;">GRANT SELECT</span><span style="color:#abb2bf;">, </span><span style="color:#cd74e8;">INSERT</span><span style="color:#abb2bf;">, </span><span style="color:#cd74e8;">DELETE</span><span style="color:#abb2bf;"> ON base.</span><span style="color:#eb6772;">*</span><span style="color:#abb2bf;"> TO </span><span style="color:#9acc76;">&#39;user&#39;</span><span style="color:#abb2bf;">@</span><span style="color:#9acc76;">&#39;localhost&#39;</span><span style="color:#abb2bf;"> IDENTIFIED BY </span><span style="color:#9acc76;">&#39;password&#39;</span><span style="color:#abb2bf;">;
+</span><span style="color:#cd74e8;">REVOKE</span><span style="color:#abb2bf;"> ALL PRIVILEGES ON base.</span><span style="color:#eb6772;">* </span><span style="color:#cd74e8;">FROM </span><span style="color:#9acc76;">&#39;user&#39;</span><span style="color:#abb2bf;">@</span><span style="color:#9acc76;">&#39;host&#39;</span><span style="color:#abb2bf;">; </span><span style="font-style:italic;color:#5f697a;">-- one permission only
+</span><span style="color:#cd74e8;">REVOKE</span><span style="color:#abb2bf;"> ALL PRIVILEGES, </span><span style="color:#cd74e8;">GRANT</span><span style="color:#abb2bf;"> OPTION </span><span style="color:#cd74e8;">FROM </span><span style="color:#9acc76;">&#39;user&#39;</span><span style="color:#abb2bf;">@</span><span style="color:#9acc76;">&#39;host&#39;</span><span style="color:#abb2bf;">; </span><span style="font-style:italic;color:#5f697a;">-- all permissions
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">SET</span><span style="color:#abb2bf;"> PASSWORD </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> PASSWORD(</span><span style="color:#9acc76;">&#39;new_pass&#39;</span><span style="color:#abb2bf;">)
+</span><span style="color:#cd74e8;">SET</span><span style="color:#abb2bf;"> PASSWORD FOR </span><span style="color:#9acc76;">&#39;user&#39;</span><span style="color:#abb2bf;">@</span><span style="color:#9acc76;">&#39;host&#39; </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> PASSWORD(</span><span style="color:#9acc76;">&#39;new_pass&#39;</span><span style="color:#abb2bf;">)
+</span><span style="color:#cd74e8;">SET</span><span style="color:#abb2bf;"> PASSWORD </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> OLD_PASSWORD(</span><span style="color:#9acc76;">&#39;new_pass&#39;</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">DROP USER </span><span style="color:#9acc76;">&#39;user&#39;</span><span style="color:#abb2bf;">@</span><span style="color:#9acc76;">&#39;host&#39;
+</span></code></pre>
+<p>Host ‘%’ indicates any host.</p>
+<h2 id="zhu-yao-de-shu-ju-lei-xing">主要的数据类型</h2>
+<h3 id="shu-zi">数字</h3>
+<pre data-lang="sql" style="background-color:#2b303b;color:#6c7079;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#abb2bf;">TINYINT (1o: </span><span style="color:#adb7c9;">-</span><span style="color:#db9d63;">217</span><span style="color:#adb7c9;">+</span><span style="color:#db9d63;">128</span><span style="color:#abb2bf;">)
+</span><span style="color:#cd74e8;">SMALLINT</span><span style="color:#abb2bf;"> (2o: </span><span style="color:#adb7c9;">+-</span><span style="color:#db9d63;">65 000</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">MEDIUMINT (3o: </span><span style="color:#adb7c9;">+-</span><span style="color:#db9d63;">16 000 000</span><span style="color:#abb2bf;">)
+</span><span style="color:#cd74e8;">INT</span><span style="color:#abb2bf;"> (4o: </span><span style="color:#adb7c9;">+- </span><span style="color:#db9d63;">2 000 000 000</span><span style="color:#abb2bf;">)
+</span><span style="color:#cd74e8;">BIGINT</span><span style="color:#abb2bf;"> (8o: </span><span style="color:#adb7c9;">+-</span><span style="color:#db9d63;">9</span><span style="color:#abb2bf;">.</span><span style="color:#db9d63;">10</span><span style="color:#abb2bf;">^</span><span style="color:#db9d63;">18</span><span style="color:#abb2bf;">)
+</span></code></pre>
+<p>精确范围: <code>-(2^(8*N-1)) -&gt; (2^8*N)-1</code></p>
+<p><i class="icon icon-attention-alt is-danger"></i> INT(2) = “2 digits displayed” – NOT “number with 2 digits max”</p>
+<pre data-lang="sql" style="background-color:#2b303b;color:#6c7079;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#abb2bf;">FLOAT(M,D) </span><span style="font-style:italic;color:#5f697a;">-- 比如 float(11,2)
+</span><span style="color:#abb2bf;">DOUBLE(M,D)
+</span><span style="color:#abb2bf;">FLOAT(D</span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">0</span><span style="color:#adb7c9;">-&gt;</span><span style="color:#db9d63;">53</span><span style="color:#abb2bf;">)
+</span></code></pre>
+<p><i class="icon icon-attention-alt is-danger"></i> 8,3 -&gt; <code>12345,678</code> – NOT 12345678,123!</p>
+<h3 id="shi-jian">时间</h3>
+<pre data-lang="sql" style="background-color:#2b303b;color:#6c7079;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#cd74e8;">TIME</span><span style="color:#abb2bf;"> (HH:MM)
+</span><span style="color:#abb2bf;">YEAR (AAAA)
+</span><span style="color:#cd74e8;">DATE</span><span style="color:#abb2bf;"> (AAAA</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">MM</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">JJ)
+</span><span style="color:#cd74e8;">DATETIME</span><span style="color:#abb2bf;"> (AAAA</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">MM</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">JJ HH:MM; années </span><span style="color:#db9d63;">1000</span><span style="color:#adb7c9;">-&gt;</span><span style="color:#db9d63;">9999</span><span style="color:#abb2bf;">)
+</span><span style="color:#cd74e8;">TIMESTAMP</span><span style="color:#abb2bf;"> (</span><span style="color:#adb7c9;">like </span><span style="color:#cd74e8;">DATETIME</span><span style="color:#abb2bf;">, but </span><span style="color:#db9d63;">1970</span><span style="color:#adb7c9;">-&gt;</span><span style="color:#db9d63;">2038</span><span style="color:#abb2bf;">, compatible </span><span style="color:#cd74e8;">with</span><span style="color:#abb2bf;"> Unix)
+</span></code></pre>
+<h3 id="wen-ben">文本</h3>
+<pre data-lang="sql" style="background-color:#2b303b;color:#6c7079;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#cd74e8;">VARCHAR</span><span style="color:#abb2bf;"> (single</span><span style="color:#adb7c9;">-</span><span style="color:#cd74e8;">line</span><span style="color:#abb2bf;">; explicit size) </span><span style="font-style:italic;color:#5f697a;">-- 默认255
+</span><span style="color:#cd74e8;">TEXT</span><span style="color:#abb2bf;"> (multi</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">lines; max size</span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">65535</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">BLOB (binary; max size</span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">65535</span><span style="color:#abb2bf;">)
+</span></code></pre>
+<p>变体(Variants) for TEXT&amp;BLOB: <code>TINY</code> (max=255), <code>MEDIUM</code> (max=~16000), and <code>LONG</code> (max=4Go). Ex: <code>VARCHAR(32)</code>, <code>TINYTEXT</code>, <code>LONGBLOB</code>, <code>MEDIUMTEXT</code></p>
+<pre data-lang="sql" style="background-color:#2b303b;color:#6c7079;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#abb2bf;">    ENUM (</span><span style="color:#9acc76;">&#39;value1&#39;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&#39;value2&#39;</span><span style="color:#abb2bf;">, ...) </span><span style="font-style:italic;color:#5f697a;">-- (default NULL, or &#39;&#39; if NOT NULL)
+</span></code></pre>
+<h2 id="zhong-zhi-mi-ma">重置密码</h2>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#5f697a;"># 停止服务
+</span><span style="color:#eb6772;">$</span><span style="color:#abb2bf;"> /etc/init.d/mysql stop
+</span><span style="font-style:italic;color:#5f697a;"># 开启安全模式
+</span><span style="color:#eb6772;">$</span><span style="color:#abb2bf;"> mysqld_safe</span><span style="color:#eb6772;"> --skip-grant-tables
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 从另一个终端 进入
+</span><span style="color:#eb6772;">$</span><span style="color:#abb2bf;"> mysql  
+</span><span style="font-style:italic;color:#5f697a;"># 设置root密码
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> UPDATE mysql.user SET password=PASSWORD(</span><span style="color:#9acc76;">&#39;new_pass&#39;</span><span style="color:#abb2bf;">) </span><span style="color:#eb6772;">WHERE</span><span style="color:#abb2bf;"> user=</span><span style="color:#9acc76;">&#39;root&#39;</span><span style="color:#adb7c9;">;
+</span><span style="color:#eb6772;">mysql </span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> quit
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">## 返回终端,关闭安全模式(Control + \ 杀死进程)，启动服务
+</span><span style="color:#eb6772;">$</span><span style="color:#abb2bf;"> /etc/init.d/mysql start
+</span></code></pre>
+<blockquote>
+<p>操作系统不同情况下，命令执行路径和参数需要注意区别。</p>
+</blockquote>
+
+
+
+  </div>
+</div>
+
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;nginx&#x2F;">
+    <i class="icon icon-left-open"></i>
+    Nginx Web 服务配置</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;golang-cheetsheet&#x2F;">
+    Golang Cheetsheet
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-black" href="//erasin.wang/categories/database/">database</a>
+
+
+
+<a class="tag is-danger" href="//erasin.wang/categories/cheatsheet/">cheatsheet</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-danger" href="//erasin.wang/tags/sql/">SQL</a>
+
+
+
+<a class="tag is-success" href="//erasin.wang/tags/database/">database</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="chuang-jian-shan-chu-shu-ju-ku" href="//erasin.wang/mysql-cheatsheet/#chuang-jian-shan-chu-shu-ju-ku">创建&#x2F;删除 数据库</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="bei-fen-shu-ju-ku-dao-sql-wen-jian" href="//erasin.wang/mysql-cheatsheet/#bei-fen-shu-ju-ku-dao-sql-wen-jian">备份数据库到 sql 文件</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="cong-bei-fen-zhong-hui-fu-shu-ju" href="//erasin.wang/mysql-cheatsheet/#cong-bei-fen-zhong-hui-fu-shu-ju">从备份中恢复数据</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="xiu-fu-shu-ju-biao" href="//erasin.wang/mysql-cheatsheet/#xiu-fu-shu-ju-biao">修复数据表</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="fu-wu-shu-ju" href="//erasin.wang/mysql-cheatsheet/#fu-wu-shu-ju">服务数据</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="shu-ju-biao-yuan-cao-zuo" href="//erasin.wang/mysql-cheatsheet/#shu-ju-biao-yuan-cao-zuo">数据表元操作</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="chuang-jian-biao" href="//erasin.wang/mysql-cheatsheet/#chuang-jian-biao">创建表</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="shan-chu-biao" href="//erasin.wang/mysql-cheatsheet/#shan-chu-biao">删除表</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="xiu-gai-biao" href="//erasin.wang/mysql-cheatsheet/#xiu-gai-biao">修改表</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="xiu-gai-zi-duan-shun-xu" href="//erasin.wang/mysql-cheatsheet/#xiu-gai-zi-duan-shun-xu">修改字段顺序</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="jian-zhi-keys" href="//erasin.wang/mysql-cheatsheet/#jian-zhi-keys">键值 Keys</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="zeng-shan-gai-cha" href="//erasin.wang/mysql-cheatsheet/#zeng-shan-gai-cha">增删改查</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="cha-xun-select" href="//erasin.wang/mysql-cheatsheet/#cha-xun-select">查询 Select</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="lian-he-cha-xun-select-join" href="//erasin.wang/mysql-cheatsheet/#lian-he-cha-xun-select-join">联合查询 Select - Join</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="tiao-jian-biao-da-shi-conditions" href="//erasin.wang/mysql-cheatsheet/#tiao-jian-biao-da-shi-conditions">条件表达式 Conditions</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="cha-ru-shu-ju-insert" href="//erasin.wang/mysql-cheatsheet/#cha-ru-shu-ju-insert">插入数据 Insert</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="shan-chu-shu-ju-delete" href="//erasin.wang/mysql-cheatsheet/#shan-chu-shu-ju-delete">删除数据 Delete</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="geng-xin-shu-ju-update" href="//erasin.wang/mysql-cheatsheet/#geng-xin-shu-ju-update">更新数据 Update</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="cha-ru-cun-zai-ze-geng-xin" href="//erasin.wang/mysql-cheatsheet/#cha-ru-cun-zai-ze-geng-xin">插入存在则更新</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="yong-hu-he-quan-xian" href="//erasin.wang/mysql-cheatsheet/#yong-hu-he-quan-xian">用户和权限</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="zhu-yao-de-shu-ju-lei-xing" href="//erasin.wang/mysql-cheatsheet/#zhu-yao-de-shu-ju-lei-xing">主要的数据类型</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="shu-zi" href="//erasin.wang/mysql-cheatsheet/#shu-zi">数字</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="shi-jian" href="//erasin.wang/mysql-cheatsheet/#shi-jian">时间</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="wen-ben" href="//erasin.wang/mysql-cheatsheet/#wen-ben">文本</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="zhong-zhi-mi-ma" href="//erasin.wang/mysql-cheatsheet/#zhong-zhi-mi-ma">重置密码</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

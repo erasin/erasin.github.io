@@ -1,0 +1,612 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  Golang 中使用 sqlx 手撸SQL - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="golang sqlx 数据库工具" property="description" />
+
+  
+    <meta content="golang,sql" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> Golang 中使用 sqlx 手撸SQL </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      GOLANG 中使用 SQLX 手撸SQL
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2020-07-08
+    </div>
+  </div>
+
+  <div class="post-content  " 
+    style="background-image:url(&#x27;&#x2F;assets&#x2F;img&#x2F;undraw_server_status_5pbv.svg&#x27;)" >
+    <p>关于在Go中如何使用SQL：</p>
+<ul>
+<li><a href="http://golang.org/pkg/database/sql/">database/sql文档</a></li>
+<li>[go-database-sql教程]</li>
+</ul>
+<p>如果你要从了解Go语言开始的话，可以参考：</p>
+<ul>
+<li><a href="http://tour.golang.org/">The Go tour</a></li>
+<li><a href="http://moakap.leanote.com/post/%E6%80%8E%E6%A0%B7%E7%BC%96%E5%86%99Go%E4%BB%A3%E7%A0%81">怎样编写Go代码</a></li>
+<li><a href="http://golang.org/doc/effective_go.html">Effective Go</a></li>
+</ul>
+<p>因为sqlx会包含所有database/sql已有的接口，所以本文中所有关于database/sql的使用建议也同样适用于sqlx。</p>
+<span id="continue-reading"></span><h2 id="an-zhuang">安装</h2>
+<p>开始之前，你需要安装sqlx和Go数据库驱动。建议从sqlite3开始入门：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">$ go get github.com/jmoiron/sqlx
+</span><span style="color:#abb2bf;">$ go get github.com/mattn/go-sqlite3
+</span></code></pre>
+<h2 id="handlelei-xing">handle类型</h2>
+<p>sqlx最大可能去实现database/sql一样的功能。有4中主要handle类型：</p>
+<ul>
+<li>sqlx.DB - 相当于database/sql中的sql.DB，代表一个数据库。</li>
+<li>sqlx.Tx - 相当于database/sql中的sql.Tx，代表一个事务。</li>
+<li>sqlx.Stmt = 相当于database/sql中的sql.Stmt，代表一条要执行的语句。</li>
+<li>sqlx.NamedStmt - 代表一条有参数的执行语句。</li>
+</ul>
+<p>所有handle类型内嵌实现了对应database/sql中handle。也就是说，当你在代码中调用sqlx.DB.Query的时候，同时也会调用执行到sql.DB.Query对应的代码。</p>
+<p>除此之外，还有两种指针类型：</p>
+<ul>
+<li>sqlx.Rows - 相当于sql.Rows, 从Queryx返回的指针；</li>
+<li>sqlx.Row - 相当于sql.Row， 从QueryRowx返回的结果；</li>
+</ul>
+<p>跟handle类型一样，sqlx.Rows内嵌了sql.Rows。犹豫sql.Row的底层实现未公开，sqlx.Row只是实现了sql.Row的部分标准接口。</p>
+<h2 id="lian-jie-shu-ju-ku">连接数据库</h2>
+<p>DB本身并不是一个数据库连接，而是数据库的一个抽象表示。这也是为什么单独创建DB的时候不会报错。<strong>DB内部维护了一个连接池，会根据需要自动尝试去建立连接</strong>。</p>
+<p>两种创建sqlx.DB的方式：</p>
+<ul>
+<li>1）通过Open创建；</li>
+<li>2）通过NewDB从现有的sql.DB创建。</li>
+</ul>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">db </span><span style="color:#adb7c9;">*</span><span style="color:#eb6772;">sqlx</span><span style="color:#abb2bf;">.</span><span style="color:#cd74e8;">DB
+</span><span style="font-style:italic;color:#5f697a;">// 方式1：使用Open函数，跟使用内置的sql.Open一样
+</span><span style="color:#eb6772;">db </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">sqlx</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Open</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;sqlite3&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;:memory:&quot;</span><span style="color:#abb2bf;">)
+</span><span style="font-style:italic;color:#5f697a;">// 方式2：使用NewDB从sql.DB创建，driverName必须指定
+</span><span style="color:#eb6772;">db </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">sqlx</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">NewDb</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">sql</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Open</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;sqlite3&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;:memory:&quot;</span><span style="color:#abb2bf;">), </span><span style="color:#9acc76;">&quot;sqlite3&quot;</span><span style="color:#abb2bf;">)
+</span><span style="font-style:italic;color:#5f697a;">// 建立并测试连接
+</span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">db</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Ping</span><span style="color:#abb2bf;">()
+</span></code></pre>
+<p>在某些情况下，可能需要创建数据库并同时建立连接。比如，在程序初始化阶段检测数据库配置问题，这时可以直接使用<code>Connect</code>函数，会新建一个DB，并执行ping检查连接；另外，模块执行阶段可以使用<code>MustConnect</code>，在连接错误时终止模块执行。</p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">err </span><span style="color:#cd74e8;">error
+</span><span style="font-style:italic;color:#5f697a;">// 同时打开并连接数据库，返回错误信息
+</span><span style="color:#eb6772;">db</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">sqlx</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Connect</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;sqlite3&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;:memory:&quot;</span><span style="color:#abb2bf;">)
+</span><span style="font-style:italic;color:#5f697a;">// 同时打开并连接数据库，遇到错误终止程序
+</span><span style="color:#eb6772;">db </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">sqlx</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">MustConnect</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;sqlite3&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;:memory:&quot;</span><span style="color:#abb2bf;">)
+</span></code></pre>
+<h1 id="cha-xun-query">查询 Query</h1>
+<p><code>sqlx</code>中的<code>handle</code>类型实现了跟<code>database/sql</code>相同的数据库操作：</p>
+<ul>
+<li>Exec(…) (sql.Result, error) - 跟<code>database/sql</code>中函数相同</li>
+<li>Query(…) (*sql.Rows, error) - 跟<code>database/sql</code>中函数相同</li>
+<li>QueryRow(…) *sql.Row - 跟<code>database/sql</code>中函数相同</li>
+</ul>
+<p>同时，<code>sqlx</code>对<code>database/sql</code>内置操作做了以下扩展：</p>
+<ul>
+<li>MustExec() sql.Result – 执行Exec(…)，错误时抛出<code>panic</code>异常；</li>
+<li>Queryx(…) (*sqlx.Rows, error) - 对Query(…)的扩展，返回<code>sqlx.Rows</code>类型结果；</li>
+<li>QueryRowx(…) *sqlx.Row – 对QueryRow(…)的扩展，返回<code>sqlx.Row</code>类型结果；</li>
+</ul>
+<p>sqlx还引入了两个新的操作：</p>
+<ul>
+<li>Get(dest interface{}, …) error</li>
+<li>Select(dest interface{}, …) error</li>
+</ul>
+<p>我们逐个来讲解。</p>
+<h2 id="exec">Exec</h2>
+<p><code>Exec</code>和<code>MustExec</code>从数据库连接池获取一个连接，然后在服务器上执行对应的sql语句。对于不支持即时查询<code>(ad-hoc query)</code>的数据库驱动，系统会自动新建一个预定义语句<code>(prepared statement)</code>然后执行对应sql操作。结果返回以后立即释放连接到连接池。</p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#eb6772;">schema </span><span style="color:#adb7c9;">:= </span><span style="color:#9acc76;">`CREATE TABLE place (
+</span><span style="color:#9acc76;">    country text,
+</span><span style="color:#9acc76;">    city text NULL,
+</span><span style="color:#9acc76;">    telcode integer);`
+</span><span style="font-style:italic;color:#5f697a;">// 直接执行sql操作
+</span><span style="color:#eb6772;">result</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">db</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Exec</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">schema</span><span style="color:#abb2bf;">)
+</span><span style="font-style:italic;color:#5f697a;">// 或者，通过MustExec执行，错误时抛出panic异常
+</span><span style="color:#eb6772;">cityState </span><span style="color:#adb7c9;">:= </span><span style="color:#9acc76;">`INSERT INTO place (country, telcode) VALUES (?, ?)`
+</span><span style="color:#eb6772;">countryCity </span><span style="color:#adb7c9;">:= </span><span style="color:#9acc76;">`INSERT INTO place (country, city, telcode) VALUES (?, ?, ?)`
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">db</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">MustExec</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">cityState</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;Hong Kong&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">852</span><span style="color:#abb2bf;">)
+</span><span style="color:#eb6772;">db</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">MustExec</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">cityState</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;Singapore&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">65</span><span style="color:#abb2bf;">)
+</span><span style="color:#eb6772;">db</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">MustExec</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">countryCity</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;South Africa&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;Johannesburg&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">27</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">
+</span></code></pre>
+<p>返回结果result依赖于不同的驱动，一般包括两部分数据：<code>LastInsertedId()</code>或 <code>RowsAffected()</code>。例如，在MySQL中，可以通过 <code>LastInsertedId()</code> 在插入操作后直接获取自增以后的关键值；但是在PostgreSQL中，只能通过标准的 <code>RETURNING</code> 语句来获取。</p>
+<h2 id="bindvars">bindvars</h2>
+<p>检索占位符 <code>“?”</code> 很重要，内部也叫作<code>“bindvars”</code>；你要尽可能得使用这些占位符来发送参数值，因为这样可以 <em>避免SQL注入攻击</em> 。标准库<code>database/sql</code>不对检索sql做任何验证；所有sql语句，包括编码后的参数，都被原封不动得发送到server。除非数据库驱动实现特殊的接口，否则server端会自动准备要执行的sql，然后执行。因此Bindvars是依赖于具体的数据库的：</p>
+<ul>
+<li>MySQL 使用上边讲的<code>？</code>作为占位符；</li>
+<li>PostgreSQL 使用编号的<code>1,2</code>作为占位符；</li>
+<li>SQLite 接受<code>?</code>和<code>$1</code>两种形式的占位符；</li>
+<li>Oracle 使用<code>:name</code>的格式；</li>
+</ul>
+<p>其它数据库可能还会有一些差异。你都可以在你当前的数据库上通过在 <code>sqlx.DB.Rebind(string) string</code> 函数中使用<code>?</code>占位符来生成需要的sql检索。</p>
+<p>一个常见的误区是把binvars用作数值插入。上面讨论的占位符只用来参数化，并不允许修改sql语句的语法结构。比如，用bindvars来尝试参数化列名和表名都是不工作的：</p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="font-style:italic;color:#5f697a;">// doesn&#39;t work
+</span><span style="color:#eb6772;">db</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Query</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;SELECT * FROM ?&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;mytable&quot;</span><span style="color:#abb2bf;">)
+</span><span style="font-style:italic;color:#5f697a;">// also doesn&#39;t work
+</span><span style="color:#eb6772;">db</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Query</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;SELECT ?, ? FROM people&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;name&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;location&quot;</span><span style="color:#abb2bf;">)
+</span></code></pre>
+<h2 id="query">Query</h2>
+<p>Query是执行查询并返回结果row数据的首选方法。Query返回一个<code>sql.Rows</code>对象和一个<code>error</code>对象：</p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="font-style:italic;color:#5f697a;">// fetch all places from the db
+</span><span style="color:#eb6772;">rows</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">db</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Query</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;SELECT country, city, telcode FROM place&quot;</span><span style="color:#abb2bf;">)
+</span><span style="font-style:italic;color:#5f697a;">// iterate over each row
+</span><span style="color:#cd74e8;">for </span><span style="color:#eb6772;">rows</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Next</span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">country </span><span style="color:#cd74e8;">string
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// note that city can be NULL, so we use the NullString type
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">city    sql</span><span style="color:#abb2bf;">.</span><span style="color:#cd74e8;">NullString
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">telcode </span><span style="color:#cd74e8;">int
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">rows</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Scan</span><span style="color:#abb2bf;">(</span><span style="color:#adb7c9;">&amp;</span><span style="color:#eb6772;">country</span><span style="color:#abb2bf;">, </span><span style="color:#adb7c9;">&amp;</span><span style="color:#eb6772;">city</span><span style="color:#abb2bf;">, </span><span style="color:#adb7c9;">&amp;</span><span style="color:#eb6772;">telcode</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>注意这里应该把返回结果<code>Rows</code>当做 <em>数据库滑标</em>，而不是序列化的列表结构。尽管每个数据库的buffer机制不同，通过<code>Next()</code>来遍历结果可以有效限制大结果集的内存使用，因为每次仅处理单行数据。<code>Sacn()</code>的使用可以用来把sql列类型映射为对应的Go类型，如<code>string</code>,<code> []byte</code>等。</p>
+<blockquote>
+<p>如果不遍历整个<code>rows</code>结果，切记调用<code>rows.Close()</code>来释放连接。</p>
+</blockquote>
+<p><code>Query</code>返回的<code>error</code>可能是准备SQL语句时的错误，也可能是在server端执行SQL时抛出的错误。虽然database/sql会重试10次获取工作连接，仍然有可能发生返回坏连接的情况。一般来说，错误可能来自于非法的SQL语法、类型不匹配，或者不正确的字段或表名。</p>
+<p>大多数情况下，由于<code>row.Scan</code>本身不知道底层驱动是否会重用缓存，<code>row.Scan</code>会直接复制从驱动返回的数据。特殊数据类型<code>sql.RawBytes</code>用来表示驱动返回的实际数据（从起始位置开始）。执行<code>Next()</code>后，<code>sql.RawBytes</code>的值就不再有效了，因为内存可能已经被驱动重写了。</p>
+<p><code>Query</code>使用的连接在整个遍历中都有效，一直到所有的行都通过<code>Next</code>遍历完毕，或者直接调用了<code>rows.Close()</code>，连接就会被释放。可以查看<a href="http://jmoiron.github.io/sqlx/#connectionPool">database/sql连接池</a>获取更多关于数据库连接的信息。</p>
+<p>sqlx中的扩展Queryx跟sql中Query的行为是一样的，但是返回的结果是sqlx.Rows，同样对scan做了增强：</p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">type </span><span style="color:#abb2bf;">Place </span><span style="color:#cd74e8;">struct </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">Country       </span><span style="color:#cd74e8;">string
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">City          sql</span><span style="color:#abb2bf;">.</span><span style="color:#cd74e8;">NullString
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">TelephoneCode </span><span style="color:#cd74e8;">int </span><span style="color:#9acc76;">`db:&quot;telcode&quot;`
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#eb6772;">rows</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">db</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Queryx</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;SELECT * FROM place&quot;</span><span style="color:#abb2bf;">)
+</span><span style="color:#cd74e8;">for </span><span style="color:#eb6772;">rows</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Next</span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">p </span><span style="color:#cd74e8;">Place
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">rows</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">StructScan</span><span style="color:#abb2bf;">(</span><span style="color:#adb7c9;">&amp;</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>sqlx.Rows的主要扩展是StructScan()，它会自动扫码返回结果然后存到对应的结构体字段中。你也可以只用db结果标签来表明哪个列名对应哪个字段，或者使用<a href="http://jmoiron.github.io/sqlx/#mapping">db.MapperFunc()</a>设置一个默认映射函数。默认的映射规则是直接将结构体中的字段名使用strings.Lower转变为小写后直接用作数据表的列名。更多信息可以查看<a href="http://jmoiron.github.io/sqlx/#advancedScanning">高级扫描部分</a>。</p>
+<h2 id="queryrow">QueryRow</h2>
+<p>QueryRow用来从服务器获取一行数据。它首先从连接池获取一个数据库连接，然后使用Query执行sql查询，并返回一个Row对象；其中Row对象内部又有自己的Rows对象。</p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#eb6772;">row </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">db</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">QueryRow</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;SELECT * FROM place WHERE telcode=?&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">852</span><span style="color:#abb2bf;">)
+</span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">telcode </span><span style="color:#cd74e8;">int
+</span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">row</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Scan</span><span style="color:#abb2bf;">(</span><span style="color:#adb7c9;">&amp;</span><span style="color:#eb6772;">telcode</span><span style="color:#abb2bf;">)
+</span></code></pre>
+<p>跟Query不同的是，QueryRow成功的时候只返回一个Row对象，这样可以很安全地使用链式扫码返回结果。如果查询出错，会返回一个错误error。如果没有数据，返回sql.ErrNoRows。如果扫码本身出错，同样会返回错误error。</p>
+<p>返回结果Row里的Rows结构会随着扫描而释放，也就是说，数据库连接在结果被扫描后会马上释放。也意味着sql.RawBytes在这里是不能用的，因为指向的内存可能已经释放了。</p>
+<p>同样的，sqlx中的扩展QueryRowx会返回一个sqlx.Row，而不是sql.Row；并且实现了和Rows一样的扫描扩展。</p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">p </span><span style="color:#cd74e8;">Place
+</span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">db</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">QueryRowx</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;SELECT city, telcode FROM place LIMIT 1&quot;</span><span style="color:#abb2bf;">).</span><span style="color:#eb6772;">StructScan</span><span style="color:#abb2bf;">(</span><span style="color:#adb7c9;">&amp;</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">)
+</span></code></pre>
+<h2 id="gethe-select">Get和Select</h2>
+<p><strong>Get</strong> 和 <strong>Select</strong> 是 handel类型扩展， 将查询执行与扫描动作合并，为了解释清除他们，我们讲解下什么是可以扫描的类型。</p>
+<ul>
+<li>非结构体（struct）类型的 ，比如 string， int 基础类型等，可扫描</li>
+<li>实现了 sql.Scanner 接口的，</li>
+<li>没有导出字段的结构，例如  time.Time ,可扫描</li>
+</ul>
+<p>Get and Select use rows.Scan on scannable types and rows.StructScan on non-scannable types. They are roughly analagous to QueryRow and Query, where Get is useful for fetching a single result and scanning it, and Select is useful for fetching a slice of results:</p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#eb6772;">p </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">Place</span><span style="color:#abb2bf;">{}
+</span><span style="color:#eb6772;">pp </span><span style="color:#adb7c9;">:= </span><span style="color:#abb2bf;">[]</span><span style="color:#cd74e8;">Place</span><span style="color:#abb2bf;">{}
+</span><span style="color:#abb2bf;"> 
+</span><span style="font-style:italic;color:#5f697a;">// this will pull the first place directly into p
+</span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">db</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Get</span><span style="color:#abb2bf;">(</span><span style="color:#adb7c9;">&amp;</span><span style="color:#eb6772;">p</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;SELECT * FROM place LIMIT 1&quot;</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;"> 
+</span><span style="font-style:italic;color:#5f697a;">// this will pull places with telcode &gt; 50 into the slice pp
+</span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">db</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Select</span><span style="color:#abb2bf;">(</span><span style="color:#adb7c9;">&amp;</span><span style="color:#eb6772;">pp</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;SELECT * FROM place WHERE telcode &gt; ?&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">50</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;"> 
+</span><span style="font-style:italic;color:#5f697a;">// they work with regular types as well
+</span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">id </span><span style="color:#cd74e8;">int
+</span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">db</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Get</span><span style="color:#abb2bf;">(</span><span style="color:#adb7c9;">&amp;</span><span style="color:#eb6772;">id</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;SELECT count(*) FROM place&quot;</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;"> 
+</span><span style="font-style:italic;color:#5f697a;">// fetch at most 10 place names
+</span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">names </span><span style="color:#abb2bf;">[]</span><span style="color:#cd74e8;">string
+</span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">db</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Select</span><span style="color:#abb2bf;">(</span><span style="color:#adb7c9;">&amp;</span><span style="color:#eb6772;">names</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;SELECT name FROM place LIMIT 10&quot;</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">
+</span></code></pre>
+<p>Get and Select both will close the Rows they create during query execution, and will return any error encountered at any step of the process. Since they use StructScan internally, the details in <a href="http://jmoiron.github.io/sqlx/#advancedScanning">the advanced scanning section</a> also apply to Get and Select.</p>
+<p>Select can save you a lot of typing, but beware! It's semantically different from Queryx, since it will load the entire result set into memory at once. If that set is not bounded by your query to some reasonable size, it might be best to use the classic Queryx/StructScan iteration instead.</p>
+<h2 id="shi-wu-cao-zuo-transaction">事务操作Transaction</h2>
+<h2 id="can-kao">参考</h2>
+<ul>
+<li><a href="http://jmoiron.github.io/sqlx/">Illustrated guide to SQLX</a></li>
+</ul>
+
+
+
+  </div>
+</div>
+
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;pixel&#x2F;">
+    <i class="icon icon-left-open"></i>
+    Pixel 像素艺术</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;gaoxiao&#x2F;">
+    中国高校开源教材
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-success" href="//erasin.wang/categories/golang/">golang</a>
+
+
+
+<a class="tag is-info" href="//erasin.wang/categories/database/">database</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-primary" href="//erasin.wang/tags/golang/">golang</a>
+
+
+
+<a class="tag is-primary" href="//erasin.wang/tags/sql/">sql</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="an-zhuang" href="//erasin.wang/go-sqlx/#an-zhuang">安装</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="handlelei-xing" href="//erasin.wang/go-sqlx/#handlelei-xing">handle类型</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="lian-jie-shu-ju-ku" href="//erasin.wang/go-sqlx/#lian-jie-shu-ju-ku">连接数据库</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="cha-xun-query" href="//erasin.wang/go-sqlx/#cha-xun-query">查询 Query</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="exec" href="//erasin.wang/go-sqlx/#exec">Exec</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="bindvars" href="//erasin.wang/go-sqlx/#bindvars">bindvars</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="query" href="//erasin.wang/go-sqlx/#query">Query</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="queryrow" href="//erasin.wang/go-sqlx/#queryrow">QueryRow</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="gethe-select" href="//erasin.wang/go-sqlx/#gethe-select">Get和Select</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="shi-wu-cao-zuo-transaction" href="//erasin.wang/go-sqlx/#shi-wu-cao-zuo-transaction">事务操作Transaction</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="can-kao" href="//erasin.wang/go-sqlx/#can-kao">参考</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

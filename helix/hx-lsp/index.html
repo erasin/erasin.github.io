@@ -1,0 +1,697 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  hx-lsp 为 Helix editor 提供 snippets 和 actions - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="一个提供了自定义代码片段 snippets 和 Code Action 的 lsp 工具" property="description" />
+
+  
+    <meta content="cli,github,helix,vim,vscode,lsp" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+    
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> hx-lsp 为 Helix editor 提供 snippets 和 actions </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      HX-LSP 为 HELIX EDITOR 提供 SNIPPETS 和 ACTIONS
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2024-04-29
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <p>一个提供了自定义代码片段 snippets 和 Code Action 的 lsp 工具。</p>
+<h2 id="gong-neng">功能</h2>
+<ul>
+<li>Completion: snippets
+<ul>
+<li>自定义片段</li>
+<li>全局片段</li>
+</ul>
+</li>
+<li>CodeAction: actions
+<ul>
+<li>实现 run code</li>
+<li>通过参数实现各种脚本运行</li>
+</ul>
+</li>
+</ul>
+<h2 id="an-zhuang">安装</h2>
+<pre data-lang="sh" style="background-color:#2b303b;color:#6c7079;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#eb6772;">git</span><span style="color:#abb2bf;"> clone https://github.com/erasin/hx-lsp.git
+</span><span style="color:#5ebfcc;">cd</span><span style="color:#abb2bf;"> hx-lsp
+</span><span style="color:#eb6772;">cargo</span><span style="color:#abb2bf;"> install</span><span style="color:#eb6772;"> --path</span><span style="color:#abb2bf;"> .
+</span></code></pre>
+<blockquote>
+<p>在 https://github.com/erasin/helix-config/ 中有示例代码，另外我自己使用的分支已经合并了 <a href="https://github.com/helix-editor/helix/pull/9801">helix#9081 Add a snippet system</a>。</p>
+</blockquote>
+<span id="continue-reading"></span><h2 id="shi-yong">使用</h2>
+<p>修改 helix 的语言配置文件 <code>languages.toml</code>， 修改下面文件任何一个即可</p>
+<ul>
+<li><code>$XDG_CONFIG_HOME/helix/languages.toml</code> helix 配置文件</li>
+<li><code>WORKSPACE_ROOT/.helix/languages.toml</code> 项目下配置文件</li>
+</ul>
+<p>比如为 markdown 追加支持。</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#6c7079;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#abb2bf;">[language-server.hx-lsp]
+</span><span style="color:#eb6772;">command </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;hx-lsp&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">[[language]]
+</span><span style="color:#eb6772;">name </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;markdown&quot;
+</span><span style="color:#eb6772;">language-servers </span><span style="color:#abb2bf;">= [ </span><span style="color:#9acc76;">&quot;marksman&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;markdown-oxide&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;hx-lsp&quot; </span><span style="color:#abb2bf;">]
+</span></code></pre>
+<blockquote>
+<p>关于 <code>language id</code> 建议参考 <a href="https://github.com/helix-editor/helix/blob/master/languages.toml">helix/languages.toml</a> 文件和 <a href="https://github.com/helix-editor/helix/wiki/Language-Server-Configurations">helix wiki language server configurations</a>。</p>
+</blockquote>
+<h2 id="pei-zhi-wen-jian">配置文件</h2>
+<p>配置文件支持 <code>jsonc</code> 格式，即支持注释内容，但不支持多余的 <code>,</code>。</p>
+<blockquote>
+<p>注释样式支持 <code>// ...</code>, <code>/* ... */</code>, <code># ...</code> 。</p>
+</blockquote>
+<p>Snippets 文件加载路径</p>
+<ul>
+<li><code>$XDG_CONFIG_HOME/helix/snippets/</code></li>
+<li><code>WORKSPACE_ROOT/.helix/snippets/</code></li>
+</ul>
+<p>Actions 配置加载路径</p>
+<ul>
+<li><code>$XDG_CONFIG_HOME/helix/actions/</code></li>
+<li><code>WORKSPACE_ROOT/.helix/actions/</code></li>
+</ul>
+<p>配置在 <code>textDocument/didOpen</code> 时候加载 <code>language id</code> 同名 <code>lang_id.json</code> 文件。</p>
+<blockquote>
+<p>暂不支持配置文件的动态加载，修改配置文件后，可以使用 <code>:lsp-restart</code> 重启来重新加载文件。</p>
+</blockquote>
+<h2 id="completion-snippets">Completion: snippets</h2>
+<p>Code snippets
+兼容 <a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">vscode snippets</a> 格式。同样文件后缀支持 全局后缀<code>.code-snippets</code> 和 语言包后缀<code>.json</code>。</p>
+<p>为了更好的使用 snippet 建议 heliix 合并 <a href="https://github.com/helix-editor/helix/pull/9801">helix#9081 Add a snippet system</a> 以支持 smart-tab。</p>
+<pre data-lang="svgbob" style="background-color:#2b303b;color:#6c7079;" class="language-svgbob "><code class="language-svgbob" data-lang="svgbob"><span style="color:#abb2bf;">.
+</span><span style="color:#abb2bf;">└── snippets
+</span><span style="color:#abb2bf;">    ├── global.code-snippets
+</span><span style="color:#abb2bf;">    ├── html.json
+</span><span style="color:#abb2bf;">    └── markdown.json
+</span></code></pre>
+<p>snippet 格式：</p>
+<ul>
+<li><strong>name</strong>: <code>String</code> 唯一内容，用于索引</li>
+<li><strong>prefix</strong>: <code>String</code> 或 <code>Vec&lt;String&gt;</code> 提供给 helix 编辑器的补全列表使用</li>
+<li><strong>body</strong>: <code>String</code> 或 <code>Vec&lt;String&gt;</code></li>
+<li><strong>description</strong>: <code>Option&lt;String&gt;</code> 提示内容</li>
+</ul>
+<pre data-lang="jsonc" style="background-color:#2b303b;color:#6c7079;" class="language-jsonc "><code class="language-jsonc" data-lang="jsonc"><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">  &quot;markdown a&quot;: { // name
+</span><span style="color:#abb2bf;">    &quot;prefix&quot;: &quot;mda&quot;, // string
+</span><span style="color:#abb2bf;">    &quot;body&quot;: &quot;mda in .helix: ${1:abc} : ${2:cde}&quot;, // string
+</span><span style="color:#abb2bf;">    &quot;description&quot;: &quot;test a info content in .helix&quot;
+</span><span style="color:#abb2bf;">  },
+</span><span style="color:#abb2bf;">  &quot;markdown b&quot;: {
+</span><span style="color:#abb2bf;">    &quot;prefix&quot;: [ // array
+</span><span style="color:#abb2bf;">      &quot;mdb&quot; 
+</span><span style="color:#abb2bf;">    ],
+</span><span style="color:#abb2bf;">    &quot;body&quot;: &quot;mdb: ${1:abc} : ${2:cde}&quot;, // string
+</span><span style="color:#abb2bf;">    &quot;description&quot;: &quot;test b info content&quot;
+</span><span style="color:#abb2bf;">  },
+</span><span style="color:#abb2bf;">  &quot;markdown c&quot;: {
+</span><span style="color:#abb2bf;">    &quot;prefix&quot;: [ // array
+</span><span style="color:#abb2bf;">      &quot;mdc&quot;,
+</span><span style="color:#abb2bf;">      &quot;mdd&quot;
+</span><span style="color:#abb2bf;">    ],
+</span><span style="color:#abb2bf;">    &quot;body&quot;: [ // array
+</span><span style="color:#abb2bf;">      &quot;mda: ${1:abc} : ${2:cde}&quot;,
+</span><span style="color:#abb2bf;">      &quot;test&quot;
+</span><span style="color:#abb2bf;">    ],
+</span><span style="color:#abb2bf;">    &quot;description&quot;: &quot;test c,d info content&quot;
+</span><span style="color:#abb2bf;">  }
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<h2 id="codeaction-actions">CodeAction: actions</h2>
+<pre data-lang="svgbob" style="background-color:#2b303b;color:#6c7079;" class="language-svgbob "><code class="language-svgbob" data-lang="svgbob"><span style="color:#abb2bf;">.
+</span><span style="color:#abb2bf;">└── actions
+</span><span style="color:#abb2bf;">    ├── html.json
+</span><span style="color:#abb2bf;">    └── markdown.json
+</span></code></pre>
+<p>snippet 格式：</p>
+<ul>
+<li><strong>title</strong>: <code>String</code> helix 显示条目内容</li>
+<li><strong>catch</strong>: <code>String</code> 捕捉内容，regex 适配内容的时候，显示 code action</li>
+<li><strong>shell</strong>: <code>String</code> 或 <code>Vec&lt;String&gt;</code> 执行的 shell 脚本</li>
+<li><strong>description</strong>: <code>Option&lt;String&gt;</code> 提示内容</li>
+</ul>
+<pre data-lang="jsonc" style="background-color:#2b303b;color:#6c7079;" class="language-jsonc "><code class="language-jsonc" data-lang="jsonc"><span style="color:#abb2bf;">/* actions/go.json */
+</span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">  &quot;run main&quot;: {
+</span><span style="color:#abb2bf;">    &quot;title&quot;: &quot;go run main&quot;,
+</span><span style="color:#abb2bf;">    &quot;catch&quot;: &quot;func main&quot;,
+</span><span style="color:#abb2bf;">    &quot;shell&quot;: [
+</span><span style="color:#abb2bf;">      &quot;alacritty --hold --working-directory ${TM_DIRECTORY} -e go run ${TM_FILENAME}&quot;
+</span><span style="color:#abb2bf;">    ],
+</span><span style="color:#abb2bf;">    &quot;description&quot;: &quot;go run main&quot;
+</span><span style="color:#abb2bf;">  }
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<pre data-lang="json" style="background-color:#2b303b;color:#6c7079;" class="language-json "><code class="language-json" data-lang="json"><span style="font-style:italic;color:#5f697a;">/* test */
+</span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">  </span><span style="color:#9acc76;">&quot;tmux split window helix&quot;</span><span style="color:#abb2bf;">: {
+</span><span style="color:#abb2bf;">    </span><span style="color:#9acc76;">&quot;title&quot;</span><span style="color:#abb2bf;">: </span><span style="color:#9acc76;">&quot;tmux split window in project&quot;</span><span style="color:#abb2bf;">,
+</span><span style="color:#abb2bf;">    </span><span style="color:#9acc76;">&quot;catch&quot;</span><span style="color:#abb2bf;">: </span><span style="color:#9acc76;">&quot;fn&quot;</span><span style="color:#abb2bf;">,
+</span><span style="color:#abb2bf;">    </span><span style="color:#9acc76;">&quot;shell&quot;</span><span style="color:#abb2bf;">: [
+</span><span style="color:#abb2bf;">      </span><span style="color:#9acc76;">&quot;tmux split-window -h&quot;</span><span style="color:#abb2bf;">,
+</span><span style="color:#abb2bf;">      </span><span style="color:#9acc76;">&quot;tmux send </span><span style="color:#5ebfcc;">\&quot;</span><span style="color:#9acc76;">cd ${WORKSPACE_FOLDER}</span><span style="color:#5ebfcc;">\n\&quot;</span><span style="color:#9acc76;">&quot;
+</span><span style="color:#abb2bf;">    ],
+</span><span style="color:#abb2bf;">    </span><span style="color:#9acc76;">&quot;description&quot;</span><span style="color:#abb2bf;">: </span><span style="color:#9acc76;">&quot;tmux split and open helix in project&quot;
+</span><span style="color:#abb2bf;">  }
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p><strong>catch</strong>：</p>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+捕捉行</li>
+<li><input disabled="" type="checkbox"/>
+选择内容</li>
+<li><input disabled="" type="checkbox"/>
+匹配内容</li>
+</ul>
+<h2 id="variables-zi-duan">Variables 字段</h2>
+<p>计划为 snippet body 和 action shell 支持替换字段处理。</p>
+<p>支持 <code>$UUID</code> 和 <code>${UUID}</code> 写法。</p>
+<p><strong>path</strong></p>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>TM_SELECTED_TEXT</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>TM_CURRENT_LINE</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>TM_CURRENT_WORD</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>TM_LINE_INDEX</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>TM_LINE_NUMBER</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>TM_FILENAME</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>TM_FILENAME_BASE</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>TM_DIRECTORY</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>TM_FILEPATH</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>RELATIVE_FILEPATH</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>CLIPBOARD</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>WORKSPACE_NAME</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>WORKSPACE_FOLDER</code></li>
+</ul>
+<p><strong>time</strong></p>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>CURRENT_YEAR</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>CURRENT_YEAR_SHORT</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>CURRENT_MONTH</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>CURRENT_MONTH_NAME</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>CURRENT_MONTH_NAME_SHORT</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>CURRENT_DATE</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>CURRENT_DAY_NAME</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>CURRENT_DAY_NAME_SHORT</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>CURRENT_HOUR</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>CURRENT_MINUTE</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>CURRENT_SECOND</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>CURRENT_SECONDS_UNIX</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>CURRENT_TIMEZONE_OFFSET</code></li>
+</ul>
+<p><strong>other</strong></p>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>RANDOM</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>RANDOM_HEX</code></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<code>UUID</code></li>
+</ul>
+<p><strong>action catch</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"/>
+<code>CATCH1..9</code></li>
+</ul>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;helix&#x2F;hx-lsp&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;helix&#x2F;hx-lsp&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2024-04-29
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;posts&#x2F;linux-core-switch&#x2F;">
+    <i class="icon icon-left-open"></i>
+    arch linux 更换内核</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;posts&#x2F;blender-thumbnailer&#x2F;">
+    blender thumbnailer 在Linux下缩略图
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+<div class="no-print">
+  
+  <script src="https://giscus.app/client.js" data-repo="erasin/erasin.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnk3MzE0Mzg3Mw==" data-category="article" data-category-id="" data-mapping="pathname"
+    data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light"
+    data-lang="zh-CN" crossorigin="anonymous" async>
+    </script>
+  <style>
+    .utterances {
+      max-width: initial;
+    }
+  </style>
+  
+  
+</div>
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-danger" href="//erasin.wang/categories/cli/">cli</a>
+
+
+
+<a class="tag is-light" href="//erasin.wang/categories/soft/">soft</a>
+
+
+
+<a class="tag is-primary" href="//erasin.wang/categories/helix/">helix</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-danger" href="//erasin.wang/tags/cli/">cli</a>
+
+
+
+<a class="tag is-link" href="//erasin.wang/tags/github/">github</a>
+
+
+
+<a class="tag is-info" href="//erasin.wang/tags/helix/">helix</a>
+
+
+
+<a class="tag is-info" href="//erasin.wang/tags/vim/">vim</a>
+
+
+
+<a class="tag is-primary" href="//erasin.wang/tags/vscode/">vscode</a>
+
+
+
+<a class="tag is-link" href="//erasin.wang/tags/lsp/">lsp</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="gong-neng" href="//erasin.wang/helix/hx-lsp/#gong-neng">功能</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="an-zhuang" href="//erasin.wang/helix/hx-lsp/#an-zhuang">安装</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="shi-yong" href="//erasin.wang/helix/hx-lsp/#shi-yong">使用</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="pei-zhi-wen-jian" href="//erasin.wang/helix/hx-lsp/#pei-zhi-wen-jian">配置文件</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="completion-snippets" href="//erasin.wang/helix/hx-lsp/#completion-snippets">Completion: snippets</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="codeaction-actions" href="//erasin.wang/helix/hx-lsp/#codeaction-actions">CodeAction: actions</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="variables-zi-duan" href="//erasin.wang/helix/hx-lsp/#variables-zi-duan">Variables 字段</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fillText</title>
+  </head>
+  <body>
+    <div style="text-align: center;" id="preview">
+      <button id="prev">上一个</button>
+      <canvas id="clipboard" style="border: solid 1px #333; background-color: #ffffff;"> </canvas>
+      <button id="next">下一个</button>
+    </div>
+    <div class="post">
+      <div id="content" class="post-content">
+        <p>
+          道可道，非常道。名可名，非常名。 无名天地之始；有名万物之母。 故常无，欲以观其妙； 常有，欲以观其徼。 此两者，同出而异名，同谓之玄。 玄之又玄，众妙之门。
+        </p>
+        <p>
+          天下皆知美之为美，斯恶已。皆知善之为善，斯不善已。 有无相生，难易相成，长短相形，高下相盈，音声相和，前后相 随。恒也。 是以圣人处无为之事，行不言之教；万物作而弗始，生而弗有，
+          为而弗恃，功成而不居。夫唯弗居，是以不去。
+        </p>
+      </div>
+    </div>
+    <style>
+      body {
+        background-color: #f1f3fa;
+        font: '16px Arial, sans-serif';
+      }
+      h2,
+      h3 {
+        text-align: center;
+        padding-left: 1rem;
+      }
+      .post {
+      }
+      .post-content {
+        margin: 0 auto;
+        line-height: 2rem;
+        font-size: 1.1rem;
+        letter-spacing: 0.3rem;
+      }
+      p {
+        background-color: #ffffff;
+        border-bottom: 1px solid #e5ecf0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05), 0 0 1px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+      }
+
+      @media screen and (min-width: 54em) {
+        #content {
+          width: 600px;
+        }
+        #content p {
+          margin: 10px auto;
+        }
+      }
+    </style>
+
+    <script src="canvas-text.js"></script>
+
+    <script>
+      var _preview = document.getElementById('preview');
+      var index = 0;
+      var ps = document.querySelectorAll('#content p');
+      var min_width = 500;
+
+      document.getElementById('prev').addEventListener('click', function () {
+        ps[index].style.width = '';
+        index -= 1;
+        render();
+      });
+
+      document.getElementById('next').addEventListener('click', function () {
+        ps[index].style.width = '';
+        index += 1;
+        render();
+      });
+
+      var canvas = document.getElementById('clipboard');
+      canvas.height = 300;
+      canvas.width = min_width;
+
+      render();
+
+      function render_clear() {
+        const context = canvas.getContext('2d');
+        context.clearRect(0, 0, canvas.width, canvas.height);
+      }
+
+      function render() {
+        if (index > ps.length - 1) {
+          index = ps.length - 1;
+          return;
+        }
+        if (index < 0) {
+          index = 0;
+          return;
+        }
+        var str = ps[index].innerText;
+
+        if (str != '') {
+          render_clear();
+          ps[index].style.width = canvas.height + 'px';
+          var c_width = ps[index].clientHeight;
+          if (c_width > min_width) {
+            canvas.width = c_width;
+          } else {
+            canvas.width = min_width;
+          }
+        }
+        CanvasTextWrapper(canvas, str, {
+          font: '16px Arial, sans-serif',
+          allowNewLine: true,
+          lineHeight: '100%',
+          vertical: true,
+          verticalRL: true,
+          paddingY: 20,
+          lineHeight: 1.5,
+        });
+      }
+
+      window.addEventListener('resize', resizeCanvas, false);
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        redraw();
+      }
+      function redraw() {
+        // ... draw
+      }
+    </script>
+  </body>
+</html>

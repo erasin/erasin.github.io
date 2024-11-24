@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="252px" preserveAspectRatio="none" style="width:197px;height:252px;" version="1.1" viewBox="0 0 197 252" width="197px" zoomAndPan="magnify"><defs><filter height="300%" id="fbvqnifocz10o" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="90" x="52.5" y="27.4023">act_new_5</text><ellipse cx="89.5" cy="41.1992" fill="#000000" filter="url(#fbvqnifocz10o)" rx="10" ry="10" style="stroke: none; stroke-width: 1.0;"/><rect fill="#FEFECE" filter="url(#fbvqnifocz10o)" height="34.1328" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="68" x="55.5" y="115.1992"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="48" x="65.5" y="136.8008">读取文件</text><rect fill="#FEFECE" filter="url(#fbvqnifocz10o)" height="34.1328" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="102" x="38.5" y="184.332"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="82" x="48.5" y="205.9336">编译 diagrams</text><polygon fill="#FEFECE" filter="url(#fbvqnifocz10o)" points="32,71.1992,147,71.1992,159,83.1992,147,95.1992,32,95.1992,20,83.1992,32,71.1992" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="115" x="32" y="87.3564">执行条件允许文件存在?</text><ellipse cx="28.5" cy="125.1992" fill="none" filter="url(#fbvqnifocz10o)" rx="10" ry="10" style="stroke: #000000; stroke-width: 1.0;"/><ellipse cx="29" cy="125.6992" fill="#000000" filter="url(#fbvqnifocz10o)" rx="6" ry="6" style="stroke: none; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="89.5" x2="89.5" y1="149.332" y2="184.332"/><polygon fill="#A80036" points="85.5,174.332,89.5,184.332,93.5,174.332,89.5,178.332" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="89.5" x2="89.5" y1="95.1992" y2="115.1992"/><polygon fill="#A80036" points="85.5,105.1992,89.5,115.1992,93.5,105.1992,89.5,109.1992" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="89.5" x2="89.5" y1="218.4648" y2="228.4648"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="89.5" x2="171" y1="228.4648" y2="228.4648"/><polygon fill="#A80036" points="167,164.832,171,154.832,175,164.832,171,160.832" style="stroke: #A80036; stroke-width: 1.5;"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="171" x2="171" y1="83.1992" y2="228.4648"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="171" x2="159" y1="83.1992" y2="83.1992"/><polygon fill="#A80036" points="169,79.1992,159,83.1992,169,87.1992,165,83.1992" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="20" x2="28.5" y1="83.1992" y2="83.1992"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="28.5" x2="28.5" y1="83.1992" y2="115.1992"/><polygon fill="#A80036" points="24.5,105.1992,28.5,115.1992,32.5,105.1992,28.5,109.1992" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="89.5" x2="89.5" y1="51.1992" y2="71.1992"/><polygon fill="#A80036" points="85.5,61.1992,89.5,71.1992,93.5,61.1992,89.5,65.1992" style="stroke: #A80036; stroke-width: 1.0;"/><!--
+@startuml
+title act_new_5 
+
+start
+
+while (执行条件允许文件存在?)
+  :读取文件;
+  :编译 diagrams;
+endwhile
+
+stop
+
+@enduml
+
+PlantUML version 1.2017.19(Sun Nov 12 19:46:22 CST 2017)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 1.8.0_112-b16
+Operating System: Mac OS X
+OS Version: 10.12.6
+Default Encoding: UTF-8
+Language: zh
+Country: CN
+--></g></svg>

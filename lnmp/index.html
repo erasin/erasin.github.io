@@ -1,0 +1,714 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  LinuX 服务器配置流程 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="" property="description" />
+
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> LinuX 服务器配置流程 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      LINUX 服务器配置流程
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2020-01-16
+    </div>
+  </div>
+
+  <div class="post-content  " 
+    style="background-image:url(&#x27;&#x2F;assets&#x2F;img&#x2F;data_hosting_isometric.svg&#x27;)" >
+    <p>使用http用户服务：(例如 nginx , http, caddy, apache 之类)</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">user  : nginx 
+</span><span style="color:#abb2bf;">group : nginx
+</span></code></pre>
+<p>普通用户根据项目来定： (举例用户 <code>userName</code>)</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">user  : userName
+</span><span style="color:#abb2bf;">group : nginx,users
+</span></code></pre>
+<span id="continue-reading"></span><h2 id="an-zhuang-pei-zhi">安装配置</h2>
+<blockquote>
+<p>CentOs 7.0 开始启用 stystemd 服务管理， 使用 systemctl 来替代 service 命令，之前的区别为</p>
+</blockquote>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">service 服务名 start|stop|restart|status
+</span><span style="color:#abb2bf;">systectl start|stop|restart|status  服务名
+</span></code></pre>
+<h3 id="guan-yu-yuan">关于源</h3>
+<ul>
+<li><a href="http://mirrors.aliyun.com/help/centos">阿里云镜像源</a></li>
+<li><a href="http://mirrors.163.com/.help/centos.html">163镜像源</a></li>
+</ul>
+<h3 id="mysql">Mysql</h3>
+<blockquote>
+<p>centos 7 后 安装 <code>mariadb</code></p>
+</blockquote>
+<p><strong>安装：</strong></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">yum install mariadb 
+</span><span style="color:#abb2bf;">yum install mariadb-server
+</span></code></pre>
+<p><strong>检查：</strong></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">mysql --version
+</span></code></pre>
+<p><strong>开启启动：</strong></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">systemctl enable mariadb 
+</span></code></pre>
+<p><strong>设定初始密码：</strong>
+​</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"># systemctl start mariadb
+</span><span style="color:#abb2bf;"># mysqladmin -u root password &#39;123456&#39;
+</span></code></pre>
+<p><strong>重新设定密码：</strong></p>
+<p>开启安全模式：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"># systemctl stop mariadb
+</span><span style="color:#abb2bf;"># mysqld_safe --skip-grant-tables&amp;
+</span><span style="color:#abb2bf;"># mysql --user=root mysql
+</span><span style="color:#abb2bf;">&gt; update user set Password=PASSWORD(&#39;new-password&#39;);
+</span><span style="color:#abb2bf;">&gt; flush privileges;
+</span><span style="color:#abb2bf;">&gt; exit;
+</span><span style="color:#abb2bf;"># killall mysqld_safe&amp;
+</span><span style="color:#abb2bf;"># systemctl start mariadb
+</span></code></pre>
+<ul>
+<li>停止服务</li>
+<li>root权限开启mysql安全模式</li>
+<li>进入mysql数据库</li>
+<li>更新表，刷新，退出</li>
+<li>杀死mysqld 安全进程</li>
+<li>开启mysql服务</li>
+</ul>
+<p><strong>配置：</strong></p>
+<blockquote>
+<p>文件：</p>
+</blockquote>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">/etc/my.cnf
+</span></code></pre>
+<h3 id="php">PHP</h3>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#abb2bf;"> </span><span style="font-style:italic;color:#5f697a;"># 安装EPEL yum存储库
+</span><span style="color:#abb2bf;"> </span><span style="color:#eb6772;">yum</span><span style="color:#abb2bf;"> install epel-release</span><span style="color:#eb6772;"> -y
+</span><span style="color:#abb2bf;"> </span><span style="font-style:italic;color:#5f697a;"># 安装Remi存储库
+</span><span style="color:#abb2bf;"> </span><span style="color:#eb6772;">rpm -Uvh</span><span style="color:#abb2bf;"> http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+</span><span style="color:#abb2bf;"> </span><span style="font-style:italic;color:#5f697a;"># 安装 PHP 7.3 
+</span><span style="color:#abb2bf;"> </span><span style="color:#eb6772;">yum --enablerepo</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">remi-php73 install php
+</span><span style="color:#abb2bf;"> </span><span style="font-style:italic;color:#5f697a;"># 安装 PHP 7.2 
+</span><span style="color:#abb2bf;"> </span><span style="color:#eb6772;">yum --enablerepo</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">remi-php72 install php
+</span><span style="color:#abb2bf;"> </span><span style="font-style:italic;color:#5f697a;"># 安装 PHP 7.1 
+</span><span style="color:#abb2bf;"> </span><span style="color:#eb6772;">yum --enablerepo</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">remi-php71 install php
+</span></code></pre>
+<p><strong>安装：</strong></p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">yum</span><span style="color:#abb2bf;"> install php php-fpm php-gd php-mcrypt php-pear php-mysql php-mysqlite
+</span><span style="font-style:italic;color:#5f697a;">##或者 
+</span><span style="color:#eb6772;">yum</span><span style="color:#abb2bf;"> install php php-</span><span style="color:#adb7c9;">*
+</span></code></pre>
+<p>检查版本：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">$ php -v 
+</span></code></pre>
+<p><strong>服务：</strong></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"># service php-fpm start|restart|stop
+</span></code></pre>
+<p><strong>开启启动：</strong></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">chkconfig php-fpm on
+</span></code></pre>
+<p><strong>配置：</strong></p>
+<blockquote>
+<p>文件</p>
+</blockquote>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">/etc/php.ini       
+</span><span style="color:#abb2bf;">/etc/php.d/        
+</span><span style="color:#abb2bf;">/etc/php-fpm.conf
+</span><span style="color:#abb2bf;">/etc/php-fpm.d/  
+</span></code></pre>
+<p><code>/etc/php.ini</code> 配置要点</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">; 时间区域
+</span><span style="color:#abb2bf;">date.timezone = &quot;Asia/Shanghai&quot;
+</span></code></pre>
+<p>必要的库，有的在对应的 <code>/etc/php.d/</code> 文件夹中</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">;extension=iconv.so
+</span><span style="color:#abb2bf;">;extension=mcrypt.so    
+</span><span style="color:#abb2bf;">;extension=sockets.so
+</span><span style="color:#abb2bf;">;extension=soap.so
+</span></code></pre>
+<p><code>/etc/php-fpm.conf</code></p>
+<p><code>/etc/php-fpm.d/www.conf</code> fpm的配置文件修改要点</p>
+<p>端口</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">listen = 127.0.0.1:9000
+</span><span style="color:#abb2bf;">; listen = /var/run/php-fpm/php-fpm.sock
+</span></code></pre>
+<p>用户写入文件的 user:group 和权限</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">listen.owner = nginx
+</span><span style="color:#abb2bf;">listen.group = nginx
+</span><span style="color:#abb2bf;">listen.mode = 0666  
+</span><span style="color:#abb2bf;">user = nginx
+</span><span style="color:#abb2bf;">group = nginx
+</span></code></pre>
+<p>执行时限**</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">request_terminate_timeout = 180s
+</span></code></pre>
+<p><strong>权限：</strong></p>
+<p>对session.savepath 的组用户写权限</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"># chown root:nginx -R /var/lib/php/
+</span></code></pre>
+<h3 id="nginx">nginx</h3>
+<blockquote>
+<p>服务器部署可替代 Apache，Caddy。</p>
+</blockquote>
+<p>添加内容到 <code>/etc/yum.repos.d/CentOS-Base.repo</code></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">[nginx]
+</span><span style="color:#abb2bf;">name=nginx repo
+</span><span style="color:#abb2bf;">baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
+</span><span style="color:#abb2bf;">gpgcheck=0
+</span><span style="color:#abb2bf;">enabled=1
+</span></code></pre>
+<p><strong>安装：</strong></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">yum install nginx
+</span></code></pre>
+<p><strong>开启启动：</strong></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">chkconfig nginxd on
+</span></code></pre>
+<p><strong>查看：</strong></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">nginx -v 
+</span></code></pre>
+<p><strong>配置：</strong></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">/etc/nginx/conf.d/
+</span></code></pre>
+<p>以 fb.geely.com 为模板</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">server {
+</span><span style="color:#abb2bf;">  listen       80;
+</span><span style="color:#abb2bf;">  server_name  fb.geely.com;
+</span><span style="color:#abb2bf;">  charset utf-8;
+</span><span style="color:#abb2bf;">  root        /home/nginx/fb.geely.com;
+</span><span style="color:#abb2bf;">  access_log  /home/nginx/logs/fb.geely.com.log  main;
+</span><span style="color:#abb2bf;">  error_log   /home/nginx/logs/fb.geely.com_error.log;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">  location /{
+</span><span style="color:#abb2bf;">    index  index.php index.html index.htm;
+</span><span style="color:#abb2bf;">    # 隐藏index.php入口文件
+</span><span style="color:#abb2bf;">    if (!-e $request_filename){
+</span><span style="color:#abb2bf;">            rewrite ^/(.*)$ /index.php/$1 last;
+</span><span style="color:#abb2bf;">    }
+</span><span style="color:#abb2bf;">  }
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">  location ~ ^.+\.php{
+</span><span style="color:#abb2bf;">    fastcgi_buffer_size 128k;
+</span><span style="color:#abb2bf;">    fastcgi_buffers 32 32k;
+</span><span style="color:#abb2bf;">    #fastcgi_pass  unix:/var/run/php-fpm/php-fpm.sock;
+</span><span style="color:#abb2bf;">    fastcgi_pass  127.0.0.1:9000; 
+</span><span style="color:#abb2bf;">    fastcgi_index index.php;
+</span><span style="color:#abb2bf;">    fastcgi_split_path_info ^((?U).+\.php)(/?.+)$;
+</span><span style="color:#abb2bf;">    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+</span><span style="color:#abb2bf;">    fastcgi_param PATH_INFO $fastcgi_path_info;
+</span><span style="color:#abb2bf;">    fastcgi_param PATH_TRANSLATED $document_root$fastcgi_path_info;
+</span><span style="color:#abb2bf;">    include       fastcgi_params;
+</span><span style="color:#abb2bf;">  }
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">  # 禁止访问 控制器等
+</span><span style="color:#abb2bf;">  location ^~ /libs { deny all; }
+</span><span style="color:#abb2bf;">  location ^~ /site { deny all; }
+</span><span style="color:#abb2bf;">  # 迁移 bocadmin/index.php 后可禁止访问bocadmin
+</span><span style="color:#abb2bf;">  #location ^~ /bocadmin { deny all; }
+</span><span style="color:#abb2bf;">  
+</span><span style="color:#abb2bf;">  location ^~ /static {access_log   off;}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">  location ^~ /upload/ {
+</span><span style="color:#abb2bf;">    #root /path/upload; # 修改路径
+</span><span style="color:#abb2bf;">    access_log   off;
+</span><span style="color:#abb2bf;">  }
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">  #error_page  404              /404.html;
+</span><span style="color:#abb2bf;">  error_page   500 502 503 504  /50x.html;
+</span><span style="color:#abb2bf;">  location = /50x.html {
+</span><span style="color:#abb2bf;">    root   /usr/share/nginx/html;
+</span><span style="color:#abb2bf;">  }
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>SSL HTTPS 配置模板</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">server {
+</span><span style="color:#abb2bf;">  listen       443 ssl;
+</span><span style="color:#abb2bf;">  server_name  fb.geely.com;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">  # ssl on;
+</span><span style="color:#abb2bf;">  ssl_certificate     /home/nginx/fb.geely.com/ssl/fb.geely.com.crt;
+</span><span style="color:#abb2bf;">  ssl_certificate_key /home/nginx/fb.geely.com/ssl/fb.geely.com.key;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">  ssl_session_cache shared:SSL:1m;
+</span><span style="color:#abb2bf;">  ssl_session_timeout  5m;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">  ssl_ciphers  HIGH:!aNULL:!MD5;
+</span><span style="color:#abb2bf;">  ssl_prefer_server_ciphers   on;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">  root        /home/nginx/fb.geely.com;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">  access_log  /home/nginx/logs/fb.geely.com.log  main;
+</span><span style="color:#abb2bf;">  error_log   /home/nginx/logs/fb.geely.com_error.log;
+</span><span style="color:#abb2bf;">	
+</span><span style="color:#abb2bf;">  # 同上服务配置
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<blockquote>
+<p>参看 <a href="../linux/server/nlb.md">SSL CA证书</a></p>
+</blockquote>
+<h2 id="an-quan">安全</h2>
+<p>自动检测服务并重启脚本：</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#5f697a;">#!/bin/bash
+</span><span style="font-style:italic;color:#5f697a;"># file path /home/jibun/shell/checkservice.sh
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">service_log</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">/home/jibun/logs/server.log
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">ng</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">`</span><span style="color:#eb6772;">service</span><span style="color:#abb2bf;"> nginx status</span><span style="color:#adb7c9;">|</span><span style="color:#eb6772;">awk </span><span style="color:#9acc76;">&#39;{print $5}&#39;</span><span style="color:#abb2bf;">`
+</span><span style="color:#eb6772;">php</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">`</span><span style="color:#eb6772;">service</span><span style="color:#abb2bf;"> php-fpm status</span><span style="color:#adb7c9;">|</span><span style="color:#eb6772;">awk </span><span style="color:#9acc76;">&#39;{print $5}&#39;</span><span style="color:#abb2bf;">`
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">`</span><span style="color:#eb6772;">service</span><span style="color:#abb2bf;"> mysqld status</span><span style="color:#adb7c9;">|</span><span style="color:#eb6772;">awk </span><span style="color:#9acc76;">&#39;{print $5}&#39;</span><span style="color:#abb2bf;">`
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">if </span><span style="color:#5ebfcc;">[[ </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">ng </span><span style="color:#adb7c9;">!= *</span><span style="color:#9acc76;">&quot;running&quot;</span><span style="color:#adb7c9;">* </span><span style="color:#5ebfcc;">]]</span><span style="color:#adb7c9;">; </span><span style="color:#cd74e8;">then
+</span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&quot;---------------------------------&quot; </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">service_log
+</span><span style="color:#eb6772;">date </span><span style="color:#9acc76;">&#39;+%Y-%m-%d %H:%M&#39; </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">service_log
+</span><span style="color:#eb6772;">service</span><span style="color:#abb2bf;"> nginx start </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">service_log
+</span><span style="color:#cd74e8;">fi
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">if </span><span style="color:#5ebfcc;">[[ </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">php </span><span style="color:#adb7c9;">!= *</span><span style="color:#9acc76;">&quot;running&quot;</span><span style="color:#adb7c9;">* </span><span style="color:#5ebfcc;">]]</span><span style="color:#adb7c9;">; </span><span style="color:#cd74e8;">then
+</span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&quot;---------------------------------&quot; </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">service_log
+</span><span style="color:#eb6772;">date </span><span style="color:#9acc76;">&#39;+%Y-%m-%d %H:%M&#39; </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">service_log
+</span><span style="color:#eb6772;">service</span><span style="color:#abb2bf;"> php-fpm start </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">service_log
+</span><span style="color:#cd74e8;">fi
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">if </span><span style="color:#5ebfcc;">[[ </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">mysql </span><span style="color:#adb7c9;">!= *</span><span style="color:#9acc76;">&quot;running&quot;</span><span style="color:#adb7c9;">* </span><span style="color:#5ebfcc;">]]</span><span style="color:#adb7c9;">; </span><span style="color:#cd74e8;">then
+</span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&quot;---------------------------------&quot; </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">service_log
+</span><span style="color:#eb6772;">date </span><span style="color:#9acc76;">&#39;+%Y-%m-%d %H:%M&#39; </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">service_log
+</span><span style="color:#eb6772;">service</span><span style="color:#abb2bf;"> mysqld start </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">service_log
+</span><span style="color:#cd74e8;">fi
+</span></code></pre>
+<blockquote>
+<p>注意 mysql的服务默认为 mysqld ,有部分为mysql，自行斟酌</p>
+</blockquote>
+<h2 id="chuang-jian-pu-tong-yong-hu">创建普通用户</h2>
+<p>创建用户<code>jibun</code>并创建密码</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">useradd -G</span><span style="color:#abb2bf;"> nginx</span><span style="color:#eb6772;"> -g</span><span style="color:#abb2bf;"> users jibun 
+</span><span style="color:#eb6772;">passwd</span><span style="color:#abb2bf;"> jibun 
+</span></code></pre>
+<h2 id="fu-wu-qi-lu-jing">服务器路径</h2>
+<p>创建服务器文件路径。</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">/home/nginx         # nginx服务器所在文件夹
+</span><span style="color:#abb2bf;">/home/nginx/logs    # 存放日志
+</span><span style="color:#abb2bf;">/home/nginx/domain  # 对应的项目
+</span></code></pre>
+<p>执行过程</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#5f697a;"># cd home
+</span><span style="font-style:italic;color:#5f697a;"># mkdir nginx 
+</span><span style="font-style:italic;color:#5f697a;"># chown nginx:nginx -R nginx
+</span><span style="font-style:italic;color:#5f697a;"># chmod g+w nginx
+</span><span style="font-style:italic;color:#5f697a;"># cd nginx 
+</span><span style="font-style:italic;color:#5f697a;"># mkdir logs
+</span><span style="font-style:italic;color:#5f697a;"># su jibun
+</span><span style="color:#eb6772;">$</span><span style="color:#abb2bf;"> mkdir www.domain.com
+</span></code></pre>
+<p>上传对应的 <code>www.domain.com</code> 文件夹即可。</p>
+<p>用户<code>jibun</code>文件夹：</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">/home/jibun            </span><span style="font-style:italic;color:#5f697a;"># home文件夹
+</span><span style="color:#eb6772;">/home/jibun/shell      </span><span style="font-style:italic;color:#5f697a;"># 定时执行脚本
+</span><span style="color:#eb6772;">/home/jibun/backdir    </span><span style="font-style:italic;color:#5f697a;"># 备份位置
+</span><span style="color:#eb6772;">/home/jibun/gitsource  </span><span style="font-style:italic;color:#5f697a;"># git源库（防篡改之用）
+</span></code></pre>
+<h2 id="can-kan-fu-wu-qi-fang-an">参看服务器方案</h2>
+<ul>
+<li>参看 <a href="/linux-sync-file">linux 下同步方案以及站点文件的防篡改</a></li>
+<li>参看 <a href="/mysql-sync">mysql master slave 主从同步</a></li>
+<li>参看 <a href="/server-nlb">负载均衡技术</a></li>
+<li>参看 <a href="/stress-web-test-ab">压力测试 和 网速测试</a></li>
+</ul>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;lnmp&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;lnmp&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2020-01-16
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;search&#x2F;">
+    <i class="icon icon-left-open"></i>
+    搜索</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;soft-cmus&#x2F;">
+    CMUS 终端音乐播放器
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-danger" href="//erasin.wang/categories/server/">server</a>
+
+
+    </div>
+    
+
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="an-zhuang-pei-zhi" href="//erasin.wang/lnmp/#an-zhuang-pei-zhi">安装配置</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="guan-yu-yuan" href="//erasin.wang/lnmp/#guan-yu-yuan">关于源</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="mysql" href="//erasin.wang/lnmp/#mysql">Mysql</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="php" href="//erasin.wang/lnmp/#php">PHP</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="nginx" href="//erasin.wang/lnmp/#nginx">nginx</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="an-quan" href="//erasin.wang/lnmp/#an-quan">安全</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="chuang-jian-pu-tong-yong-hu" href="//erasin.wang/lnmp/#chuang-jian-pu-tong-yong-hu">创建普通用户</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="fu-wu-qi-lu-jing" href="//erasin.wang/lnmp/#fu-wu-qi-lu-jing">服务器路径</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="can-kan-fu-wu-qi-fang-an" href="//erasin.wang/lnmp/#can-kan-fu-wu-qi-fang-an">参看服务器方案</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

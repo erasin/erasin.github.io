@@ -1,0 +1,630 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  PHP Redis cheatsheet - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="" property="description" />
+
+  
+    <meta content="php" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> PHP Redis cheatsheet </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      PHP REDIS CHEATSHEET
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2020-11-25
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <p><strong>安装</strong></p>
+<p>使用pecl 安装 redis扩展</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#6c7079;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#eb6772;">pecl</span><span style="color:#abb2bf;"> install redis
+</span></code></pre>
+<p>安装之后追加 <code>extension="redis.so"</code> 到 php.ini</p>
+<span id="continue-reading"></span><h2 id="lian-jie">链接</h2>
+<pre data-lang="php" style="background-color:#2b303b;color:#6c7079;" class="language-php "><code class="language-php" data-lang="php"><span style="color:#c94e42;">&lt;?php
+</span><span style="color:#eb6772;">$redis </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">new </span><span style="color:#f0c678;">Redis</span><span style="color:#abb2bf;">();
+</span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">connect</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;127.0.0.1&#39;</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">6379</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//AUTH password------密码认证
+</span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">auth</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;123456&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//PING------查看连接状态
+</span><span style="color:#eb6772;">$a </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">ping</span><span style="color:#abb2bf;">();
+</span><span style="font-style:italic;color:#5f697a;">//SELECT index------切换到指定的数据库,数据库索引号index用数字值指定,以0作为起始索引值,默认使用0号数据库   
+</span><span style="color:#eb6772;">$b </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">select</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">);
+</span></code></pre>
+<h2 id="key-jian">key 键</h2>
+<pre data-lang="php" style="background-color:#2b303b;color:#6c7079;" class="language-php "><code class="language-php" data-lang="php"><span style="color:#c94e42;">&lt;?php
+</span><span style="font-style:italic;color:#5f697a;">//DEL key [key ...]------删除给定的一个或多个key
+</span><span style="color:#eb6772;">$a </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">del</span><span style="color:#abb2bf;">(</span><span style="color:#5ebfcc;">array</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;xrj&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;ly&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;fjf&#39;</span><span style="color:#abb2bf;">));
+</span><span style="font-style:italic;color:#5f697a;">//KEYS pattern------查找所有符合给定模式pattern的key
+</span><span style="color:#eb6772;">$b </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">keys</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;*&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//RANDOMKEY------从当前数据库中随机返回(不删除)一个key
+</span><span style="color:#eb6772;">$c </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">randomkey</span><span style="color:#abb2bf;">();
+</span><span style="font-style:italic;color:#5f697a;">//TTL key------以秒为单位,返回给定key的剩余生存时间(TTL, time to live)
+</span><span style="font-style:italic;color:#5f697a;">//PTTL key------以毫秒为单位,返回给定key的剩余生存时间
+</span><span style="color:#eb6772;">$d </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">ttl</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;bbs&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//EXISTS key------检查给定key是否存在,存在,返回1,否则返回0
+</span><span style="color:#eb6772;">$e </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">exists</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;email&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//MOVE key db------将当前数据库的key移动到给定的数据库db当中
+</span><span style="color:#eb6772;">$f </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">move</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;email&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">);
+</span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">select</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">);
+</span><span style="color:#eb6772;">$f </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">keys</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;*&#39;</span><span style="color:#abb2bf;">);
+</span><span style="color:#eb6772;">$f </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">move</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;email&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//RENAME key newkey------将key改名为newkey
+</span><span style="color:#eb6772;">$g </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">rename</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;email&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;e-eamil.com&#39;</span><span style="color:#abb2bf;">);
+</span><span style="color:#eb6772;">$g </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">rename</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;e-eamil.com&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;eamil&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//RENAMENX key newkey------当且仅当newkey不存在时,将key改名为newkey
+</span><span style="color:#eb6772;">$h </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">renamenx</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;bbs&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;bbs1&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//TYPE key------返回key所储存的值的类型
+</span><span style="color:#eb6772;">$i </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">type</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;pageview&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//EXPIRE key seconds------给key设置生存时间,当key过期时,它会被自动删除
+</span><span style="font-style:italic;color:#5f697a;">//PEXPIRE key milliseconds------以毫秒为单位设置key的生存时间
+</span><span style="font-style:italic;color:#5f697a;">//EXPIREAT key timestamp------命令接受的时间参数是UNIX时间戳,key存活到一个unix时间戳时间
+</span><span style="font-style:italic;color:#5f697a;">//PERSIST key------移除给定key的生存时间,转换成一个不带生存时间,永不过期的key
+</span><span style="font-style:italic;color:#5f697a;">//SORT key [BY pattern] [LIMIT offset count] [GET pattern [GET pattern ...]] [ASC | DESC] [ALPHA] [STORE destination]------返回或保存&lt;br&gt;给定列表、集合、有序集合key中经过排序的元素
+</span></code></pre>
+<h2 id="string-zi-fu-chuan-xiang-guan-cao-zuo">String (字符串) 相关操作</h2>
+<pre data-lang="php" style="background-color:#2b303b;color:#6c7079;" class="language-php "><code class="language-php" data-lang="php"><span style="color:#c94e42;">&lt;?php
+</span><span style="font-style:italic;color:#5f697a;">//SET key value------将字符串值value关联到key,会覆盖
+</span><span style="color:#eb6772;">$a </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">set</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;email&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;jiang@58haha.cn&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//SETNX key value------将key的值设为value,当且仅当key不存在的时候,成功返回1,不成功返回0
+</span><span style="color:#eb6772;">$b </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">setnx</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;email&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;jiang@58haha.cn&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//SETEX key seconds value------将值value关联到key,并将key的生存时间设为seconds(以秒为单位)
+</span><span style="color:#eb6772;">$c </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">setex</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;name&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">10086</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;江&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//PSETEX key milliseconds value------命令和SETEX命令相似,它以毫秒为单位设置key的生存时间
+</span><span style="color:#eb6772;">$d </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">psetex</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;jiang&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">90000</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;哈哈哈&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//MSET key value [key value ...]------同时设置一个或多个key-value对
+</span><span style="color:#eb6772;">$e </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">mset</span><span style="color:#abb2bf;">(</span><span style="color:#5ebfcc;">array</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;ly&#39; </span><span style="color:#adb7c9;">=&gt; </span><span style="color:#9acc76;">&#39;liyang&#39;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&#39;fjf&#39; </span><span style="color:#adb7c9;">=&gt; </span><span style="color:#9acc76;">&#39;fengjingfeng&#39;</span><span style="color:#abb2bf;">));
+</span><span style="font-style:italic;color:#5f697a;">//MSETNX key value [key value ...]------同时设置一个或多个key-value对,当且仅当所给定key都不存在
+</span><span style="color:#eb6772;">$f </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">msetnx</span><span style="color:#abb2bf;">(</span><span style="color:#5ebfcc;">array</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;ly&#39; </span><span style="color:#adb7c9;">=&gt; </span><span style="color:#9acc76;">&#39;liyang&#39;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&#39;xrj&#39;</span><span style="color:#adb7c9;">=&gt;</span><span style="color:#9acc76;">&#39;xingrongjiang&#39;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&#39;fjf&#39; </span><span style="color:#adb7c9;">=&gt; </span><span style="color:#9acc76;">&#39;fengjingfeng&#39;</span><span style="color:#abb2bf;">));
+</span><span style="font-style:italic;color:#5f697a;">//APPEND key value------如果key已经存在并且是一个字符串,APPEND命令将value追加到key原来的值的末尾。如果key不存在,APPEND就像执行SET key value一样   
+</span><span style="color:#eb6772;">$g </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">append</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;ly&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;love&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//GET key------返回key所关联的字符串值,如果key不存在那么返回特殊值nil,GET只能用于处理字符串值  
+</span><span style="color:#eb6772;">$h </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">get</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;ly&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//MGET key [key ...]------返回所有(一个或多个)给定key的值,如果给定的key里面有某个key不存在,那么这个key返回特殊值nil,命令永不失败   
+</span><span style="color:#eb6772;">$i </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">mget</span><span style="color:#abb2bf;">(</span><span style="color:#5ebfcc;">array</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;email&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;ly&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;fjf&#39;</span><span style="color:#abb2bf;">));
+</span><span style="font-style:italic;color:#5f697a;">//GETRANGE key start end------返回key中字符串值的子字符串,字符串的截取范围由start和end两个偏移量决定(包括start和end在内),负数偏移量表示从字符串最后&lt;br&gt;开始计数,-1表示最后一个字符,-2表示倒数第二个    &lt;br&gt;
+</span><span style="color:#eb6772;">$j </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">getrange</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;email&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">,</span><span style="color:#adb7c9;">-</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">); </span><span style="font-style:italic;color:#5f697a;">//从第一个到最后一个,相当于直接get
+</span><span style="font-style:italic;color:#5f697a;">//GETSET key value------将给定key的值设为value,并返回key的旧值(old value)
+</span><span style="color:#eb6772;">$k </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">getset</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;email&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;jiangzunshao@163.com&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//STRLEN key------返回key所储存的字符串值的长度
+</span><span style="color:#eb6772;">$l </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">strlen</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;email&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//DECR key------将key中储存的数字值减一,如果key不存在,那么key的值会先被初始化为0,然后再执行DECR操作   
+</span><span style="color:#eb6772;">$m </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">decr</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;pageview&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//INCR key------将key中储存的数字值增一,如果key不存在,那么key的值会先被初始化为0,然后再执行INCR操作   
+</span><span style="color:#eb6772;">$n </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">incr</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;pageview1&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//DECRBY key decrement------将key所储存的值减去减量decrement(可以为负值)   
+</span><span style="color:#eb6772;">$o </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">decrby</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;pageview&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">3</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//INCRBY key increment------将key所储存的值加上增量increment(可以为负值)   
+</span><span style="color:#eb6772;">$p </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">incrby</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;pageview&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">6</span><span style="color:#abb2bf;">);
+</span></code></pre>
+<h2 id="hash-ha-xi-biao-xiang-guan-cao-zuo">Hash (哈希表) 相关操作</h2>
+<pre data-lang="php" style="background-color:#2b303b;color:#6c7079;" class="language-php "><code class="language-php" data-lang="php"><span style="color:#c94e42;">&lt;?php
+</span><span style="font-style:italic;color:#5f697a;">//HSET key field value------将哈希表key中的域field的值设为value,新建返回1,覆盖返回0
+</span><span style="color:#eb6772;">$a </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">hset</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;user&quot;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&quot;jiang@58haha.cn&quot;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&quot;{&#39;name&#39;:&#39;jiangzunshao&#39;,&#39;age&#39;:25,&#39;work&#39;:&#39;php&#39;,&#39;city&#39;:&#39;BeiJing&#39;}&quot;</span><span style="color:#abb2bf;">);   
+</span><span style="font-style:italic;color:#5f697a;">//HSETNX key field value------将哈希表key中的域field的值设置为value,当且仅当域field不存在的时候. 设置成功,返回1。如果已经存在且没有操作被执行,返回0   
+</span><span style="color:#eb6772;">$b </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">hsetnx</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;user&quot;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&quot;jiang@58haha.cn&quot;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&quot;{&#39;name&#39;:&#39;jiangzunshao&#39;,&#39;age&#39;:25,&#39;work&#39;:&#39;php&#39;,&#39;city&#39;:&#39;BeiJing&#39;}&quot;</span><span style="color:#abb2bf;">);   
+</span><span style="font-style:italic;color:#5f697a;">//HGET key field------返回哈希表key中给定域field的值
+</span><span style="color:#eb6772;">$c </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">hget</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;user&quot;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&quot;jiang@58haha.cn&quot;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//HMSET key field value [field value ...]------同时将多个field-value(域-值)对设置到哈希表 key中
+</span><span style="color:#eb6772;">$d </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">hmset</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;user&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#5ebfcc;">array</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;name&#39;</span><span style="color:#adb7c9;">=&gt;</span><span style="color:#9acc76;">&#39;jiangzunshao&#39;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&#39;age&#39; </span><span style="color:#adb7c9;">=&gt; </span><span style="color:#db9d63;">20</span><span style="color:#abb2bf;">));
+</span><span style="font-style:italic;color:#5f697a;">//HMGET key field [field ...]------返回哈希表 key中,一个或多个给定域的值
+</span><span style="color:#eb6772;">$f </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">hmGet</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;user&#39;</span><span style="color:#abb2bf;">, </span><span style="color:#5ebfcc;">array</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;name&#39;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&#39;age&#39;</span><span style="color:#abb2bf;">));
+</span><span style="font-style:italic;color:#5f697a;">//HGETALL key------返回哈希表key中,所有的域和值
+</span><span style="color:#eb6772;">$g </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">hgetall</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;user&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//HDEL key field [field ...]------删除哈希表key中的一个或多个指定域,不存在的域将被忽略
+</span><span style="color:#eb6772;">$h </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">hdel</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;user&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;age&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//HLEN key------返回哈希表key中域的数量
+</span><span style="color:#eb6772;">$i </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">hlen</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;user&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//HEXISTS key field------查看哈希表key中,给定域field是否存在,存在返回1,不存在返回0
+</span><span style="color:#eb6772;">$g </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">hexists</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;user&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;jiang@58haha.cn&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//HINCRBY key field increment------为哈希表key中的域field的值加上增量increment,可以为负
+</span><span style="color:#eb6772;">$k </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">hincrby</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;user&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;pv&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">5</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//HKEYS key------返回哈希表key中的所有域
+</span><span style="color:#eb6772;">$l </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">hkeys</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;user&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//HVALS key------返回哈希表key中所有域的值
+</span><span style="color:#eb6772;">$m </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">hvals</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;user&#39;</span><span style="color:#abb2bf;">);
+</span></code></pre>
+<h2 id="list-lie-biao-xiang-guan-cao-zuo">List (列表) 相关操作</h2>
+<pre data-lang="php" style="background-color:#2b303b;color:#6c7079;" class="language-php "><code class="language-php" data-lang="php"><span style="color:#c94e42;">&lt;?php
+</span><span style="font-style:italic;color:#5f697a;">//LPUSH key value [value ...]------将数据插入列表的头部
+</span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">lpush</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;dbs&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;mongodb-3.2&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//RPUSH key value [value ...]------将数据插入列表的尾部
+</span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">rpush</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;dbs&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;redis&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//LLEN key------获取列表的长度
+</span><span style="color:#eb6772;">$c </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">llen</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;dbs&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//LPOP key------移除并返回列表的头元素
+</span><span style="color:#eb6772;">$d </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">lpop</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;dbs&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//RPOP key------移除并返回列表的尾元素
+</span><span style="color:#eb6772;">$e </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">rpop</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;dbs&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//LRANGE key start stop------返回列表中指定区间内元素
+</span><span style="color:#eb6772;">$f </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">lrange</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;dbs&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">,</span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">llen</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;dbs&#39;</span><span style="color:#abb2bf;">));
+</span><span style="color:#eb6772;">$f </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">lrange</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;dbs&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">,</span><span style="color:#adb7c9;">-</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//LSET key index value------将列表下标为index的元素的值设置为value
+</span><span style="color:#eb6772;">$h </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">lset</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;dbs&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;jiang&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//LTRIM key start stop------列表只保留指定区间内的元素
+</span><span style="color:#eb6772;">$i </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">ltrim</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;dbs&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">3</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">5</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//LINDEX key index------返回列表中下标为index的元素
+</span><span style="color:#eb6772;">$e </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">lindex</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;dbs&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">llen</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;dbs&#39;</span><span style="color:#abb2bf;">)</span><span style="color:#adb7c9;">-</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//LINSERT key BEFORE|AFTER pivot value------将值value插入到列表当中,位于值pivot之前或之后
+</span><span style="color:#eb6772;">$g </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">linsert</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;dbs&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#f0c678;">Redis</span><span style="color:#abb2bf;">::</span><span style="color:#db9d63;">BEFORE</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;mysql&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;mysqlmysql&#39;</span><span style="color:#abb2bf;">);
+</span><span style="color:#eb6772;">$g </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">linsert</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;dbs&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#f0c678;">Redis</span><span style="color:#abb2bf;">::</span><span style="color:#db9d63;">AFTER</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;redis&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;redisredis&#39;</span><span style="color:#abb2bf;">); 
+</span><span style="font-style:italic;color:#5f697a;">//RPOPLPUSH source destination------命令RPOPLPUSH在一个原子时间内执行以下两个动作:1,将列表source中的最后一个元素(尾元素)弹出,并返回给客户端&lt;br&gt;;&lt;br&gt;2,将source弹出的元素插入到列表destination,作为destination列表的的头元素   
+</span><span style="color:#eb6772;">$k </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">rpoplpush</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;dbs1&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;dbs&#39;</span><span style="color:#abb2bf;">);
+</span></code></pre>
+<h2 id="set-ji-he-xiang-guan-cao-zuo">Set (集合) 相关操作</h2>
+<pre data-lang="php" style="background-color:#2b303b;color:#6c7079;" class="language-php "><code class="language-php" data-lang="php"><span style="color:#c94e42;">&lt;?php
+</span><span style="font-style:italic;color:#5f697a;">//SADD key member [member ...]------将一个或多个member元素加入到集合key当中,已经存在于集合的member元素将被忽略   
+</span><span style="color:#eb6772;">$a </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">sadd</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;set&#39;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&#39;xingrongjiang&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//SREM key member [member ...]------移除集合key中的一个或多个member元素,不存在的member元素会被忽略   
+</span><span style="color:#eb6772;">$b </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">srem</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;set&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;Array&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//SMEMBERS key------返回集合key中的所有成员
+</span><span style="color:#eb6772;">$c </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">smembers</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;set&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//SISMEMBER key member------判断member元素是否集合key的成员
+</span><span style="color:#eb6772;">$d </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">sismember</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;set&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;liyang&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//SCARD key------返回集合key的基数(集合中元素的数量)
+</span><span style="color:#eb6772;">$e </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">scard</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;set&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//SMOVE source destination member------将member元素从source集合移动到destination集合
+</span><span style="color:#eb6772;">$f </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">smove</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;set&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;set1&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;xingrongjiang&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//SPOP key------移除并返回集合中的一个随机元素
+</span><span style="color:#eb6772;">$g </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">spop</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;set&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//SRANDMEMBER key [count]------如果只提供了key参数,那么返回集合中的一个随机元素;如果count为正数,且小于集合基数,返回一个包含count个元素的数组,数组中&lt;br&gt;的元素各不相同;如果count大于等于集合基数,返回整个集合;如果count为负数,那么命令返回一个数组,数组中的元素可能会重复出现多次,而数组的长度为count的绝对值   
+</span><span style="color:#eb6772;">$h </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">srandmember</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;set&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">2</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//SINTER key [key ...]------返回一个集合的全部成员,该集合是所有给定集合的交集
+</span><span style="color:#eb6772;">$i </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">sinter</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;set&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//SINTERSTORE destination key [key ...]------类似于SINTER命令,它将结果保存到destination集合,而不是简单地返回结果集   
+</span><span style="color:#eb6772;">$j </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">sinterstore</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;haha&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;set&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//SUNION key [key ...]------返回一个集合的全部成员,该集合是所有给定集合的并集
+</span><span style="color:#eb6772;">$k </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">sunion</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;set&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;set1&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//SUNIONSTORE destination key [key ...]------类似于SUNION命令,它将结果保存到destination集合,而不是简单地返回结果集   
+</span><span style="color:#eb6772;">$l </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">sunionstore</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;haha1&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;haha&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;set1&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//SDIFF key [key ...]------返回一个集合的全部成员,该集合是所有给定集合之间的差集
+</span><span style="color:#eb6772;">$m </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">sdiff</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;set&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;set1&#39;</span><span style="color:#abb2bf;">);
+</span></code></pre>
+<h2 id="you-xu-ji-sorted-set-xiang-guan-cao-zuo">有序集 (Sorted set) 相关操作</h2>
+<pre data-lang="php" style="background-color:#2b303b;color:#6c7079;" class="language-php "><code class="language-php" data-lang="php"><span style="color:#c94e42;">&lt;?php
+</span><span style="font-style:italic;color:#5f697a;">//ZADD key score member------向名称为key的zset中添加元素member,score用于排序,如果该元素已经存在,则根据score更新该元素的顺序 
+</span><span style="color:#eb6772;">$a </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">zadd</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;site&#39;</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">10</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&#39;google.com&#39;</span><span style="color:#abb2bf;">);
+</span><span style="color:#eb6772;">$a </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">zadd</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;site&#39;</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">9</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&#39;baidu.com&#39;</span><span style="color:#abb2bf;">);
+</span><span style="color:#eb6772;">$a </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">zadd</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;site&#39;</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">8</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&#39;sina.com.cn&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//ZREM key member------删除名称为key的zset中的元素member
+</span><span style="font-style:italic;color:#5f697a;">// $b = $redis-&gt;zrem(&#39;site&#39;,&#39;sina.com.cn&#39;);
+</span><span style="font-style:italic;color:#5f697a;">//ZCARD key------返回名称为key的zset的所有元素的个数
+</span><span style="color:#eb6772;">$c </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">zcard</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;site&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//ZCOUNT key min max------返回有序集key中,score值在min和max之间的成员的数量
+</span><span style="color:#eb6772;">$d </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">zcount</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;site&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">6</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">9</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//ZSCORE key member------返回有序集key中,成员member的score值
+</span><span style="color:#eb6772;">$e </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">zscore</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;site&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;baidu.com&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//ZINCRBY key increment member------为有序集key的成员member的score值加上增量increment,返回值就是score加上increment的结果 
+</span><span style="color:#eb6772;">$f </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">zincrby</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;site&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">10</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&#39;baidu.com&#39;</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//ZRANGE key start stop [WITHSCORES]------返回有序集key中,指定区间内的成员,其中成员的位置按score值递增(从小到大)来排序 
+</span><span style="color:#eb6772;">$j </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">zrange</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;site&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">,</span><span style="color:#adb7c9;">-</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">);
+</span><span style="color:#eb6772;">$j </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">zrange</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;site&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">,</span><span style="color:#adb7c9;">-</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">true</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//ZREVRANGE key start stop [WITHSCORES]------返回有序集key中,指定区间内的成员,其中成员的位置按score值递减(从大到小)来排列 
+</span><span style="color:#eb6772;">$h </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">zrevrange</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;site&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">,</span><span style="color:#adb7c9;">-</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">);
+</span><span style="color:#eb6772;">$h </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">zrevrange</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;site&#39;</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">,</span><span style="color:#adb7c9;">-</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">,</span><span style="color:#db9d63;">true</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">
+</span></code></pre>
+<h2 id="server-fu-wu-qi">Server (服务器)</h2>
+<pre data-lang="php" style="background-color:#2b303b;color:#6c7079;" class="language-php "><code class="language-php" data-lang="php"><span style="color:#c94e42;">&lt;?php
+</span><span style="font-style:italic;color:#5f697a;">//TIME------返回当前服务器时间,一个包含两个字符串的列表:第一个字符串是当前时间(以UNIX时间戳格式表示),而第二个字符串是当前这一秒钟已经逝去的微秒数   
+</span><span style="color:#eb6772;">$a </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">time</span><span style="color:#abb2bf;">();
+</span><span style="font-style:italic;color:#5f697a;">//DBSIZE-----返回当前数据库的key的数量
+</span><span style="color:#eb6772;">$b </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">dbsize</span><span style="color:#abb2bf;">();
+</span><span style="font-style:italic;color:#5f697a;">//BGREWRITEAOF------使用aof来进行数据库持久化
+</span><span style="color:#eb6772;">$c </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">bgrewriteaof</span><span style="color:#abb2bf;">();
+</span><span style="font-style:italic;color:#5f697a;">//SAVE------将数据同步保存到磁盘
+</span><span style="color:#eb6772;">$d </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">save</span><span style="color:#abb2bf;">();
+</span><span style="font-style:italic;color:#5f697a;">//BGSAVE------将数据异步保存到磁盘 
+</span><span style="color:#eb6772;">$e </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">bgsave</span><span style="color:#abb2bf;">();
+</span><span style="font-style:italic;color:#5f697a;">//LASTSAVE------返回上次成功将数据保存到磁盘的Unix时戳
+</span><span style="color:#eb6772;">$f </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">lastsave</span><span style="color:#abb2bf;">();
+</span><span style="font-style:italic;color:#5f697a;">//SLAVEOF host port------选择从服务器
+</span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">slaveof</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;10.0.1.7&#39;</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">6379</span><span style="color:#abb2bf;">);
+</span><span style="font-style:italic;color:#5f697a;">//FLUSHALL------清空整个Redis服务器的数据(删除所有数据库的所有key)
+</span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">flushall</span><span style="color:#abb2bf;">();
+</span><span style="font-style:italic;color:#5f697a;">//FLUSHDB------清空当前数据库中的所有key
+</span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">flushdb</span><span style="color:#abb2bf;">();
+</span><span style="font-style:italic;color:#5f697a;">//INFO [section]------返回关于 Redis 服务器的各种信息和统计数值
+</span><span style="color:#eb6772;">$g </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">$redis</span><span style="color:#abb2bf;">-&gt;</span><span style="color:#eb6772;">info</span><span style="color:#abb2bf;">()
+</span></code></pre>
+<blockquote>
+<p>原文 https://learnku.com/articles/32113</p>
+</blockquote>
+
+
+
+  </div>
+</div>
+
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;soft-caddy2&#x2F;">
+    <i class="icon icon-left-open"></i>
+    Caddy2</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;linux-disk-full&#x2F;">
+    Linux系统硬盘使用100%写入失败
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-link" href="//erasin.wang/categories/cheatsheet/">cheatsheet</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-info" href="//erasin.wang/tags/php/">php</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="lian-jie" href="//erasin.wang/php-redis/#lian-jie">链接</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="key-jian" href="//erasin.wang/php-redis/#key-jian">key 键</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="string-zi-fu-chuan-xiang-guan-cao-zuo" href="//erasin.wang/php-redis/#string-zi-fu-chuan-xiang-guan-cao-zuo">String (字符串) 相关操作</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="hash-ha-xi-biao-xiang-guan-cao-zuo" href="//erasin.wang/php-redis/#hash-ha-xi-biao-xiang-guan-cao-zuo">Hash (哈希表) 相关操作</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="list-lie-biao-xiang-guan-cao-zuo" href="//erasin.wang/php-redis/#list-lie-biao-xiang-guan-cao-zuo">List (列表) 相关操作</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="set-ji-he-xiang-guan-cao-zuo" href="//erasin.wang/php-redis/#set-ji-he-xiang-guan-cao-zuo">Set (集合) 相关操作</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="you-xu-ji-sorted-set-xiang-guan-cao-zuo" href="//erasin.wang/php-redis/#you-xu-ji-sorted-set-xiang-guan-cao-zuo">有序集 (Sorted set) 相关操作</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="server-fu-wu-qi" href="//erasin.wang/php-redis/#server-fu-wu-qi">Server (服务器)</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

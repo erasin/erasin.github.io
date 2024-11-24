@@ -1,0 +1,702 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  OTP 动态密码算法 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="动态算法，基于时间的一次性密码" property="description" />
+
+  
+    <meta content="otp,一次名密码,密码" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+    
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> OTP 动态密码算法 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      OTP 动态密码算法
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2020-04-17
+    </div>
+  </div>
+
+  <div class="post-content math " 
+    style="background-image:url(&#x27;&#x2F;assets&#x2F;img&#x2F;password_isometric.svg&#x27;);background-size:200px;" >
+    <p>一次性密码 One Time Password, 简称 OTP。</p>
+<p>动态密码优点：</p>
+<ul>
+<li>由服务器和工具生成密码，无须记录。</li>
+<li>随机生产，一次有效性。</li>
+<li>根据时间计算，有时效性。</li>
+</ul>
+<p>动态密码的产生方式，主要是以时间差做为服务器与密码产生器的同步条件。在需要登录的时候，就利用密码产生器产生动态密码，OTP一般分为计次使用以及计时使用两种，计次使用的OTP产出后，可在不限时间内使用；计时使用的OTP则可设置密码有效时间，从30秒到两分钟不等，而OTP在进行认证之后即废弃不用，下次认证必须使用新的密码，增加了试图不经授权访问有限制资源的难度。</p>
+<blockquote>
+<p>国内一些令牌也是基于动态密码算法生成。 steam,itch, ali,google， 坚果云， 等等都采取了 OTP 来进行二次验证。</p>
+</blockquote>
+<span id="continue-reading"></span><h2 id="dong-tai-mi-ma-de-fen-lei">动态密码的分类</h2>
+<p>常见的动态密码有两类：</p>
+<ul>
+<li><strong>计次使用</strong>：计次使用的OTP产出后，可在不限时间内使用，知道下次成功使用后，计数器加 1，生成新的密码。用于实现计次使用动态密码的算法叫 HOTP，接下来会对这个算法展开介绍；</li>
+<li><strong>计时使用</strong>：计时使用的OTP则可设定密码有效时间，从30秒到两分钟不等，而OTP在进行认证之后即废弃不用，下次认证必须使用新的密码。用于实现计时使用动态密码的算法叫 TOTP，接下来会对这个算法展开介绍。</li>
+</ul>
+<p>动态密码的基本认证原理是在认证双方共享密钥，也称种子密钥，并使用的同一个种子密钥对某一个事件计数、或时间值进行密码算法计算，使用的算法有对称算法、HASH、HMAC等，这个是所有动态密码算法实现的基础。</p>
+<h2 id="hotp">HOTP</h2>
+<p>HOTP 算法，全称是“An HMAC-Based One-Time Password Algorithm”，是一种基于事件计数的一次性密码生成算法，详细的算法介绍可以查看 <a href="https://tools.ietf.org/html/rfc4226">RFC 4226</a>。</p>
+<p>算法本身可以用两条简短的表达式描述：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">HOTP(K,C) = Truncate(HMAC-SHA-1(K,C))
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">PWD(K,C,digit) = HOTP(K,C) mod 10^Digit
+</span></code></pre>
+<p>公式中</p>
+<ul>
+<li>K 代表我们在认证服务器端以及密码生成端（客户设备）之间共享的密钥，在 RFC 4226 中，作者要求共享密钥最小长度是 128 位，而作者本身推荐使用 160 位长度的密钥</li>
+<li>C 表示事件计数的值，8 字节的整数，称为移动因子（moving factor），需要注意的是，这里的 C 的整数值需要用二进制的字符串表达，比如某个事件计数为 3，则C是 "11"（此处省略了前面的二进制的数字0）</li>
+<li>HMAC-SHA-1 表示对共享密钥以及移动因子进行 HMAC 的 SHA1 算法加密，得到 160 位长度（20字节）的加密结果,当然也可以使用HMAC-MD5等算法。</li>
+<li>Truncate 即截断函数，后面会详述</li>
+<li>digit 指定动态密码长度，比如我们常见的都是 6 位长度的动态密码</li>
+</ul>
+<p>客户端和服务器事先协商好一个密钥K，用于一次性密码的生成过程，此密钥不被任何第三方所知道。此外，客户端和服务器各有一个计数器C，并且事先将计数值同步。</p>
+<h3 id="truncate-jie-duan-han-shu">Truncate 截断函数</h3>
+<p>由于 SHA-1 算法是既有算法，不是我们讨论重点，故而 Truncate 函数就是整个算法中最为关键的部分了。以下引用 Truncate 函数的步骤说明：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">DT(String) // String = String[0]…String[19]
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">Let OffsetBits be the low-order 4 bits of String[19]
+</span><span style="color:#abb2bf;">Offset = StToNum(OffsetBits) // 0 &lt;= OffSet &lt;= 15
+</span><span style="color:#abb2bf;">Let P = String[OffSet]...String[OffSet+3]
+</span><span style="color:#abb2bf;">Return the Last 31 bits of P
+</span></code></pre>
+<p>结合上面的公式理解，大概的描述就是：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">先从第一步通过 SHA-1 算法加密得到的 20 字节长度的结果中选取最后一个字节的低字节位的 4 位（注意：动态密码算法中采用的大端(big-endian)存储）；
+</span><span style="color:#abb2bf;">将这 4 位的二进制值转换为无标点数的整数值，得到 0 到 15（包含 0 和 15）之间的一个数，这个数字作为 20 个字节中从 0 开始的偏移量；
+</span><span style="color:#abb2bf;">接着从指定偏移位开始，连续截取 4 个字节（32 位），最后返回 32 位中的后面 31 位。
+</span></code></pre>
+<p>回到算法本身，在获得 31 位的截断结果之后，我们将其又转换为无标点的大端表示的整数值，这个值的取值范围是 0 ~ $2^{31}$，也即 0 ~ 2.147483648E9，最后我们将这个数对10的乘方（digit 指数范围 1-10）取模，得到一个余值，对其前面补0得到指定位数的字符串。</p>
+<h2 id="totp">TOTP</h2>
+<p>TOTP 算法，全称是 TOTP: Time-Based One-Time Password Algorithm，其基于 HOTP 算法实现，核心是将移动因子从 HOTP 中的事件计数改为时间差。完整的 TOTP 算法的说明可以查看 <a href="https://tools.ietf.org/html/rfc6238">RFC 6238</a>，其公式描述也非常简单：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">TOTP = HOTP(K, T) 
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">// T is an integer and represents the number of time steps between the initial counter time T0 and the current Unix time More specifically,
+</span><span style="color:#abb2bf;"> T = (Current Unix time – T0) / X, where the default floor function is used in the computation.
+</span></code></pre>
+<p>通常来说，TOTP 中所使用的时间差都是当前时间戳，TOTP 将时间差除以时间窗口（密码有效期，默认 30 秒）得到时间窗口计数，以此作为动态密码算法的移动因子，这样基于 HOTP 算法就能方便得到基于时间的动态密码了。</p>
+<blockquote>
+<p>注意: RFC 6238 提到，在 TOTP 算法中，可以指定不同的键控哈希算法，比如在 HOTP 中使用的是 HMAC-SHA1 算法，而在 TOTP，除此之外，还可以使用 HMAC-SHA256 或者 HMAC-SHA512。</p>
+</blockquote>
+<p>{# /images/otp.jpg #}
+<img src="https://i.loli.net/2020/04/17/6jh1wKeBSmnf5Jy.jpg" alt="otp" /></p>
+<!-- <div class="center youtube video" >
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/zMabEyrtPRg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+  </iframe>
+</div> -->
+<div class="center bili video" >
+	<iframe src="//player.bilibili.com/player.html?bvid=BV1Rp411f78Q&page=2&high_quality=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="300" width="500"> </iframe>
+	
+	<a class="video-btn" style="position: relative; font-size: 1.5rem; left: -4rem; top: -19rem;text-shadow: -1px 0 #e5ecf0, 0 1px #e5ecf0, 1px 0 #e5ecf0, 0 -1px #e5ecf0;" href="https://www.bilibili.com/video/BV1Rp411f78Q/" target="_blank"><i class="icon icon-forward"></i></a>
+	
+</div><h2 id="app">APP</h2>
+<ul>
+<li>IOS <a href="https://mattrubin.me/authenticator/">Authenticator</a> 开源（支持加密保存）</li>
+<li>IOS/ANDROID <a href="https://github.com/google/google-authenticator">APP Google 身份验证器</a></li>
+</ul>
+<h2 id="code-by-golang">code by golang</h2>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">package </span><span style="color:#eb6772;">otp
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// For more info, please visit https://tools.ietf.org/html/rfc4226
+</span><span style="color:#cd74e8;">import </span><span style="color:#abb2bf;">(
+</span><span style="color:#abb2bf;">	</span><span style="color:#9acc76;">&quot;crypto/hmac&quot;
+</span><span style="color:#abb2bf;">	</span><span style="color:#9acc76;">&quot;crypto/sha1&quot;
+</span><span style="color:#abb2bf;">	</span><span style="color:#9acc76;">&quot;encoding/base32&quot;
+</span><span style="color:#abb2bf;">	</span><span style="color:#9acc76;">&quot;encoding/binary&quot;
+</span><span style="color:#abb2bf;">	</span><span style="color:#9acc76;">&quot;fmt&quot;
+</span><span style="color:#abb2bf;">	</span><span style="color:#9acc76;">&quot;net/url&quot;
+</span><span style="color:#abb2bf;">	</span><span style="color:#9acc76;">&quot;time&quot;
+</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">//
+</span><span style="font-style:italic;color:#5f697a;">// OTP(K,C) = Truncate(HMAC-SHA-1(K,C))
+</span><span style="font-style:italic;color:#5f697a;">//
+</span><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">OTP</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">secret </span><span style="color:#cd74e8;">string</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">counter </span><span style="color:#cd74e8;">int64</span><span style="color:#abb2bf;">) </span><span style="color:#cd74e8;">int </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">key</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">base32</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">StdEncoding</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">DecodeString</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">secret</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">if </span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">!= </span><span style="color:#db9d63;">nil </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">		</span><span style="color:#cd74e8;">return </span><span style="color:#adb7c9;">-</span><span style="color:#db9d63;">1
+</span><span style="color:#abb2bf;">	}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">hash </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">hmac</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">New</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">sha1</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">New</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">key</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">binary</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Write</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">hash</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">binary</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">BigEndian</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">counter</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">if </span><span style="color:#eb6772;">err </span><span style="color:#adb7c9;">!= </span><span style="color:#db9d63;">nil </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">		</span><span style="color:#cd74e8;">return </span><span style="color:#adb7c9;">-</span><span style="color:#db9d63;">1
+</span><span style="color:#abb2bf;">	}
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">hs </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">hash</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Sum</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">nil</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">offset </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">hs</span><span style="color:#abb2bf;">[</span><span style="color:#db9d63;">19</span><span style="color:#abb2bf;">] </span><span style="color:#adb7c9;">&amp; </span><span style="color:#db9d63;">0x0f
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">truncated </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">binary</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">BigEndian</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Uint32</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">hs</span><span style="color:#abb2bf;">[</span><span style="color:#eb6772;">offset </span><span style="color:#abb2bf;">: </span><span style="color:#eb6772;">offset</span><span style="color:#adb7c9;">+</span><span style="color:#db9d63;">4</span><span style="color:#abb2bf;">])
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">truncated </span><span style="color:#adb7c9;">&amp;= </span><span style="color:#db9d63;">0x7fffffff
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">code </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">truncated </span><span style="color:#adb7c9;">% </span><span style="color:#db9d63;">1000000
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">return </span><span style="color:#eb6772;">int</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">code</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// HOTP ...
+</span><span style="color:#cd74e8;">type </span><span style="color:#abb2bf;">HOTP </span><span style="color:#cd74e8;">struct </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">secret </span><span style="color:#cd74e8;">string
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">digits </span><span style="color:#cd74e8;">int
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">size   </span><span style="color:#cd74e8;">int </span><span style="font-style:italic;color:#5f697a;">// 3-5 验证范围 totp 时候追加验证的范围
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// At 生成
+</span><span style="color:#cd74e8;">func </span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">h </span><span style="color:#cd74e8;">HOTP</span><span style="color:#abb2bf;">) </span><span style="color:#5cb3fa;">At</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">counter </span><span style="color:#cd74e8;">int64</span><span style="color:#abb2bf;">) </span><span style="color:#cd74e8;">int </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">return </span><span style="color:#eb6772;">OTP</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">h</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">secret</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">counter</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// Verify 验证 OTP code
+</span><span style="color:#cd74e8;">func </span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">h </span><span style="color:#cd74e8;">HOTP</span><span style="color:#abb2bf;">) </span><span style="color:#5cb3fa;">Verify</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">code </span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">counter </span><span style="color:#cd74e8;">int64</span><span style="color:#abb2bf;">) </span><span style="color:#cd74e8;">bool </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">return </span><span style="color:#eb6772;">h</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">At</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">counter</span><span style="color:#abb2bf;">) </span><span style="color:#adb7c9;">== </span><span style="color:#eb6772;">code
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// NewHOTP 生成 HOTP instance
+</span><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">NewHOTP</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">secret </span><span style="color:#cd74e8;">string</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">digits </span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;">) (</span><span style="color:#eb6772;">h </span><span style="color:#adb7c9;">*</span><span style="color:#cd74e8;">HOTP</span><span style="color:#abb2bf;">) {
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">h </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">new</span><span style="color:#abb2bf;">(</span><span style="color:#cd74e8;">HOTP</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">h</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">secret </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">secret
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">h</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">digits </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">digits
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">return
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">//-------------------
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// TOTP 基于时间戳的双因子验证
+</span><span style="color:#cd74e8;">type </span><span style="color:#abb2bf;">TOTP </span><span style="color:#cd74e8;">struct </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">secret </span><span style="color:#cd74e8;">string
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">digits </span><span style="color:#cd74e8;">int
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">x      </span><span style="color:#cd74e8;">int64 </span><span style="font-style:italic;color:#5f697a;">// 设定有效期，建议 30 ，30秒
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">UTC    </span><span style="color:#cd74e8;">bool
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// NewTOTP generate new TOTP instance
+</span><span style="font-style:italic;color:#5f697a;">// digits 位数
+</span><span style="font-style:italic;color:#5f697a;">// x 时间有效期 秒
+</span><span style="color:#cd74e8;">func </span><span style="color:#5cb3fa;">NewTOTP</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">secret </span><span style="color:#cd74e8;">string</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">digits</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">x </span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;">) (</span><span style="color:#eb6772;">t </span><span style="color:#adb7c9;">*</span><span style="color:#cd74e8;">TOTP</span><span style="color:#abb2bf;">) {
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">t </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">new</span><span style="color:#abb2bf;">(</span><span style="color:#cd74e8;">TOTP</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">t</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">secret </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">secret
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">t</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">digits </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">digits
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">t</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">x </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">int64</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">x</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">return </span><span style="color:#eb6772;">t
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// At 获取时间因子 OTP code
+</span><span style="color:#cd74e8;">func </span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">t </span><span style="color:#adb7c9;">*</span><span style="color:#cd74e8;">TOTP</span><span style="color:#abb2bf;">) </span><span style="color:#5cb3fa;">At</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">timestamp </span><span style="color:#cd74e8;">int64</span><span style="color:#abb2bf;">) </span><span style="color:#cd74e8;">int </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">// 用时间戳当做算法的移动因子, 除去有效实际
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">counter </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">int64</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">timestamp </span><span style="color:#adb7c9;">/ </span><span style="color:#eb6772;">t</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">x</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">return </span><span style="color:#eb6772;">OTP</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">t</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">secret</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">counter</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// Now 获取当前时间 TOTP
+</span><span style="color:#cd74e8;">func </span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">t </span><span style="color:#adb7c9;">*</span><span style="color:#cd74e8;">TOTP</span><span style="color:#abb2bf;">) </span><span style="color:#5cb3fa;">Now</span><span style="color:#abb2bf;">() </span><span style="color:#cd74e8;">int </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">now </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">time</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Now</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">timestamp </span><span style="color:#adb7c9;">:= </span><span style="color:#eb6772;">now</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Unix</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">return </span><span style="color:#eb6772;">t</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">At</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">timestamp</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// VerifyNow 验证当前时间 OTP code
+</span><span style="color:#cd74e8;">func </span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">t </span><span style="color:#adb7c9;">*</span><span style="color:#cd74e8;">TOTP</span><span style="color:#abb2bf;">) </span><span style="color:#5cb3fa;">VerifyNow</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">code </span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;">) </span><span style="color:#cd74e8;">bool </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">return </span><span style="color:#eb6772;">t</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Now</span><span style="color:#abb2bf;">() </span><span style="color:#adb7c9;">== </span><span style="color:#eb6772;">code
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// Verify 验证 OTP code
+</span><span style="color:#cd74e8;">func </span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">t </span><span style="color:#adb7c9;">*</span><span style="color:#cd74e8;">TOTP</span><span style="color:#abb2bf;">) </span><span style="color:#5cb3fa;">Verify</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">code </span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">timestamp </span><span style="color:#cd74e8;">int64</span><span style="color:#abb2bf;">) </span><span style="color:#cd74e8;">bool </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">return </span><span style="color:#eb6772;">t</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">At</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">timestamp</span><span style="color:#abb2bf;">) </span><span style="color:#adb7c9;">== </span><span style="color:#eb6772;">code
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// URI 生成 Google Authenticator 字符串
+</span><span style="font-style:italic;color:#5f697a;">// 用于二维码生成
+</span><span style="font-style:italic;color:#5f697a;">// https://github.com/google/google-authenticator/wiki/Key-Uri-Format
+</span><span style="color:#cd74e8;">func </span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">t </span><span style="color:#adb7c9;">*</span><span style="color:#cd74e8;">TOTP</span><span style="color:#abb2bf;">) </span><span style="color:#5cb3fa;">URI</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">user </span><span style="color:#cd74e8;">string</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">issuer </span><span style="color:#cd74e8;">string</span><span style="color:#abb2bf;">) </span><span style="color:#cd74e8;">string </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">auth </span><span style="color:#adb7c9;">:= </span><span style="color:#9acc76;">&quot;totp/&quot;
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">q </span><span style="color:#adb7c9;">:= </span><span style="color:#5ebfcc;">make</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">url</span><span style="color:#abb2bf;">.</span><span style="color:#cd74e8;">Values</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">// if HotpCounter &gt; 0 {
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">// 	auth = &quot;hotp/&quot;
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">// 	q.Add(&quot;counter&quot;, strconv.Itoa(HotpCounter))
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">// }
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">q</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Add</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;secret&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">t</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">secret</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">q</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Add</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;period&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">fmt</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Sprintf</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;</span><span style="color:#db9d63;">%d</span><span style="color:#9acc76;">&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">t</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">x</span><span style="color:#abb2bf;">))
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">q</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Add</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;digits&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">fmt</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Sprintf</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;</span><span style="color:#db9d63;">%d</span><span style="color:#9acc76;">&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">t</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">digits</span><span style="color:#abb2bf;">))
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">q</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Add</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;algorithm&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;SHA1&quot;</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">if </span><span style="color:#eb6772;">issuer </span><span style="color:#adb7c9;">!= </span><span style="color:#9acc76;">&quot;&quot; </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">		</span><span style="color:#eb6772;">q</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Add</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;issuer&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">issuer</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">		</span><span style="color:#eb6772;">auth </span><span style="color:#adb7c9;">+= </span><span style="color:#eb6772;">issuer </span><span style="color:#adb7c9;">+ </span><span style="color:#9acc76;">&quot;:&quot;
+</span><span style="color:#abb2bf;">	}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">return </span><span style="color:#9acc76;">&quot;otpauth://&quot; </span><span style="color:#adb7c9;">+ </span><span style="color:#eb6772;">auth </span><span style="color:#adb7c9;">+ </span><span style="color:#eb6772;">user </span><span style="color:#adb7c9;">+ </span><span style="color:#9acc76;">&quot;?&quot; </span><span style="color:#adb7c9;">+ </span><span style="color:#eb6772;">q</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Encode</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// ScratchCode 救援码验证
+</span><span style="color:#cd74e8;">func </span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">t </span><span style="color:#adb7c9;">*</span><span style="color:#cd74e8;">TOTP</span><span style="color:#abb2bf;">) </span><span style="color:#5cb3fa;">ScratchCode</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">Scratch </span><span style="color:#cd74e8;">ScratchCode</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">code </span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;">) </span><span style="color:#cd74e8;">bool </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">return </span><span style="color:#eb6772;">Scratch</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">Verify</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">code</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// ScratchCode 救援码
+</span><span style="color:#cd74e8;">type </span><span style="color:#abb2bf;">ScratchCode </span><span style="color:#cd74e8;">interface </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="color:#5cb3fa;">Verify</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">code </span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;">) </span><span style="color:#cd74e8;">bool </span><span style="font-style:italic;color:#5f697a;">// 救援码验证
+</span><span style="color:#abb2bf;">	</span><span style="color:#5cb3fa;">Generate</span><span style="color:#abb2bf;">() []</span><span style="color:#cd74e8;">string   </span><span style="font-style:italic;color:#5f697a;">// 救援吗生成
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// Scratch 救援码
+</span><span style="color:#cd74e8;">type </span><span style="color:#abb2bf;">Scratch </span><span style="color:#cd74e8;">struct </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">ScratchCodes </span><span style="color:#abb2bf;">[]</span><span style="color:#cd74e8;">int
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// Generate 救援吗生成
+</span><span style="color:#cd74e8;">func </span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">s </span><span style="color:#adb7c9;">*</span><span style="color:#cd74e8;">Scratch</span><span style="color:#abb2bf;">) </span><span style="color:#5cb3fa;">Generate</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">code </span><span style="color:#adb7c9;">...</span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;">) {
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">s</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">ScratchCodes </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">append</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">s</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">ScratchCodes</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">code</span><span style="color:#adb7c9;">...</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// Verify 救援码 ？？ 修改为数据。。。
+</span><span style="color:#cd74e8;">func </span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">s </span><span style="color:#adb7c9;">*</span><span style="color:#cd74e8;">Scratch</span><span style="color:#abb2bf;">) </span><span style="color:#5cb3fa;">Verify</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">code </span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;">) </span><span style="color:#cd74e8;">bool </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">for </span><span style="color:#eb6772;">i</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">v </span><span style="color:#adb7c9;">:= </span><span style="color:#cd74e8;">range </span><span style="color:#eb6772;">s</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">ScratchCodes </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">		</span><span style="color:#cd74e8;">if </span><span style="color:#eb6772;">code </span><span style="color:#adb7c9;">== </span><span style="color:#eb6772;">v </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">			</span><span style="font-style:italic;color:#5f697a;">// 存在则删除
+</span><span style="color:#abb2bf;">			</span><span style="color:#eb6772;">l </span><span style="color:#adb7c9;">:= </span><span style="color:#5ebfcc;">len</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">s</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">ScratchCodes</span><span style="color:#abb2bf;">) </span><span style="color:#adb7c9;">- </span><span style="color:#db9d63;">1
+</span><span style="color:#abb2bf;">			</span><span style="color:#eb6772;">s</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">ScratchCodes</span><span style="color:#abb2bf;">[</span><span style="color:#eb6772;">i</span><span style="color:#abb2bf;">] </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">s</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">ScratchCodes</span><span style="color:#abb2bf;">[</span><span style="color:#eb6772;">l</span><span style="color:#abb2bf;">]
+</span><span style="color:#abb2bf;">			</span><span style="color:#eb6772;">s</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">ScratchCodes </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">s</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">ScratchCodes</span><span style="color:#abb2bf;">[</span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">:</span><span style="color:#eb6772;">l</span><span style="color:#abb2bf;">] </span><span style="font-style:italic;color:#5f697a;">// 复制(重置长度)
+</span><span style="color:#abb2bf;">			</span><span style="color:#cd74e8;">return </span><span style="color:#db9d63;">true
+</span><span style="color:#abb2bf;">		}
+</span><span style="color:#abb2bf;">	}
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">return </span><span style="color:#db9d63;">false
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<h2 id="yin-yong">引用</h2>
+<ul>
+<li><a href="http://tools.ietf.org/id/draft-mraihi-totp-timebased-06.html">TOTP: Time-based One-time Password Algorithm, RFC Draft</a></li>
+<li><a href="http://tools.ietf.org/html/rfc4226">HOTP: An HMAC-Based One-Time Password Algorithm, RFC 4226</a></li>
+<li>[Time-based_One-time_Password_algorithm]https://en.wikipedia.org/wiki/Time-based_One-time_Password_algorithm)</li>
+<li><a href="https://en.wikipedia.org/wiki/HMAC-based_One-time_Password_algorithm">HMAC-based_One-time_Password_algorithm</a></li>
+<li><a href="http://code.google.com/p/google-authenticator/">Google Authenticator project</a></li>
+<li><a href="https://github.com/dgryski/dgoogauth">https://github.com/dgryski/dgoogauth</a></li>
+<li><a href="https://www.youtube.com/watch?v=zMabEyrtPRg">https://www.youtube.com/watch?v=zMabEyrtPRg</a></li>
+<li><a href="http://martin91.github.io/blog/articles/2017/02/18/dong-tai-mi-ma-suan-fa-jie-shao-yu-shi-xian/"></a></li>
+<li><a href="https://www.csdn.net/article/2014-09-23/2821808-Google-Authenticator">https://www.csdn.net/article/2014-09-23/2821808-Google-Authenticator</a></li>
+<li><a href="https://www.cnblogs.com/voipman/p/6216328.html">https://www.cnblogs.com/voipman/p/6216328.html</a></li>
+<li><a href="https://github.com/gitchs/gootp">https://github.com/gitchs/gootp</a></li>
+</ul>
+
+
+
+  </div>
+</div>
+
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;mermaid&#x2F;">
+    <i class="icon icon-left-open"></i>
+    Mermaid UML 流程图工具</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;soft-magicavoxel&#x2F;">
+    MagicaVoxel 像素体编辑器
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+<div class="no-print">
+  
+  <script src="https://giscus.app/client.js" data-repo="erasin/erasin.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnk3MzE0Mzg3Mw==" data-category="article" data-category-id="" data-mapping="pathname"
+    data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light"
+    data-lang="zh-CN" crossorigin="anonymous" async>
+    </script>
+  <style>
+    .utterances {
+      max-width: initial;
+    }
+  </style>
+  
+  
+</div>
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-dark" href="//erasin.wang/categories/algorithm/">algorithm</a>
+
+
+
+<a class="tag is-light" href="//erasin.wang/categories/suan-fa/">算法</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-info" href="//erasin.wang/tags/otp/">otp</a>
+
+
+
+<a class="tag is-link" href="//erasin.wang/tags/yi-ci-ming-mi-ma/">一次名密码</a>
+
+
+
+<a class="tag is-dark" href="//erasin.wang/tags/mi-ma/">密码</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="dong-tai-mi-ma-de-fen-lei" href="//erasin.wang/otp/#dong-tai-mi-ma-de-fen-lei">动态密码的分类</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="hotp" href="//erasin.wang/otp/#hotp">HOTP</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="truncate-jie-duan-han-shu" href="//erasin.wang/otp/#truncate-jie-duan-han-shu">Truncate 截断函数</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="totp" href="//erasin.wang/otp/#totp">TOTP</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="app" href="//erasin.wang/otp/#app">APP</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="code-by-golang" href="//erasin.wang/otp/#code-by-golang">code by golang</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="yin-yong" href="//erasin.wang/otp/#yin-yong">引用</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,549 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  linux下同步方案以及站点文件的简单防篡改 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="" property="description" />
+
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> linux下同步方案以及站点文件的简单防篡改 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      LINUX下同步方案以及站点文件的简单防篡改
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2019-12-30
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <p>通道： 使用ssh协议通信,利用ssh的 <code>authorized_keys</code> 特性，使用ssh-keygen生成不带有密码的密钥。
+执行： crond来设定执行周期</p>
+<blockquote>
+<p>注： 下面  local 指本地，server指同步的服务器，pwd 指当前目录路径</p>
+</blockquote>
+<span id="continue-reading"></span><h2 id="jing-tai-wen-jian-tong-bu-rsync">静态文件同步 - rsync</h2>
+<p>视频文件和图片文件比较大，不适合监控具体内容，利用 rsync 同步文件夹，可以快速计算文件夹对比索引同步。</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">rsync --log-file</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">&quot;/local/rsync.log&quot;</span><span style="color:#eb6772;"> -az --delete -e</span><span style="color:#abb2bf;"> ssh user@ssh-server-ip:/server/pwd /local/pwd
+</span></code></pre>
+<blockquote>
+<p>不使用同步删除时，去除  <code>--delete</code> 即可。</p>
+</blockquote>
+<p><strong>安全方面</strong>, 使用普通非登录(nologin)用户进行数据的交换。</p>
+<h2 id="zhan-dian-zhong-xin-tong-bu-git-fang-cuan-gai">站点中心同步 - git 防篡改</h2>
+<p>使用git自动管理中心站点代码，检测站点文件变动，防止客户端的文件篡改以及添加删除等。</p>
+<h3 id="a-server-zhong-xin-duan">A-server:中心端</h3>
+<p>在站点根目录中添加过滤列表文件 <code>.gitignore</code></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">*.log
+</span><span style="color:#abb2bf;">*.html
+</span><span style="color:#abb2bf;">upload/
+</span><span style="color:#abb2bf;">log/
+</span><span style="color:#abb2bf;">cache/
+</span></code></pre>
+<p>则在检测变动的时候，可以过滤 所有 log，html后缀和 upload,log,cache等变动的文件夹。</p>
+<p>如果没有库索引则建立git库</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">$ git init
+</span><span style="color:#abb2bf;">$ git add .
+</span><span style="color:#abb2bf;">$ git commit -a -m &quot;site source init&quot;
+</span></code></pre>
+<blockquote>
+<p><strong>建议</strong> 建立分支 <code>develop</code> 开发分支，本地运行成功后推送到服务器，然后合并到<code>master</code>供同步端拉取</p>
+</blockquote>
+<h3 id="b-client-tong-bu-duan">B-client: 同步端</h3>
+<p>拷贝站点</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">$</span><span style="color:#abb2bf;"> git clone user@ip:/pwd/.git
+</span></code></pre>
+<p>每5m 更新下拉 master 分支 文件数据。</p>
+<p>流程：</p>
+<!-- Filename: git-tamper.png
+FileInfo: 724 x 527 -->
+<p><img src="https://i.loli.net/2019/12/30/kz1nqluhMLyH4mR.png" alt="tamper" /></p>
+<p>脚本功能实现</p>
+<ol>
+<li>检测文件变动</li>
+<li>无有变动则拉取服务器A的变动内容</li>
+<li>有变动的时候则将变动文件提交到临时git分支中，并删除。 之后拉取服务器A的变动内容</li>
+<li>同时将被篡改的内容部分写入到日志文件中去。</li>
+</ol>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#5f697a;">#!/bin/bash
+</span><span style="font-style:italic;color:#5f697a;"># file : /pwd/shell/gitpull.sh
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 修改地址
+</span><span style="color:#5ebfcc;">cd </span><span style="color:#abb2bf;">`</span><span style="color:#eb6772;">pwd</span><span style="color:#abb2bf;">`
+</span><span style="font-style:italic;color:#5f697a;"># 修改日志地址
+</span><span style="color:#eb6772;">gitlog</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">&#39;/pwd/git.log&#39;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">today</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">`</span><span style="color:#eb6772;">date</span><span style="color:#abb2bf;"> +%</span><span style="color:#eb6772;">Y</span><span style="color:#abb2bf;">%</span><span style="color:#eb6772;">m</span><span style="color:#abb2bf;">%</span><span style="color:#eb6772;">d</span><span style="color:#abb2bf;">`
+</span><span style="color:#eb6772;">gitstatus</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">`</span><span style="color:#eb6772;">git</span><span style="color:#abb2bf;"> status`
+</span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&#39;检测库状态&#39;
+</span><span style="color:#cd74e8;">if </span><span style="color:#5ebfcc;">[[ </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">gitstatus </span><span style="color:#adb7c9;">== *</span><span style="color:#9acc76;">&quot;working directory clean&quot;</span><span style="color:#adb7c9;">* </span><span style="color:#5ebfcc;">]]</span><span style="color:#adb7c9;">;</span><span style="color:#cd74e8;">then
+</span><span style="color:#abb2bf;">    </span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&#39;无任何改变&#39;
+</span><span style="color:#abb2bf;">    </span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&#39;拉取&#39;
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">git</span><span style="color:#abb2bf;"> pull </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">gitlog
+</span><span style="color:#cd74e8;">else
+</span><span style="color:#abb2bf;">    </span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&#39;有文件变动&#39;
+</span><span style="color:#abb2bf;">    </span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&#39;将改变提交到分支 &#39;</span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">today
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">git</span><span style="color:#abb2bf;"> checkout</span><span style="color:#eb6772;"> -b </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">today
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&#39;写入日志&#39;
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">touch </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">gitlog
+</span><span style="color:#abb2bf;">    </span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&quot; &quot; </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">gitlog
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">date </span><span style="color:#9acc76;">&#39;+%Y-%m-%d %H:%M&#39; </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">gitlog
+</span><span style="color:#abb2bf;">    </span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&quot;==========================================&quot; </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">gitlog
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">git</span><span style="color:#abb2bf;"> diff </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">gitlog
+</span><span style="color:#abb2bf;">    </span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&quot;==========================================&quot; </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">gitlog
+</span><span style="color:#abb2bf;">    </span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&quot; &quot; </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">gitlog
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">git</span><span style="color:#abb2bf;"> add .
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">git</span><span style="color:#abb2bf;"> commit</span><span style="color:#eb6772;"> -a -m </span><span style="color:#9acc76;">&#39;its change&#39;
+</span><span style="color:#abb2bf;">    </span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&#39;回到 master&#39;
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">git</span><span style="color:#abb2bf;"> checkout master
+</span><span style="color:#abb2bf;">    </span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&#39;删除分支&#39;
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">git</span><span style="color:#abb2bf;"> branch</span><span style="color:#eb6772;"> -D </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">today
+</span><span style="color:#abb2bf;">    </span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&#39;拉取&#39;
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">git</span><span style="color:#abb2bf;"> pull </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">gitlog
+</span><span style="color:#cd74e8;">fi
+</span></code></pre>
+<p>添加执行</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">$</span><span style="color:#abb2bf;"> crontab</span><span style="color:#eb6772;"> -e
+</span><span style="color:#eb6772;">*/5 </span><span style="color:#adb7c9;">* * * *</span><span style="color:#abb2bf;"> /pwd/shell/gitpull.sh
+</span></code></pre>
+<blockquote>
+<p>会产生5m的时间差。</p>
+</blockquote>
+<p>参见<a href="/linux/bash/crontab.md">crontab 定时任务</a></p>
+<h2 id="mysql-wen-jian-bei-fen">mysql 文件备份</h2>
+<blockquote>
+<p>非均衡负载，可查阅<a href="//erasin.wang/linux-sync-file/mysql-master-slave.md">mysql 主从同步</a></p>
+</blockquote>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#5f697a;">#!/bin/bash
+</span><span style="font-style:italic;color:#5f697a;"># filename: bakmysql.sh
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># set path 文件存储位置
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">bakpath</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">&#39;/pwd/backup/&#39;
+</span><span style="color:#eb6772;">logfile</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">&#39;/pwd/backup/bak.log&#39;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">themonth</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">${</span><span style="color:#eb6772;">bakpath</span><span style="color:#9acc76;">}</span><span style="color:#abb2bf;">`</span><span style="color:#eb6772;">date</span><span style="color:#abb2bf;"> +%</span><span style="color:#eb6772;">y</span><span style="color:#abb2bf;">%</span><span style="color:#eb6772;">m</span><span style="color:#abb2bf;">`</span><span style="color:#9acc76;">&#39;/&#39;
+</span><span style="color:#eb6772;">theday</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">${</span><span style="color:#eb6772;">themonth</span><span style="color:#9acc76;">}</span><span style="color:#abb2bf;">`</span><span style="color:#eb6772;">date</span><span style="color:#abb2bf;"> +%</span><span style="color:#eb6772;">d</span><span style="color:#abb2bf;">`</span><span style="color:#9acc76;">&#39;/&#39;
+</span><span style="color:#eb6772;">thetime</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">${</span><span style="color:#eb6772;">theday</span><span style="color:#9acc76;">}</span><span style="color:#abb2bf;">`</span><span style="color:#eb6772;">date</span><span style="color:#abb2bf;"> +%</span><span style="color:#eb6772;">Y</span><span style="color:#abb2bf;">%</span><span style="color:#eb6772;">m</span><span style="color:#abb2bf;">%</span><span style="color:#eb6772;">d</span><span style="color:#abb2bf;">%</span><span style="color:#eb6772;">H</span><span style="color:#abb2bf;">%</span><span style="color:#eb6772;">M</span><span style="color:#abb2bf;">`</span><span style="color:#9acc76;">&#39;.dbname.sql.bak&#39;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">declare </span><span style="color:#eb6772;">-i month</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">`</span><span style="color:#eb6772;">date</span><span style="color:#abb2bf;"> +%</span><span style="color:#eb6772;">y</span><span style="color:#abb2bf;">%</span><span style="color:#eb6772;">m</span><span style="color:#abb2bf;">`
+</span><span style="color:#eb6772;">month</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">$</span><span style="color:#eb6772;">month</span><span style="color:#9acc76;">-2
+</span><span style="color:#abb2bf;">
+</span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&#39;&#39; </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">logfile
+</span><span style="color:#5ebfcc;">echo </span><span style="color:#abb2bf;">`</span><span style="color:#eb6772;">date</span><span style="color:#abb2bf;"> +%</span><span style="color:#eb6772;">D</span><span style="color:#5ebfcc;">\ </span><span style="color:#abb2bf;">%</span><span style="color:#eb6772;">T</span><span style="color:#abb2bf;">` </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">logfile
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">for</span><span style="color:#abb2bf;"> i </span><span style="color:#cd74e8;">in </span><span style="color:#abb2bf;">`</span><span style="color:#eb6772;">ls -F </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">bakpath</span><span style="color:#abb2bf;">`</span><span style="color:#adb7c9;">; </span><span style="color:#cd74e8;">do
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">if </span><span style="color:#5ebfcc;">[[ </span><span style="color:#eb6772;">-d </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">bakpath</span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">i </span><span style="color:#5ebfcc;">]]</span><span style="color:#adb7c9;">; </span><span style="color:#cd74e8;">then
+</span><span style="color:#abb2bf;">		</span><span style="color:#cd74e8;">if </span><span style="color:#5ebfcc;">[[ </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">i </span><span style="color:#adb7c9;">&lt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">month </span><span style="color:#5ebfcc;">]]</span><span style="color:#adb7c9;">; </span><span style="color:#cd74e8;">then
+</span><span style="color:#abb2bf;">			</span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&#39;delete out 2 month &#39;</span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">i </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">logfile
+</span><span style="color:#abb2bf;">			</span><span style="color:#eb6772;">rm -rf </span><span style="color:#abb2bf;">${</span><span style="color:#eb6772;">bakpath</span><span style="color:#abb2bf;">}$</span><span style="color:#eb6772;">i
+</span><span style="color:#abb2bf;">		</span><span style="color:#cd74e8;">fi
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">fi
+</span><span style="color:#cd74e8;">done
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">if </span><span style="color:#5ebfcc;">[[ </span><span style="color:#eb6772;">-d </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">themonth </span><span style="color:#5ebfcc;">]]</span><span style="color:#adb7c9;">; </span><span style="color:#cd74e8;">then
+</span><span style="color:#abb2bf;">	</span><span style="color:#5ebfcc;">echo </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">themonth </span><span style="color:#9acc76;">&#39;is exist;&#39; </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">logfile
+</span><span style="color:#cd74e8;">else
+</span><span style="color:#abb2bf;">	</span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&#39;makedir &#39; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">theday </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">logfile
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">mkdir -p </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">theday
+</span><span style="color:#cd74e8;">fi
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">if </span><span style="color:#5ebfcc;">[[ </span><span style="color:#eb6772;">-d </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">theday </span><span style="color:#5ebfcc;">]]</span><span style="color:#adb7c9;">; </span><span style="color:#cd74e8;">then
+</span><span style="color:#abb2bf;">	</span><span style="color:#5ebfcc;">echo </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">theday </span><span style="color:#9acc76;">&#39;is exist;&#39; </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">logfile
+</span><span style="color:#cd74e8;">else
+</span><span style="color:#abb2bf;">	</span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&#39;makedir &#39; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">theday </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">logfile
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">mkdir </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">theday
+</span><span style="color:#cd74e8;">fi
+</span><span style="color:#abb2bf;">
+</span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&#39;bakup mysqldatabase dbname - &#39;</span><span style="color:#abb2bf;">${</span><span style="color:#eb6772;">thetime</span><span style="color:#abb2bf;">} </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">logfile
+</span><span style="color:#eb6772;">mysqldump -uroot -p123456</span><span style="color:#abb2bf;"> dbname </span><span style="color:#adb7c9;">&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">thtime
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># -h host
+</span></code></pre>
+<p>添加每 30m 执行</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">$</span><span style="color:#abb2bf;"> crontab</span><span style="color:#eb6772;"> -e
+</span><span style="color:#eb6772;">*/30 </span><span style="color:#adb7c9;">* * * *</span><span style="color:#abb2bf;"> /pwd/shell/mysqlbak.sh
+</span></code></pre>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;linux-sync-file&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;linux-sync-file&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2019-12-30
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;mysql-sync&#x2F;">
+    <i class="icon icon-left-open"></i>
+    Mysql Master Slave 主从同步 设置</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;chess&#x2F;">
+    国际象棋术语
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-primary" href="//erasin.wang/categories/server/">server</a>
+
+
+
+<a class="tag is-link" href="//erasin.wang/categories/linux/">linux</a>
+
+
+    </div>
+    
+
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="jing-tai-wen-jian-tong-bu-rsync" href="//erasin.wang/linux-sync-file/#jing-tai-wen-jian-tong-bu-rsync">静态文件同步 - rsync</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="zhan-dian-zhong-xin-tong-bu-git-fang-cuan-gai" href="//erasin.wang/linux-sync-file/#zhan-dian-zhong-xin-tong-bu-git-fang-cuan-gai">站点中心同步 - git 防篡改</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="a-server-zhong-xin-duan" href="//erasin.wang/linux-sync-file/#a-server-zhong-xin-duan">A-server:中心端</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="b-client-tong-bu-duan" href="//erasin.wang/linux-sync-file/#b-client-tong-bu-duan">B-client: 同步端</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="mysql-wen-jian-bei-fen" href="//erasin.wang/linux-sync-file/#mysql-wen-jian-bei-fen">mysql 文件备份</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

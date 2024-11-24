@@ -1,0 +1,431 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  arch linux 更换内核 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="将 archlinux 内核从 stable 替换为 lts 长期版本" property="description" />
+
+  
+    <meta content="linux" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> arch linux 更换内核 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      ARCH LINUX 更换内核
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2024-11-24
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <p>Arch Linux 使用内核 <a href="https://wiki.archlinux.org/title/Kernel">kernel</a>默认为 linux stable 最新的稳定版。切换为 linux-lts Longterm 长期支持版本。</p>
+<p>我是用的是 <code>system-boot</code> 引导系统, 更替内核大概步骤如下。</p>
+<ol>
+<li>安装 linux-lts 内核。</li>
+<li>添加或者替换配置引导条目</li>
+<li>更新 systemd-boot</li>
+</ol>
+<span id="continue-reading"></span><h2 id="an-zhuang-linux-lts">安装 linux-lts</h2>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">yay -S</span><span style="color:#abb2bf;"> linux-lts linux-lts-headers
+</span></code></pre>
+<h2 id="pei-zhi-wen-jian">配置文件</h2>
+<p>在 <code>/boot</code> 路径下可以看到文件 <code>vmlinuz-linux-lts</code> 和 <code>initramfs-linux-lts.img</code> 文件。</p>
+<p>在 <code>/boot/loader/entries</code> 通常有 <code>xxx_linux.conf</code> 和 <code>xxx_linux-fallback.conf</code> 两个默认的系统引导文件。</p>
+<p>查看配置文件</p>
+<pre data-lang="conf" style="background-color:#2b303b;color:#6c7079;" class="language-conf "><code class="language-conf" data-lang="conf"><span style="color:#eb6772;">title </span><span style="color:#abb2bf;">Arch Linux (linux)
+</span><span style="color:#eb6772;">linux </span><span style="color:#adb7c9;">/</span><span style="color:#abb2bf;">vmlinuz</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">linux
+</span><span style="color:#eb6772;">initrd </span><span style="color:#adb7c9;">/</span><span style="color:#abb2bf;">amd</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">ucode</span><span style="color:#adb7c9;">.</span><span style="color:#abb2bf;">img
+</span><span style="color:#eb6772;">initrd </span><span style="color:#adb7c9;">/</span><span style="color:#abb2bf;">initramfs</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">linux</span><span style="color:#adb7c9;">.</span><span style="color:#abb2bf;">img
+</span><span style="color:#eb6772;">options </span><span style="color:#abb2bf;">root</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">PARTUUID</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">3b92dc0f</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">abcd</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">4d34</span><span style="color:#adb7c9;">-</span><span style="color:#db9d63;">9ebe</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">63f30631df86 zswap</span><span style="color:#adb7c9;">.</span><span style="color:#abb2bf;">enabled</span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;"> rw rootfstype</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">ext4 
+</span></code></pre>
+<p>其中 title 是显示在引导区的名称，如果保留原有的引导条目，新建文家即可，如果不用原来的内核，则将其中的 <code>linux</code> 和 <code>initrd</code> 部分的替换即可。 options 为分区的UUID，不需要变动。</p>
+<pre data-lang="conf" style="background-color:#2b303b;color:#6c7079;" class="language-conf "><code class="language-conf" data-lang="conf"><span style="color:#eb6772;">title </span><span style="color:#abb2bf;">Arch Linux (LTS)
+</span><span style="color:#eb6772;">linux </span><span style="color:#adb7c9;">/</span><span style="color:#abb2bf;">vmlinuz</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">linux</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">lts
+</span><span style="color:#eb6772;">initrd </span><span style="color:#adb7c9;">/</span><span style="color:#abb2bf;">amd</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">ucode</span><span style="color:#adb7c9;">.</span><span style="color:#abb2bf;">img
+</span><span style="color:#eb6772;">initrd </span><span style="color:#adb7c9;">/</span><span style="color:#abb2bf;">initramfs</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">linux</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">lts</span><span style="color:#adb7c9;">.</span><span style="color:#abb2bf;">img
+</span><span style="color:#eb6772;">options </span><span style="color:#abb2bf;">root</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">PARTUUID</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">3b92dc0f</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">abcd</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">4d34</span><span style="color:#adb7c9;">-</span><span style="color:#db9d63;">9ebe</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">63f30631df86 zswap</span><span style="color:#adb7c9;">.</span><span style="color:#abb2bf;">enabled</span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;"> rw rootfstype</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">ext4 
+</span></code></pre>
+<blockquote>
+<p>建议新建文件，当启动失败的时候可以使用原本的引导条目加载系统。</p>
+</blockquote>
+<h2 id="geng-xin-systemd-boot">更新 systemd-boot</h2>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">sudo</span><span style="color:#abb2bf;"> bootctl update
+</span></code></pre>
+<p>更新后，重启系统。</p>
+<p>使用 <code>uname -r</code> 看到结果为 <code>6.xxxx-lts</code> 对因的版本即正常。</p>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;posts&#x2F;linux-core-switch&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;posts&#x2F;linux-core-switch&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2024-11-24
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <div></div>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;helix&#x2F;hx-lsp&#x2F;">
+    hx-lsp 为 Helix editor 提供 snippets 和 actions
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-primary" href="//erasin.wang/categories/linux/">linux</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-primary" href="//erasin.wang/tags/linux/">linux</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="an-zhuang-linux-lts" href="//erasin.wang/posts/linux-core-switch/#an-zhuang-linux-lts">安装 linux-lts</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="pei-zhi-wen-jian" href="//erasin.wang/posts/linux-core-switch/#pei-zhi-wen-jian">配置文件</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="geng-xin-systemd-boot" href="//erasin.wang/posts/linux-core-switch/#geng-xin-systemd-boot">更新 systemd-boot</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

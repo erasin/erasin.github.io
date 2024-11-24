@@ -1,0 +1,729 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  Ledger LIKE - BeanCount 复式记账 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="复式簿记是一种把每笔交易都记录到复数个账户中的簿记方法。" property="description" />
+
+  
+    <meta content="BeanCount,复式记账法,ledger" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> Ledger LIKE - BeanCount 复式记账 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      LEDGER LIKE - BEANCOUNT 复式记账
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2020-07-23
+    </div>
+  </div>
+
+  <div class="post-content  " 
+    style="background-image:url(&#x2F;assets&#x2F;img&#x2F;undraw_Savings_dwkw.svg);" >
+    <p>复式簿记是一种把每笔交易都记录到复数个账户中的簿记方法。<br />
+复式记账又分为了借贷记账法，和正负记账法。一笔交易，钱的流入和流出必定是平的。</p>
+<ul>
+<li>借 (debits)</li>
+<li>贷 (credits)</li>
+</ul>
+<span id="continue-reading"></span>
+<blockquote>
+<p>Debits 和 Credits 是经济交易中的双向流动：</p>
+</blockquote>
+<h2 id="gai-nian">概念</h2>
+<p>资产是负债和权益的总和，负债（Liabilities）也是资产的一部分。</p>
+<p><a href="https://zh.wikipedia.org/?curid=1435109">会计等式</a></p>
+<pre data-lang="text" style="background-color:#2b303b;color:#6c7079;" class="language-text "><code class="language-text" data-lang="text"><span style="color:#abb2bf;">Assets （资产） = Liabilities （债务） + Equity（权益，或者叫净资产，或者抵押资产）
+</span></code></pre>
+<h2 id="beancount-shi-yong">Beancount 使用</h2>
+<p>Beancount 是一种文本记账工具。</p>
+<p><strong>账户类型</strong></p>
+<ul>
+<li>资产 + Assets —— 储蓄卡余额、支付宝余额、股票账户余额、房子、车子固定资产等；</li>
+<li>负债 - Liabilities —— 信用卡、房贷、车贷, 贷款等；</li>
+<li>收入 - Income —— 工资、奖金, 投资收益等；</li>
+<li>费用 + Expenses —— 外出就餐、购物、旅行等；</li>
+<li>权益 Equity —— 这个账户比较特殊，在账户初始化、误差处理等少数场合使用。</li>
+</ul>
+<p><strong>账本的基本语法</strong></p>
+<pre data-lang="beancount" style="background-color:#2b303b;color:#6c7079;" class="language-beancount "><code class="language-beancount" data-lang="beancount"><span style="color:#abb2bf;">; 英文分号可以设置注释
+</span><span style="color:#abb2bf;">option &lt;配置项&gt; &lt;值&gt; ; beancount 配置项
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">;开户，支持unicode, YYYY-MM-DD 表示开户时间
+</span><span style="color:#abb2bf;">YYYY-MM-DD open 账户类型:命名:命名区别 货币[,货币2]  
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">; 注销账户
+</span><span style="color:#abb2bf;">YYYY-MM-DD close 账户类型:命名:命名区别
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">;交易 , 这里账户必须开户, * 表示确认, ! 表示存疑, 货币必须保持一致
+</span><span style="color:#abb2bf;">YYYY-MM-DD * &quot;交易对象&quot; &quot;备注&quot;
+</span><span style="color:#abb2bf;">    账户1        +金额 货币类型
+</span><span style="color:#abb2bf;">    账户2        -金额 货币类型
+</span></code></pre>
+<p>此外，账户后的金额是带有符号的，如下：</p>
+<ul>
+<li>支出账户：一般为正数。表示花费多少钱。</li>
+<li>收入账户：一般为负数。表示收入多少钱。投资收入账户可能出现正数，则表示投资亏损。</li>
+<li>资产账户：可正可负。正数表示有钱存入，余额增加； 负数表示有钱转出，余额减少。</li>
+<li>负债账户：可正可负。正数表示还款，负债减少； 负数表示借款，负债增加。</li>
+</ul>
+<p>支出为正，收入为负，有点反直觉，是会计恒等式逻辑所致。会计恒等式具体表述如下：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"> (Assets + Expenses) + (Liabilities + Income) + Equity = 0
+</span></code></pre>
+<p>一笔交易记录可能涉及2个以上的账户，比如例子中的「工资收入」，这时，多个账户的金额也满足「有正有负，正负相等」。实际记录时，Beancount允许一个账户的金额为空，它会根据正负相等的原则自动计算。</p>
+<h3 id="an-zhuang-pei-zhi">安装配置</h3>
+<p>beancount 是 Python项目,可以使用 <code>pip3</code> 安装, 另外有 Web GUI 可以使用 <code>fava</code>.</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">pip3</span><span style="color:#abb2bf;"> install beancount
+</span><span style="color:#eb6772;">pip3</span><span style="color:#abb2bf;"> install fava
+</span></code></pre>
+<!-- 
+> **中文支持** 仅支持账户语法    
+> 文件 `/usr/local/lib/python3.7/site-packages/beancount/core/account.py` (不同系统路径可能不同) 中 `ACC_COMP_NAME_RE` 的值去掉 `"[\p{Lu}\p{Nd}]`,也就是去除首字母大写，可以安全支持汉字unicode，文本文件使用 **UTF-8** 格式处理。  
+> 即修改为：  `ACC_COMP_NAME_RE = regexp_utils.re_replace_unicode(r"[\p{L}\p{Nd}\-]*")` 。  
+> 如果不改动，则在账户名称前**追加大写字母**既可兼容汉字。 
+ -->
+<p>如果需要</p>
+<p>安装 beancount 后有命令可以使用</p>
+<ul>
+<li>bean-bake</li>
+<li>bean-doctor</li>
+<li>bean-extract</li>
+<li>bean-format</li>
+<li>bean-price</li>
+<li>bean-report</li>
+<li>bean-web</li>
+<li>bean-check</li>
+<li>bean-example 提供账本样本</li>
+<li>bean-file</li>
+<li>bean-identify</li>
+<li>bean-query</li>
+<li>bean-sql</li>
+</ul>
+<p><strong>创建账本</strong> 可以使用文本编辑器创建账本，文件后缀命名为 <code>.bean</code> 即可。</p>
+<pre data-lang="beancount" style="background-color:#2b303b;color:#6c7079;" class="language-beancount "><code class="language-beancount" data-lang="beancount"><span style="color:#abb2bf;">; 账本配置
+</span><span style="color:#abb2bf;">option &quot;title&quot; &quot;我的账本&quot; ;账本名称
+</span><span style="color:#abb2bf;">option &quot;operating_currency&quot; &quot;CNY&quot; ;账本主货币
+</span><span style="color:#abb2bf;">option &quot;inferred_tolerance_default&quot; &quot;*:0.01&quot; ;精度
+</span><span style="color:#abb2bf;">option &quot;inferred_tolerance_multiplier&quot; &quot;1.2&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">; 开户
+</span><span style="color:#abb2bf;">2020-01-01 open Income:工资 CNY ;&quot;收入-工资&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">2020-01-01 open Liabilities:信用卡:CMB CNY ;&quot;负债-招行信用卡&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">2020-01-01 open Assets:虚拟卡:ALI CNY
+</span><span style="color:#abb2bf;">2020-01-01 open Assets:招行 CNY ;招商银行
+</span><span style="color:#abb2bf;">2020-01-01 open Assets:现金 CNY ;资产-现金
+</span><span style="color:#abb2bf;">2020-01-01 open Assets:建行 CNY ;建设银行
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">2020-01-01 open Expenses:吃 CNY
+</span><span style="color:#abb2bf;">2020-01-01 open Expenses:穿 CNY
+</span><span style="color:#abb2bf;">2020-01-01 open Expenses:住 CNY
+</span><span style="color:#abb2bf;">2020-01-01 open Expenses:行 CNY
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">2020-01-01 open Equity:平衡账户 CN
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">; 初始化 断言账户
+</span><span style="color:#abb2bf;">2020-01-01 balance Liabilities:CreditCard:CMB -300.00 CNY
+</span><span style="color:#abb2bf;">2020-01-01 balance Assets:VirtualCard:Alipay 100000.00 CNY
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">; 交易记录
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">2020-01-01 * &quot;xx餐厅&quot; &quot;吃饭&quot;
+</span><span style="color:#abb2bf;">    Expenses:Food            +200 CNY
+</span><span style="color:#abb2bf;">    Assets:AliPay            -200 CNY
+</span><span style="color:#abb2bf;">
+</span></code></pre>
+<p>使用 <code>fava</code> 来阅读账本,其默认使用地址 <code>http://localhost:5000</code>。</p>
+<p>在账本配置中追加 fava 的配置项</p>
+<pre data-lang="beancount" style="background-color:#2b303b;color:#6c7079;" class="language-beancount "><code class="language-beancount" data-lang="beancount"><span style="color:#abb2bf;">; fava option 
+</span><span style="color:#abb2bf;">2000-01-01 custom &quot;fava-option&quot; &quot;default-file&quot;
+</span><span style="color:#abb2bf;">2000-01-01 custom &quot;fava-option&quot; &quot;interval&quot; &quot;day&quot; ;图标的 X 轴，day|week|month|quarter|year
+</span><span style="color:#abb2bf;">2000-01-01 custom &quot;fava-option&quot; &quot;auto-reload&quot; &quot;true&quot; ; 自动重载
+</span><span style="color:#abb2bf;">2000-01-01 custom &quot;fava-option&quot; &quot;journal-show&quot; &quot;transaction open&quot;
+</span><span style="color:#abb2bf;">2000-01-01 custom &quot;fava-option&quot; &quot;currency-column&quot; &quot;100&quot; 
+</span><span style="color:#abb2bf;">2000-01-01 custom &quot;fava-option&quot; &quot;language&quot; &quot;zh_CN&quot;  ; 中文显示
+</span></code></pre>
+<blockquote>
+<p>具体配置可以在运行后查看帮助(help) 中的 <strong>Option</strong>;</p>
+</blockquote>
+<p><strong>启动fava账本</strong></p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">fava</span><span style="color:#abb2bf;"> 账本名称.bean
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">Running</span><span style="color:#abb2bf;"> Fava on http://localhost:5000
+</span></code></pre>
+<h3 id="zi-chan">资产</h3>
+<p>默认交易时间的格式为 <code>YYYY-MM-DD</code></p>
+<p><strong>配置</strong></p>
+<pre data-lang="beancount" style="background-color:#2b303b;color:#6c7079;" class="language-beancount "><code class="language-beancount" data-lang="beancount"><span style="color:#abb2bf;">; 英文分号可以设置注释
+</span><span style="color:#abb2bf;">option &lt;配置项&gt; &lt;值&gt; ; beancount 配置项
+</span></code></pre>
+<p><strong>账户</strong></p>
+<pre data-lang="beancount" style="background-color:#2b303b;color:#6c7079;" class="language-beancount "><code class="language-beancount" data-lang="beancount"><span style="color:#abb2bf;">开户时间 open 账户类型:命名:命名区别 货币[,货币2]  ;开户，开户名称现在仅支持英文，尚未支持unicode, YYYY-MM-DD 表示开户时间
+</span><span style="color:#abb2bf;">备注时间 note 账户名 备注
+</span><span style="color:#abb2bf;">注销时间 close 账户名
+</span></code></pre>
+<p><strong>交易记录</strong>
+一般交易，是至少两个账户进行交易，总和一定为0，货币必须一致。</p>
+<ul>
+<li><code>*</code> 表示确认,</li>
+<li><code>!</code> 表示存疑</li>
+</ul>
+<pre data-lang="beancount" style="background-color:#2b303b;color:#6c7079;" class="language-beancount "><code class="language-beancount" data-lang="beancount"><span style="color:#abb2bf;">交易时间 * &quot;交易对象&quot; &quot;备注&quot;
+</span><span style="color:#abb2bf;">    账户1         +金额 货币类型
+</span><span style="color:#abb2bf;">    账户2        (-金额 货币类型)
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">2015-05-30 ! &quot;通信费&quot; &quot;电信费用&quot; #tag ˆlink
+</span><span style="color:#abb2bf;">  id: &quot;TW378743437&quot;               ; Meta-data
+</span><span style="color:#abb2bf;">  Expenses:Home:Phone  87.45 CYN
+</span><span style="color:#abb2bf;">  Assets:Checking                 ; You may leave one amount out
+</span></code></pre>
+<p><strong>断言和填充</strong>
+<strong>Balance Assertions and Padding</strong></p>
+<p>Asserts the amount for only the given currency:</p>
+<pre data-lang="beancount" style="background-color:#2b303b;color:#6c7079;" class="language-beancount "><code class="language-beancount" data-lang="beancount"><span style="color:#abb2bf;">2015-06-01 balance Liabilities:CreditCard  -634.30 CYN 
+</span></code></pre>
+<p>Automatic insertion of transaction to fulfill the following assertion:</p>
+<p>设定 权益（Equity）对一部分不能直接加入资产的</p>
+<pre data-lang="beancount" style="background-color:#2b303b;color:#6c7079;" class="language-beancount "><code class="language-beancount" data-lang="beancount"><span style="color:#abb2bf;">YYYY-MM-DD pad Assets:Checking Equity:Opening-Balances
+</span></code></pre>
+<p><strong>标签</strong></p>
+<p>可以在 交易记录后追加 <code>#tagname</code> （仅支持英文）,可以对一些交易进行分类处理.</p>
+<pre data-lang="ini" style="background-color:#2b303b;color:#6c7079;" class="language-ini "><code class="language-ini" data-lang="ini"><span style="color:#eb6772;">交易时间 </span><span style="color:#adb7c9;">* </span><span style="color:#9acc76;">&quot;交易对象&quot; &quot;备注&quot; </span><span style="font-style:italic;color:#5f697a;">#biaoqianmingcheng
+</span><span style="color:#abb2bf;">    账户1        +金额 货币类型 </span><span style="font-style:italic;color:#5f697a;">; 注释
+</span><span style="color:#abb2bf;">    账户2        -金额 货币类型 </span><span style="font-style:italic;color:#5f697a;">; 备注
+</span></code></pre>
+<p>为多条追加同样的标签可以</p>
+<pre data-lang="ini" style="background-color:#2b303b;color:#6c7079;" class="language-ini "><code class="language-ini" data-lang="ini"><span style="color:#eb6772;">pushtag </span><span style="color:#abb2bf;">#biaoqianmingcheng
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">; .... 记账记录
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">poptag </span><span style="color:#abb2bf;">#biaoqianmingcheng
+</span></code></pre>
+<p><strong>备注</strong></p>
+<pre data-lang="ini" style="background-color:#2b303b;color:#6c7079;" class="language-ini "><code class="language-ini" data-lang="ini"><span style="color:#eb6772;">时间 </span><span style="color:#abb2bf;">note 账户 </span><span style="color:#9acc76;">&quot;备注内容&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">eg</span><span style="color:#adb7c9;">:
+</span><span style="color:#db9d63;">2013</span><span style="color:#adb7c9;">-</span><span style="color:#db9d63;">03</span><span style="color:#adb7c9;">-</span><span style="color:#db9d63;">20</span><span style="color:#abb2bf;"> note Assets</span><span style="color:#adb7c9;">:</span><span style="color:#abb2bf;">Checking </span><span style="color:#9acc76;">&quot;账号信息&quot; 
+</span></code></pre>
+<p><strong>事件</strong></p>
+<p>可以记录一些事件日志之类的.</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">日期 event &quot;事件分类&quot; &quot;事件详情&quot;
+</span></code></pre>
+<p><strong>申报商品</strong></p>
+<pre data-lang="yaml" style="background-color:#2b303b;color:#6c7079;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span style="color:#abb2bf;">
+</span></code></pre>
+<p><strong>账本分割</strong></p>
+<p>beancount 支持 <code>include</code> 语法，意味着可以进行文件管理，而并非讲所有的账本放在一个文本文件中</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">include &quot;2020.bean&quot;
+</span></code></pre>
+<h2 id="zhang-ben-guan-li">账本管理</h2>
+<h3 id="mu-lu-jie-gou-zheng-li">目录结构整理</h3>
+<p>管理账本的时候随着时间的增加，文本信息也会变多，单文件管理就不在适合。建议二层或者三层管理。</p>
+<blockquote>
+<p>利用 <code>include "账本名称.bean" </code> 来组织账本结构。</p>
+</blockquote>
+<p><strong>个人</strong> 个人财务一般不会过于复杂，使用两层即可</p>
+<pre data-lang="bob" style="background-color:#2b303b;color:#6c7079;" class="language-bob "><code class="language-bob" data-lang="bob"><span style="color:#abb2bf;">.---o 账本文件夹
+</span><span style="color:#abb2bf;"> \
+</span><span style="color:#abb2bf;">  *---&gt; main.bean        主账本
+</span><span style="color:#abb2bf;">  |---&gt; accounts.bean    账户
+</span><span style="color:#abb2bf;">  |---&gt; 2019.bean        19 年账本
+</span><span style="color:#abb2bf;">  &#39;---&gt; 2020.bean        20 年账本
+</span></code></pre>
+<p><strong>公司</strong> 比较繁琐复杂，使用三层管理</p>
+<pre data-lang="bob" style="background-color:#2b303b;color:#6c7079;" class="language-bob "><code class="language-bob" data-lang="bob"><span style="color:#abb2bf;">.---o 账本文件夹
+</span><span style="color:#abb2bf;"> \
+</span><span style="color:#abb2bf;">  *---&gt; main.bean               主账本
+</span><span style="color:#abb2bf;">  |---&gt; accounts.bean           账户
+</span><span style="color:#abb2bf;">  |
+</span><span style="color:#abb2bf;">  |--*--&gt; 2019.bean             19 年账本
+</span><span style="color:#abb2bf;">  |   \
+</span><span style="color:#abb2bf;">  |    +---&gt; accounts.bean      客户账户
+</span><span style="color:#abb2bf;">  |    |---&gt; 2019-01.bean       1月份
+</span><span style="color:#abb2bf;">  |    &#39;---&gt; ...                其他账本
+</span><span style="color:#abb2bf;">  |
+</span><span style="color:#abb2bf;">  |
+</span><span style="color:#abb2bf;">  &#39;--*--&gt; 2020.bean             20 年账本
+</span><span style="color:#abb2bf;">      \
+</span><span style="color:#abb2bf;">       \-----&gt; accounts.bean    客户账户
+</span><span style="color:#abb2bf;">        &#39;----&gt; ...              其他账本
+</span></code></pre>
+<h3 id="zhang-ben-ban-ben-kong-zhi-git">账本版本控制 Git</h3>
+<p>多人编辑账本，以及账本分发。</p>
+<pre data-lang="bob" style="background-color:#2b303b;color:#6c7079;" class="language-bob "><code class="language-bob" data-lang="bob"><span style="color:#abb2bf;">                          .---&gt;  F 
+</span><span style="color:#abb2bf;"> A       B      C  D     /
+</span><span style="color:#abb2bf;"> *-------*-----*---*----*-----&gt;  E 
+</span><span style="color:#abb2bf;">          \            ^ \
+</span><span style="color:#abb2bf;">           v          /   &#39;---&gt;  G 
+</span><span style="color:#abb2bf;">            B --&gt; C -&#39;
+</span></code></pre>
+<blockquote>
+<p>无论账本如何记账，根据会计恒等式原理，所有的账目必定是平的。</p>
+</blockquote>
+<h2 id="bian-ji-qi">编辑器</h2>
+<p><strong>VSCODE</strong> [vscode]</p>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=Lencerf.beancount">Beancount</a> 语法支持<br />
+追加配置 <code>.vscode/settings.json</code>, 来为账本提供账户的快捷提示输入。<pre data-lang="json" style="background-color:#2b303b;color:#6c7079;" class="language-json "><code class="language-json" data-lang="json"><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">    </span><span style="color:#9acc76;">&quot;beancount.mainBeanFile&quot;</span><span style="color:#abb2bf;">: </span><span style="color:#9acc76;">&quot;main.bean&quot;</span><span style="color:#abb2bf;">,
+</span><span style="color:#abb2bf;">    </span><span style="color:#9acc76;">&quot;beancount.inputMethods&quot;</span><span style="color:#abb2bf;">: [</span><span style="color:#9acc76;">&quot;pinyin&quot;</span><span style="color:#abb2bf;">]
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=dongfg.vscode-beancount-formatter">BeanCount Formatter</a> 格式化工具</li>
+</ul>
+<h2 id="xiang-guan-ruan-jian">相关软件</h2>
+<ul>
+<li>beancount <a href="https://github.com/beancount/beancount">github</a> <a href="https://beancount.github.io/docs/">book</a></li>
+<li><a href="https://beancount.github.io/fava/">Fava Web UI</a> <a href="https://github.com/beancount/fava">github</a>
+<a href="https://aumayr.github.io/beancount-docs-static/contents.html">官方文档</a>,
+<a href="https://docs.google.com/document/d/1P5At-z1sP8rgwYLHso5sEy3u4rMnIUDDgob9Y_BYuWE/edit">Beancount - Getting Started</a></li>
+<li><a href="https://www.ledger-cli.org/">ledger</a></li>
+</ul>
+<h2 id="can-kao">参考</h2>
+<ul>
+<li><a href="https://plaintextaccounting.org/">plain text accounting</a> 纯文本会计</li>
+<li><a href="https://zhuanlan.zhihu.com/p/87377967">beancount - SKYue</a></li>
+<li><a href="https://wzyboy.im/post/1063.html">Beancount —— 命令行复式簿记</a></li>
+<li><a href="https://yuchi.me/post/beancount-intro/">beancount 简易入门指南 </a></li>
+<li><a href="http://einverne.github.io/post/2019/11/double-entry-bookkeeping.html#%E5%BE%AE%E4%BF%A1%E8%B4%A6%E5%8D%95">复式记账</a></li>
+<li><a href="https://www.dazhuanlan.com/2019/09/28/5d8e37651b173/">beancount 导入</a></li>
+<li><a href="https://gitpress.io/c/beancount-tutorial/">使用 beancount 记账</a></li>
+</ul>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;beancount&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;beancount&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2020-07-23
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;vscode&#x2F;">
+    <i class="icon icon-left-open"></i>
+    我的VSCODE 插件</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;game&#x2F;math-reflection-and-refraction&#x2F;">
+    反射和折射
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-dark" href="//erasin.wang/categories/soft/">soft</a>
+
+
+
+<a class="tag is-success" href="//erasin.wang/categories/ruan-jian/">软件</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-warning" href="//erasin.wang/tags/beancount/">BeanCount</a>
+
+
+
+<a class="tag is-primary" href="//erasin.wang/tags/fu-shi-ji-zhang-fa/">复式记账法</a>
+
+
+
+<a class="tag is-info" href="//erasin.wang/tags/ledger/">ledger</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="gai-nian" href="//erasin.wang/beancount/#gai-nian">概念</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="beancount-shi-yong" href="//erasin.wang/beancount/#beancount-shi-yong">Beancount 使用</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="an-zhuang-pei-zhi" href="//erasin.wang/beancount/#an-zhuang-pei-zhi">安装配置</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="zi-chan" href="//erasin.wang/beancount/#zi-chan">资产</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="zhang-ben-guan-li" href="//erasin.wang/beancount/#zhang-ben-guan-li">账本管理</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="mu-lu-jie-gou-zheng-li" href="//erasin.wang/beancount/#mu-lu-jie-gou-zheng-li">目录结构整理</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="zhang-ben-ban-ben-kong-zhi-git" href="//erasin.wang/beancount/#zhang-ben-ban-ben-kong-zhi-git">账本版本控制 Git</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="bian-ji-qi" href="//erasin.wang/beancount/#bian-ji-qi">编辑器</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="xiang-guan-ruan-jian" href="//erasin.wang/beancount/#xiang-guan-ruan-jian">相关软件</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="can-kao" href="//erasin.wang/beancount/#can-kao">参考</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

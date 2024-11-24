@@ -1,0 +1,1012 @@
+<!DOCTYPE html> 
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title> ERASIN - 编程与开发 </title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta property="description" content="内容分享" />
+
+  
+  <meta name="keywords" content="erasin,编程" />
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+
+
+
+
+
+
+  
+
+
+
+<div class="posts col">
+  
+  <div class="post odd  " style="background-image:url(&#x27;&#x2F;assets&#x2F;img&#x2F;go-mod.svg&#x27;);background-size:200px;" >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/go-jet/" >jet - golang 动态模板引擎
+
+<i class="icon icon-go"></i> 
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2020-03-03</div>
+    </div>
+    
+    <div class="post-content ">
+      <p><strong>Jet</strong> v3   <a href="https://github.com/CloudyKit/jet">git</a> <a href="https://github.com/CloudyKit/jet/wiki/">docs</a></p>
+<pre data-lang="go" style="background-color:#2b303b;color:#6c7079;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#cd74e8;">import </span><span style="color:#9acc76;">&quot;github.com/CloudyKit/jet/v3&quot;
+</span></code></pre>
+<ul>
+<li>动态开发，静态加载，灵活的开发模式和快速运行。</li>
+<li>语法和默认模板类似，支持通道运算 <code>{{ expression|pipe|pipe }}</code></li>
+<li><code>yield</code>（渲染调用） , <code>block</code>(组件布局) 多种组合功能。</li>
+<li>局部变量，内置函数，类似<code>len</code>,<code>isset</code>等</li>
+<li>字符串处理，省略<code>printf</code>功能，直接 <code>"song" + filed</code> 输出字符串</li>
+<li>isset 变量检测，支持三元运算</li>
+<li>自定义扩展支持 <code>imported</code>,<code>included</code>,<code>extends</code>，文件名 <code>.jet</code>, <code>.html.jet</code> , <code>.jet.html</code></li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/go-jet/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+  <div class="post even " >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/search/" >搜索
+
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2020-03-02</div>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+  <div class="post odd  " style="background-image:url(&#x27;&#x2F;assets&#x2F;img&#x2F;data_hosting_isometric.svg&#x27;)" >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/lnmp/" >LinuX 服务器配置流程
+
+<i class="icon icon-server"></i> 
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2020-01-16</div>
+    </div>
+    
+    <div class="post-content ">
+      <p>使用http用户服务：(例如 nginx , http, caddy, apache 之类)</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">user  : nginx 
+</span><span style="color:#abb2bf;">group : nginx
+</span></code></pre>
+<p>普通用户根据项目来定： (举例用户 <code>userName</code>)</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">user  : userName
+</span><span style="color:#abb2bf;">group : nginx,users
+</span></code></pre>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/lnmp/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+  <div class="post even " style="background-image:url(&#x27;&#x2F;assets&#x2F;img&#x2F;undraw_happy_music_g6wc.svg&#x27;)" >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/soft-cmus/" >CMUS 终端音乐播放器
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2020-01-12</div>
+    </div>
+    
+    <div class="post-content ">
+      <p>CMUS <a href="https://github.com/cmus/cmus">git</a> <a href="https://cmus.github.io/">site</a> 是一个小型的终端音乐播放器。</p>
+<h2 id="ji-ben-ming-ling">基本命令</h2>
+<ul>
+<li>:set softvol=true - 打开软音量控制</li>
+<li>:add /path/to/music/dir - 添加音乐库目录</li>
+<li>:clear -清除播放列表</li>
+<li>:save playlist.pls - 保存当前播放列表</li>
+<li>:load playlist.pls -加载播放列表</li>
+<li>:colorscheme xterm-white - 修改配色方案</li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/soft-cmus/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+  <div class="post odd  " >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/openssl/" >OpenSSL 证书
+
+<i class="icon icon-server"></i> 
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2020-01-10</div>
+    </div>
+    
+    <div class="post-content ">
+      <p>SSL是Secure Sockets Layer（安全套接层协议）的缩写，可以在Internet上提供秘密性传输。Netscape公司在推出第一个Web浏览器的同时，提出了SSL协议标准。其目标是保证两个应用间通信的保密性和可靠性,可在服务器端和用户端同时实现支持。已经成为Internet上保密通讯的工业标准。</p>
+<p>OpenSSL是一个开放源代码的软件库，应用程序可以使用openssl来进行确认另一端连接者的身份,进而安全通信。</p>
+<ul>
+<li>数据保密性</li>
+<li>数据完整性</li>
+<li>安全验证</li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/openssl/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+  <div class="post even " >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/go-grpc/" >PHP to Golang 使用 goridge rpc通信 PHP
+
+<i class="icon icon-go"></i> 
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2020-01-09</div>
+    </div>
+    
+    <div class="post-content ">
+      <p>Goridge 是一个高性能的 PHP-to-Golang 编解码器库，可以在本地 <code>PHP sockets</code> 和Golang <code>net/rpc</code> 包上工作。该库允许从 PHP 调用 Go 服务方法，支持结构，和字节处理。</p>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/go-grpc/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+  <div class="post odd  " style="background-image:url(&#x2F;assets&#x2F;img&#x2F;PI.svg);background-size:100px;" >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/math-zero/" >Math 计数法与指数与零
+
+<i class="icon icon-pi"></i> 
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2020-01-08</div>
+    </div>
+    
+    <div class="post-content math">
+      <h2 id="jin-zhi-ji-shu-fa">进制计数法</h2>
+<p><strong>10 进制计数法</strong></p>
+<ul>
+<li><strong>元素</strong> 0、1、2、3、4、5、6、7、8、9 共 10种。</li>
+<li><strong>数位</strong> 从右到左 表示 个位、百位、千位 ...</li>
+</ul>
+<p>$$
+1234 =  1 \times 10^3 + 2 \times 10^2 + 3 \times 10^1 + 4 \times 10^0
+$$</p>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/math-zero/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+  <div class="post even " style="background-image:url(&#x27;&#x2F;assets&#x2F;img&#x2F;data_hosting_isometric.svg&#x27;)" >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/server-display/" target="_blank" >服务器部署方案
+
+<i class="icon icon-server"></i> 
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2020-01-07</div>
+    </div>
+    
+    <div class="post-content ">
+      <section>
+<h3 id="fu-wu-bu-shu">服务部署</h3>
+<ul>
+<li>多域名部署方案</li>
+<li>网络加速</li>
+<li>提升服务性能</li>
+</ul>
+</section>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/server-display/#continue-reading" target="_blank" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+</div>
+
+
+
+  
+
+<nav class="pagination row is-centered" role="navigation" aria-label="pagination">
+  <div class="pagination-btns">
+    
+    <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;page&#x2F;6&#x2F;"><i class="icon icon-left-open"></i>上一页</a>
+    
+    
+    <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;page&#x2F;8&#x2F;">下一页<i class="icon icon-right-open"></i></a>
+    
+  </div>
+  <ul class="pagination-list">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li> <a class="pagination-link" aria-label="Goto page 1" href="&#x2F;&#x2F;erasin.wang&#x2F;">1</a></li>
+    <li><span class="pagination-ellipsis">&hellip;</span></li>
+    
+    
+    
+    
+    <li> <a class="pagination-link" aria-label="Goto page 5" href="//erasin.wang/page/5">5</a></li>
+    
+    
+    
+    <li> <a class="pagination-link" aria-label="Goto page 6" href="//erasin.wang/page/6">6</a></li>
+    
+    
+    
+    <li> <a class="pagination-link is-current" aria-label="Page 7" aria-current="page">7</a></li>
+    
+    
+    
+    <li> <a class="pagination-link" aria-label="Goto page 8" href="//erasin.wang/page/8">8</a></li>
+    
+    
+    
+    <li> <a class="pagination-link" aria-label="Goto page 9" href="//erasin.wang/page/9">9</a></li>
+    
+    
+    
+    <li> <a class="pagination-link" aria-label="Goto page 10" href="//erasin.wang/page/10">10</a></li>
+    
+    
+    
+  </ul>
+</nav>
+
+
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+
+<div class="box mini-hide">
+  <div class="box-body">
+    
+
+<ul class="ui list tree">
+  
+  
+  <li class="item">
+    <a href="//erasin.wang/rust/"> Rust lang 语言文章 </a>
+    (1) 
+
+
+  </li>
+  
+  
+  <li class="item">
+    <a href="//erasin.wang/ai-art/"> AI ART 机器学习 AI绘图会话 </a>
+    (1) 
+
+
+  </li>
+  
+  
+  <li class="item">
+    <a href="//erasin.wang/godot/"> ERASIN </a>
+    (1) 
+
+
+  </li>
+  
+  
+  <li class="item">
+    <a href="//erasin.wang/life/"> 生活百科 </a>
+    (1) 
+
+
+  </li>
+  
+  
+  <li class="item">
+    <a href="//erasin.wang/posts/"> posts </a>
+    (5) 
+
+
+  </li>
+  
+  
+  <li class="item">
+    <a href="//erasin.wang/awesome/"> Awesome </a>
+    (11) 
+
+
+  </li>
+  
+  
+  <li class="item">
+    <a href="//erasin.wang/game/"> 游戏开发 </a>
+    (3) 
+
+
+  </li>
+  
+  
+  <li class="item">
+    <a href="//erasin.wang/helix/"> helix editor 新一代的编辑器 </a>
+    (5) 
+
+
+  </li>
+  
+  
+  <li class="item">
+    <a href="//erasin.wang/book/"> 书籍 </a>
+    (11) 
+
+
+  </li>
+  
+</ul>
+
+
+  </div>
+</div>
+
+
+<div class="box mini-hide">
+  <h3 class="header"> <i class="icon icon-bookmark"></i> 分类 <a class="more"
+      href='//erasin.wang/categories'>MORE</a></h3>
+  <div class="box-body">
+    
+
+<ul class="ui list tree">
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/ai/">AI 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/algorithm/">algorithm 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/art/">art 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/article/">article 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/awesome/">awesome 
+
+
+
+
+</a>
+    <span class="sub-num"> 6</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/book/">book 
+
+<i class="icon icon-book"></i> 
+
+</a>
+    <span class="sub-num"> 8</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/cheatsheet/">cheatsheet 
+
+
+
+
+</a>
+    <span class="sub-num"> 6</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/cli/">cli 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    <span class="sub-num"> 10</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/database/">database 
+
+<i class="icon icon-database"></i> 
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/datetime/">datetime 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/docs/">docs 
+
+<i class="icon icon-paperclip"></i> 
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/game/">game 
+
+<i class="icon icon-gamepad"></i> 
+
+</a>
+    <span class="sub-num"> 7</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/godot/">godot 
+
+
+
+
+</a>
+    <span class="sub-num"> 5</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/golang/">golang 
+
+<i class="icon icon-go"></i> 
+
+</a>
+    <span class="sub-num"> 6</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/gong-ju/">工具 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/helix/">helix 
+
+
+
+
+</a>
+    <span class="sub-num"> 5</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/hui-hua/">绘画 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/javascript/">javascript 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/kai-yuan/">开源 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/linux/">linux 
+
+
+
+
+</a>
+    <span class="sub-num"> 5</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/lu-fa/">律法 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/mac/">mac 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/markdown/">markdown 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/math/">math 
+
+<i class="icon icon-pi"></i> 
+
+</a>
+    <span class="sub-num"> 4</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/mirror/">mirror 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/osx/">osx 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/php/">php 
+
+
+
+
+</a>
+    <span class="sub-num"> 4</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/pixel/">pixel 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/python/">python 
+
+<i class="icon icon-python"></i> 
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/ruan-jian/">软件 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/rustlang/">rustlang 
+
+<i class="icon icon-rust"></i> 
+
+</a>
+    <span class="sub-num"> 9</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/script/">script 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/server/">server 
+
+<i class="icon icon-server"></i> 
+
+</a>
+    <span class="sub-num"> 8</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/sheng-huo/">生活 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/soft/">soft 
+
+
+
+
+</a>
+    <span class="sub-num"> 17</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/sql/">SQL 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/suan-fa/">算法 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/tool/">Tool 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/video/">video 
+
+<i class="icon icon-youtube"></i> 
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/web/">web 
+
+<i class="icon icon-network"></i> 
+
+</a>
+    <span class="sub-num"> 4</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/categories/xiang-su/">像素 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

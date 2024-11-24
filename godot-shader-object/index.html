@@ -1,0 +1,803 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  Godot Shader 着色器 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="shader,着色器" property="description" />
+
+  
+    <meta content="shader,godot" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> Godot Shader 着色器 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      GODOT SHADER 着色器
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2020-04-23
+    </div>
+  </div>
+
+  <div class="post-content  " 
+    style="background-image:url(&#x27;&#x2F;assets&#x2F;img&#x2F;undraw_camera_mg5h.svg&#x27;)" >
+    <p>GODOT Shader 类似 glsl 语法.</p>
+<p><strong>着色器类型</strong> shader_type canvas_item;</p>
+<ul>
+<li>spatial: <a href="https://docs.godotengine.org/zh_CN/latest/tutorials/shading/shading_reference/spatial_shader.html">3D 空间着色器</a></li>
+<li>canvas_item: <a href="https://docs.godotengine.org/zh_CN/latest/tutorials/shading/shading_reference/canvas_item_shader.html">2D 平面着色器</a></li>
+<li>particles: <a href="https://docs.godotengine.org/zh_CN/latest/tutorials/shading/shading_reference/particle_shader.html">粒子着色器</a></li>
+</ul>
+<p><strong>处理函数</strong> 不同着色器you固定的着色器入口，其中 <code>particles</code> 仅支持 <code>vertex</code>;</p>
+<ul>
+<li>vertex    定点处理</li>
+<li>fragment  片段处理，根据输入的材质处理</li>
+<li>light	    光照处理</li>
+</ul>
+<p><strong>渲染模式</strong> 不同类型着色器支持模式不同 查看<a href="https://docs.godotengine.org/zh_CN/latest/tutorials/shading/shading_reference/spatial_shader.html">渲染模式</a></p>
+<ul>
+<li>blend_mix 混合混合模式(alpha是透明度)，默认.</li>
+<li>unshaded 结果只是反照率。 材质中不会发生照明/阴影。</li>
+<li>cull_disabled</li>
+</ul>
+<span id="continue-reading"></span>
+<p><strong>语法</strong> 查看<a href="https://docs.godotengine.org/zh_CN/latest/tutorials/shading/shading_reference/shading_language.html">支持的类型</a></p>
+<p>一些常用类型</p>
+<ul>
+<li>vec2, vec3, vec4, float</li>
+<li>sampler2D 2d材质</li>
+<li>sampler3D 3d材质</li>
+</ul>
+<pre data-lang="glsl" style="background-color:#2b303b;color:#6c7079;" class="language-glsl "><code class="language-glsl" data-lang="glsl"><span style="color:#cd74e8;">uniform float</span><span style="color:#abb2bf;"> some_value;
+</span></code></pre>
+<p>在 gdscript 中可以调用,来设置参数，以来变动效果。</p>
+<pre data-lang="gd" style="background-color:#2b303b;color:#6c7079;" class="language-gd "><code class="language-gd" data-lang="gd"><span style="color:#abb2bf;">material.</span><span style="color:#eb6772;">set_shader_param</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;some_value&quot;</span><span style="color:#abb2bf;">, some_value)
+</span></code></pre>
+<h2 id="neng-liang-dun-space-marine-shield">能量盾 Space Marine Shield</h2>
+<!-- /images/shader-shield.gif -->
+<p><img src="https://i.loli.net/2020/04/24/corPbEdOXL2i9wl.gif" alt="shield" /></p>
+<!-- more -->
+<pre data-lang="glsl" style="background-color:#2b303b;color:#6c7079;" class="language-glsl "><code class="language-glsl" data-lang="glsl"><span style="color:#abb2bf;">shader_type spatial;
+</span><span style="color:#abb2bf;">render_mode unshaded, cull_back;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">uniform float</span><span style="color:#abb2bf;"> rimWidth : </span><span style="color:#eb6772;">hint_range</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">1.0</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">3.0</span><span style="color:#abb2bf;">) </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">2.0</span><span style="color:#abb2bf;">;
+</span><span style="color:#cd74e8;">uniform vec4</span><span style="color:#abb2bf;"> rimColor : hint_color;
+</span><span style="color:#cd74e8;">uniform vec4</span><span style="color:#abb2bf;"> outerRimColor : hint_color;
+</span><span style="color:#cd74e8;">uniform sampler2D</span><span style="color:#abb2bf;"> normalMap : hint_normal;
+</span><span style="color:#cd74e8;">uniform float</span><span style="color:#abb2bf;"> normalStrength : </span><span style="color:#eb6772;">hint_range</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">0.0</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">1.0</span><span style="color:#abb2bf;">);
+</span><span style="color:#cd74e8;">uniform vec2</span><span style="color:#abb2bf;"> normalTiling </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">1.0</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">1.0</span><span style="color:#abb2bf;">);
+</span><span style="color:#cd74e8;">uniform vec2</span><span style="color:#abb2bf;"> normalOffset </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">0.0</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">0.0</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">void </span><span style="color:#5cb3fa;">fragment</span><span style="color:#abb2bf;">(){
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;"> uvModifier </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">(</span><span style="color:#5ebfcc;">texture</span><span style="color:#abb2bf;">(normalMap, (UV </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> normalTiling) </span><span style="color:#adb7c9;">+ </span><span style="color:#abb2bf;">(normalOffset </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> TIME)).</span><span style="color:#eb6772;">xy </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> normalStrength) </span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;"> normalStrength </span><span style="color:#adb7c9;">* </span><span style="color:#db9d63;">0.5</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">vec3</span><span style="color:#abb2bf;"> color </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">texture</span><span style="color:#abb2bf;">(SCREEN_TEXTURE, SCREEN_UV </span><span style="color:#adb7c9;">+</span><span style="color:#abb2bf;"> uvModifier).</span><span style="color:#eb6772;">rgb</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">float</span><span style="color:#abb2bf;"> rim </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">1.0 </span><span style="color:#adb7c9;">- </span><span style="color:#5ebfcc;">abs</span><span style="color:#abb2bf;">(</span><span style="color:#5ebfcc;">dot</span><span style="color:#abb2bf;">(VIEW, NORMAL));
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">float</span><span style="color:#abb2bf;"> outerRim </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">pow</span><span style="color:#abb2bf;">(rim, </span><span style="color:#db9d63;">4.0</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">	rim </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">pow</span><span style="color:#abb2bf;">(rim, rimWidth);
+</span><span style="color:#abb2bf;">	color </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> color </span><span style="color:#adb7c9;">+</span><span style="color:#abb2bf;"> rim </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> rimColor.</span><span style="color:#eb6772;">rgb</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">	color </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> color </span><span style="color:#adb7c9;">+</span><span style="color:#abb2bf;"> outerRim </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> outerRimColor.</span><span style="color:#eb6772;">rgb</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">	ALBEDO </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> color;
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<h2 id="dancing">dancing</h2>
+<!-- /images/shader-dancing.gif -->
+<p><img src="https://i.loli.net/2020/04/24/48MZSzgDwK7FPWl.gif" alt="dancing" /></p>
+<p><strong>参数：</strong></p>
+<ul>
+<li>Time Factor (float) 时间 2</li>
+<li>Amplitude (Vec2) 振幅  10,10</li>
+</ul>
+<pre data-lang="glsl" style="background-color:#2b303b;color:#6c7079;" class="language-glsl "><code class="language-glsl" data-lang="glsl"><span style="color:#abb2bf;">shader_type canvas_item;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">uniform float</span><span style="color:#abb2bf;"> time_factor </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">2</span><span style="color:#abb2bf;">;
+</span><span style="color:#cd74e8;">uniform vec2</span><span style="color:#abb2bf;"> amplitude </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">10</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">10</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">void </span><span style="color:#5cb3fa;">vertex</span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">	VERTEX.</span><span style="color:#eb6772;">x </span><span style="color:#adb7c9;">+= </span><span style="color:#5ebfcc;">sin</span><span style="color:#abb2bf;">(TIME </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> time_factor) </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> amplitude.</span><span style="color:#eb6772;">x</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">	VERTEX.</span><span style="color:#eb6772;">y </span><span style="color:#adb7c9;">+= </span><span style="color:#5ebfcc;">cos</span><span style="color:#abb2bf;">(TIME </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> time_factor) </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> amplitude.</span><span style="color:#eb6772;">y</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<h2 id="water01-shui-bo-wen">water01 水波纹</h2>
+<!-- /images/shader-water01.gif -->
+<p><img src="https://i.loli.net/2020/04/24/WZpItV83N6BKseL.gif" alt="water01" /></p>
+<pre data-lang="glsl" style="background-color:#2b303b;color:#6c7079;" class="language-glsl "><code class="language-glsl" data-lang="glsl"><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">shader_type canvas_item;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">uniform float</span><span style="color:#abb2bf;"> initialize </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">0.0</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">void </span><span style="color:#5cb3fa;">fragment</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">// GET THE HEIGHT AND VELOCITY OF THIS UV
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">float</span><span style="color:#abb2bf;"> h </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">texture</span><span style="color:#abb2bf;">( SCREEN_TEXTURE, SCREEN_UV ).</span><span style="color:#eb6772;">r </span><span style="color:#adb7c9;">- </span><span style="color:#db9d63;">0.5</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">float</span><span style="color:#abb2bf;"> v </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">texture</span><span style="color:#abb2bf;">( SCREEN_TEXTURE, SCREEN_UV ).</span><span style="color:#eb6772;">g </span><span style="color:#adb7c9;">- </span><span style="color:#db9d63;">0.5</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">	
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">// COMPUTE NEW VELOCITY AND HEIGHT
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;"> ps </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> SCREEN_PIXEL_SIZE;
+</span><span style="color:#abb2bf;">	v </span><span style="color:#adb7c9;">-= </span><span style="color:#db9d63;">0.1 </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> h; </span><span style="font-style:italic;color:#5f697a;">// velocity of a point depends on the height of that point, to have a spring effect
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">// velocity of a point also depends on the height of the points around it
+</span><span style="color:#abb2bf;">	v </span><span style="color:#adb7c9;">+= </span><span style="color:#abb2bf;">( 
+</span><span style="color:#abb2bf;">			( </span><span style="color:#5ebfcc;">texture</span><span style="color:#abb2bf;">( SCREEN_TEXTURE, SCREEN_UV </span><span style="color:#adb7c9;">+ </span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;">( </span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">, </span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">ps.</span><span style="color:#eb6772;">y </span><span style="color:#abb2bf;">) ).</span><span style="color:#eb6772;">x </span><span style="color:#adb7c9;">- </span><span style="color:#db9d63;">0.5 </span><span style="color:#abb2bf;">) </span><span style="color:#adb7c9;">+
+</span><span style="color:#abb2bf;">			( </span><span style="color:#5ebfcc;">texture</span><span style="color:#abb2bf;">( SCREEN_TEXTURE, SCREEN_UV </span><span style="color:#adb7c9;">+ </span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;">( </span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">, ps.</span><span style="color:#eb6772;">y </span><span style="color:#abb2bf;">) ).</span><span style="color:#eb6772;">x </span><span style="color:#adb7c9;">- </span><span style="color:#db9d63;">0.5 </span><span style="color:#abb2bf;">) </span><span style="color:#adb7c9;">+
+</span><span style="color:#abb2bf;">			( </span><span style="color:#5ebfcc;">texture</span><span style="color:#abb2bf;">( SCREEN_TEXTURE, SCREEN_UV </span><span style="color:#adb7c9;">+ </span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;">( </span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">ps.</span><span style="color:#eb6772;">x</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">0 </span><span style="color:#abb2bf;">) ).</span><span style="color:#eb6772;">x </span><span style="color:#adb7c9;">- </span><span style="color:#db9d63;">0.5 </span><span style="color:#abb2bf;">) </span><span style="color:#adb7c9;">+
+</span><span style="color:#abb2bf;">			( </span><span style="color:#5ebfcc;">texture</span><span style="color:#abb2bf;">( SCREEN_TEXTURE, SCREEN_UV </span><span style="color:#adb7c9;">+ </span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;">( ps.</span><span style="color:#eb6772;">x</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">0 </span><span style="color:#abb2bf;">) ).</span><span style="color:#eb6772;">x </span><span style="color:#adb7c9;">- </span><span style="color:#db9d63;">0.5 </span><span style="color:#abb2bf;">) </span><span style="color:#adb7c9;">-
+</span><span style="color:#abb2bf;">			</span><span style="color:#db9d63;">4.0 </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> h ) </span><span style="color:#adb7c9;">* </span><span style="color:#db9d63;">0.2</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">	v </span><span style="color:#adb7c9;">*= </span><span style="color:#db9d63;">0.98</span><span style="color:#abb2bf;">; </span><span style="font-style:italic;color:#5f697a;">// Dampen the velocity, otherwise it would oscillate forever
+</span><span style="color:#abb2bf;">	h </span><span style="color:#adb7c9;">+=</span><span style="color:#abb2bf;"> v; </span><span style="font-style:italic;color:#5f697a;">// change the height with the new velocity - NOT FRAME RATE INDEPENDENT!
+</span><span style="color:#abb2bf;">	
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">// Generate drops
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">if </span><span style="color:#abb2bf;">( </span><span style="color:#5ebfcc;">mod</span><span style="color:#abb2bf;">( TIME, </span><span style="color:#db9d63;">1.0 </span><span style="color:#abb2bf;">) </span><span style="color:#adb7c9;">&lt;</span><span style="color:#abb2bf;"> .</span><span style="color:#db9d63;">05 </span><span style="color:#adb7c9;">&amp;&amp;</span><span style="color:#abb2bf;"> initialize </span><span style="color:#adb7c9;">&lt; </span><span style="color:#db9d63;">0.5 </span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">	{
+</span><span style="color:#abb2bf;">		</span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;"> drop_pos </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;">( </span><span style="color:#db9d63;">0.5 </span><span style="color:#adb7c9;">+ </span><span style="color:#db9d63;">0.5 </span><span style="color:#adb7c9;">* </span><span style="color:#5ebfcc;">sin</span><span style="color:#abb2bf;">( </span><span style="color:#5ebfcc;">floor</span><span style="color:#abb2bf;">( TIME </span><span style="color:#adb7c9;">* </span><span style="color:#db9d63;">5.0 </span><span style="color:#abb2bf;">) </span><span style="color:#adb7c9;">* </span><span style="color:#db9d63;">20.0 </span><span style="color:#abb2bf;">), </span><span style="color:#db9d63;">0.5 </span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">		</span><span style="color:#cd74e8;">if</span><span style="color:#abb2bf;">( </span><span style="color:#5ebfcc;">length</span><span style="color:#abb2bf;">( UV </span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;"> drop_pos ) </span><span style="color:#adb7c9;">&lt; </span><span style="color:#db9d63;">0.01 </span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">		{
+</span><span style="color:#abb2bf;">			h </span><span style="color:#adb7c9;">= -</span><span style="color:#db9d63;">0.5</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">		}
+</span><span style="color:#abb2bf;">	}
+</span><span style="color:#abb2bf;">	
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">// INITIALIZATION
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">if</span><span style="color:#abb2bf;">( initialize </span><span style="color:#adb7c9;">&gt; </span><span style="color:#db9d63;">0.5 </span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">	{
+</span><span style="color:#abb2bf;">		h </span><span style="color:#adb7c9;">*= </span><span style="color:#db9d63;">0.0</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">		v </span><span style="color:#adb7c9;">*= </span><span style="color:#db9d63;">0.0</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">	}
+</span><span style="color:#abb2bf;">	
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">// SET FRAGMENT COLOR BASED ON HEIGHT (RED) AND VELOCITY (GREEN)
+</span><span style="color:#abb2bf;">	COLOR </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">vec4</span><span style="color:#abb2bf;">( h </span><span style="color:#adb7c9;">+ </span><span style="color:#db9d63;">0.5</span><span style="color:#abb2bf;">, v </span><span style="color:#adb7c9;">+ </span><span style="color:#db9d63;">0.5</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">0.0</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">1.0 </span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<h2 id="water-shadow">water shadow</h2>
+<p>水中倒影</p>
+<pre data-lang="glsl" style="background-color:#2b303b;color:#6c7079;" class="language-glsl "><code class="language-glsl" data-lang="glsl"><span style="color:#abb2bf;">shader_type canvas_item;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">void </span><span style="color:#5cb3fa;">fragment</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">//vec2 uv = UV;
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">//float r = TEXTURE_PIXEL_SIZE.y / SCREEN_PIXEL_SIZE.y;
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">//vec2 suv = vec2( SCREEN_UV.x, 1.0-SCREEN_UV.y );
+</span><span style="color:#abb2bf;">	
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">//float mix_ratio = 0.5;
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">//float vstretch = 1.0;
+</span><span style="color:#abb2bf;">	
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">// compute ration between the screen uv and the texture uv
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;"> tex_to_screen_uv_ratio </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> SCREEN_PIXEL_SIZE </span><span style="color:#adb7c9;">/</span><span style="color:#abb2bf;"> TEXTURE_PIXEL_SIZE;
+</span><span style="color:#abb2bf;">	
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">// compute UV of the flipped screen
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;"> flipped_screen_uv </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;">( SCREEN_UV.</span><span style="color:#eb6772;">x</span><span style="color:#abb2bf;">, 
+</span><span style="color:#abb2bf;">		SCREEN_UV.</span><span style="color:#eb6772;">y </span><span style="color:#adb7c9;">+ </span><span style="color:#db9d63;">2.0 </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> UV.</span><span style="color:#eb6772;">y </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> tex_to_screen_uv_ratio.</span><span style="color:#eb6772;">y </span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;"> suv </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;">( SCREEN_UV.</span><span style="color:#eb6772;">x</span><span style="color:#abb2bf;">, SCREEN_UV.</span><span style="color:#eb6772;">y </span><span style="color:#adb7c9;">+ </span><span style="color:#db9d63;">2.0 </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> UV.</span><span style="color:#eb6772;">y </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> tex_to_screen_uv_ratio.</span><span style="color:#eb6772;">y </span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">	suv.</span><span style="color:#eb6772;">x </span><span style="color:#adb7c9;">+= </span><span style="color:#db9d63;">10.0 </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> SCREEN_PIXEL_SIZE.</span><span style="color:#eb6772;">x </span><span style="color:#adb7c9;">* </span><span style="color:#5ebfcc;">sin</span><span style="color:#abb2bf;">( </span><span style="color:#db9d63;">20.0 </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> UV.</span><span style="color:#eb6772;">y  </span><span style="color:#adb7c9;">+</span><span style="color:#abb2bf;"> TIME ) </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> UV.</span><span style="color:#eb6772;">y</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">	
+</span><span style="color:#abb2bf;">	
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">vec4</span><span style="color:#abb2bf;"> c1 </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">textureLod</span><span style="color:#abb2bf;">( SCREEN_TEXTURE, suv, </span><span style="color:#db9d63;">0.0 </span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">//vec4 c2 = textureLod( SCREEN_TEXTURE, SCREEN_UV, 0.0 );
+</span><span style="color:#abb2bf;">	c1 </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">mix</span><span style="color:#abb2bf;">( c1, </span><span style="color:#cd74e8;">vec4</span><span style="color:#abb2bf;">( </span><span style="color:#db9d63;">0.1</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">0.1</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">0.25</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">1.0 </span><span style="color:#abb2bf;">), </span><span style="color:#db9d63;">0.3 </span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">	
+</span><span style="color:#abb2bf;">	COLOR </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> c1;</span><span style="font-style:italic;color:#5f697a;">//mix( c1, c2, 0.0 );
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<h2 id="clock-shader">clock shader</h2>
+<!-- /images/shader-clock.gif -->
+<p><img src="https://i.loli.net/2020/04/24/1jYQ4EBv2AunRKX.gif" alt="clock" />
+通过遮罩环形显示，显示类似钟表效果。</p>
+<p>脚本中控制参数 <code>max_angle</code> 从 <code>0.1</code> 到 0.5 （<code>material.set_shader_param( "max_angle", ang )</code>)。</p>
+<pre data-lang="glsl" style="background-color:#2b303b;color:#6c7079;" class="language-glsl "><code class="language-glsl" data-lang="glsl"><span style="color:#abb2bf;">shader_type canvas_item;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">uniform float</span><span style="color:#abb2bf;"> max_angle </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">0.1</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">void </span><span style="color:#5cb3fa;">fragment</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;"> pos </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> UV </span><span style="color:#adb7c9;">- </span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;">( </span><span style="color:#db9d63;">0.5 </span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">float</span><span style="color:#abb2bf;"> r </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">length</span><span style="color:#abb2bf;">( pos );
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">float</span><span style="color:#abb2bf;"> a </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">atan</span><span style="color:#abb2bf;">( pos.</span><span style="color:#eb6772;">y</span><span style="color:#abb2bf;">,pos.</span><span style="color:#eb6772;">x </span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">	
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">float</span><span style="color:#abb2bf;"> alpha </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">step</span><span style="color:#abb2bf;">( a, ( max_angle </span><span style="color:#adb7c9;">- </span><span style="color:#db9d63;">0.5 </span><span style="color:#abb2bf;">) </span><span style="color:#adb7c9;">* </span><span style="color:#db9d63;">6.28318530718 </span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">vec4</span><span style="color:#abb2bf;"> c </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">texture</span><span style="color:#abb2bf;">( TEXTURE, UV );
+</span><span style="color:#abb2bf;">	COLOR </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">vec4</span><span style="color:#abb2bf;">( c.</span><span style="color:#eb6772;">rgb</span><span style="color:#abb2bf;">, c.</span><span style="color:#eb6772;">a </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> alpha );
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<h2 id="snow-shader">snow shader</h2>
+<!-- /images/shader-snow.gif -->
+<p><img src="https://i.loli.net/2020/04/24/xmFDLJeEUZXpfhG.gif" alt="snow" /></p>
+<p>粒子效果</p>
+<pre data-lang="glsl" style="background-color:#2b303b;color:#6c7079;" class="language-glsl "><code class="language-glsl" data-lang="glsl"><span style="color:#abb2bf;">shader_type particles;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">float </span><span style="color:#5cb3fa;">rand_from_seed</span><span style="color:#abb2bf;">(</span><span style="color:#cd74e8;">inout uint </span><span style="color:#eb6772;">seed</span><span style="color:#abb2bf;">) {
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;"> k;
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;"> s </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;">(seed);
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">if </span><span style="color:#abb2bf;">(s </span><span style="color:#adb7c9;">== </span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">	s </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">305420679</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">	k </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> s </span><span style="color:#adb7c9;">/ </span><span style="color:#db9d63;">127773</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">	s </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">16807 </span><span style="color:#adb7c9;">* </span><span style="color:#abb2bf;">(s </span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;"> k </span><span style="color:#adb7c9;">* </span><span style="color:#db9d63;">127773</span><span style="color:#abb2bf;">) </span><span style="color:#adb7c9;">- </span><span style="color:#db9d63;">2836 </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> k;
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">if </span><span style="color:#abb2bf;">(s </span><span style="color:#adb7c9;">&lt; </span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">		s </span><span style="color:#adb7c9;">+= </span><span style="color:#db9d63;">2147483647</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">	seed </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">uint</span><span style="color:#abb2bf;">(s);
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">return float</span><span style="color:#abb2bf;">(seed </span><span style="color:#adb7c9;">% </span><span style="color:#cd74e8;">uint</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">65536</span><span style="color:#abb2bf;">)) </span><span style="color:#adb7c9;">/ </span><span style="color:#db9d63;">65535.0</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">float </span><span style="color:#5cb3fa;">rand_from_seed_m1_p1</span><span style="color:#abb2bf;">(</span><span style="color:#cd74e8;">inout uint </span><span style="color:#eb6772;">seed</span><span style="color:#abb2bf;">) {
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">return </span><span style="color:#eb6772;">rand_from_seed</span><span style="color:#abb2bf;">(seed) </span><span style="color:#adb7c9;">* </span><span style="color:#db9d63;">2.0 </span><span style="color:#adb7c9;">- </span><span style="color:#db9d63;">1.0</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">uint </span><span style="color:#5cb3fa;">hash</span><span style="color:#abb2bf;">(</span><span style="color:#cd74e8;">uint </span><span style="color:#eb6772;">x</span><span style="color:#abb2bf;">) {
+</span><span style="color:#abb2bf;">	x </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">((x </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#cd74e8;">uint</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">16</span><span style="color:#abb2bf;">)) </span><span style="color:#adb7c9;">^</span><span style="color:#abb2bf;"> x) </span><span style="color:#adb7c9;">* </span><span style="color:#cd74e8;">uint</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">73244475</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">	x </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">((x </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#cd74e8;">uint</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">16</span><span style="color:#abb2bf;">)) </span><span style="color:#adb7c9;">^</span><span style="color:#abb2bf;"> x) </span><span style="color:#adb7c9;">* </span><span style="color:#cd74e8;">uint</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">73244475</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">	x </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">(x </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#cd74e8;">uint</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">16</span><span style="color:#abb2bf;">)) </span><span style="color:#adb7c9;">^</span><span style="color:#abb2bf;"> x;
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">return</span><span style="color:#abb2bf;"> x;
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">float </span><span style="color:#5cb3fa;">pos2vel_x</span><span style="color:#abb2bf;">( </span><span style="color:#cd74e8;">float </span><span style="color:#eb6772;">pos0 </span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">float</span><span style="color:#abb2bf;"> half_block </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">32.0</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">float</span><span style="color:#abb2bf;"> pos </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">mod</span><span style="color:#abb2bf;">( pos0, </span><span style="color:#db9d63;">2.0 </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> half_block ) </span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;"> half_block;
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">float</span><span style="color:#abb2bf;"> vel </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">sin</span><span style="color:#abb2bf;">( pos </span><span style="color:#adb7c9;">/</span><span style="color:#abb2bf;"> half_block );
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">return</span><span style="color:#abb2bf;"> vel;
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">void </span><span style="color:#5cb3fa;">vertex</span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;"> Extents </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;">( </span><span style="color:#db9d63;">320</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">0 </span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;"> InitVelXRange </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;">( </span><span style="color:#db9d63;">5</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">20 </span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">	
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">uint</span><span style="color:#abb2bf;"> base_number </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> NUMBER;</span><span style="font-style:italic;color:#5f697a;">// / uint(trail_divisor);
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">uint</span><span style="color:#abb2bf;"> alt_seed </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">hash</span><span style="color:#abb2bf;">(base_number </span><span style="color:#adb7c9;">+ </span><span style="color:#cd74e8;">uint</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">) </span><span style="color:#adb7c9;">+</span><span style="color:#abb2bf;"> RANDOM_SEED);
+</span><span style="color:#abb2bf;">	
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">if</span><span style="color:#abb2bf;">( RESTART )
+</span><span style="color:#abb2bf;">	{
+</span><span style="color:#abb2bf;">		</span><span style="font-style:italic;color:#5f697a;">// place particles randomly on top
+</span><span style="color:#abb2bf;">		TRANSFORM[</span><span style="color:#db9d63;">3</span><span style="color:#abb2bf;">].</span><span style="color:#eb6772;">x </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> Extents.</span><span style="color:#eb6772;">x </span><span style="color:#adb7c9;">* </span><span style="color:#abb2bf;">( </span><span style="color:#db9d63;">2.0 </span><span style="color:#adb7c9;">* </span><span style="color:#eb6772;">rand_from_seed</span><span style="color:#abb2bf;">( alt_seed ) </span><span style="color:#adb7c9;">- </span><span style="color:#db9d63;">1.0 </span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">		TRANSFORM[</span><span style="color:#db9d63;">3</span><span style="color:#abb2bf;">].</span><span style="color:#eb6772;">xy </span><span style="color:#adb7c9;">+=</span><span style="color:#abb2bf;"> EMISSION_TRANSFORM[</span><span style="color:#db9d63;">3</span><span style="color:#abb2bf;">].</span><span style="color:#eb6772;">xy</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">		VELOCITY.</span><span style="color:#eb6772;">y </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> InitVelXRange.</span><span style="color:#eb6772;">x </span><span style="color:#adb7c9;">+ </span><span style="color:#abb2bf;">( InitVelXRange.</span><span style="color:#eb6772;">y </span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;"> InitVelXRange.</span><span style="color:#eb6772;">x </span><span style="color:#abb2bf;">) </span><span style="color:#adb7c9;">* </span><span style="color:#eb6772;">rand_from_seed</span><span style="color:#abb2bf;">( alt_seed );</span><span style="font-style:italic;color:#5f697a;">// + 3.0 * rand_from_seed( alt_seed );
+</span><span style="color:#abb2bf;">		CUSTOM.</span><span style="color:#eb6772;">w </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">rand_from_seed</span><span style="color:#abb2bf;">( alt_seed ) </span><span style="color:#adb7c9;">* </span><span style="color:#db9d63;">100.0</span><span style="color:#abb2bf;">; </span><span style="font-style:italic;color:#5f697a;">// random initial phase
+</span><span style="color:#abb2bf;">		</span><span style="font-style:italic;color:#5f697a;">//VELOCITY.x = pos2vel_x( TRANSFORM[3].x ) * 20.0;
+</span><span style="color:#abb2bf;">		</span><span style="color:#cd74e8;">if</span><span style="color:#abb2bf;">( </span><span style="color:#eb6772;">rand_from_seed</span><span style="color:#abb2bf;">( alt_seed ) </span><span style="color:#adb7c9;">&lt; </span><span style="color:#db9d63;">0.5 </span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">		{
+</span><span style="color:#abb2bf;">			COLOR </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">vec4</span><span style="color:#abb2bf;">( </span><span style="color:#db9d63;">0.7254901960784314</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">0.7490196078431373</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">0.9843137254901961</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">1.0 </span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">		}
+</span><span style="color:#abb2bf;">	}
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">else
+</span><span style="color:#abb2bf;">	{
+</span><span style="color:#abb2bf;">		</span><span style="font-style:italic;color:#5f697a;">//VELOCITY.x += 5.0 * ( rand_from_seed( alt_seed ) - 0.5 );
+</span><span style="color:#abb2bf;">		</span><span style="font-style:italic;color:#5f697a;">//VELOCITY.x *= 0.9;
+</span><span style="color:#abb2bf;">		VELOCITY.</span><span style="color:#eb6772;">x </span><span style="color:#adb7c9;">+= </span><span style="color:#db9d63;">0.2 </span><span style="color:#adb7c9;">* </span><span style="color:#5ebfcc;">cos</span><span style="color:#abb2bf;">( ( TRANSFORM[</span><span style="color:#db9d63;">3</span><span style="color:#abb2bf;">].</span><span style="color:#eb6772;">y </span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;"> CUSTOM.</span><span style="color:#eb6772;">w </span><span style="color:#abb2bf;">) </span><span style="color:#adb7c9;">* </span><span style="color:#db9d63;">0.5 </span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">	}
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<h2 id="cave-light">cave light</h2>
+<p>为 light2D 追加摇曳效果</p>
+<!-- /images/shader-cave-light.gif -->
+<p><img src="https://i.loli.net/2020/04/24/SyKMTnV6uhz1cRB.gif" alt="cave light" /></p>
+<pre data-lang="glsl" style="background-color:#2b303b;color:#6c7079;" class="language-glsl "><code class="language-glsl" data-lang="glsl"><span style="color:#abb2bf;">shader_type canvas_item;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">void </span><span style="color:#5cb3fa;">light</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">vec4</span><span style="color:#abb2bf;"> c </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">texture</span><span style="color:#abb2bf;">( TEXTURE, UV ).</span><span style="color:#eb6772;">rgba</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">if</span><span style="color:#abb2bf;">( c.</span><span style="color:#eb6772;">r </span><span style="color:#adb7c9;">&gt; </span><span style="color:#db9d63;">0.5 </span><span style="color:#adb7c9;">||</span><span style="color:#abb2bf;"> c.</span><span style="color:#eb6772;">b </span><span style="color:#adb7c9;">&gt; </span><span style="color:#db9d63;">0.5 </span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">	{
+</span><span style="color:#abb2bf;">		</span><span style="font-style:italic;color:#5f697a;">//LIGHT *= 1.0;
+</span><span style="color:#abb2bf;">		</span><span style="color:#cd74e8;">if</span><span style="color:#abb2bf;">( LIGHT.</span><span style="color:#eb6772;">a </span><span style="color:#adb7c9;">&gt; </span><span style="color:#db9d63;">0.3 </span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">		{
+</span><span style="color:#abb2bf;">			LIGHT </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> LIGHT_COLOR;
+</span><span style="color:#abb2bf;">		}
+</span><span style="color:#abb2bf;">		</span><span style="color:#cd74e8;">else
+</span><span style="color:#abb2bf;">		{
+</span><span style="color:#abb2bf;">			LIGHT </span><span style="color:#adb7c9;">*= </span><span style="color:#db9d63;">0.0</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">		}
+</span><span style="color:#abb2bf;">	}
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">else
+</span><span style="color:#abb2bf;">	{
+</span><span style="color:#abb2bf;">		LIGHT </span><span style="color:#adb7c9;">*= </span><span style="color:#db9d63;">0.0</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">	}
+</span><span style="color:#abb2bf;">	
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<h2 id="border-shader">border shader</h2>
+<pre data-lang="glsl" style="background-color:#2b303b;color:#6c7079;" class="language-glsl "><code class="language-glsl" data-lang="glsl"><span style="color:#abb2bf;">shader_type canvas_item;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">uniform float</span><span style="color:#abb2bf;"> outline_width </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">2.0</span><span style="color:#abb2bf;">;
+</span><span style="color:#cd74e8;">uniform vec4</span><span style="color:#abb2bf;"> outline_color: hint_color;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">void </span><span style="color:#5cb3fa;">fragment</span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">vec4</span><span style="color:#abb2bf;"> col </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">texture</span><span style="color:#abb2bf;">(TEXTURE, UV);
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;"> ps </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> TEXTURE_PIXEL_SIZE;
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">float</span><span style="color:#abb2bf;"> a;
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">float</span><span style="color:#abb2bf;"> maxa </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> col.</span><span style="color:#eb6772;">a</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">float</span><span style="color:#abb2bf;"> mina </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> col.</span><span style="color:#eb6772;">a</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	a </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">texture</span><span style="color:#abb2bf;">(TEXTURE, UV </span><span style="color:#adb7c9;">+ </span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">0.0</span><span style="color:#abb2bf;">, </span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">outline_width) </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> ps).</span><span style="color:#eb6772;">a</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">	maxa </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">max</span><span style="color:#abb2bf;">(a, maxa);
+</span><span style="color:#abb2bf;">	mina </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">min</span><span style="color:#abb2bf;">(a, mina);
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	a </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">texture</span><span style="color:#abb2bf;">(TEXTURE, UV </span><span style="color:#adb7c9;">+ </span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">0.0</span><span style="color:#abb2bf;">, outline_width) </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> ps).</span><span style="color:#eb6772;">a</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">	maxa </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">max</span><span style="color:#abb2bf;">(a, maxa);
+</span><span style="color:#abb2bf;">	mina </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">min</span><span style="color:#abb2bf;">(a, mina);
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	a </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">texture</span><span style="color:#abb2bf;">(TEXTURE, UV </span><span style="color:#adb7c9;">+ </span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;">(</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">outline_width, </span><span style="color:#db9d63;">0.0</span><span style="color:#abb2bf;">) </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> ps).</span><span style="color:#eb6772;">a</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">	maxa </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">max</span><span style="color:#abb2bf;">(a, maxa);
+</span><span style="color:#abb2bf;">	mina </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">min</span><span style="color:#abb2bf;">(a, mina);
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	a </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">texture</span><span style="color:#abb2bf;">(TEXTURE, UV </span><span style="color:#adb7c9;">+ </span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;">(outline_width, </span><span style="color:#db9d63;">0.0</span><span style="color:#abb2bf;">) </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> ps).</span><span style="color:#eb6772;">a</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">	maxa </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">max</span><span style="color:#abb2bf;">(a, maxa);
+</span><span style="color:#abb2bf;">	mina </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">min</span><span style="color:#abb2bf;">(a, mina);
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	COLOR </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">mix</span><span style="color:#abb2bf;">(col, outline_color, maxa </span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;"> mina);
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<h2 id="shadow">shadow</h2>
+<pre data-lang="glsl" style="background-color:#2b303b;color:#6c7079;" class="language-glsl "><code class="language-glsl" data-lang="glsl"><span style="color:#abb2bf;">shader_type canvas_item;
+</span><span style="color:#abb2bf;">render_mode blend_mix;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">uniform vec2</span><span style="color:#abb2bf;"> offset </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">8.0</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">8.0</span><span style="color:#abb2bf;">);
+</span><span style="color:#cd74e8;">uniform vec4</span><span style="color:#abb2bf;"> modulate : hint_color;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">void </span><span style="color:#5cb3fa;">fragment</span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">vec2</span><span style="color:#abb2bf;"> ps </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> TEXTURE_PIXEL_SIZE;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	# 偏移处理
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">vec4</span><span style="color:#abb2bf;"> shadow </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">vec4</span><span style="color:#abb2bf;">(modulate.</span><span style="color:#eb6772;">rgb</span><span style="color:#abb2bf;">, </span><span style="color:#5ebfcc;">texture</span><span style="color:#abb2bf;">(TEXTURE, UV </span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;"> offset </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> ps).</span><span style="color:#eb6772;">a </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> modulate.</span><span style="color:#eb6772;">a</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">vec4</span><span style="color:#abb2bf;"> col </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">texture</span><span style="color:#abb2bf;">(TEXTURE, UV);
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	COLOR </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">mix</span><span style="color:#abb2bf;">(shadow, col, col.</span><span style="color:#eb6772;">a</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<h2 id="silhouette-jian-ying">silhouette 剪影</h2>
+<pre data-lang="glsl" style="background-color:#2b303b;color:#6c7079;" class="language-glsl "><code class="language-glsl" data-lang="glsl"><span style="color:#abb2bf;">shader_type canvas_item;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">render_mode blend_mix;
+</span><span style="color:#cd74e8;">uniform vec4</span><span style="color:#abb2bf;"> modulate: hint_color;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">void </span><span style="color:#5cb3fa;">fragment</span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">	# 直接覆盖
+</span><span style="color:#abb2bf;">	COLOR </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">vec4</span><span style="color:#abb2bf;">(modulate.</span><span style="color:#eb6772;">rgb</span><span style="color:#abb2bf;">, </span><span style="color:#5ebfcc;">texture</span><span style="color:#abb2bf;">(TEXTURE, UV).</span><span style="color:#eb6772;">a </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> modulate.</span><span style="color:#eb6772;">a</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<h2 id="guang-xiao-chu-li">光效处理</h2>
+<pre data-lang="glsl" style="background-color:#2b303b;color:#6c7079;" class="language-glsl "><code class="language-glsl" data-lang="glsl"><span style="color:#abb2bf;">shader_type canvas_item;
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// 材质输入
+</span><span style="color:#cd74e8;">uniform sampler2D</span><span style="color:#abb2bf;"> emission_teture;
+</span><span style="font-style:italic;color:#5f697a;">// 色彩输入
+</span><span style="color:#cd74e8;">uniform vec4</span><span style="color:#abb2bf;"> glow_color : hint_color </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">vec4</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">1.0</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">void </span><span style="color:#5cb3fa;">fragment</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">// 精灵当前像素
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">vec4</span><span style="color:#abb2bf;"> current_color </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">texture</span><span style="color:#abb2bf;">(TEXTURE,UV); 
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">// 要覆盖的材质
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">vec4</span><span style="color:#abb2bf;"> emission_color </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">texture</span><span style="color:#abb2bf;">(emission_teture,UV); 
+</span><span style="color:#abb2bf;">	
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">// 检查在材质中不是黑色的部分
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">if</span><span style="color:#abb2bf;">(emission_color.</span><span style="color:#eb6772;">r </span><span style="color:#adb7c9;">&gt; </span><span style="color:#db9d63;">0f</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">	{
+</span><span style="color:#abb2bf;">		</span><span style="font-style:italic;color:#5f697a;">// 在当前材质部分追加亮度
+</span><span style="color:#abb2bf;">		COLOR </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">(emission_color </span><span style="color:#adb7c9;">+</span><span style="color:#abb2bf;"> glow_color) 
+</span><span style="color:#abb2bf;">	}
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">else
+</span><span style="color:#abb2bf;">	{
+</span><span style="color:#abb2bf;">		</span><span style="font-style:italic;color:#5f697a;">// 未覆盖的部分默认当前
+</span><span style="color:#abb2bf;">		COLOR </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> current_color; 
+</span><span style="color:#abb2bf;">	}
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+
+
+
+  </div>
+</div>
+
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;godot-minimap&#x2F;">
+    <i class="icon icon-left-open"></i>
+    Godot 小地图</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;mermaid&#x2F;">
+    Mermaid UML 流程图工具
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-dark" href="//erasin.wang/categories/game/">game</a>
+
+
+
+<a class="tag is-info" href="//erasin.wang/categories/godot/">godot</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-link" href="//erasin.wang/tags/shader/">shader</a>
+
+
+
+<a class="tag is-info" href="//erasin.wang/tags/godot/">godot</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="neng-liang-dun-space-marine-shield" href="//erasin.wang/godot-shader-object/#neng-liang-dun-space-marine-shield">能量盾 Space Marine Shield</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="dancing" href="//erasin.wang/godot-shader-object/#dancing">dancing</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="water01-shui-bo-wen" href="//erasin.wang/godot-shader-object/#water01-shui-bo-wen">water01 水波纹</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="water-shadow" href="//erasin.wang/godot-shader-object/#water-shadow">water shadow</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="clock-shader" href="//erasin.wang/godot-shader-object/#clock-shader">clock shader</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="snow-shader" href="//erasin.wang/godot-shader-object/#snow-shader">snow shader</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="cave-light" href="//erasin.wang/godot-shader-object/#cave-light">cave light</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="border-shader" href="//erasin.wang/godot-shader-object/#border-shader">border shader</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="shadow" href="//erasin.wang/godot-shader-object/#shadow">shadow</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="silhouette-jian-ying" href="//erasin.wang/godot-shader-object/#silhouette-jian-ying">silhouette 剪影</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="guang-xiao-chu-li" href="//erasin.wang/godot-shader-object/#guang-xiao-chu-li">光效处理</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

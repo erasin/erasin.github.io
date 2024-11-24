@@ -1,0 +1,473 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  rustlang osx 下交叉编译linux - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="osx 下 编译linux程序" property="description" />
+
+  
+    <meta content="rust" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+    
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> rustlang osx 下交叉编译linux </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      RUSTLANG OSX 下交叉编译LINUX
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2020-07-16
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <p>使用 rustup 查看 支持的target 平台</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">rustup target list 
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"># add target
+</span><span style="color:#abb2bf;">rustup target add x86_64-unknown-linux-musl 
+</span></code></pre>
+<span id="continue-reading"></span><h2 id="osx">osx</h2>
+<p>执行编译</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">cargo build --target x86_64-unknown-linux-musl
+</span></code></pre>
+<p>目标是创建 平台的应用程序，通过静态连接musl, 不再依赖glibc库。 但在 osx 下执行会报错。缺少 <code>musl-gcc</code></p>
+<blockquote>
+<p>Internal error occurred: Failed to find tool. Is <code>musl-gcc</code> installed?</p>
+</blockquote>
+<p>安装链接器 musl-cross, 其中 musl-cross 是用来专门编译到 linux 的工具链，而 mingw-w64 是用来编译到 windows 的工具链.</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">brew</span><span style="color:#abb2bf;"> install FiloSottile/musl-cross/musl-cross
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 创建
+</span><span style="color:#eb6772;">ln -s</span><span style="color:#abb2bf;"> /usr/local/bin/x86_64-linux-musl-gcc /usr/local/bin/musl-gcc
+</span></code></pre>
+<p>为项目追加 <code>.cargo/config.toml</code> 文件 ( 或者<code>.cargo/config</code>) , 然后追加配置到 <code>.cargo/config.toml</code>; <a href="https://doc.rust-lang.org/cargo/reference/config.html">阅读cargo config文档</a></p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#6c7079;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#abb2bf;">[build]
+</span><span style="font-style:italic;color:#5f697a;"># 设定默认target
+</span><span style="font-style:italic;color:#5f697a;"># target = &quot;x86_64-unknown-linux-musl&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">[target.x86_64-unknown-linux-musl]
+</span><span style="color:#eb6772;">linker </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;x86_64-linux-musl-gcc&quot;
+</span><span style="color:#eb6772;">rustflags </span><span style="color:#abb2bf;">= [</span><span style="color:#9acc76;">&quot;-C&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;link-arg=-Wl,-undefined,dynamic_lookup&quot;</span><span style="color:#abb2bf;">]
+</span></code></pre>
+<blockquote>
+<p>rustflags 给 rustc 的参数，也支持 <code>[build]</code> 节点。</p>
+</blockquote>
+<p>执行</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">cargo</span><span style="color:#abb2bf;"> build</span><span style="color:#eb6772;"> --target</span><span style="color:#abb2bf;"> x86_64-unknown-linux-musl
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 或者
+</span><span style="color:#eb6772;">CROSS_COMPILE</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">x86_64-linux-musl-gcc </span><span style="color:#eb6772;">cargo</span><span style="color:#abb2bf;"> build</span><span style="color:#eb6772;"> --release --target</span><span style="color:#abb2bf;"> x86_64-unknown-linux-musl
+</span></code></pre>
+<h2 id="shi-yong-rustc-lai-jiao-cha-bian-yi">使用 rustc 来交叉编译</h2>
+<p>编译单个文件</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">rustc -- --target=x86_64-unknown-linux-musl -C linker=x86_64-linux-musl-gcc -C link-args=&#39;-Wl,-undefined,dynamic_lookup&#39;
+</span></code></pre>
+<p><code>cargo rustc</code> 编译项目, 编译的文件会直接为 debug 内，而非 相应target文件夹内。</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">cargo rustc -- --target=x86_64-unknown-linux-musl -C linker=x86_64-linux-musl-gcc -C link-args=&#39;-Wl,-undefined,dynamic_lookup&#39;
+</span></code></pre>
+<h2 id="linux">linux</h2>
+<p>如果在linux下遇到 <code>error: linking with cc failed: exit code: 1</code>, 工具链错误</p>
+<ul>
+<li>安装 <code>binutils</code></li>
+</ul>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">yum</span><span style="color:#abb2bf;"> install binutils
+</span></code></pre>
+<ul>
+<li>参考项目 <a href="https://github.com/japaric/rust-cross">https://github.com/japaric/rust-cross</a></li>
+<li>参考文档 <a href="https://chr4.org/blog/2017/03/15/cross-compile-and-link-a-static-binary-on-macos-for-linux-with-cargo-and-rust/">Cross-compile and link a static binary on macOS for Linux with cargo and rust</a></li>
+<li><a href="https://blog.rust-lang.org/2016/05/13/rustup.html">rustup cross</a></li>
+</ul>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;rust-cross-build&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;rust-cross-build&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2020-07-16
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;rust-php-extension&#x2F;">
+    <i class="icon icon-left-open"></i>
+    基于 Solder 使用 Rust 来为 PHP 写扩展</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;pixel&#x2F;">
+    Pixel 像素艺术
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+<div class="no-print">
+  
+  <script src="https://giscus.app/client.js" data-repo="erasin/erasin.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnk3MzE0Mzg3Mw==" data-category="article" data-category-id="" data-mapping="pathname"
+    data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light"
+    data-lang="zh-CN" crossorigin="anonymous" async>
+    </script>
+  <style>
+    .utterances {
+      max-width: initial;
+    }
+  </style>
+  
+  
+</div>
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-danger" href="//erasin.wang/categories/rustlang/">rustlang</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-link" href="//erasin.wang/tags/rust/">rust</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="osx" href="//erasin.wang/rust-cross-build/#osx">osx</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="shi-yong-rustc-lai-jiao-cha-bian-yi" href="//erasin.wang/rust-cross-build/#shi-yong-rustc-lai-jiao-cha-bian-yi">使用 rustc 来交叉编译</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="linux" href="//erasin.wang/rust-cross-build/#linux">linux</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

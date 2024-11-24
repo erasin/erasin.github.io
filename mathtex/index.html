@@ -1,0 +1,525 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  Mathtex 数学公式处理 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="文档中数学公式处理 Mathtex,利用 LaTeX Mathematics 来生成公式" property="description" />
+
+  
+    <meta content="math" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> Mathtex 数学公式处理 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      MATHTEX 数学公式处理
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2019-12-16
+    </div>
+  </div>
+
+  <div class="post-content math " 
+    style="background-image:url(&#x27;&#x2F;assets&#x2F;img&#x2F;PI.svg&#x27;);background-size:200px;" >
+    <p>数学公式处理, 利用 LaTeX Mathematics 来生成公式</p>
+<h2 id="shi-li">示例</h2>
+<pre data-lang="tex" style="background-color:#2b303b;color:#6c7079;" class="language-tex "><code class="language-tex" data-lang="tex"><span style="color:#9acc76;">$$</span><span style="color:#eb6772;">x</span><span style="color:#adb7c9;">+</span><span style="color:#5ebfcc;">\sqrt</span><span style="color:#abb2bf;">{</span><span style="color:#db9d63;">1</span><span style="color:#adb7c9;">-</span><span style="color:#eb6772;">x</span><span style="color:#adb7c9;">^</span><span style="color:#db9d63;">2</span><span style="color:#abb2bf;">}</span><span style="color:#9acc76;">$$
+</span></code></pre>
+<p>$$x+\sqrt{1-x^2}$$</p>
+<pre data-lang="tex" style="background-color:#2b303b;color:#6c7079;" class="language-tex "><code class="language-tex" data-lang="tex"><span style="color:#9acc76;">$$</span><span style="color:#eb6772;">y</span><span style="color:#adb7c9;">=</span><span style="color:#5ebfcc;">\frac</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">{</span><span style="color:#db9d63;">1</span><span style="color:#adb7c9;">-</span><span style="color:#eb6772;">x</span><span style="color:#adb7c9;">^</span><span style="color:#db9d63;">2</span><span style="color:#abb2bf;">}</span><span style="color:#9acc76;">$$
+</span></code></pre>
+<p>$$y=\frac1{1-x^2}$$</p>
+<pre data-lang="tex" style="background-color:#2b303b;color:#6c7079;" class="language-tex "><code class="language-tex" data-lang="tex"><span style="color:#abb2bf;">... we have </span><span style="color:#9acc76;">$</span><span style="color:#eb6772;">x</span><span style="color:#5ebfcc;">\_</span><span style="color:#db9d63;">1 </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">132</span><span style="color:#9acc76;">$</span><span style="color:#abb2bf;"> and </span><span style="color:#9acc76;">$</span><span style="color:#eb6772;">x</span><span style="color:#5ebfcc;">\_</span><span style="color:#db9d63;">2 </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">370</span><span style="color:#9acc76;">$</span><span style="color:#abb2bf;"> and so ...
+</span></code></pre>
+<p>... we have $x_1 = 132$ and $x_2 = 370$ and so ...</p>
+<span id="continue-reading"></span><pre data-lang="tex" style="background-color:#2b303b;color:#6c7079;" class="language-tex "><code class="language-tex" data-lang="tex"><span style="color:#9acc76;">$$
+</span><span style="color:#cd74e8;">\begin</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">aligned</span><span style="color:#abb2bf;">}
+</span><span style="color:#5ebfcc;">\dot</span><span style="color:#abb2bf;">{</span><span style="color:#eb6772;">x</span><span style="color:#abb2bf;">} </span><span style="color:#db9d63;">&amp; </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">\sigma</span><span style="color:#db9d63;">(</span><span style="color:#eb6772;">y</span><span style="color:#adb7c9;">-</span><span style="color:#eb6772;">x</span><span style="color:#db9d63;">) \\
+</span><span style="color:#5ebfcc;">\dot</span><span style="color:#abb2bf;">{</span><span style="color:#eb6772;">y</span><span style="color:#abb2bf;">} </span><span style="color:#db9d63;">&amp; </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">\rho </span><span style="color:#eb6772;">x </span><span style="color:#adb7c9;">- </span><span style="color:#eb6772;">y </span><span style="color:#adb7c9;">- </span><span style="color:#eb6772;">xz </span><span style="color:#db9d63;">\\
+</span><span style="color:#5ebfcc;">\dot</span><span style="color:#abb2bf;">{</span><span style="color:#eb6772;">z</span><span style="color:#abb2bf;">} </span><span style="color:#db9d63;">&amp; </span><span style="color:#adb7c9;">= -</span><span style="color:#cd74e8;">\beta </span><span style="color:#eb6772;">z </span><span style="color:#adb7c9;">+ </span><span style="color:#eb6772;">xy
+</span><span style="color:#cd74e8;">\end</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">aligned</span><span style="color:#abb2bf;">}
+</span><span style="color:#9acc76;">$$
+</span></code></pre>
+<p>$$
+\begin{aligned}
+\dot{x} &amp; = \sigma(y-x) \\
+\dot{y} &amp; = \rho x - y - xz \\
+\dot{z} &amp; = -\beta z + xy
+\end{aligned}
+$$</p>
+<pre data-lang="tex" style="background-color:#2b303b;color:#6c7079;" class="language-tex "><code class="language-tex" data-lang="tex"><span style="color:#9acc76;">$$
+</span><span style="color:#eb6772;">M </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">\begin</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">bmatrix</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">    </span><span style="color:#5ebfcc;">\frac</span><span style="color:#abb2bf;">{</span><span style="color:#db9d63;">5</span><span style="color:#abb2bf;">}{</span><span style="color:#db9d63;">6</span><span style="color:#abb2bf;">} </span><span style="color:#db9d63;">&amp; </span><span style="color:#5ebfcc;">\frac</span><span style="color:#abb2bf;">{</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">}{</span><span style="color:#db9d63;">6</span><span style="color:#abb2bf;">} </span><span style="color:#db9d63;">&amp; 0           \\\\</span><span style="color:#abb2bf;">[</span><span style="color:#db9d63;">0.3</span><span style="color:#cd74e8;">em</span><span style="color:#abb2bf;">]
+</span><span style="color:#abb2bf;">    </span><span style="color:#5ebfcc;">\frac</span><span style="color:#abb2bf;">{</span><span style="color:#db9d63;">5</span><span style="color:#abb2bf;">}{</span><span style="color:#db9d63;">6</span><span style="color:#abb2bf;">} </span><span style="color:#db9d63;">&amp; 0           &amp; </span><span style="color:#5ebfcc;">\frac</span><span style="color:#abb2bf;">{</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">}{</span><span style="color:#db9d63;">6</span><span style="color:#abb2bf;">} </span><span style="color:#db9d63;">\\\\</span><span style="color:#abb2bf;">[</span><span style="color:#db9d63;">0.3</span><span style="color:#cd74e8;">em</span><span style="color:#abb2bf;">]
+</span><span style="color:#abb2bf;">    </span><span style="color:#db9d63;">0           &amp; </span><span style="color:#5ebfcc;">\frac</span><span style="color:#abb2bf;">{</span><span style="color:#db9d63;">5</span><span style="color:#abb2bf;">}{</span><span style="color:#db9d63;">6</span><span style="color:#abb2bf;">} </span><span style="color:#db9d63;">&amp; </span><span style="color:#5ebfcc;">\frac</span><span style="color:#abb2bf;">{</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">}{</span><span style="color:#db9d63;">6</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">\end</span><span style="color:#abb2bf;">{</span><span style="color:#adb7c9;">bmatrix</span><span style="color:#abb2bf;">}
+</span><span style="color:#9acc76;">$$
+</span></code></pre>
+<p>$$
+M = \begin{bmatrix}
+\frac{5}{6} &amp; \frac{1}{6} &amp; 0           \\[0.3em]
+\frac{5}{6} &amp; 0           &amp; \frac{1}{6} \\[0.3em]
+0           &amp; \frac{5}{6} &amp; \frac{1}{6}
+\end{bmatrix}
+$$</p>
+<h2 id="xiang-guan-zi-liao">相关资料</h2>
+<p><strong>学习文档</strong></p>
+<ul>
+<li><a href="https://en.wikibooks.org/wiki/LaTeX/Mathematics">Mathematics 语法 wiki</a></li>
+<li><a href="https://katex.org/docs/supported.html">Katex 语法支持</a></li>
+</ul>
+<p>API 驱动接口 (注意版本兼容)</p>
+<ol>
+<li>js <a href="https://www.mathjax.org/">MathJAX</a>  <a href="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">download</a>
+<ol>
+<li>化学公式 插件 <a href="https://mhchem.github.io/MathJax-mhchem/">github</a></li>
+</ol>
+</li>
+<li><a href="https://katex.org/">KaTeX</a> <a href="https://github.com/KaTeX/KaTeX">github</a> <a href="https://katex.org/#demo">测试地址</a></li>
+<li><a href="http://www.forkosh.com/mathtex.html">mathTex</a>
+<a href="http://www.forkosh.com/mimetextutorial.html">文档</a>
+<a href="http://www.forkosh.com/cgi-bin/mathtex.cgi?x=%5Cfrac%7B-b%5Cpm%5Csqrt%7Bb^2-4ac%7D%7D%7B2a%7D">测试用例</a></li>
+<li><a href="https://developers.google.com/chart/">Google Chart</a>  <a href="https://developers.google.com/chart/infographics/docs/formulas">formulas文档</a>
+<ol>
+<li><a href="https://chart.googleapis.com/chart?cht=tx&amp;chl=x=%5Cfrac%7B-b%5Cpm%5Csqrt%7Bb^2-4ac%7D%7D%7B2a%7D">测试用例1</a></li>
+<li><a href="http://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cfrac%7Bn!%7D%7Bk!(n-k)!%7D%20=%20%5Cbinom%7Bn%7D%7Bk%7D">测试用例2</a></li>
+</ol>
+</li>
+</ol>
+<h2 id="mathjax-js-xuan-ran">MathJax.js 渲染</h2>
+<pre data-lang="html" style="background-color:#2b303b;color:#6c7079;" class="language-html "><code class="language-html" data-lang="html"><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">script</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#eb6772;">MathJax </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">  loader: {
+</span><span style="color:#abb2bf;">    load: [</span><span style="color:#9acc76;">&#39;input/tex-base&#39;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&#39;output/svg&#39;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&#39;ui/menu&#39;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&#39;[tex]/require&#39;</span><span style="color:#abb2bf;">]
+</span><span style="color:#abb2bf;">  },
+</span><span style="color:#abb2bf;">  tex: {
+</span><span style="color:#abb2bf;">    inlineMath: [[</span><span style="color:#9acc76;">&#39;$&#39;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&#39;$&#39;</span><span style="color:#abb2bf;">]]
+</span><span style="color:#abb2bf;">  }
+</span><span style="color:#abb2bf;">};
+</span><span style="color:#abb2bf;">&lt;/</span><span style="color:#eb6772;">script</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">script </span><span style="color:#db9d63;">src</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;https://polyfill.io/v3/polyfill.min.js?features=es6&quot;</span><span style="color:#abb2bf;">&gt;&lt;/</span><span style="color:#eb6772;">script</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">script </span><span style="color:#db9d63;">id</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;MathJax-script&quot; </span><span style="color:#db9d63;">async src</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-mml-chtml.js&quot;</span><span style="color:#abb2bf;">&gt;&lt;/</span><span style="color:#eb6772;">script</span><span style="color:#abb2bf;">&gt;
+</span></code></pre>
+<h2 id="katex-js-xuan-ran">katex.js 渲染</h2>
+<p><a href="https://katex.org/">katex 站</a></p>
+<pre data-lang="html" style="background-color:#2b303b;color:#6c7079;" class="language-html "><code class="language-html" data-lang="html"><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">link </span><span style="color:#db9d63;">rel</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;stylesheet&quot; </span><span style="color:#db9d63;">href</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;https://cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css&quot; </span><span style="color:#db9d63;">integrity</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq&quot; </span><span style="color:#db9d63;">crossorigin</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;anonymous&quot;</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">script </span><span style="color:#db9d63;">defer src</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;https://cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js&quot; </span><span style="color:#db9d63;">integrity</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz&quot; </span><span style="color:#db9d63;">crossorigin</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;anonymous&quot;</span><span style="color:#abb2bf;">&gt;&lt;/</span><span style="color:#eb6772;">script</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">script </span><span style="color:#db9d63;">defer src</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;https://cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js&quot; </span><span style="color:#db9d63;">integrity</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI&quot; </span><span style="color:#db9d63;">crossorigin</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;anonymous&quot;</span><span style="color:#abb2bf;">&gt;&lt;/</span><span style="color:#eb6772;">script</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">script</span><span style="color:#abb2bf;">&gt;
+</span><span style="color:#abb2bf;">document.</span><span style="color:#eb6772;">addEventListener</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;DOMContentLoaded&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#cd74e8;">function </span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">renderMathInElement</span><span style="color:#abb2bf;">(</span><span style="color:#adb7c9;">element</span><span style="color:#abb2bf;">, {
+</span><span style="color:#abb2bf;">        delimiters: [
+</span><span style="color:#abb2bf;">            {left: </span><span style="color:#9acc76;">&quot;$$&quot;</span><span style="color:#abb2bf;">, right: </span><span style="color:#9acc76;">&quot;$$&quot;</span><span style="color:#abb2bf;">, display: </span><span style="color:#db9d63;">true</span><span style="color:#abb2bf;">},
+</span><span style="color:#abb2bf;">            { left: </span><span style="color:#9acc76;">&quot;$&quot;</span><span style="color:#abb2bf;">, right: </span><span style="color:#9acc76;">&quot;$&quot;</span><span style="color:#abb2bf;">, display: </span><span style="color:#db9d63;">false </span><span style="color:#abb2bf;">},
+</span><span style="color:#abb2bf;">            {left: </span><span style="color:#9acc76;">&quot;</span><span style="color:#5ebfcc;">\\</span><span style="color:#9acc76;">(&quot;</span><span style="color:#abb2bf;">, right: </span><span style="color:#9acc76;">&quot;</span><span style="color:#5ebfcc;">\\</span><span style="color:#9acc76;">)&quot;</span><span style="color:#abb2bf;">, display: </span><span style="color:#db9d63;">false</span><span style="color:#abb2bf;">},
+</span><span style="color:#abb2bf;">            {left: </span><span style="color:#9acc76;">&quot;</span><span style="color:#5ebfcc;">\\</span><span style="color:#9acc76;">[&quot;</span><span style="color:#abb2bf;">, right: </span><span style="color:#9acc76;">&quot;</span><span style="color:#5ebfcc;">\\</span><span style="color:#9acc76;">]&quot;</span><span style="color:#abb2bf;">, display: </span><span style="color:#db9d63;">true</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">        ],
+</span><span style="color:#abb2bf;">        ignoredTags:[</span><span style="color:#9acc76;">&quot;script&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;noscript&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;style&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;textarea&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;pre&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;code&quot;</span><span style="color:#abb2bf;">],
+</span><span style="color:#abb2bf;">        ignoredClasses:[</span><span style="color:#9acc76;">&#39;tag&#39;</span><span style="color:#abb2bf;">],
+</span><span style="color:#abb2bf;">    }) ;
+</span><span style="color:#abb2bf;">});
+</span><span style="color:#abb2bf;">&lt;/</span><span style="color:#eb6772;">script</span><span style="color:#abb2bf;">&gt;
+</span></code></pre>
+<h2 id="katex-vs-mathjax-xing-neng-dui-bi">katex VS MathJax 性能对比</h2>
+<ul>
+<li><a href="https://www.intmath.com/cg5/katex-mathjax-comparison.php">https://www.intmath.com/cg5/katex-mathjax-comparison.php</a></li>
+</ul>
+<h2 id="shu-xue-gong-shi">数学公式</h2>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;mathtex&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;mathtex&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2019-12-16
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;font-char-unicode&#x2F;">
+    <i class="icon icon-left-open"></i>
+    unicode 对照表 </a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;plantuml&#x2F;">
+    PlantUML 语法
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-primary" href="//erasin.wang/categories/math/">math</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-light" href="//erasin.wang/tags/math/">math</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="shi-li" href="//erasin.wang/mathtex/#shi-li">示例</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="xiang-guan-zi-liao" href="//erasin.wang/mathtex/#xiang-guan-zi-liao">相关资料</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="mathjax-js-xuan-ran" href="//erasin.wang/mathtex/#mathjax-js-xuan-ran">MathJax.js 渲染</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="katex-js-xuan-ran" href="//erasin.wang/mathtex/#katex-js-xuan-ran">katex.js 渲染</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="katex-vs-mathjax-xing-neng-dui-bi" href="//erasin.wang/mathtex/#katex-vs-mathjax-xing-neng-dui-bi">katex VS MathJax 性能对比</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="shu-xue-gong-shi" href="//erasin.wang/mathtex/#shu-xue-gong-shi">数学公式</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,878 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  Mermaid UML 流程图工具 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="UML流程图时序图，降价文本流程图绘制" property="description" />
+
+  
+    <meta content="uml,web,javascript" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+    
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> Mermaid UML 流程图工具 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      MERMAID UML 流程图工具
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2020-04-17
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <p>Mermaid 使用文本来构建UML流程图，类似于 Markdown 的降介文档，用javascript来生成 UML 图。
+<a href="https://mermaid-js.github.io/mermaid/#/README">官方文档</a></p>
+<p>和 <a href="/plantuml/">plantuml</a> 类似，都是属于降介文本格式输出类似 dot 图形。</p>
+<h2 id="qian-ru-shi-yong">嵌入使用</h2>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">https://cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js
+</span></code></pre>
+<ol>
+<li>使用默认的渲染，引入js 后，将文本放入 <code>div.mermaid</code> 中，让 Mermaid 自动渲染。</li>
+</ol>
+<pre data-lang="html" style="background-color:#2b303b;color:#6c7079;" class="language-html "><code class="language-html" data-lang="html"><span style="color:#abb2bf;">&lt;</span><span style="color:#eb6772;">div </span><span style="color:#db9d63;">class</span><span style="color:#abb2bf;">=</span><span style="color:#9acc76;">&quot;mermaid&quot;</span><span style="color:#abb2bf;">&gt; 
+</span><span style="color:#abb2bf;">flowchart LR;
+</span><span style="color:#abb2bf;">    A--&gt;B;
+</span><span style="color:#abb2bf;">    B--&gt;C; 
+</span><span style="color:#abb2bf;">&lt;/</span><span style="color:#eb6772;">div</span><span style="color:#abb2bf;">&gt;
+</span></code></pre>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">flowchart LR;
+</span><span style="color:#abb2bf;">    A--&gt;B;
+</span><span style="color:#abb2bf;">    B--&gt;C; 
+</span></code></pre>
+<span id="continue-reading"></span>
+<ol start="2">
+<li>手动渲染，在需要加入事件定义的时候使用。</li>
+</ol>
+<pre data-lang="js" style="background-color:#2b303b;color:#6c7079;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">$uml </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">document.</span><span style="color:#5ebfcc;">querySelectorAll</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;.language-uml&#39;</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">  </span><span style="color:#eb6772;">$uml</span><span style="color:#abb2bf;">.</span><span style="color:#5ebfcc;">forEach</span><span style="color:#abb2bf;">(</span><span style="color:#cd74e8;">function </span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">item</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">index</span><span style="color:#abb2bf;">) {
+</span><span style="color:#abb2bf;">     </span><span style="font-style:italic;color:#5f697a;">// 渲染 svg id=mermaid+index 
+</span><span style="color:#abb2bf;">     </span><span style="color:#eb6772;">mermaid</span><span style="color:#abb2bf;">.</span><span style="color:#5cb3fa;">render</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;mermaid-&#39; </span><span style="color:#adb7c9;">+ </span><span style="color:#eb6772;">index</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">item</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">innerText</span><span style="color:#abb2bf;">, (</span><span style="color:#eb6772;">dataSVG</span><span style="color:#abb2bf;">) </span><span style="color:#cd74e8;">=&gt; </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">           </span><span style="font-style:italic;color:#5f697a;">//....
+</span><span style="color:#abb2bf;">     });
+</span><span style="color:#abb2bf;">  });
+</span></code></pre>
+<blockquote>
+<p>可以查看当前页面 init.js 中的 uml 处理</p>
+</blockquote>
+<h2 id="liu-cheng-tu">流程图</h2>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">flowchart TD;
+</span><span style="color:#abb2bf;">    A--&gt;B;
+</span><span style="color:#abb2bf;">    A--&gt;C;
+</span><span style="color:#abb2bf;">    B--&gt;D;
+</span><span style="color:#abb2bf;">    C--&gt;D;
+</span></code></pre>
+<h3 id="flowchart">Flowchart</h3>
+<ul>
+<li>TB - top bottom</li>
+<li>BT - bottom top</li>
+<li>RL - right left</li>
+<li>LR - left right</li>
+<li>TD - same as TB</li>
+</ul>
+<p><strong>上下</strong></p>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">flowchart TD
+</span><span style="color:#abb2bf;">    Start --&gt; Stop
+</span></code></pre>
+<p><strong>左右</strong></p>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">flowchart LR 
+</span><span style="color:#abb2bf;">    Start --&gt; Stop
+</span></code></pre>
+<h3 id="jie-dian-he-xing-zhuang">节点和形状</h3>
+<p><strong>节点 node</strong></p>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">flowchart LR
+</span><span style="color:#abb2bf;">    id
+</span></code></pre>
+<p>文字节点 <code>node[...]</code></p>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">flowchart LR
+</span><span style="color:#abb2bf;">    id1[This is the text in the box]
+</span></code></pre>
+<p>圆角文字 <code>(...)</code></p>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">flowchart LR
+</span><span style="color:#abb2bf;">    id1(This is the text in the box)
+</span></code></pre>
+<p>大圆角文字 <code>([...])</code></p>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">flowchart LR
+</span><span style="color:#abb2bf;">    id1([This is the text in the box])
+</span></code></pre>
+<p>圆柱 <code>[(...)]</code></p>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">flowchart LR
+</span><span style="color:#abb2bf;">    id1[(Database)]
+</span></code></pre>
+<p>圆形 <code>((...))</code></p>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">flowchart LR
+</span><span style="color:#abb2bf;">    id1((This is the text in the circle))
+</span></code></pre>
+<p>旗标 <code>&gt;...]</code></p>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">flowchart LR
+</span><span style="color:#abb2bf;">    id1&gt;This is the text in the box]
+</span></code></pre>
+<p>菱形 <code>{...}</code></p>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">flowchart LR
+</span><span style="color:#abb2bf;">    id1{This is the text in the box}
+</span></code></pre>
+<p>六角形 <code>{{...}}</code></p>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">flowchart LR
+</span><span style="color:#abb2bf;">    id1{{This is the text in the box}}
+</span></code></pre>
+<p>平行四边形</p>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">flowchart TD
+</span><span style="color:#abb2bf;">    id1[/This is the text in the box/]
+</span><span style="color:#abb2bf;">    id2[\This is the text in the box\]
+</span></code></pre>
+<p>梯形</p>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">flowchart TD
+</span><span style="color:#abb2bf;">    A[/Christmas\]
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    B[\Go shopping/]
+</span></code></pre>
+<h3 id="lian-jie">连接</h3>
+<ul>
+<li><code>--&gt;</code> 箭头连接 2</li>
+<li><code>---</code> 单线连接 3</li>
+<li><code>-- text ---</code> 注释连接 (左2 右3)</li>
+<li><code>---| text |</code> 注释连接</li>
+<li><code>--text--&gt;</code>   2 2</li>
+<li><code>---&gt;|text|</code> 3</li>
+<li><code>-.-&gt;</code> 虚线</li>
+<li><code>-. text .-&gt;</code> 虚线</li>
+<li><code>==&gt;</code> 大箭头 2</li>
+</ul>
+<blockquote>
+<p>支持链式写法 <code>a --&gt; b --&gt; c</code></p>
+</blockquote>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">flowchart LR
+</span><span style="color:#abb2bf;">    A --&gt; B --- C
+</span><span style="color:#abb2bf;">    C2 -- TEXT --- D
+</span><span style="color:#abb2bf;">    D -- TEXT --&gt; E
+</span><span style="color:#abb2bf;">    E2 -.-&gt; F -. TEXT .-&gt; G
+</span><span style="color:#abb2bf;">    G2 ==&gt; H == TEXT ==&gt; J
+</span></code></pre>
+<p>使用 <code>&amp;</code> 符号 连接，来减少重复项, 比如下方的</p>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">flowchart TD
+</span><span style="color:#abb2bf;">    A --&gt; B &amp; C --&gt; D
+</span><span style="color:#abb2bf;">    a &amp; b --&gt; c &amp; d --&gt; e 
+</span></code></pre>
+<h3 id="zhuan-yi">转义</h3>
+<p>需要转义的字符可以使用 <code>"..."</code> 双引号来处理</p>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">flowchart LR
+</span><span style="color:#abb2bf;">id1[&quot;This is the (text) in the box&quot;]
+</span><span style="color:#abb2bf;">A[&quot;A double quote:#quot;&quot;] --&gt;B[&quot;A dec char:#9829;&quot;]
+</span></code></pre>
+<h3 id="zi-tu-subgraph">子图 subgraph</h3>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">subgraph title
+</span><span style="color:#abb2bf;">    graph definition
+</span><span style="color:#abb2bf;">end
+</span></code></pre>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">flowchart TB
+</span><span style="color:#abb2bf;">    c1--&gt;a2
+</span><span style="color:#abb2bf;">    subgraph one
+</span><span style="color:#abb2bf;">    a1--&gt;a2
+</span><span style="color:#abb2bf;">    end
+</span><span style="color:#abb2bf;">    subgraph two
+</span><span style="color:#abb2bf;">    b1--&gt;b2
+</span><span style="color:#abb2bf;">    end
+</span><span style="color:#abb2bf;">    subgraph three
+</span><span style="color:#abb2bf;">    c1--&gt;c2
+</span><span style="color:#abb2bf;">    end
+</span></code></pre>
+<h3 id="shi-jian-bang-ding">事件绑定</h3>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">click node callback
+</span></code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#6c7079;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#abb2bf;">  </span><span style="color:#cd74e8;">var </span><span style="color:#5cb3fa;">callback </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">function</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">arg</span><span style="color:#abb2bf;">){
+</span><span style="color:#abb2bf;">      </span><span style="color:#f0c678;">console</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">arg</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">      </span><span style="color:#5cb3fa;">alert</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;A callback was triggered&#39;</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">  }
+</span></code></pre>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">flowchart LR;
+</span><span style="color:#abb2bf;">    A--&gt;B;
+</span><span style="color:#abb2bf;">    click A callback
+</span><span style="color:#abb2bf;">    click B &quot;http://erasin.wang&quot; &quot;This is a tooltip for a link&quot;
+</span></code></pre>
+<h3 id="zhu-shi">注释</h3>
+<p>注释 <code>%%</code> 开始忽略任何语法</p>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">flowchart LR
+</span><span style="color:#abb2bf;">    %% this is a comment A -- text --&gt; B{node}
+</span><span style="color:#abb2bf;">   A -- text --&gt; B -- text2 --&gt; C
+</span></code></pre>
+<h3 id="yang-shi">样式</h3>
+<ul>
+<li><code>style node style</code> 节点样式</li>
+<li><code>classDef className style</code> 声明类
+<ul>
+<li><code>class node1,node2 className;</code> 样式附加方式1</li>
+<li><code>node:::className</code> 直接在流程中附加样式</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>style 描述svg 样式 <code>,</code> 来分割; fill 填充色， stroke 线条 stroke-width 线条宽度 color 前置色。<br />
+具体参照 <a href="http://home.ustc.edu.cn/~xie1993/svg/svg-stroke.html">svg stroke 属性</a></p>
+</blockquote>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">flowchart LR
+</span><span style="color:#abb2bf;">    id1(Start)--&gt;id2(Stop)--&gt;id3:::className--&gt;id4
+</span><span style="color:#abb2bf;">    classDef className fill:#f9f,stroke:#333,stroke-width:4px;
+</span><span style="color:#abb2bf;">    style id1 fill:#f9f,stroke:#333,stroke-width:4px
+</span><span style="color:#abb2bf;">    style id2 fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5, 5
+</span><span style="color:#abb2bf;">    class id4 className;
+</span></code></pre>
+<p>设置默认</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">    classDef default fill:#f9f,stroke:#333,stroke-width:4px;
+</span></code></pre>
+<h3 id="example">example</h3>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">flowchart LR
+</span><span style="color:#abb2bf;">    A[Hard edge] --Link text--&gt; B(Round edge)
+</span><span style="color:#abb2bf;">    B --&gt; C{Decision}
+</span><span style="color:#abb2bf;">    C --&gt;|One| D[Result one]
+</span><span style="color:#abb2bf;">    C --&gt;|Two| E[Result two]
+</span></code></pre>
+<h2 id="shi-xu-tu">时序图</h2>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">sequenceDiagram
+</span><span style="color:#abb2bf;">    Alice -&gt;&gt; Bob: Hello Bob, how are you?
+</span><span style="color:#abb2bf;">    Bob--&gt;&gt;John: How about you John?
+</span><span style="color:#abb2bf;">    Bob--x Alice: I am good thanks!
+</span><span style="color:#abb2bf;">    Bob-x John: I am good thanks!
+</span><span style="color:#abb2bf;">    Note right of John: Bob thinks a long&lt;br/&gt;long time, so long&lt;br/&gt;that the text does&lt;br/&gt;not fit on a row.
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    Bob--&gt;Alice: Checking with John...
+</span><span style="color:#abb2bf;">    Alice-&gt;John: Yes... John, how are you?
+</span></code></pre>
+<h3 id="loop-alt-opt">loop alt opt</h3>
+<h2 id="gan-te-tu">甘特图</h2>
+<p><a href="https://mermaid-js.github.io/mermaid/#/gantt">文档</a></p>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">gantt
+</span><span style="color:#abb2bf;">    title 甘特图
+</span><span style="color:#abb2bf;">    dateFormat  YYYY-MM-DD
+</span><span style="color:#abb2bf;">    section 章节1
+</span><span style="color:#abb2bf;">    日志1             :a1, 2014-01-01, 30d
+</span><span style="color:#abb2bf;">    日志2             :after a1  , 20d
+</span><span style="color:#abb2bf;">    日志3             :after a1 , 11d
+</span><span style="color:#abb2bf;">    section 章节2
+</span><span style="color:#abb2bf;">    起始时间2.1       :2014-01-12  , 12d
+</span><span style="color:#abb2bf;">    日志2.2 task      : 24d
+</span></code></pre>
+<h2 id="bing-zhuang-tu">饼状图</h2>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">pie
+</span><span style="color:#abb2bf;">    title Key elements in Product X
+</span><span style="color:#abb2bf;">    &quot;Calcium&quot; : 42.96
+</span><span style="color:#abb2bf;">    &quot;Potassium&quot; : 50.05
+</span><span style="color:#abb2bf;">    &quot;Magnesium&quot; : 10.01
+</span><span style="color:#abb2bf;">    &quot;Iron&quot; :  5
+</span></code></pre>
+<h2 id="lei-tu">类图</h2>
+<p><code>classDiagram</code> 标记开始</p>
+<ul>
+<li><code>class Name{}</code> 命名类</li>
+<li><code>+Attr</code> 属性（在括号内）
+<ul>
+<li><code>className: +Attr</code> 属性</li>
+</ul>
+</li>
+<li><code>+Fun()</code> 函数（在括号内）
+<ul>
+<li><code>className: +Fun()</code> 函数</li>
+<li><code>+Func(a~b~ c)</code> 中使用<code>~</code>替代 <code>&lt;&gt;</code> 表示组织关系 <code>a&lt;b&gt; c</code></li>
+</ul>
+</li>
+<li><code>class1 &lt;|-- class2</code> 关系隶属</li>
+</ul>
+<p><strong>属性方法的权限</strong></p>
+<ul>
+<li><code>+</code> Public</li>
+<li><code>-</code> Private</li>
+<li><code>#</code> Protected</li>
+<li><code>~</code> Package/Internal</li>
+</ul>
+<p><strong>关系</strong></p>
+<table><thead><tr><th>符号</th><th>关系</th></tr></thead><tbody>
+<tr><td>&lt;|--</td><td>Inheritance</td></tr>
+<tr><td><code>*--</code></td><td>Composition</td></tr>
+<tr><td><code>o--</code></td><td>Aggregation</td></tr>
+<tr><td><code>--&gt;</code></td><td>Association</td></tr>
+<tr><td><code>--</code></td><td>Link (Solid)</td></tr>
+<tr><td><code>..&gt;</code></td><td>Dependency</td></tr>
+<tr><td><code>..&gt;</code></td><td>Realization</td></tr>
+<tr><td><code>..</code></td><td>Link (Dashed)</td></tr>
+</tbody></table>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">classDiagram
+</span><span style="color:#abb2bf;">     Animal &lt;|-- Duck : 备注
+</span><span style="color:#abb2bf;">     Animal -- Fish
+</span><span style="color:#abb2bf;">     Animal &lt;-- Zebra
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">     Animal: +int age
+</span><span style="color:#abb2bf;">     Animal: +String gender
+</span><span style="color:#abb2bf;">     Animal: +isMammal(a~b~ c)
+</span><span style="color:#abb2bf;">     Animal: +mate()
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">     class Duck{
+</span><span style="color:#abb2bf;">         +String beakColor
+</span><span style="color:#abb2bf;">         +swim()
+</span><span style="color:#abb2bf;">         +quack()
+</span><span style="color:#abb2bf;">     }
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">     class Fish{
+</span><span style="color:#abb2bf;">         -int sizeInFeet
+</span><span style="color:#abb2bf;">         -canEat()
+</span><span style="color:#abb2bf;">     }
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">     class Zebra{
+</span><span style="color:#abb2bf;">        &lt;&lt;interface&gt;&gt;
+</span><span style="color:#abb2bf;">         +bool is_wild
+</span><span style="color:#abb2bf;">         +run()
+</span><span style="color:#abb2bf;">     }
+</span></code></pre>
+<ul>
+<li><code>&lt;&lt;Interface&gt;&gt;</code> To represent an Interface class</li>
+<li><code>&lt;&lt;abstract&gt;&gt;</code> To represent an abstract class</li>
+<li><code>&lt;&lt;Service&gt;&gt;</code> To represent a service class</li>
+<li><code>&lt;&lt;enumeration&gt;&gt;</code> To represent an enum</li>
+</ul>
+<p><a href="https://mermaid-js.github.io/mermaid/#/classDiagram">更多查看</a></p>
+<h2 id="zhuang-tai-tu">状态图</h2>
+<p>用来表达状态机</p>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">stateDiagram
+</span><span style="color:#abb2bf;">    IDLE: &quot;正常状态&quot;
+</span><span style="color:#abb2bf;">    [*] --&gt; IDLE
+</span><span style="color:#abb2bf;">    IDLE --&gt; [*]
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    IDLE --&gt; Jump 
+</span><span style="color:#abb2bf;">    Jump --&gt; IDLE
+</span><span style="color:#abb2bf;">    Moving --&gt; Jump : 走动跳动
+</span><span style="color:#abb2bf;">    Jump --&gt; Moving
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    IDLE --&gt; Moving
+</span><span style="color:#abb2bf;">    Moving --&gt; IDLE
+</span><span style="color:#abb2bf;">    Moving --&gt; Crash
+</span><span style="color:#abb2bf;">    Crash --&gt; [*]
+</span></code></pre>
+<h3 id="bei-zhu">备注</h3>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">stateDiagram
+</span><span style="color:#abb2bf;">    IDLE: &quot;正常状态&quot;
+</span></code></pre>
+<h3 id="fu-he-zhuang-tai">复合状态</h3>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">stateDiagram
+</span><span style="color:#abb2bf;">    [*] --&gt; First
+</span><span style="color:#abb2bf;">    state First {
+</span><span style="color:#abb2bf;">        [*] --&gt; second
+</span><span style="color:#abb2bf;">        second --&gt; [*]
+</span><span style="color:#abb2bf;">    }
+</span></code></pre>
+<h3 id="bing-fa">并发</h3>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#6c7079;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span style="color:#abb2bf;">   stateDiagram
+</span><span style="color:#abb2bf;">    state fork_state &lt;&lt;fork&gt;&gt;
+</span><span style="color:#abb2bf;">      [*] --&gt; fork_state
+</span><span style="color:#abb2bf;">      fork_state --&gt; State2
+</span><span style="color:#abb2bf;">      fork_state --&gt; State3
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">      state join_state &lt;&lt;join&gt;&gt;
+</span><span style="color:#abb2bf;">      State2 --&gt; join_state
+</span><span style="color:#abb2bf;">      State3 --&gt; join_state
+</span><span style="color:#abb2bf;">      join_state --&gt; State4
+</span><span style="color:#abb2bf;">      State4 --&gt; [*]
+</span></code></pre>
+<h3 id="fen-zu">分组</h3>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;mermaid&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;mermaid&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2020-04-17
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;godot-shader-object&#x2F;">
+    <i class="icon icon-left-open"></i>
+    Godot Shader 着色器</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;otp&#x2F;">
+    OTP 动态密码算法
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+<div class="no-print">
+  
+  <script src="https://giscus.app/client.js" data-repo="erasin/erasin.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnk3MzE0Mzg3Mw==" data-category="article" data-category-id="" data-mapping="pathname"
+    data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light"
+    data-lang="zh-CN" crossorigin="anonymous" async>
+    </script>
+  <style>
+    .utterances {
+      max-width: initial;
+    }
+  </style>
+  
+  
+</div>
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-info" href="//erasin.wang/categories/soft/">soft</a>
+
+
+
+<a class="tag is-black" href="//erasin.wang/categories/web/">web</a>
+
+
+
+<a class="tag is-link" href="//erasin.wang/categories/javascript/">javascript</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-info" href="//erasin.wang/tags/uml/">uml</a>
+
+
+
+<a class="tag is-primary" href="//erasin.wang/tags/web/">web</a>
+
+
+
+<a class="tag is-link" href="//erasin.wang/tags/javascript/">javascript</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="qian-ru-shi-yong" href="//erasin.wang/mermaid/#qian-ru-shi-yong">嵌入使用</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="liu-cheng-tu" href="//erasin.wang/mermaid/#liu-cheng-tu">流程图</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="flowchart" href="//erasin.wang/mermaid/#flowchart">Flowchart</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="jie-dian-he-xing-zhuang" href="//erasin.wang/mermaid/#jie-dian-he-xing-zhuang">节点和形状</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="lian-jie" href="//erasin.wang/mermaid/#lian-jie">连接</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="zhuan-yi" href="//erasin.wang/mermaid/#zhuan-yi">转义</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="zi-tu-subgraph" href="//erasin.wang/mermaid/#zi-tu-subgraph">子图 subgraph</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="shi-jian-bang-ding" href="//erasin.wang/mermaid/#shi-jian-bang-ding">事件绑定</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="zhu-shi" href="//erasin.wang/mermaid/#zhu-shi">注释</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="yang-shi" href="//erasin.wang/mermaid/#yang-shi">样式</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="example" href="//erasin.wang/mermaid/#example">example</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="shi-xu-tu" href="//erasin.wang/mermaid/#shi-xu-tu">时序图</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="loop-alt-opt" href="//erasin.wang/mermaid/#loop-alt-opt">loop alt opt</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="gan-te-tu" href="//erasin.wang/mermaid/#gan-te-tu">甘特图</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="bing-zhuang-tu" href="//erasin.wang/mermaid/#bing-zhuang-tu">饼状图</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="lei-tu" href="//erasin.wang/mermaid/#lei-tu">类图</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="zhuang-tai-tu" href="//erasin.wang/mermaid/#zhuang-tai-tu">状态图</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="bei-zhu" href="//erasin.wang/mermaid/#bei-zhu">备注</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="fu-he-zhuang-tai" href="//erasin.wang/mermaid/#fu-he-zhuang-tai">复合状态</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="bing-fa" href="//erasin.wang/mermaid/#bing-fa">并发</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="fen-zu" href="//erasin.wang/mermaid/#fen-zu">分组</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

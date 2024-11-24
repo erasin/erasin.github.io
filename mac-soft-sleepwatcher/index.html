@@ -1,0 +1,478 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  Mac 睡眠监控sleepwatcher和蓝牙控制 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="对macbook睡眠自动唤醒导致电池耗电监控处理,主要是蓝牙问题" property="description" />
+
+  
+    <meta content="mac,macbook,macbook pro,sleepwatcher,soft" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+    
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> Mac 睡眠监控sleepwatcher和蓝牙控制 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      MAC 睡眠监控SLEEPWATCHER和蓝牙控制
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2022-11-06
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <p>最近，晚上关闭MacBook后，第二天打开电脑黑屏，充电后才会重新开机，发现电池已经
+耗尽电量。</p>
+<p>MacBook 睡眠模式下，wifi和蓝牙都会继续工作， 有的时候多个设备的信息共享会莫名奇
+妙的自动唤醒 mac， 然后导致耗电。</p>
+<p>检查 <code>系统设置</code>-&gt;<code>电池</code>内选项，使用电池电脑休眠时，启用电能小憩，是否选上。
+网络唤醒选择仅使用电源适配器的选项。</p>
+<h2 id="sleepwatcher">sleepwatcher</h2>
+<p>sleepwatcher: <a href="https://www.bernhard-baehr.de/">https://www.bernhard-baehr.de/</a> 是一个监控睡眠的守护进程工具，当
+Mac 在唤醒和睡眠的的时候，可以执行配置的 <code>sleep</code> 和 <code>wakeup</code> 脚本程序，它还可以
+监控上次睡眠前的活动信息。</p>
+<p>使用 brew 安装</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#5f697a;"># 安装
+</span><span style="color:#eb6772;">brew</span><span style="color:#abb2bf;"> install sleepwatcher
+</span><span style="font-style:italic;color:#5f697a;"># 设置启动
+</span><span style="color:#eb6772;">brew</span><span style="color:#abb2bf;"> services start sleepwatcher
+</span></code></pre>
+<p>检查文件可以看到 <code>/usr/local/Cellar/sleepwatcher/2.2.1/</code> 文件夹中
+<code>homebrew.mxcl.sleepwatcher.plist</code> 和 <code>homebrew.sleepwatcher.service</code> 里的配置
+参数,</p>
+<p>查看这两个文件可以看到，默认的配置脚本参数是 <code>HOME_PATH/.sleep</code> 和
+<code>HOME_PATH/.wakeup</code> , 可以创建 <code>.config/sleepwatcher/sleep|wakeup</code> , 然后修改配
+置文件 <code>-s</code> 和 <code>-w</code> 参数,然后 <code>brew services restart sleepwatcher</code></p>
+<span id="continue-reading"></span><h2 id="dui-lan-ya-jin-xing-kong-zhi">对蓝牙进行控制</h2>
+<p>安装蓝牙控制 <code>blueutil</code></p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">brew</span><span style="color:#abb2bf;"> install blueutil
+</span></code></pre>
+<p>在 <a href="https://www.v2ex.com/t/740591#r_10002439">vb2ex</a> 中有人提供了脚本</p>
+<p>睡眠触发任务 file: on-sleep.sh</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#5f697a;">#!/usr/bin/env bash
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">export </span><span style="color:#eb6772;">BLUEUTIL_ALLOW_ROOT</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">1
+</span><span style="color:#abb2bf;">
+</span><span style="color:#5ebfcc;">echo </span><span style="color:#abb2bf;">`</span><span style="color:#eb6772;">date</span><span style="color:#abb2bf;">` Disable WLAN...
+</span><span style="color:#eb6772;">networksetup -setairportpower</span><span style="color:#abb2bf;"> en0 off
+</span><span style="color:#abb2bf;">
+</span><span style="color:#5ebfcc;">echo </span><span style="color:#abb2bf;">`</span><span style="color:#eb6772;">date</span><span style="color:#abb2bf;">` Disable Bluetooth...
+</span><span style="color:#eb6772;">/usr/local/bin/blueutil -p</span><span style="color:#abb2bf;"> off
+</span></code></pre>
+<p>唤醒触发任务 file: on-wakeup.sh</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#5f697a;">#!/usr/bin/env bash
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">export </span><span style="color:#eb6772;">BLUEUTIL_ALLOW_ROOT</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">1
+</span><span style="color:#abb2bf;">
+</span><span style="color:#5ebfcc;">echo </span><span style="color:#abb2bf;">`</span><span style="color:#eb6772;">date</span><span style="color:#abb2bf;">` Enable Bluetooth...
+</span><span style="color:#eb6772;">/usr/local/bin/blueutil -p</span><span style="color:#abb2bf;"> on
+</span><span style="color:#abb2bf;">
+</span><span style="color:#5ebfcc;">echo </span><span style="color:#abb2bf;">`</span><span style="color:#eb6772;">date</span><span style="color:#abb2bf;">` Enable WLAN...
+</span><span style="color:#eb6772;">networksetup -setairportpower</span><span style="color:#abb2bf;"> en0 on
+</span></code></pre>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;mac-soft-sleepwatcher&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;mac-soft-sleepwatcher&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2022-11-06
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;godot&#x2F;gdscript&#x2F;">
+    <i class="icon icon-left-open"></i>
+    Godot4 脚本语言 gdscript2</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;latex-quick&#x2F;">
+    使用 tectonic 快速入门使用 latex
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+<div class="no-print">
+  
+  <script src="https://giscus.app/client.js" data-repo="erasin/erasin.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnk3MzE0Mzg3Mw==" data-category="article" data-category-id="" data-mapping="pathname"
+    data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light"
+    data-lang="zh-CN" crossorigin="anonymous" async>
+    </script>
+  <style>
+    .utterances {
+      max-width: initial;
+    }
+  </style>
+  
+  
+</div>
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-link" href="//erasin.wang/categories/mac/">mac</a>
+
+
+
+<a class="tag is-success" href="//erasin.wang/categories/soft/">soft</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-warning" href="//erasin.wang/tags/mac/">mac</a>
+
+
+
+<a class="tag is-success" href="//erasin.wang/tags/macbook/">macbook</a>
+
+
+
+<a class="tag is-black" href="//erasin.wang/tags/macbook-pro/">macbook pro</a>
+
+
+
+<a class="tag is-link" href="//erasin.wang/tags/sleepwatcher/">sleepwatcher</a>
+
+
+
+<a class="tag is-danger" href="//erasin.wang/tags/soft/">soft</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="sleepwatcher" href="//erasin.wang/mac-soft-sleepwatcher/#sleepwatcher">sleepwatcher</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="dui-lan-ya-jin-xing-kong-zhi" href="//erasin.wang/mac-soft-sleepwatcher/#dui-lan-ya-jin-xing-kong-zhi">对蓝牙进行控制</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

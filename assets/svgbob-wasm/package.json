@@ -1,0 +1,23 @@
+{
+  "name": "svgbob-wasm",
+  "collaborators": [
+    "Angus Hollands <goosey15@gmail.com>"
+  ],
+  "description": "A small WASM API to convert ASCII diagrams to SVG using svgbob.",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agoose77/svgbob-wasm"
+  },
+  "files": [
+    "svgbob_wasm_bg.wasm",
+    "svgbob_wasm.js",
+    "svgbob_wasm.d.ts",
+    "LICENSE_APACHE",
+    "LICENSE_MIT"
+  ],
+  "module": "svgbob_wasm.js",
+  "types": "svgbob_wasm.d.ts",
+  "sideEffects": false
+}

@@ -1,0 +1,468 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  Math 计数法与指数与零 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="计数法" property="description" />
+
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> Math 计数法与指数与零 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      MATH 计数法与指数与零
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2020-01-08
+    </div>
+  </div>
+
+  <div class="post-content math " 
+    style="background-image:url(&#x2F;assets&#x2F;img&#x2F;PI.svg);background-size:100px;" >
+    <h2 id="jin-zhi-ji-shu-fa">进制计数法</h2>
+<p><strong>10 进制计数法</strong></p>
+<ul>
+<li><strong>元素</strong> 0、1、2、3、4、5、6、7、8、9 共 10种。</li>
+<li><strong>数位</strong> 从右到左 表示 个位、百位、千位 ...</li>
+</ul>
+<p>$$
+1234 =  1 \times 10^3 + 2 \times 10^2 + 3 \times 10^1 + 4 \times 10^0
+$$</p>
+<span id="continue-reading"></span>
+<p><strong>2 进制计数法</strong></p>
+<ul>
+<li><strong>元素</strong> 0、1 共 2 种。</li>
+<li><strong>数位</strong> 从右到左 表示 1位、2位、4位、8位...</li>
+</ul>
+<p>$$
+1010 =  1 \times 2^3 + 0 \times 2^2 + 1 \times 2^1 + 0 \times 2^0 = 10
+$$</p>
+<blockquote>
+<p>最左位二进制 <code>1010</code> 转换为指数计数 ，最后得到十进制的 <code>10</code>。</p>
+</blockquote>
+<p><strong>按位计数法</strong></p>
+<ul>
+<li><strong>元素</strong> $0,1 ...  N-1$ 共 $N$ 种。</li>
+<li><strong>数位</strong> 从右到左 表示 $N^0$ 的位、$N^1$ 的位、$N^2$ 的位 ... （基数是 $N$)</li>
+</ul>
+<p>$$
+a_1a_2a_3a_4 =  1 \times N^3 + 2 \times N^2 + 3 \times N^1 + 4 \times N^0
+$$</p>
+<blockquote>
+<p>混合计数法， 比如时钟， 是12进制和60进制的混合计数法。</p>
+</blockquote>
+<h2 id="ji-shu-zhuan-huan-dui-shu-yun-suan">基数转换 (对数运算)</h2>
+<blockquote>
+<p>对数是对求幂的逆运算</p>
+</blockquote>
+<p>10进制基数位10， 二进制基数位2.</p>
+<p><strong>10到2进制的</strong></p>
+<p>将 10 进制数字不断除 2 得到的余数，来获取2进制的位数和权重。</p>
+<pre data-lang="bob" style="background-color:#2b303b;color:#6c7079;" class="language-bob "><code class="language-bob" data-lang="bob"><span style="color:#abb2bf;">  2) 10 
+</span><span style="color:#abb2bf;">  2)  5 - 余0 o----------.
+</span><span style="color:#abb2bf;">  2)  2 - 余1 o-------.  :
+</span><span style="color:#abb2bf;">  2)  1 - 余0 o----.  :  :
+</span><span style="color:#abb2bf;">  2)  0 - 余1 o-.  :  :  :
+</span><span style="color:#abb2bf;">                :  :  :  :
+</span><span style="color:#abb2bf;">                v  v  v  v
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">                1  0  1  0
+</span></code></pre>
+<h2 id="zhi-shu-fa-ze-mi">指数法则 (幂)</h2>
+<p>在10进制中 $10^n$ 位 n 个 10 相乘。 $10^{n-1}$ 是 $10^n$ 的 $\frac{1}{10}$ , 可推导 $10^0$ 为 1 ， $10^{-1}$ 为  $\frac{1}{10}$， $10^{-n}$ 为 $\frac{1}{10^n}$,</p>
+<p><strong>指数</strong></p>
+<p>$$
+a^n = \underbrace{a_0 \times a_1 \times ... a_{n-1} }_{n}
+$$</p>
+<p><strong>指数法则</strong></p>
+<p>$$
+N^a \times N^b = N^{a+b}
+$$</p>
+<h2 id="0-zhan-wei-he-biao-zhun-he-jian-hua-gui-ze">0 占位 和 标准和简化规则</h2>
+<p><code>0</code> 表示 <code>没有</code>, 10进制中 <code>101</code> 中 <code>0</code> 作用为占位，才能将数值表达出来。</p>
+<p>$a^n, a^{n-1} ... a^1, a^0$  这里 $a^n$ 中的 $n$ 包括 0 ，起到了标准作用。</p>
+<h2 id="can-kao">参考</h2>
+<ul>
+<li><a href="https://baike.baidu.com/item/%E6%8C%87%E6%95%B0/3519666">指数</a>
+指数是幂运算aⁿ(a≠0)中的一个参数，a为底数，n为指数，指数位于底数的右上角，幂运算表示指数个底数相乘。当n是一个正整数，aⁿ表示n个a连乘。当n=0时，aⁿ=1。</li>
+<li><a href="https://zh.wikipedia.org/wiki/%E5%AF%B9%E6%95%B0">基数</a></li>
+<li><a href="https://baike.baidu.com/item/%E5%AF%B9%E6%95%B0">对数</a></li>
+</ul>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;math-zero&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;math-zero&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2020-01-08
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;go-grpc&#x2F;">
+    <i class="icon icon-left-open"></i>
+    PHP to Golang 使用 goridge rpc通信 PHP</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;server-display&#x2F;">
+    服务器部署方案
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-black" href="//erasin.wang/categories/math/">math</a>
+
+
+    </div>
+    
+
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="jin-zhi-ji-shu-fa" href="//erasin.wang/math-zero/#jin-zhi-ji-shu-fa">进制计数法</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="ji-shu-zhuan-huan-dui-shu-yun-suan" href="//erasin.wang/math-zero/#ji-shu-zhuan-huan-dui-shu-yun-suan">基数转换 (对数运算)</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="zhi-shu-fa-ze-mi" href="//erasin.wang/math-zero/#zhi-shu-fa-ze-mi">指数法则 (幂)</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="0-zhan-wei-he-biao-zhun-he-jian-hua-gui-ze" href="//erasin.wang/math-zero/#0-zhan-wei-he-biao-zhun-he-jian-hua-gui-ze">0 占位 和 标准和简化规则</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="can-kao" href="//erasin.wang/math-zero/#can-kao">参考</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

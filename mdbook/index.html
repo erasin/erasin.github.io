@@ -1,0 +1,535 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  MDBOOK 由rust开发的类GitBook图书工具 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="" property="description" />
+
+  
+    <meta content="soft" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+    
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> MDBOOK 由rust开发的类GitBook图书工具 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      MDBOOK 由RUST开发的类GITBOOK图书工具
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2019-12-15
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <p>项目 azerupi/mdbook
+<a href="https://github.com/azerupi/mdBook">github</a> <a href="http://azerupi.github.io/mdBook/">doc</a></p>
+<h2 id="1-an-zhuang">1. 安装</h2>
+<p>建议到<a href="https://github.com/azerupi/mdBook/releases">mdbook 项目地址</a>，下载与系统对应的最新版本。</p>
+<p>如果安装了 RUST 环境，可以使用 cargo 安装</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">cargo</span><span style="color:#abb2bf;"> install mdbook
+</span></code></pre>
+<h2 id="2-shi-yong">2. 使用</h2>
+<p><strong>mdbook</strong> 命令</p>
+<ul>
+<li>help 查看帮助</li>
+<li>init 创建和初始化文档</li>
+<li>build 生成 book</li>
+<li>serve 建立本地服务，默认地址为 <a href="http://localhost:3000">http://localhost:3000</a></li>
+<li>watch 监控文件变动</li>
+</ul>
+<span id="continue-reading"></span>
+<p>使用 init 创建文档</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#5f697a;"># 1. 创建 bookname
+</span><span style="color:#eb6772;">mdbook</span><span style="color:#abb2bf;"> init bookname  </span><span style="font-style:italic;color:#5f697a;"># 直接生成文件夹以及初始文件
+</span><span style="font-style:italic;color:#5f697a;"># 1.2 将现有文件夹转换为 book, 和上面等价
+</span><span style="color:#eb6772;">mkdir</span><span style="color:#abb2bf;">  bookname
+</span><span style="color:#5ebfcc;">cd</span><span style="color:#abb2bf;"> bookname
+</span><span style="color:#eb6772;">mdbook</span><span style="color:#abb2bf;"> init
+</span></code></pre>
+<p>使用 serve 建立本地服务，实时预览</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">mdbook</span><span style="color:#abb2bf;"> serve
+</span></code></pre>
+<p>在发布 html book 之前 ，需要使用 build 生成正式的文件</p>
+<blockquote>
+<p>在使用 serve 命令的时候，默认开启了 WebSocket 来自动更新，所以最后需要使用 build 来生成正式的文件。</p>
+</blockquote>
+<h2 id="3-mo-ban-xiu-gai">3. 模板修改</h2>
+<p>在 mdbook 中可以追加 <code>book.toml</code> 和 <code>theme</code> 文件夹来实现高级的功能。</p>
+<p>book.toml， 内部参数可以选择使用，仅需添加需要的配置</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#6c7079;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#eb6772;">title </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;&quot;
+</span><span style="color:#eb6772;">author </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;&quot;
+</span><span style="color:#eb6772;">description </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">[output.html]
+</span><span style="font-style:italic;color:#5f697a;"># theme 路径
+</span><span style="color:#eb6772;">theme </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;./theme&quot;
+</span><span style="color:#eb6772;">mathjax-support </span><span style="color:#abb2bf;">= </span><span style="color:#db9d63;">true
+</span><span style="color:#eb6772;">additional-js </span><span style="color:#abb2bf;">= [</span><span style="color:#9acc76;">&quot;./theme/xxx.js&quot;</span><span style="color:#abb2bf;">]
+</span><span style="color:#eb6772;">additional-css </span><span style="color:#abb2bf;">= [</span><span style="color:#9acc76;">&quot;./theme/xxx.css&quot;</span><span style="color:#abb2bf;">]
+</span><span style="color:#eb6772;">google_analytics </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;&quot; </span><span style="font-style:italic;color:#5f697a;"># 这里为统计ID
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 使用编辑器
+</span><span style="color:#abb2bf;">[output.html.playpen]
+</span><span style="font-style:italic;color:#5f697a;">#editor = &quot;&quot;  #自定义编辑器的时候输入
+</span><span style="color:#eb6772;">editable </span><span style="color:#abb2bf;">= </span><span style="color:#db9d63;">true
+</span></code></pre>
+<h3 id="3-1-wei-ye-mian-zhui-jia-js-huo-zhe-css">3.1. 为页面追加 js 或者 css</h3>
+<p>比如想要将页面中的 link 中特定的字符串转换为图标</p>
+<ol>
+<li>修改 <code>book.toml</code> 追加 js, 让页面上加载 <code>Custom JS script</code></li>
+</ol>
+<pre data-lang="toml" style="background-color:#2b303b;color:#6c7079;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="background-color:#e05252;color:#ffffff;">...</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">[output.html]
+</span><span style="color:#eb6772;">additional-js </span><span style="color:#abb2bf;">= [</span><span style="color:#9acc76;">&quot;./theme/icons.js&quot;</span><span style="color:#abb2bf;">]
+</span><span style="color:#abb2bf;">
+</span><span style="background-color:#e05252;color:#ffffff;">...</span><span style="color:#abb2bf;">
+</span></code></pre>
+<ol start="2">
+<li>创建 <code>./theme/icons.js</code> 追加内容</li>
+</ol>
+<pre data-lang="js" style="background-color:#2b303b;color:#6c7079;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#5cb3fa;">$</span><span style="color:#abb2bf;">(document).</span><span style="color:#5cb3fa;">ready</span><span style="color:#abb2bf;">(</span><span style="color:#cd74e8;">function</span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">  </span><span style="color:#5cb3fa;">$</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;a&quot;</span><span style="color:#abb2bf;">).</span><span style="color:#5cb3fa;">each</span><span style="color:#abb2bf;">(</span><span style="color:#cd74e8;">function</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">element</span><span style="color:#abb2bf;">) {
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">var </span><span style="color:#eb6772;">link </span><span style="color:#adb7c9;">= </span><span style="color:#5cb3fa;">$</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">this</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">switch </span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">link</span><span style="color:#abb2bf;">.</span><span style="color:#5cb3fa;">text</span><span style="color:#abb2bf;">()) {
+</span><span style="color:#abb2bf;">      </span><span style="color:#cd74e8;">case </span><span style="color:#9acc76;">&quot;github&quot;</span><span style="color:#abb2bf;">:
+</span><span style="color:#abb2bf;">        </span><span style="color:#eb6772;">link</span><span style="color:#abb2bf;">.</span><span style="color:#5cb3fa;">html</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;&lt;i class=&quot;fa fa-github&quot;&gt;&lt;/i&gt;&#39;</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">        </span><span style="color:#cd74e8;">break</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">      </span><span style="color:#cd74e8;">case </span><span style="color:#9acc76;">&quot;doc&quot;</span><span style="color:#abb2bf;">:
+</span><span style="color:#abb2bf;">        </span><span style="color:#eb6772;">link</span><span style="color:#abb2bf;">.</span><span style="color:#5cb3fa;">html</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;&lt;i class=&quot;fa fa-book&quot;&gt;&lt;/i&gt;&#39;</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">        </span><span style="color:#cd74e8;">break</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">      </span><span style="color:#cd74e8;">case </span><span style="color:#9acc76;">&quot;site&quot;</span><span style="color:#abb2bf;">:
+</span><span style="color:#abb2bf;">        </span><span style="color:#eb6772;">link</span><span style="color:#abb2bf;">.</span><span style="color:#5cb3fa;">html</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;&lt;i class=&quot;fa fa-home&quot;&gt;&lt;/i&gt;&#39;</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">        </span><span style="color:#cd74e8;">break</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">      </span><span style="color:#cd74e8;">case </span><span style="color:#9acc76;">&quot;crate&quot;</span><span style="color:#abb2bf;">:
+</span><span style="color:#abb2bf;">        </span><span style="color:#eb6772;">link</span><span style="color:#abb2bf;">.</span><span style="color:#5cb3fa;">html</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;&lt;i class=&quot;fa fa-cubes&quot;&gt;&lt;/i&gt;&#39;</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">        </span><span style="color:#cd74e8;">break</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">      </span><span style="color:#cd74e8;">default</span><span style="color:#abb2bf;">:
+</span><span style="color:#abb2bf;">        </span><span style="color:#cd74e8;">break</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">    }
+</span><span style="color:#abb2bf;">  });
+</span><span style="color:#abb2bf;">});
+</span></code></pre>
+<blockquote>
+<p>参照 <a href="http://fontawesome.io/icons/">fontawesome-icon</a> 进行图标处理</p>
+</blockquote>
+<h3 id="3-2-xiu-gai-index-hbs-mo-ban">3.2. 修改 index.hbs 模板</h3>
+<p>mdbook 提供了可以直接修改文章模板来直接修改布局， 可以参考和拷贝<a href="https://github.com/azerupi/mdBook/blob/master/src/theme/index.hbs">默认模板</a> 来修改出自己的默认布局。</p>
+<p>在项目文件夹目录内创建 theme 文件夹，可以在内部替换默认的一些文件</p>
+<ul>
+<li>index.hbs 文档模板</li>
+<li>book.js 主要 js 处理</li>
+<li>book.css 页面样式</li>
+<li>favicon.png 页面图标</li>
+<li>...</li>
+</ul>
+<blockquote>
+<p>这里不建议替换，而是选择配置 <code>additional-js|css</code> 来扩展定义。当然需要进行大量的定制的情况除外。</p>
+</blockquote>
+<p>index.hbs 使用的是 handlebars 模板系统， 内部变量统一使用 <code>{{ name_of_property }}</code> 来表示。
+模板提供了一些默认的配置和变量。 建议阅读<a href="http://azerupi.github.io/mdBook/format/theme/index-hbs.html">官方文档</a> 和 <a href="https://github.com/azerupi/mdBook/blob/master/src/theme/index.hbs">默认模板</a> 进行解析。</p>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;mdbook&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;mdbook&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2019-12-15
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;plantuml&#x2F;">
+    <i class="icon icon-left-open"></i>
+    PlantUML 语法</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;life-rs&#x2F;">
+    康威生命游戏
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+<div class="no-print">
+  
+  <script src="https://giscus.app/client.js" data-repo="erasin/erasin.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnk3MzE0Mzg3Mw==" data-category="article" data-category-id="" data-mapping="pathname"
+    data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light"
+    data-lang="zh-CN" crossorigin="anonymous" async>
+    </script>
+  <style>
+    .utterances {
+      max-width: initial;
+    }
+  </style>
+  
+  
+</div>
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-dark" href="//erasin.wang/categories/cli/">cli</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-warning" href="//erasin.wang/tags/soft/">soft</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="1-an-zhuang" href="//erasin.wang/mdbook/#1-an-zhuang">1. 安装</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="2-shi-yong" href="//erasin.wang/mdbook/#2-shi-yong">2. 使用</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="3-mo-ban-xiu-gai" href="//erasin.wang/mdbook/#3-mo-ban-xiu-gai">3. 模板修改</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="3-1-wei-ye-mian-zhui-jia-js-huo-zhe-css" href="//erasin.wang/mdbook/#3-1-wei-ye-mian-zhui-jia-js-huo-zhe-css">3.1. 为页面追加 js 或者 css</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="3-2-xiu-gai-index-hbs-mo-ban" href="//erasin.wang/mdbook/#3-2-xiu-gai-index-hbs-mo-ban">3.2. 修改 index.hbs 模板</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  给 helix 追加类 Zen Mode 模式 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="为 helix 追加 Zen Mode 模式" property="description" />
+
+  
+    <meta content="cli,github,helix,vim,vscode" name="keywords" />
+  
+
+  
+
+  
+    
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> 给 helix 追加类 Zen Mode 模式 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      给 HELIX 追加类 ZEN MODE 模式
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2023-04-01
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <p>Zen Mode 具体我也不太清楚, 之前在 vscode 中使用过, 但是不是太好就没有再使用了. Helix(23.03) 现在还不支持窗口尺寸变更, 我在 PR 中查阅到有人提起 Zen Mode.</p>
+<p>这里我利用了编辑器的配置项最大行长度 <code>text-width</code> 和虚拟字符后支持的软换行(soft wrap)功能中的配置项 <code>soft-wrap.wrap-at-text-width</code>, 其中软换行的这个选项是指在设置的<code>text-width</code>长度位置进行换行, 而非默认的视图位置换行.</p>
+<p><img src="https://user-images.githubusercontent.com/716514/228216931-6f194897-2c5b-472a-b155-67e7625d8411.png" alt="zen-mode" /></p>
+<span id="continue-reading"></span><h2 id="zhui-jia-zen-mode-like-gong-neng">追加 Zen Mode Like 功能</h2>
+<p><strong>修改源文件</strong></p>
+<p>现在我们修改 <code>helix-view/src/views.rs</code> ,找到 <code>inner_area</code> 函数进行修改.</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#6c7079;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="font-style:italic;color:#5f697a;"># cd helix source dir
+</span><span style="color:#eb6772;">hx</span><span style="color:#abb2bf;"> helix-view/src/views.rs
+</span></code></pre>
+<p>键入 <code>&lt;space&gt;sinner_area&lt;enter&gt;;</code> (这里是打开symobl picker, 搜索 inner_area , 然后 <code>;</code> 取消默认的选择)</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#6c7079;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#cd74e8;">pub fn </span><span style="color:#5cb3fa;">inner_area</span><span style="color:#abb2bf;">(</span><span style="color:#adb7c9;">&amp;</span><span style="color:#eb6772;">self</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">doc</span><span style="color:#abb2bf;">: </span><span style="color:#adb7c9;">&amp;</span><span style="color:#abb2bf;">Document) -&gt; Rect {
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// zen mode with wrap and text_width
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">let</span><span style="color:#abb2bf;"> config </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> doc.config.</span><span style="color:#5ebfcc;">load</span><span style="color:#abb2bf;">();
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">let</span><span style="color:#abb2bf;"> self_width </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">self</span><span style="color:#abb2bf;">.</span><span style="color:#5ebfcc;">inner_width</span><span style="color:#abb2bf;">(doc);
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">let</span><span style="color:#abb2bf;"> text_width </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> doc
+</span><span style="color:#abb2bf;">        .</span><span style="color:#5ebfcc;">language_config</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">        .</span><span style="color:#5ebfcc;">and_then</span><span style="color:#abb2bf;">(|</span><span style="color:#eb6772;">config</span><span style="color:#abb2bf;">| config.text_width)
+</span><span style="color:#abb2bf;">        .</span><span style="color:#5ebfcc;">unwrap_or</span><span style="color:#abb2bf;">(config.text_width) </span><span style="color:#adb7c9;">as </span><span style="color:#cd74e8;">u16</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">let</span><span style="color:#abb2bf;"> soft_wrap_at_text_width </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> doc
+</span><span style="color:#abb2bf;">        .</span><span style="color:#5ebfcc;">language_config</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">        .</span><span style="color:#5ebfcc;">and_then</span><span style="color:#abb2bf;">(|</span><span style="color:#eb6772;">config</span><span style="color:#abb2bf;">| {
+</span><span style="color:#abb2bf;">            config
+</span><span style="color:#abb2bf;">                .soft_wrap
+</span><span style="color:#abb2bf;">                .</span><span style="color:#5ebfcc;">as_ref</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">                .</span><span style="color:#5ebfcc;">and_then</span><span style="color:#abb2bf;">(|</span><span style="color:#eb6772;">soft_wrap</span><span style="color:#abb2bf;">| soft_wrap.wrap_at_text_width)
+</span><span style="color:#abb2bf;">        })
+</span><span style="color:#abb2bf;">        .</span><span style="color:#5ebfcc;">or</span><span style="color:#abb2bf;">(config.soft_wrap.wrap_at_text_width)
+</span><span style="color:#abb2bf;">        .</span><span style="color:#5ebfcc;">unwrap_or</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">false</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">let</span><span style="color:#abb2bf;"> space_width </span><span style="color:#adb7c9;">= </span><span style="color:#cd74e8;">if</span><span style="color:#abb2bf;"> soft_wrap_at_text_width </span><span style="color:#adb7c9;">&amp;&amp;</span><span style="color:#abb2bf;"> self_width.</span><span style="color:#5ebfcc;">gt</span><span style="color:#abb2bf;">(</span><span style="color:#adb7c9;">&amp;</span><span style="color:#abb2bf;">text_width) {
+</span><span style="color:#abb2bf;">        (self_width </span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;"> text_width) </span><span style="color:#adb7c9;">/ </span><span style="color:#db9d63;">2
+</span><span style="color:#abb2bf;">    } </span><span style="color:#cd74e8;">else </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">        </span><span style="color:#db9d63;">0
+</span><span style="color:#abb2bf;">    };
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">self</span><span style="color:#abb2bf;">.area
+</span><span style="color:#abb2bf;">        .</span><span style="color:#5ebfcc;">clip_left</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">self</span><span style="color:#abb2bf;">.</span><span style="color:#5ebfcc;">gutter_offset</span><span style="color:#abb2bf;">(doc) </span><span style="color:#adb7c9;">+</span><span style="color:#abb2bf;"> space_width)
+</span><span style="color:#abb2bf;">        .</span><span style="color:#5ebfcc;">clip_right</span><span style="color:#abb2bf;">(space_width)
+</span><span style="color:#abb2bf;">        .</span><span style="color:#5ebfcc;">clip_bottom</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">) </span><span style="font-style:italic;color:#5f697a;">// -1 for statusline
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>主要修改了</p>
+<ul>
+<li>读取配置 <code>config.toml</code>
+<ul>
+<li>同样会读取 <code>languages.toml</code> 中的配置</li>
+</ul>
+</li>
+<li>计算宽度</li>
+<li>将编辑区域左右各自追加空白</li>
+</ul>
+<p><strong>编译</strong></p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#6c7079;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#eb6772;">cargo</span><span style="color:#abb2bf;"> build</span><span style="color:#eb6772;"> --bin</span><span style="color:#abb2bf;"> hx
+</span></code></pre>
+<pre data-lang="sh" style="background-color:#2b303b;color:#6c7079;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#eb6772;">./target/debug/hx</span><span style="color:#abb2bf;"> book/src/configuration.md
+</span></code></pre>
+<p>输入命令 <code>:set soft-wrap.wrap-at-text-width true</code>, 当然确保你的配置中已经开启了软换行 <code>soft-wrap.render = true</code>, 这时应该可以看到了 markdown 文件居中显示 80 列字符, 修改宽度可以使用 <code>:set text-width 120</code> 这里默认 80.</p>
+<p><strong>编译release</strong></p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#6c7079;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#eb6772;">cargo</span><span style="color:#abb2bf;"> install</span><span style="color:#eb6772;"> --path</span><span style="color:#abb2bf;"> helix-term
+</span></code></pre>
+<h2 id="ge-ren-pei-zhi-he-xiang-mu-pei-zhi">个人配置和项目配置</h2>
+<p>在 helix 中支持三层配置</p>
+<ul>
+<li>默认配置, 这个是在编译时完成的.</li>
+<li>用户配置目录, 参看 <a href="https://docs.helix-editor.com/configuration.html">configuration</a>
+<ul>
+<li>linux &amp; macos: <code>~/.config/helix/</code>
+比如 <code>~/.config/helix/config.toml</code>, <code>~/.config/helix/languages.toml</code>.</li>
+<li>windows: <code>%AppData%\helix\</code></li>
+</ul>
+</li>
+<li>项目配置目录, 一般为项目位置下创建 <code>.helix/</code> 配置目录.</li>
+</ul>
+<p>这里我们为自己的项目中的 Markdown 文件使用 zen mode like.</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#6c7079;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#5ebfcc;">cd</span><span style="color:#abb2bf;"> my-project
+</span><span style="color:#eb6772;">mkdir</span><span style="color:#abb2bf;"> .helix
+</span><span style="color:#eb6772;">touch</span><span style="color:#abb2bf;"> .helix/languages.toml
+</span><span style="color:#eb6772;">hx</span><span style="color:#abb2bf;"> .helix/languages.toml
+</span></code></pre>
+<p><code>.helix/languages.toml</code></p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#6c7079;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#abb2bf;">[[language]]
+</span><span style="color:#eb6772;">name </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;markdown&quot;
+</span><span style="color:#eb6772;">text-width </span><span style="color:#abb2bf;">= </span><span style="color:#db9d63;">80
+</span><span style="color:#eb6772;">soft-wrap </span><span style="color:#abb2bf;">= { </span><span style="color:#eb6772;">enable </span><span style="color:#abb2bf;">= </span><span style="color:#db9d63;">true</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">wrap-at-text-width </span><span style="color:#abb2bf;">= </span><span style="color:#db9d63;">true </span><span style="color:#abb2bf;">}
+</span></code></pre>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;helix&#x2F;helix-zen-mode-like&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;helix&#x2F;helix-zen-mode-like&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2023-04-01
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;posts&#x2F;hurl&#x2F;">
+    <i class="icon icon-left-open"></i>
+    HURL 中文指南 Restclient 接口测试工具 </a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;ai-art&#x2F;midjourney-prompt&#x2F;">
+    midjourney 提示词汇表，风格和处理
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+<div class="no-print">
+  
+  <script src="https://giscus.app/client.js" data-repo="erasin/erasin.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnk3MzE0Mzg3Mw==" data-category="article" data-category-id="" data-mapping="pathname"
+    data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light"
+    data-lang="zh-CN" crossorigin="anonymous" async>
+    </script>
+  <style>
+    .utterances {
+      max-width: initial;
+    }
+  </style>
+  
+  
+</div>
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-warning" href="//erasin.wang/categories/cli/">cli</a>
+
+
+
+<a class="tag is-light" href="//erasin.wang/categories/soft/">soft</a>
+
+
+
+<a class="tag is-primary" href="//erasin.wang/categories/helix/">helix</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-danger" href="//erasin.wang/tags/cli/">cli</a>
+
+
+
+<a class="tag is-success" href="//erasin.wang/tags/github/">github</a>
+
+
+
+<a class="tag is-link" href="//erasin.wang/tags/helix/">helix</a>
+
+
+
+<a class="tag is-black" href="//erasin.wang/tags/vim/">vim</a>
+
+
+
+<a class="tag is-primary" href="//erasin.wang/tags/vscode/">vscode</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="zhui-jia-zen-mode-like-gong-neng" href="//erasin.wang/helix/helix-zen-mode-like/#zhui-jia-zen-mode-like-gong-neng">追加 Zen Mode Like 功能</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="ge-ren-pei-zhi-he-xiang-mu-pei-zhi" href="//erasin.wang/helix/helix-zen-mode-like/#ge-ren-pei-zhi-he-xiang-mu-pei-zhi">个人配置和项目配置</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

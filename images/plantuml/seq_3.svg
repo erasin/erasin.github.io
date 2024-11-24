@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="312px" preserveAspectRatio="none" style="width:358px;height:312px;" version="1.1" viewBox="0 0 358 312" width="358px" zoomAndPan="magnify"><defs><filter height="300%" id="f1ia0wgm89y3ts" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="41" x="159.25" y="23.5352">seq_3</text><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="24" x2="24" y1="116.9766" y2="224.9082"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="204.5" x2="204.5" y1="116.9766" y2="224.9082"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="295.5" x2="295.5" y1="116.9766" y2="224.9082"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="26" x="8" y="114.0234">Bob</text><ellipse cx="24" cy="43.4883" fill="#FF0000" filter="url(#f1ia0wgm89y3ts)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;"/><path d="M24,51.4883 L24,78.4883 M11,59.4883 L37,59.4883 M24,78.4883 L11,93.4883 M24,78.4883 L37,93.4883 " fill="#FF0000" filter="url(#f1ia0wgm89y3ts)" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="26" x="8" y="237.4434">Bob</text><ellipse cx="24" cy="250.3965" fill="#FF0000" filter="url(#f1ia0wgm89y3ts)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;"/><path d="M24,258.3965 L24,285.3965 M11,266.3965 L37,266.3965 M24,285.3965 L11,300.3965 M24,285.3965 L37,300.3965 " fill="#FF0000" filter="url(#f1ia0wgm89y3ts)" style="stroke: #A80036; stroke-width: 2.0;"/><rect fill="#FEFECE" filter="url(#f1ia0wgm89y3ts)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="47" x="179.5" y="81.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="33" x="186.5" y="102.0234">Alice</text><rect fill="#FEFECE" filter="url(#f1ia0wgm89y3ts)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="47" x="179.5" y="223.9082"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="33" x="186.5" y="244.4434">Alice</text><rect fill="#99FF99" filter="url(#f1ia0wgm89y3ts)" height="46.9766" style="stroke: #A80036; stroke-width: 1.5;" width="107" x="240.5" y="65"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="93" x="247.5" y="85.5352">I have a really</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="73" x="257.5" y="102.0234">long name</text><rect fill="#99FF99" filter="url(#f1ia0wgm89y3ts)" height="46.9766" style="stroke: #A80036; stroke-width: 1.5;" width="107" x="240.5" y="223.9082"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="93" x="247.5" y="244.4434">I have a really</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="73" x="257.5" y="260.9316">long name</text><polygon fill="#A80036" points="35,143.9766,25,147.9766,35,151.9766,31,147.9766" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="29" x2="204" y1="147.9766" y2="147.9766"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="147" x="41" y="143.5449">Authentication Request</text><polygon fill="#A80036" points="193,173.2871,203,177.2871,193,181.2871,197,177.2871" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="24" x2="199" y1="177.2871" y2="177.2871"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="157" x="31" y="172.8555">Authentication Response</text><polygon fill="#A80036" points="284,202.5977,294,206.5977,284,210.5977,288,206.5977" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="24" x2="290" y1="206.5977" y2="206.5977"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="98" x="31" y="202.166">Log transaction</text><!--
+@startuml
+title seq_3
+
+actor Bob #red
+' The only difference between actor
+'and participant is the drawing
+participant Alice
+participant "I have a really\nlong name" as L #99FF99
+/' You can also declare:
+   participant L as "I have a really\nlong name"  #99FF99
+  '/
+
+Alice->Bob: Authentication Request
+Bob->Alice: Authentication Response
+Bob->L: Log transaction
+@enduml
+
+PlantUML version 1.2017.19(Sun Nov 12 19:46:22 CST 2017)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 1.8.0_112-b16
+Operating System: Mac OS X
+OS Version: 10.12.6
+Default Encoding: UTF-8
+Language: zh
+Country: CN
+--></g></svg>

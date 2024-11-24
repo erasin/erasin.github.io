@@ -1,0 +1,1281 @@
+<!DOCTYPE html>  
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title> erasin - ERASIN </title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+   
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+
+<h1 class="header"> <i class="icon icon-bookmark"></i> ERASIN </h1>
+
+
+  
+
+
+
+<div class="posts col">
+  
+  <div class="post odd  " >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/rust-extphp-rs/" >ext-php-rs 使用 RUST 更加方便的构建 PHP 扩展
+
+
+
+<i class="icon icon-rust"></i> 
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2022-10-31</div>
+    </div>
+    
+    <div class="post-content ">
+      <p>ext-php-rs 是一个用于构建PHP扩展的RUST库，比起其他的php的绑定库，该库使用起来
+更加的方便和快捷。</p>
+<ul>
+<li><a href="https://github.com/davidcole1340/ext-php-rs">ext-php-rs</a></li>
+<li><a href="https://davidcole1340.github.io/ext-php-rs/introduction.html">官方文档</a></li>
+</ul>
+<p>官方宣称的特性为：</p>
+<ul>
+<li>易于使用，内置的宏抽象了 zend API，特别是参数类型交互</li>
+<li>轻量级，该库会自动编写胶水代码,只需要写功能即可。</li>
+<li>可扩展，可以使用 <code>IntoZval</code> 和 <code>FromZval</code> 定义自己的类型用于参数和返回类型。</li>
+</ul>
+<blockquote>
+<p>迄今为止, 使用rust写php扩展，并没有太好的方式与php进行交互，建议使用rust写
+基础类库。</p>
+</blockquote>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/rust-extphp-rs/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+  <div class="post even " style="background-image:url(&#x2F;assets&#x2F;img&#x2F;undraw_pen_nqf7.svg);background-size:200px;" >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/dot/" >Graphviz Dot UML 编程工具
+
+
+
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2022-10-28</div>
+    </div>
+    
+    <div class="post-content ">
+      <p><strong>Graphviz - dot</strong></p>
+<p>Graphviz （英文：Graph Visualization Software的缩写）是一个由AT&amp;T实验室启动的
+开源工具包，可以用于绘制DOT语言脚本描述的图形。它也提供了供其它软件使用的库。
+Graphviz是一个自由软件，其授权为Eclipse Public License。其Mac版本曾经获得2004年
+的苹果设计奖<a href="https://jeanhwea.github.io/article/drawing-graphs-with-dot.html">2</a>。</p>
+<table><thead><tr><th style="text-align: right">命令</th><th>说明</th></tr></thead><tbody>
+<tr><td style="text-align: right">dot</td><td>一个用来将生成的图形转换成多种输出格式的命令行工具。其输出格式包括PostScript，PDF，SVG，PNG，含注解的文本等等。</td></tr>
+<tr><td style="text-align: right">neato</td><td>用于sprint model的生成（在Mac OS版本中称为energy minimized）。</td></tr>
+<tr><td style="text-align: right">twopi</td><td>用于放射状图形的生成</td></tr>
+<tr><td style="text-align: right">circo</td><td>用于圆形图形的生成。</td></tr>
+<tr><td style="text-align: right">fdp</td><td>另一个用于生成无向图的工具。</td></tr>
+<tr><td style="text-align: right">dotty</td><td>一个用于可视化与修改图形的图形用户界面程序。</td></tr>
+<tr><td style="text-align: right">lefty</td><td>一个可编程的(使用一种被EZ影响的语言[4])控件，它可以显示DOT图形，并允许用户用鼠标在图上执行操作。Lefty可以作为MVC模型的使用图形的GUI程序中的视图部分。</td></tr>
+</tbody></table>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/dot/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+  <div class="post odd  " >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/open-join/" >参加开源项目
+
+
+
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2022-10-17</div>
+    </div>
+    
+    <div class="post-content ">
+      <p>github 地址:
+<a href="https://github.com/erasin">https://github.com/erasin</a></p>
+<p><a href="https://github.com/erasin"><img src="https://github-readme-stats.vercel.app/api?username=erasin&amp;show_icons=true" alt="Anurag&#39;s github stats" /></a>
+<a href="https://github.com/erasin"><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=erasin&amp;layout=compact" alt="Top Langs" /></a></p>
+<h1 id="xiang-mu-gong-xian">项目贡献</h1>
+<ul>
+<li>2022
+<ul>
+<li>helix <span class="tag is-info">
+  rust
+</span> <i class="icon icon-star"></i>15k <a href="https://github.com/helix-editor/helix/pulls?q=author%3Aerasin">https://github.com/helix-editor/helix</a><br />
+A post-modern text editor.<br />
+后现代文本编辑器，类 vim/kakoune 编辑器。<br />
+<strong>贡献</strong> LSP Action Fix, onelight theme,</li>
+</ul>
+</li>
+<li>2021
+<ul>
+<li>svgbob <span class="tag is-info">
+  rust
+</span> <i class="icon icon-star"></i>3.3k <a href="https://github.com/ivanceras/svgbob">https://github.com/ivanceras/svgbob</a></li>
+<li>phper <span class="tag is-info">
+  rust
+</span> <i class="icon icon-star"></i>44 <a href="https://github.com/phper-framework/phper">https://github.com/phper-framework/phper</a></li>
+</ul>
+</li>
+<li>2018
+<ul>
+<li>powerline-rs <span class="tag is-info">
+  rust
+</span> <i class="icon icon-star"></i>110 <a href="https://github.com/jD91mZM2/powerline-rs/pull/4">https://github.com/jD91mZM2/powerline-rs/</a></li>
+</ul>
+</li>
+<li>2017
+<ul>
+<li>vim-one <span class="tag is-dark">vim</span> <i class="icon icon-star"></i>1.9k <a href="https://github.com/rakr/vim-one">https://github.com/rakr/vim-one</a><br />
+vim 主题 one-light/one-dark</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/open-join/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+  <div class="post even " style="background-image:url(&#x2F;assets&#x2F;img&#x2F;undraw_no_data_qbuo.svg);" >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/game/games101-linear-algebra/" >games 101 线性代数基础
+
+<i class="icon icon-pi"></i> 
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2021-05-13</div>
+    </div>
+    
+    <div class="post-content math">
+      <h2 id="xiang-liang-vector">向量 Vector</h2>
+<p>向量是用来表示方向的量, 包含长度和方向, 向量不关心座标起始位置.</p>
+<p>座标上 $A$ 点 指向 $B$ 点 的<strong>向量</strong>表示为 $\vec{AB}$ 通常简写为 $\vec{a}$ .</p>
+<p>$$\vec{a} = \vec{AB} = B - A$$</p>
+<p>可以看出该向量表示是 $B$ 的座标减去 $A$ 的座标.</p>
+<p>向量 $\vec{a}$ 的<strong>长度</strong>用 $||\vec{a}||$ 来表示.</p>
+<p><strong>单位向量</strong>指长度为1的向量, 用$\hat{a}$ 来表示.</p>
+<p>$$\hat{a} = \frac{\vec{a}}{||\vec{a}||}$$</p>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/game/games101-linear-algebra/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+  <div class="post odd  " >
+    <div class="post-header">
+      <h1 class="title">
+        <a href="//erasin.wang/books/" >开源书籍镜像
+
+<i class="icon icon-book"></i> 
+
+</a>
+        
+
+
+      </h1>
+      <div class="sub-title">2021-04-12</div>
+    </div>
+    
+    <div class="post-content ">
+      <p><strong>镜像书籍</strong></p>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/">The Rust Programming Language</a> <a href="/books/rust-book">英文版本</a></li>
+<li><a href="https://kaisery.github.io/trpl-zh-cn/">RUST 中文版本</a> <a href="/books/rust-cn">中文版本</a></li>
+<li><a href="https://doc.rust-lang.org/stable/reference/">RUST 参考手册</a> <a href="/books/rust-reference-cn">中文版本</a></li>
+<li><a href="https://rustwiki.org/zh-CN/edition-guide/">语义2018 edition-guide-cn</a> <a href="/books/edition-guide-cn">中文版本</a></li>
+<li><a href="https://doc.rust-lang.org/nightly/edition-guide/">edition-guide</a> <a href="/books/edition-guide">_</a></li>
+<li><a href="https://zjp-cn.github.io/tlborm/">宏小册 中文版本</a> <a href="/books/tlborm-cn">_</a></li>
+<li><a href="https://danielkeep.github.io/tlborm/">宏小册 macros</a> <a href="/books/tlborm">_</a></li>
+<li><a href="https://book.async.rs/introduction.html">RUST 异步编程</a> <a href="/books/async-book">_</a></li>
+<li><a href="https://learnku.com/docs/rust-async-std/translation-notes/7132">RUST async-std 异步编程</a> <a href="/books/async-std">_</a></li>
+<li><a href="https://github.com/Dhghomon/easy_rust">easy-rust</a> <a href="/books/easy-rust">_</a></li>
+<li><a href="https://rust-lang-nursery.github.io/rust-cookbook/">rust-cookbook</a> <a href="/books/rust-cookbook">_</a></li>
+<li><a href="https://doc.rust-lang.org/rust-by-example/index.html">rust-by-example-cn</a> <a href="/books/rust-by-example-cn">_</a></li>
+<li><a href="https://actix.rs/">actix</a> <a href="/books/actix">_</a></li>
+<li><a href="https://bevy-cheatbook.github.io/introduction.html">bevy-cheatbook</a> <a href="/books/bevy-cheatbook">_</a></li>
+<li><a href="https://specs.amethyst.rs/docs/tutorials/">spec-rs</a> <a href="/books/spec-rs">_</a></li>
+<li><a href="https://rustmagazine.github.io/rust_magazine_2021/index.html">rust magazine 中文月刊</a> <a href="/books/rust-magazine-2021">_</a></li>
+<li><a href="https://rust-lang.github.io/api-guidelines/">rust api 编写指南</a> <a href="/books/rust-api-guidelines">_</a></li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      <a href="//erasin.wang/books/#continue-reading" ><i class="icon icon-link"></i> 继续阅读 <i class="icon icon-angle-double-right"></i></a>
+    </div>
+    
+  </div>
+  
+  
+  
+    
+    
+  
+  
+</div>
+
+
+
+  
+
+<nav class="pagination row is-centered" role="navigation" aria-label="pagination">
+  <div class="pagination-btns">
+    
+    <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;authors&#x2F;erasin&#x2F;"><i class="icon icon-left-open"></i>上一页</a>
+    
+    
+    <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;authors&#x2F;erasin&#x2F;page&#x2F;3&#x2F;">下一页<i class="icon icon-right-open"></i></a>
+    
+  </div>
+  <ul class="pagination-list">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li> <a class="pagination-link" aria-label="Goto page 1" href="&#x2F;&#x2F;erasin.wang&#x2F;authors&#x2F;erasin&#x2F;">1</a></li>
+    
+    
+    
+    <li> <a class="pagination-link is-current" aria-label="Page 2" aria-current="page">2</a></li>
+    
+    
+    
+    <li> <a class="pagination-link" aria-label="Goto page 3" href="//erasin.wang/authors/erasin/page/3">3</a></li>
+    
+    
+    
+    <li> <a class="pagination-link" aria-label="Goto page 4" href="//erasin.wang/authors/erasin/page/4">4</a></li>
+    
+    
+     <li><span class="pagination-ellipsis">&hellip;</span></li>
+      <li> <a class="pagination-link" aria-label="Goto page 11" href="&#x2F;&#x2F;erasin.wang&#x2F;authors&#x2F;erasin&#x2F;page&#x2F;11&#x2F;">11</a></li>
+      
+  </ul>
+</nav>
+
+
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+<div class="box mini-hide">
+  <h3 class="header">
+    <i class="icon icon-hashtag"></i> 标签
+    <a class="more" href='//erasin.wang/tags'>MORE</a>
+  </h3>
+
+  <div class="box-body">
+    
+
+<ul class="ui list tree">
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/ai-art/">AI art 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/awesome/">awesome 
+
+
+
+
+</a>
+    <span class="sub-num"> 3</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/beancount/">BeanCount 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/blender/">blender 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/book/">book 
+
+<i class="icon icon-book"></i> 
+
+</a>
+    <span class="sub-num"> 4</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/cheatsheet/">cheatsheet 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/cli/">cli 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    <span class="sub-num"> 11</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/code/">code 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/comment/">comment 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/css/">css 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/database/">database 
+
+<i class="icon icon-database"></i> 
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/debug/">debug 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/developer/">developer 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/docs/">docs 
+
+<i class="icon icon-paperclip"></i> 
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/draft/">draft 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/editor/">editor 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/emacs/">emacs 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/font/">font 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/fu-shi-ji-zhang-fa/">复式记账法 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/game/">game 
+
+<i class="icon icon-gamepad"></i> 
+
+</a>
+    <span class="sub-num"> 4</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/git/">git 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/github/">github 
+
+
+
+
+</a>
+    <span class="sub-num"> 7</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/gnome/">gnome 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/go/">go 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/godot/">godot 
+
+
+
+
+</a>
+    <span class="sub-num"> 5</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/golang/">golang 
+
+<i class="icon icon-go"></i> 
+
+</a>
+    <span class="sub-num"> 4</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/gong-ju/">工具 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/helix/">helix 
+
+
+
+
+</a>
+    <span class="sub-num"> 5</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/html/">html 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/http/">http 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/hurl/">hurl 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/image/">image 
+
+<i class="icon icon-picture"></i> 
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/javascript/">javascript 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/kai-yuan/">开源 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/ledger/">ledger 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/linux/">linux 
+
+
+
+
+</a>
+    <span class="sub-num"> 6</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/lsp/">lsp 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/mac/">mac 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/macbook/">macbook 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/macbook-pro/">macbook pro 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/macos/">macos 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/magicavoxel/">MagicaVoxel 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/make/">make 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/markdown/">markdown 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/math/">math 
+
+<i class="icon icon-pi"></i> 
+
+</a>
+    <span class="sub-num"> 4</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/mi-ma/">密码 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/midjourney/">midjourney 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/music/">music 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/open-source/">open-source 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/openssl/">openssl 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/osx/">osx 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/otp/">otp 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/php/">php 
+
+
+
+
+</a>
+    <span class="sub-num"> 6</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/pixel/">pixel 
+
+
+
+
+</a>
+    <span class="sub-num"> 3</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/project/">project 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/promit/">promit 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/regex/">regex 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/rpc/">rpc 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/ruan-jian/">软件 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/rust/">rust 
+
+
+
+
+</a>
+    <span class="sub-num"> 8</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/rustlang/">rustlang 
+
+<i class="icon icon-rust"></i> 
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/server/">server 
+
+<i class="icon icon-server"></i> 
+
+</a>
+    <span class="sub-num"> 3</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/shader/">shader 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/shi-jian-ge-shi/">时间格式 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/site/">site 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/sleepwatcher/">sleepwatcher 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/soft/">soft 
+
+
+
+
+</a>
+    <span class="sub-num"> 7</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/sql/">SQL 
+
+
+
+
+</a>
+    <span class="sub-num"> 3</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/stable-diffusion/">stable diffusion 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/svg/">svg 
+
+
+
+
+</a>
+    <span class="sub-num"> 2</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/template/">template 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/ti-shi-ci/">提示词 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/uml/">uml 
+
+
+
+
+</a>
+    <span class="sub-num"> 4</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/video/">video 
+
+<i class="icon icon-youtube"></i> 
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/vim/">vim 
+
+
+
+
+</a>
+    <span class="sub-num"> 5</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/vscode/">vscode 
+
+
+
+
+</a>
+    <span class="sub-num"> 6</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/wayland/">wayland 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/web/">web 
+
+<i class="icon icon-network"></i> 
+
+</a>
+    <span class="sub-num"> 6</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/xian-xing-cha-zhi/">线性插值 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/xiang-su/">像素 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/yi-ci-ming-mi-ma/">一次名密码 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+  <li class="item">
+    <a href="//erasin.wang/tags/zha-pian/">诈骗 
+
+
+
+
+</a>
+    <span class="sub-num"> 1</span>
+  </li>
+  
+</ul>
+
+  </div>
+</div>
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,609 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  基于 Solder 使用 Rust 来为 PHP 写扩展 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="基于 Solder 使用rustlang写php extension扩展程序" property="description" />
+
+  
+    <meta content="php,rust" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+    
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> 基于 Solder 使用 Rust 来为 PHP 写扩展 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      基于 SOLDER 使用 RUST 来为 PHP 写扩展
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2020-07-18
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <blockquote>
+<p>阅读 <a href="//erasin.wang/rust-php-extension/rust/rust-phper.md">phper</a>, <a href="https://github.com/jmjoy/phper">phper</a> 0.2 已可以使用,</p>
+</blockquote>
+<p>本文使用 <code>Solder</code> 库来实现PHP扩展程序，它是基于 <code>php-rs</code> 库的试验性项目，实现了php扩展的函数处理。 满足了字符串和数字类型基本要求。</p>
+<p>soder 源库地址为 <a href="https://github.com/killertux/solder">github</a> , 这里使用的是 fork 的库， <a href="https://github.com/erasin/solder">github.com/erasin/solder</a>。</p>
+<blockquote>
+<p>2020-09-17 :
+项目 <a href="https://github.com/XX/php-rust">XX/php-rust</a> 中提供了更多的类型处理。简化函数注册流程。</p>
+</blockquote>
+<h2 id="chuang-jian-xiang-mu">创建项目</h2>
+<p>使用 cargo 来创建项目，然后创建编译配置文件<code>.cargo/config</code></p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">cargo</span><span style="color:#abb2bf;"> new</span><span style="color:#eb6772;"> --lib</span><span style="color:#abb2bf;"> rs-tool 
+</span><span style="color:#5ebfcc;">cd</span><span style="color:#abb2bf;"> rs-tool
+</span><span style="color:#eb6772;">mkdir</span><span style="color:#abb2bf;"> .cargo
+</span><span style="color:#eb6772;">touch</span><span style="color:#abb2bf;"> config
+</span></code></pre>
+<p>编辑 <code>.cargo/config</code>,遵循toml格式。</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#6c7079;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#abb2bf;">[build]
+</span><span style="color:#eb6772;">rustflags </span><span style="color:#abb2bf;">= [</span><span style="color:#9acc76;">&quot;-C&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;link-args=-Wl,-undefined,dynamic_lookup&quot;</span><span style="color:#abb2bf;">]
+</span></code></pre>
+<span id="continue-reading"></span><h2 id="yin-ru-ku">引入库</h2>
+<p>编辑 <code>Cargo.toml</code>,追加引用</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#6c7079;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#abb2bf;">[dependencies]
+</span><span style="color:#eb6772;">solder </span><span style="color:#abb2bf;">= {</span><span style="color:#eb6772;">git </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;https://github.com/erasin/solder&quot;</span><span style="color:#abb2bf;">}
+</span><span style="color:#eb6772;">lazy_static </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;1.4&quot;
+</span><span style="color:#eb6772;">md5 </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;0.7.0&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">[lib]
+</span><span style="color:#eb6772;">crate-type </span><span style="color:#abb2bf;">= [</span><span style="color:#9acc76;">&quot;dylib&quot;</span><span style="color:#abb2bf;">]
+</span><span style="color:#eb6772;">name </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;rstool&quot;
+</span></code></pre>
+<ul>
+<li><strong>lib</strong> 该节点定义输出类型.
+<ul>
+<li><strong>name</strong> 定义输出文件名称，实际名称头部追加 <code>lib</code>,比如当前项目为 <code>librstool.dylib</code>.</li>
+<li><strong>dylib</strong> 类型在 osx 下为 <code>.dylib</code>， linux下为 <code>.so</code> 文件.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>这里 github 速度太慢的化可以用 <code>https://gitee.com/era/solder</code> 或者自己镜像一个即可。</p>
+</blockquote>
+<ul>
+<li>引入 <code>lazy_static</code> 来制作计数器.</li>
+<li><code>md5</code> 来创建 <code>rs_md5</code> 函数.</li>
+</ul>
+<h2 id="chuang-jian-kuo-zhan-han-shu">创建扩展函数</h2>
+<p>编辑项目文件 <code>src/lig.rs</code>.</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#6c7079;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#cd74e8;">use </span><span style="color:#abb2bf;">solder::info::</span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;">;
+</span><span style="color:#cd74e8;">use </span><span style="color:#abb2bf;">solder::zend::</span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;">;
+</span><span style="color:#cd74e8;">use </span><span style="color:#abb2bf;">solder::</span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// 扩展简介
+</span><span style="color:#abb2bf;">#[</span><span style="color:#eb6772;">no_mangle</span><span style="color:#abb2bf;">]
+</span><span style="color:#cd74e8;">pub extern </span><span style="color:#9acc76;">&quot;C&quot; </span><span style="color:#cd74e8;">fn </span><span style="color:#5cb3fa;">php_module_info</span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">    </span><span style="color:#5ebfcc;">print_table_start</span><span style="color:#abb2bf;">();
+</span><span style="color:#abb2bf;">    </span><span style="color:#5ebfcc;">print_table_row</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;tool written by dyuit&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;enabled&quot;</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">    </span><span style="color:#5ebfcc;">print_table_end</span><span style="color:#abb2bf;">();
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">/// 函数封装
+</span><span style="color:#abb2bf;">#[</span><span style="color:#eb6772;">no_mangle</span><span style="color:#abb2bf;">]
+</span><span style="color:#cd74e8;">pub extern </span><span style="color:#9acc76;">&quot;C&quot; </span><span style="color:#cd74e8;">fn </span><span style="color:#5cb3fa;">get_module</span><span style="color:#abb2bf;">() -&gt; </span><span style="color:#cd74e8;">*mut</span><span style="color:#abb2bf;"> Module {
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// 封装函数
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">let</span><span style="color:#abb2bf;"> fn_md5 </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">FunctionBuilder::new(c_str!(</span><span style="color:#9acc76;">&quot;rs_md5&quot;</span><span style="color:#abb2bf;">), rs_md5)
+</span><span style="color:#abb2bf;">        .</span><span style="color:#5ebfcc;">with_arg</span><span style="color:#abb2bf;">(ArgInfo::new(c_str!(</span><span style="color:#9acc76;">&quot;str&quot;</span><span style="color:#abb2bf;">), </span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">))
+</span><span style="color:#abb2bf;">        .</span><span style="color:#5ebfcc;">build</span><span style="color:#abb2bf;">();
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// 将函数追加到扩展中
+</span><span style="color:#abb2bf;">    ModuleBuilder::new(c_str!(</span><span style="color:#9acc76;">&quot;dyuit_tool&quot;</span><span style="color:#abb2bf;">), c_str!(</span><span style="color:#9acc76;">&quot;0.1.0-dev&quot;</span><span style="color:#abb2bf;">))
+</span><span style="color:#abb2bf;">        .</span><span style="color:#5ebfcc;">with_info_function</span><span style="color:#abb2bf;">(php_module_info)
+</span><span style="color:#abb2bf;">        .</span><span style="color:#5ebfcc;">with_function</span><span style="color:#abb2bf;">(fn_md5) 
+</span><span style="color:#abb2bf;">        .</span><span style="color:#5ebfcc;">build</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">        .</span><span style="color:#5ebfcc;">into_raw</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// 引入md5
+</span><span style="color:#cd74e8;">use</span><span style="color:#abb2bf;"> md5;
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// rs md5 函数
+</span><span style="color:#abb2bf;">#[</span><span style="color:#eb6772;">no_mangle</span><span style="color:#abb2bf;">]
+</span><span style="color:#cd74e8;">pub extern </span><span style="color:#9acc76;">&quot;C&quot; </span><span style="color:#cd74e8;">fn </span><span style="color:#5cb3fa;">rs_md5</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">_data</span><span style="color:#abb2bf;">: </span><span style="color:#adb7c9;">&amp;</span><span style="color:#abb2bf;">ExecuteData, </span><span style="color:#eb6772;">retval</span><span style="color:#abb2bf;">: </span><span style="color:#adb7c9;">&amp;</span><span style="color:#cd74e8;">mut</span><span style="color:#abb2bf;"> Zval) {
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// 参数处理，如果多个参数就创建多个 zval 实例。
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">let mut</span><span style="color:#abb2bf;"> param_zval </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">Zval::new_as_null();
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// 解析参数，这里可以解析多个参数，不可以超过5个
+</span><span style="color:#abb2bf;">    php_parse_parameters!(</span><span style="color:#adb7c9;">&amp;</span><span style="color:#cd74e8;">mut</span><span style="color:#abb2bf;"> param_zval);
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// 将参数转换为rust类型
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">let</span><span style="color:#abb2bf;"> s </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">String::try_from(param_zval).</span><span style="color:#5ebfcc;">ok</span><span style="color:#abb2bf;">().</span><span style="color:#5ebfcc;">unwrap</span><span style="color:#abb2bf;">();
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// md5 处理
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">let</span><span style="color:#abb2bf;"> digest </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">md5::compute(s);
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">let</span><span style="color:#abb2bf;"> re </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">format!(</span><span style="color:#9acc76;">&quot;</span><span style="color:#db9d63;">{:x}</span><span style="color:#9acc76;">&quot;</span><span style="color:#abb2bf;">, digest);
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// 将数据封包返回，查看 solder 源码，检查支持的类型，这里多数为string和&amp;str。
+</span><span style="color:#abb2bf;">    php_return!(retval, re);
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>文件中</p>
+<ul>
+<li><code>get_module</code> 用来输出扩展</li>
+<li><code>php_module_info</code> 定义扩展注释</li>
+<li>FunctionBuilder 来封装函数，多个参数用 <code>with_arg</code> 来定义参数，参数最大数量支持5个。</li>
+<li>ModuleBuilder 中 <code>with_function</code> 来关联函数。</li>
+</ul>
+<h2 id="bian-yi-he-ce-shi">编译和测试</h2>
+<p>回到项目目录</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">cargo</span><span style="color:#abb2bf;"> build 
+</span><span style="font-style:italic;color:#5f697a;"># 加载扩展饼进入php命令
+</span><span style="color:#eb6772;">php -d</span><span style="color:#abb2bf;"> extension=target/debug/librstool.dylib</span><span style="color:#eb6772;"> -a
+</span><span style="font-style:italic;color:#5f697a;"># php 验证
+</span><span style="color:#eb6772;">php </span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> echo rs_md5(</span><span style="color:#9acc76;">&#39;123456&#39;</span><span style="color:#abb2bf;">)</span><span style="color:#adb7c9;">;
+</span><span style="color:#eb6772;">e10adc3949ba59abbe56e057f20f883e
+</span><span style="color:#eb6772;">php </span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> echo md5(</span><span style="color:#9acc76;">&#39;123456&#39;</span><span style="color:#abb2bf;">)</span><span style="color:#adb7c9;">;
+</span><span style="color:#eb6772;">e10adc3949ba59abbe56e057f20f883e
+</span><span style="color:#eb6772;">php </span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> print_r(get_extension_funcs(</span><span style="color:#9acc76;">&#39;dyuit_tool&#39;</span><span style="color:#abb2bf;">))</span><span style="color:#adb7c9;">;
+</span><span style="color:#eb6772;">Array
+</span><span style="color:#abb2bf;">(
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">[0]</span><span style="color:#abb2bf;"> =</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> rs_md5
+</span><span style="color:#abb2bf;">)
+</span></code></pre>
+<p>如果成功后就可以生产 release 版本 ，加载到 <code>php.ini</code> 中就可以使用了。</p>
+<blockquote>
+<p>! libc 在交叉编译中会报错，生产对应平台文件，需要多个环境编译。</p>
+</blockquote>
+<h2 id="zai-chuang-jian-han-shu-ji-shu-qi-jia-jian">再创建函数 计数器加减</h2>
+<p><strong>创建函数</strong></p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#6c7079;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#cd74e8;">use </span><span style="color:#abb2bf;">lazy_static::lazy_static;
+</span><span style="color:#cd74e8;">use </span><span style="color:#abb2bf;">std::sync::Mutex;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">lazy_static! {
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">static ref </span><span style="color:#db9d63;">NUM</span><span style="color:#abb2bf;">: Mutex&lt;</span><span style="color:#cd74e8;">u32</span><span style="color:#abb2bf;">&gt; </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">Mutex::new(</span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">#[</span><span style="color:#eb6772;">no_mangle</span><span style="color:#abb2bf;">]
+</span><span style="color:#cd74e8;">pub extern </span><span style="color:#9acc76;">&quot;C&quot; </span><span style="color:#cd74e8;">fn </span><span style="color:#5cb3fa;">rs_add</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">_data</span><span style="color:#abb2bf;">: </span><span style="color:#adb7c9;">&amp;</span><span style="color:#abb2bf;">ExecuteData, </span><span style="color:#eb6772;">retval</span><span style="color:#abb2bf;">: </span><span style="color:#adb7c9;">&amp;</span><span style="color:#cd74e8;">mut</span><span style="color:#abb2bf;"> Zval) {
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">let mut</span><span style="color:#abb2bf;"> n </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">NUM</span><span style="color:#abb2bf;">.</span><span style="color:#5ebfcc;">lock</span><span style="color:#abb2bf;">().</span><span style="color:#5ebfcc;">unwrap</span><span style="color:#abb2bf;">();
+</span><span style="color:#abb2bf;">    </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;">n </span><span style="color:#adb7c9;">+= </span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">    php_return!(retval, </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;">n);
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">#[</span><span style="color:#eb6772;">no_mangle</span><span style="color:#abb2bf;">]
+</span><span style="color:#cd74e8;">pub extern </span><span style="color:#9acc76;">&quot;C&quot; </span><span style="color:#cd74e8;">fn </span><span style="color:#5cb3fa;">rs_less</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">_data</span><span style="color:#abb2bf;">: </span><span style="color:#adb7c9;">&amp;</span><span style="color:#abb2bf;">ExecuteData, </span><span style="color:#eb6772;">retval</span><span style="color:#abb2bf;">: </span><span style="color:#adb7c9;">&amp;</span><span style="color:#cd74e8;">mut</span><span style="color:#abb2bf;"> Zval) {
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">let mut</span><span style="color:#abb2bf;"> n </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">NUM</span><span style="color:#abb2bf;">.</span><span style="color:#5ebfcc;">lock</span><span style="color:#abb2bf;">().</span><span style="color:#5ebfcc;">unwrap</span><span style="color:#abb2bf;">();
+</span><span style="color:#abb2bf;">    </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;">n </span><span style="color:#adb7c9;">-= </span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">    php_return!(retval, </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;">n);
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span></code></pre>
+<p><strong>加载函数到 get_module()</strong></p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#6c7079;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#cd74e8;">let</span><span style="color:#abb2bf;"> fn_add </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">FunctionBuilder::new(c_str!(</span><span style="color:#9acc76;">&quot;rs_add&quot;</span><span style="color:#abb2bf;">), rs_lock).</span><span style="color:#5ebfcc;">build</span><span style="color:#abb2bf;">();
+</span><span style="color:#cd74e8;">let</span><span style="color:#abb2bf;"> fn_less </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">FunctionBuilder::new(c_str!(</span><span style="color:#9acc76;">&quot;rs_less&quot;</span><span style="color:#abb2bf;">), rs_unlock).</span><span style="color:#5ebfcc;">build</span><span style="color:#abb2bf;">();
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">ModuleBuilder::new(c_str!(</span><span style="color:#9acc76;">&quot;dyuit_tool&quot;</span><span style="color:#abb2bf;">), c_str!(</span><span style="color:#9acc76;">&quot;0.1.0-dev&quot;</span><span style="color:#abb2bf;">))
+</span><span style="color:#abb2bf;">    .</span><span style="color:#5ebfcc;">with_info_function</span><span style="color:#abb2bf;">(php_module_info)
+</span><span style="color:#abb2bf;">    .</span><span style="color:#5ebfcc;">with_function</span><span style="color:#abb2bf;">(fn_md5)
+</span><span style="color:#abb2bf;">    .</span><span style="color:#5ebfcc;">with_function</span><span style="color:#abb2bf;">(fn_add)
+</span><span style="color:#abb2bf;">    .</span><span style="color:#5ebfcc;">with_function</span><span style="color:#abb2bf;">(fn_less)
+</span><span style="color:#abb2bf;">    .</span><span style="color:#5ebfcc;">build</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">    .</span><span style="color:#5ebfcc;">into_raw</span><span style="color:#abb2bf;">()
+</span></code></pre>
+<h2 id="jie-shu-yu">结束语</h2>
+<p>PHP 7.4 的 FFI 改进 ， 或许比扩展更好，有兴趣的同学可以去对比下。</p>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;rust-php-extension&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;rust-php-extension&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2020-07-18
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;game&#x2F;math-reflection-and-refraction&#x2F;">
+    <i class="icon icon-left-open"></i>
+    反射和折射</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;rust-cross-build&#x2F;">
+    rustlang osx 下交叉编译linux
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+<div class="no-print">
+  
+  <script src="https://giscus.app/client.js" data-repo="erasin/erasin.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnk3MzE0Mzg3Mw==" data-category="article" data-category-id="" data-mapping="pathname"
+    data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light"
+    data-lang="zh-CN" crossorigin="anonymous" async>
+    </script>
+  <style>
+    .utterances {
+      max-width: initial;
+    }
+  </style>
+  
+  
+</div>
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-primary" href="//erasin.wang/categories/php/">php</a>
+
+
+
+<a class="tag is-danger" href="//erasin.wang/categories/rustlang/">rustlang</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-danger" href="//erasin.wang/tags/php/">php</a>
+
+
+
+<a class="tag is-light" href="//erasin.wang/tags/rust/">rust</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="chuang-jian-xiang-mu" href="//erasin.wang/rust-php-extension/#chuang-jian-xiang-mu">创建项目</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="yin-ru-ku" href="//erasin.wang/rust-php-extension/#yin-ru-ku">引入库</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="chuang-jian-kuo-zhan-han-shu" href="//erasin.wang/rust-php-extension/#chuang-jian-kuo-zhan-han-shu">创建扩展函数</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="bian-yi-he-ce-shi" href="//erasin.wang/rust-php-extension/#bian-yi-he-ce-shi">编译和测试</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="zai-chuang-jian-han-shu-ji-shu-qi-jia-jian" href="//erasin.wang/rust-php-extension/#zai-chuang-jian-han-shu-ji-shu-qi-jia-jian">再创建函数 计数器加减</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="jie-shu-yu" href="//erasin.wang/rust-php-extension/#jie-shu-yu">结束语</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

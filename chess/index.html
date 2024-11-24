@@ -1,0 +1,946 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  国际象棋术语 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="国际象棋术语" property="description" />
+
+  
+
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> 国际象棋术语 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      国际象棋术语
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2019-12-27
+    </div>
+  </div>
+
+  <div class="post-content  " 
+    style="background-image:url(&#x27;&#x2F;assets&#x2F;img&#x2F;chess.svg&#x27;);" >
+    <p><strong>棋子</strong></p>
+<table><thead><tr><th></th><th></th><th></th></tr></thead><tbody>
+<tr><td><strong>White</strong> <em>白方</em></td><td><strong>Black</strong> <em>黑方</em></td><td><strong>Piece</strong> <em>棋子</em></td></tr>
+<tr><td><strong>King</strong> ♚   <em>王</em></td><td><strong>Queen</strong> ♛ <em>后</em></td><td><strong>Rook</strong> ♜ <em>车</em></td></tr>
+<tr><td><strong>Bishop</strong> ♝ <em>象</em></td><td><strong>Knight</strong> ♞ <em>马</em></td><td><strong>Pawn</strong> ♟ <em>兵</em></td></tr>
+</tbody></table>
+<span id="continue-reading"></span><h2 id="shu-yu-gui-ze">术语规则</h2>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">术语 - english - 说明
+</span></code></pre>
+<ul>
+<li>
+<p><strong>积极的</strong> <strong>Active</strong></p>
+<p>相对于对方的走法，更倾向于进去和战术的走法。也指更进去的一步棋或局面。</p>
+</li>
+<li>
+<p><strong>优势</strong> <strong>Advantage</strong></p>
+<p>通常来自物质、时间、空间，以及兵型上的，局面上客观存在的领先。</p>
+</li>
+<li>
+<p><strong>代数记谱法</strong> <strong>Algebraic notation</strong></p>
+<p>有时指国际象棋记法或简单地记法。表示国际象棋棋步的一种方式。大概有许多种记录国际象棋着法的方式就象有多种语言一样。但是，代数记法成为了国际标准。根本上讲，就是每个格子被给于一个字母和一个数字。从白方的方向看，由左到右竖线用字母表示为a 、b 、c 、d 、e 、f、g和h，从白方到黑方的横线则为1,2,3,4,5,6,7和8。这样，白方的左下角的格子就叫a1，而右上角就是h8。当棋子从一个格走到另一个格，代数记谱法使您辨认出行动的棋子和所到的格子。例如，如果车从a1格走到a8格，您写成Ra8。对于兵的走动，您只写兵到达的格子；例如，e4。王翼易位记作0-0。后翼易位记作0-0-0。</p>
+</li>
+<li>
+<p><strong>分析</strong> <strong>Analysis</strong></p>
+<p>基于一个特定局面的连续着法的演算。比赛中，您不被允许移动棋子来分析而必须在您的头里做所有的演算。当比赛结束了，刚下完棋的对手共同地分析这个对局，走动棋子来努力找出最解着法。</p>
+</li>
+<li>
+<p><strong>注释</strong> <strong>Annotation</strong></p>
+<p>关于局面或对局的书面评论。评论可能采取记叙文，记谱法，或两者组合的形式。</p>
+</li>
+<li>
+<p><strong>攻击</strong> <strong>Attack</strong></p>
+<p>在棋盘的某一个区域里开始的一次进取的行动，或是吃子、吃兵的威胁。</p>
+</li>
+<li>
+<p><strong>叠</strong> <strong>Battery</strong></p>
+<p>在一个竖线上放两个车或在同一个斜线上放一个象、一个后。</p>
+</li>
+<li>
+<p><strong>冒险家</strong> <strong>Berserker</strong></p>
+<p>只用一两个棋子进攻的疯狂走法。以自己疯狂战斗的古老的斯堪的纳维亚战士命名的，并且后来被他们的对手用尊敬的战略或人身的危险所改变。</p>
+</li>
+<li>
+<p><strong>双象</strong> <strong>Bishop pair</strong></p>
+<p>双象对一象一马或双马。双象共同工作得很好，因为他们能控制两个颜色的斜线。参见异色格象。</p>
+</li>
+<li>
+<p><strong>封锁</strong> <strong>Blockade</strong></p>
+<p>用一个棋子（理想的是马）直接地直接地放在敌兵前面，阻止它前进。由尼姆佐维奇普及的。</p>
+</li>
+<li>
+<p><strong>大漏着</strong> <strong>Blunder</strong></p>
+<p>导致丢子或导致局面上或战术上决定性让步的可怕的着法。</p>
+</li>
+<li>
+<p><strong>突破</strong> <strong>Breakthrough</strong><br />
+侵入敌人的阵地。</p>
+</li>
+<li>
+<p><strong>易位</strong> <strong>Castle</strong></p>
+<p>同时移动国王和车。易位是棋手在一步棋中走两个棋子的唯一的走法。易位允许棋手移动他的国王离开中心到侧面（开局中的重头戏），在那儿它可能由兵保护。另外，易位出动了一只车。当白方王翼易位时，他把国王从e1走到g1并把他h1的车走到f1。当黑方王翼易位时，他把国王从e8走到g8并把他h8的车走到f8。当白方后翼易位时，他把他的国王从e1走到c1并把他a1车走到d1。而当黑方后翼易位时，他把他的国王从 e8走到c8并把他a8车走到d8。</p>
+</li>
+<li>
+<p><strong>中心</strong> <strong>Center</strong></p>
+<p>棋盘上由c3-c6-f6-f3格围成的正方形。e4，d4，e5和d5是中心的最重要的部份。e线和d线是中心竖线。</p>
+</li>
+<li>
+<p><strong>将死</strong> <strong>Checkmate</strong></p>
+<p>无法解脱的对王的攻击。当一个棋手将死他的对手的国王，他就赢了此局。</p>
+</li>
+<li>
+<p><strong>古典</strong> <strong>Classical</strong></p>
+<p>聚焦于建立完全的兵中心的下法。古典原则倾向于教条和顽固。古典棋手的哲学最终受到“超现代主义”的挑战。参见超现代主义。</p>
+</li>
+<li>
+<p><strong>腾挪</strong> <strong>Clearance sacrifice</strong></p>
+<p>用牺牲一个碍事棋子的方式为有力的一着棋让路。</p>
+</li>
+<li>
+<p><strong>封闭性局面</strong> <strong>Closed game</strong></p>
+<p>由固定的兵链阻碍着的局面。这样的局面倾向于马强于象，因为兵阻拦着斜线。</p>
+</li>
+<li>
+<p><strong>组合</strong> <strong>Combination</strong></p>
+<p>利用局面的特殊性希望达到某一目标的，结合弃子的一系列强制着法。</p>
+</li>
+<li>
+<p><strong>通路联兵</strong> <strong>Connected passed pawns</strong></p>
+<p>在毗邻的竖线上的两个或更多同样颜色的通路兵。参见通路兵。</p>
+</li>
+<li>
+<p><strong>控制</strong> <strong>Control</strong></p>
+<p>完全地控制棋盘的某个区域。控制一条竖线或一个格子，或只是有主动性，都能构成控制。</p>
+</li>
+<li>
+<p><strong>反击</strong> <strong>Counterplay</strong></p>
+<p>处于防御的棋手开始他自己的进取的行动，叫反击。</p>
+</li>
+<li>
+<p><strong>束缚</strong> <strong>Cramp</strong></p>
+<p>通常是在空间上吃亏的结果，缺乏机动性。</p>
+</li>
+<li>
+<p><strong>关键局面</strong> <strong>Critical position</strong></p>
+<p>对局的重要一点，胜利或失败的平衡点。</p>
+</li>
+<li>
+<p><strong>引入</strong> <strong>Decoy</strong></p>
+<p>诱使对手的棋子到一个特殊格子的战术。</p>
+</li>
+<li>
+<p><strong>防御</strong> <strong>Defense</strong></p>
+<p>有计划地反对敌人进攻的一步或一系列的几步棋。也用在许多由黑方决定的开局的名字。例如，法兰西防御和卡罗.康防御。</p>
+</li>
+<li>
+<p><strong>引离</strong> <strong>Deflection</strong></p>
+<p>包括赶走对手的主要保卫者，以便瘫痪对手防御的战术。</p>
+</li>
+<li>
+<p><strong>出子</strong> <strong>Development</strong></p>
+<p>把棋子从最初的位置走到新岗位的走子过程，这样他们就控制了更多的格子和有更大的机动性。</p>
+</li>
+<li>
+<p><strong>闪击</strong> <strong>Discovered attack</strong></p>
+<p>埋伏。王后、车或象在等待攻击，只要其他的棋子或兵让开了路。</p>
+</li>
+<li>
+<p><strong>闪将</strong> <strong>Discovered check</strong></p>
+<p>包括将您的对手的王的闪击。</p>
+</li>
+<li>
+<p><strong>双重攻击</strong> <strong>Double attack</strong></p>
+<p>同时攻击两个目标的着法。</p>
+</li>
+<li>
+<p><strong>双将</strong> <strong>Double check</strong></p>
+<p>最强有力的闪击，用两个棋子同时将王。国王被迫撤走，并且敌军因而至少停顿一着棋。</p>
+</li>
+<li>
+<p><strong>叠兵</strong> <strong>Doubled pawns</strong></p>
+<p>同样颜色的两个兵处于一条竖线上。叠兵是用兵吃子的结果。</p>
+</li>
+<li>
+<p><strong>和棋</strong> <strong>Draw</strong></p>
+<p>平局。和棋可能是从无子可动，三次重复局面或同意提和来的。参见无子可动；三次重复局面。</p>
+</li>
+<li>
+<p><strong>国际等级分</strong> <strong>Elo rating</strong></p>
+<p>评价棋手的系统。由密尔沃基（Milwaukee）的Arpad Elo (1903-1993) 教授构想并被FIDE在1970年采用的。初学者也许有900分，一般的俱乐部球员1600分，州冠军2300分，世界冠军2800分。</p>
+</li>
+<li>
+<p><strong>吃过路兵</strong> <strong>En passant</strong></p>
+<p>法语通过的意思。当兵推进两个格（只有它以前未走过）并且通过邻线敌方已经推进到它的第5线的兵，敌兵能吃掉这个兵好像它只走了只一格一样。敌兵吃不吃都可以，但必须在第一时机决定；否则，兵的特殊走法的特殊条件消失了，权利消失。</p>
+</li>
+<li>
+<p><strong>残局</strong> <strong>Endgame</strong></p>
+<p>对局的第三个也是最后的阶段。残局是只有少量的棋子在棋盘上。进入残局的最清楚的标志，王后被交换掉了。</p>
+</li>
+<li>
+<p><strong>均势</strong> <strong>Equality</strong></p>
+<p>双方都没有的优势或各种优势总体是平衡的局面。</p>
+</li>
+<li>
+<p><strong>交换</strong> <strong>Exchange</strong></p>
+<p>兑子，通常棋子的价值相等。</p>
+</li>
+<li>
+<p><strong>得半子</strong> <strong>Exchange,The</strong></p>
+<p>制胜的交换，意味着您赢得了一只车（5分）对象或马（3分）的交换。</p>
+</li>
+<li>
+<p><strong>蟹眼象</strong> <strong>Fianchetto</strong></p>
+<p>意大利语在侧面的意思并只适用于象。蟹眼象对白象就是在g2 或b2，对黑象在g7 或b7。</p>
+</li>
+<li>
+<p><strong>国际棋联</strong> <strong>FIDE</strong></p>
+<p>首字母缩略词。</p>
+</li>
+<li>
+<p><strong>竖线</strong> <strong>File</strong></p>
+<p>垂直的八个格子组成的。特指代数记谱法的a线、b线等等。参见半开放线；开放线。</p>
+</li>
+<li>
+<p><strong>侧翼</strong> <strong>Flank</strong></p>
+<p>a，b和c线在后翼，而f，g和h线在王翼。</p>
+</li>
+<li>
+<p><strong>子力</strong> <strong>Force</strong></p>
+<p>物质。物质优势是一个棋手比他对手有更多的物质或他在棋盘的某个特定区域比对手的人多。</p>
+</li>
+<li>
+<p><strong>强迫</strong> <strong>Forced</strong></p>
+<p>避免灾害而必须走的一步或一系列着法。</p>
+</li>
+<li>
+<p><strong>捉双</strong> <strong>Fork</strong></p>
+<p>一个棋子同时攻击敌方两个棋子或兵的战术运子。</p>
+</li>
+<li>
+<p><strong>弃兵</strong> <strong>Gambit</strong></p>
+<p>开局中自愿牺牲至少一个兵，想法是获得补偿的某种优势（通常是出子的时间）。</p>
+</li>
+<li>
+<p><strong>一般原则</strong> <strong>General principles</strong></p>
+<p>国际象棋的根本法则，用来使稍差的棋手对不同的局面作出合理的反应。特级大师使用得比您会想象的要多！_|</p>
+</li>
+<li>
+<p><strong>大组合</strong> <strong>Grande combination</strong></p>
+<p>包含许多步棋和许多类型战术的组合。</p>
+</li>
+<li>
+<p><strong>特级大师</strong> <strong>Grandmaster</strong></p>
+<p>由国际棋联授予棋手的称号，有确定的整套标准，包括高的国际等级分。这是国际象棋里最高的称号（除世界冠军之外）。低些的称号包括国际大师和棋联大师，是国际比赛上最低的称号。一旦赢得特级大师称号就无法被撤消。参见国际等级分；大师。</p>
+</li>
+<li>
+<p><strong>半开放线</strong> <strong>Half-open file</strong></p>
+<p>一个棋手没有兵但对方有一个或更多的兵。</p>
+</li>
+<li>
+<p><strong>悬</strong> <strong>Hang</strong></p>
+<p>是无保护和被瞄上的。</p>
+</li>
+<li>
+<p><strong>弱格</strong> <strong>Hole</strong></p>
+<p>无法由兵保卫的格子。这样的格子给棋子一个满意的家因为棋子无法被敌兵驱赶。亦称前哨点。</p>
+</li>
+<li>
+<p><strong>超现代主义</strong> <strong>Hypermodern</strong></p>
+<p>针对国际象棋古典理论的思想学派。超现代主义坚持兵在开局时的中心将成为目标。这个运动的英雄是理查?列基和亚伦?尼姆佐维奇，他们俩阐明了侧翼控制中心的想法。象古典主义者的想法那样，那些超现代主义者可能过于极端。现今，从正反两面看好象更正确。两种哲学的升华是妥善处理任一个特殊情况所需要的。参见古典。</p>
+</li>
+<li>
+<p><strong>主动权</strong> <strong>Initiative</strong></p>
+<p>当您走了能令您的对手必须反应的威胁，就说您拥有主动权。</p>
+</li>
+<li>
+<p><strong>垫</strong> <strong>Interpose</strong></p>
+<p>把棋子或兵放在敌方攻击棋子和被攻击的棋子之间。</p>
+</li>
+<li>
+<p><strong>直觉</strong> <strong>Intuition</strong></p>
+<p>由“感觉”而不是由演算发现正确的着法或战略。</p>
+</li>
+<li>
+<p><strong>王翼</strong> <strong>Kingside</strong></p>
+<p>棋盘的一半，e、f、g和h线。王翼上的棋子是国王、在它旁边的象、马在象的旁边，而车在马的旁边。参见后翼。</p>
+</li>
+<li>
+<p><strong>小窗口</strong> <strong>Luft</strong></p>
+<p>德语空气的意思。在国际象棋里，它意味给国王呼吸的空间。它描述的是王前的一个兵走了，以避底线将杀的可能性。</p>
+</li>
+<li>
+<p><strong>强子</strong> <strong>Major pieces</strong></p>
+<p>王后和车。也叫重子。</p>
+</li>
+<li>
+<p><strong>大师</strong> <strong>Master</strong></p>
+<p>在美国，一个等级分2200或更多的棋手。如果棋手的等级分下降到2200以下，称号被废止。参见特级大师。</p>
+</li>
+<li>
+<p><strong>将军</strong> <strong>Mate</strong></p>
+<p>将死的省略语。</p>
+</li>
+<li>
+<p><strong>物质的</strong> <strong>Material</strong></p>
+<p>所有的棋子和兵。物质的优势是棋手在棋盘上有比对手更多的棋子或棋子的价值更大。参见点数。</p>
+</li>
+<li>
+<p><strong>中局</strong> <strong>Middlegame</strong></p>
+<p>开局和残局之间的对局阶段。</p>
+</li>
+<li>
+<p><strong>轻子</strong> <strong>Minor pieces</strong></p>
+<p>象和马。</p>
+</li>
+<li>
+<p><strong>机动性</strong> <strong>Mobility</strong></p>
+<p>棋子的行动自由。</p>
+</li>
+<li>
+<p><strong>占领</strong> <strong>Occupation</strong></p>
+<p>车或王后控制一条竖线或横线被称为占领那条线。一个棋子被说成占领哪个格子是它正在那个格子上。</p>
+</li>
+<li>
+<p><strong>公开赛</strong> <strong>Open</strong></p>
+<p>指什么水平棋手都可以参加的一种比赛。虽然经常是棋手最终碰到比自己强或弱的对手，但奖励通常也是按组别的。这样的公开赛在美国是极端普遍的。</p>
+</li>
+<li>
+<p><strong>开放性局面</strong> <strong>Open game</strong></p>
+<p>有许多开放的横线、竖线或斜线，少量的中心兵的局面。在这种类型的局面中出子领先变得非常重要。</p>
+</li>
+<li>
+<p><strong>开局</strong> <strong>Opening</strong></p>
+<p>对局的开始，最出的十几着或更多着法的总和。开局的基本的目标是尽快出动子力；尽可能多地控制中心；并且及早易位使国王安全，同时把车展开到中心线路安置在潜在的开放线上。</p>
+</li>
+<li>
+<p><strong>开局</strong> <strong>Openings</strong></p>
+<p>导向开局的大致目标的确定的着法次序。这些着法次序通常用发明者的名字或首次出现的地方命名。有些如王翼弃兵和英国式开局，已经被分析了相当了不起的长度。</p>
+</li>
+<li>
+<p><strong>异色格象</strong> <strong>Opposite-colored Bishops</strong></p>
+<p>当棋手各有一个象并且是在不同色的格子里。异色格象永远无法直接接触。</p>
+</li>
+<li>
+<p><strong>过度扩张</strong> <strong>Overextension</strong></p>
+<p>当向前推兵而太快地获得空间并试图控制很多地域，棋手的阵营里就留下弱点或削弱了前进了的兵。他就被认为是过度扩张了。</p>
+</li>
+<li>
+<p><strong>过载</strong> <strong>Overworked piece</strong></p>
+<p>一个棋子被用来参与保护太多的其它棋子。</p>
+</li>
+<li>
+<p><strong>通路兵</strong> <strong>Passed pawn</strong></p>
+<p>任何敌兵都无法影响其前进的兵，因此是有严重的升变威胁的兵。参见升变；低升变。</p>
+</li>
+<li>
+<p><strong>兵型</strong> <strong>Pawn structure</strong></p>
+<p>也指兵骨架。所有兵的位置的各个方面。</p>
+</li>
+<li>
+<p><strong>长将</strong> <strong>Perpetual check</strong></p>
+<p>当一个棋手让对手处于被将军中，强迫其反应，接着是另一个将军及被迫的反应，接着再将而重复第一个局面。由于这样的对局能被永远走下去，在局面重复之后对局被宣布和棋。参见三次重复局面。</p>
+</li>
+<li>
+<p><strong>长捉</strong> <strong>Perpetual pursuit</strong></p>
+<p>相似于长将，只是被捉的是象，马，车或王后代替了国王。</p>
+</li>
+<li>
+<p><strong>小组合</strong> <strong>Petite combination</strong></p>
+<p>只涉及几步棋的组合。</p>
+</li>
+<li>
+<p><strong>牵制</strong> <strong>Pin</strong></p>
+<p>当一个棋手攻击对手一个无法移动的棋子否则他将丢失一个价值更大的不同的棋子。当这个价值更大的棋子是国王，这种战术称为绝对牵制；当它不是国王则称为相对牵制。</p>
+</li>
+<li>
+<p><strong>计划</strong> <strong>Plan</strong></p>
+<p>棋手基于他的着法的短期或长远的目标。</p>
+</li>
+<li>
+<p><strong>点数</strong> <strong>Point count</strong></p>
+<p>给棋子下面数值的记分系统：国王无价；王后9点；车5点；象3点；马3点；而兵1点。一些指南给国王的点计数是3.5点。</p>
+</li>
+<li>
+<p><strong>局面</strong> <strong>Positional</strong></p>
+<p>根据长远考虑的一步棋或走法。缓慢的积累小优势被认为是局面的走法。</p>
+</li>
+<li>
+<p><strong>开局准备</strong> <strong>Prepared variation</strong></p>
+<p>专业棋手普遍分析书中开局希望发现一个新的着法或计划。当棋手有这样一个发现，他经常将保存这个准备的变着至便用它对付某个专门的对手。</p>
+</li>
+<li>
+<p><strong>升变</strong> <strong>Promotion</strong></p>
+<p>也叫变后。当兵达到第8横线，它能被升变为同样颜色的象、马、车或（最共同地）王后。参见低升变。</p>
+</li>
+<li>
+<p><strong>有根通路兵</strong> <strong>Protected passed pawn</strong></p>
+<p>是在其它兵的保护下的通路兵。参见通路兵。</p>
+</li>
+<li>
+<p><strong>后翼</strong> <strong>Queenside</strong></p>
+<p>棋盘的一半，包括a、c、b和d线。后翼上的棋子是王后、在它旁边的象、在象旁边的马和在马旁边的车。参见王翼。</p>
+</li>
+<li>
+<p><strong>安静的一着</strong> <strong>Quiet move</strong></p>
+<p>不是吃子、将军或直接威胁的不摆架子的着法。安静的一着经常发生运子或组合的结尾，吃回点数。</p>
+</li>
+<li>
+<p><strong>横线</strong> <strong>Rank</strong></p>
+<p>水平排列的八个格子。在代数记谱法中记作第1线，第2线，等等。</p>
+</li>
+<li>
+<p><strong>等级分</strong> <strong>rating</strong></p>
+<p>衡量棋手相对力量的数字。数字越高，说明棋手越强。参见国际等级分。</p>
+</li>
+<li>
+<p><strong>认输</strong> <strong>Resign</strong></p>
+<p>当棋手意识到他失败，没有等到将死就客气地放弃比赛。认输时，棋手可以简单地说“我认输，”或他也可以把他的国王放倒。当您刚开始学下棋，我推荐绝不认输。总从头走到尾。</p>
+</li>
+<li>
+<p><strong>浪漫</strong> <strong>Romantic</strong></p>
+<p>从19 世纪初到其中叶是国际象棋的浪漫** **或男子时代，那时弃子和攻击被认为是男子气概的唯一表达方式。如果有人提供了弃子，拒绝被认为是怯懦可耻的。今天，有为大胆攻击和弃子倾向的棋手，经常试探地行动，也被叫作浪漫。</p>
+</li>
+<li>
+<p><strong>皇家捉双</strong> <strong>Royal fork</strong></p>
+<p>攻击国王和王后的捉双。</p>
+</li>
+<li>
+<p><strong>弃子</strong> <strong>Sacrifice</strong></p>
+<p>为获取在空间、时间、兵型，甚至在子力（可能在棋盘的某个区域导致子力优势。）上的好处而自愿放弃物质。不同于组合的是，弃子通常不是一件可靠的东西并经常需要一个不确定因素。</p>
+</li>
+<li>
+<p><strong>简化</strong> <strong>Simplify</strong></p>
+<p>交换棋子是局面安静下来，消灭对手的攻击潜力，或澄清局势。</p>
+</li>
+<li>
+<p><strong>穿串</strong> <strong>Skewer</strong></p>
+<p>对一个很有价值的棋子的一个威胁，它会被迫走开而允许吃掉它后面的一个价值较小的棋子。</p>
+</li>
+<li>
+<p><strong>闷杀</strong> <strong>Smothered checkmate</strong></p>
+<p>当国王被它自己的棋子完全地围拢（或是在棋盘的边缘）并且受到一个无法回答的将军时，他就被闷杀将死了。闷杀经常由马来完成。</p>
+</li>
+<li>
+<p><strong>空间</strong> <strong>Space</strong></p>
+<p>由各个棋手控制的领地。</p>
+</li>
+<li>
+<p><strong>空间数</strong> <strong>Space count</strong></p>
+<p>过去经常用来确定谁控制更多空间的数字系统，一个棋手那一侧棋盘上的每个格子为1点，被对方的棋子或兵控制就属于对方。</p>
+</li>
+<li>
+<p><strong>冒险</strong> <strong>Speculative move</strong></p>
+<p>没有明确结果的通常是必要的着法。有时充分的计算是不可能的，因此棋手必须依靠直觉，一个冒险的计划也许就出现了。经常涉及到弃子。例如，白方走了一个冒险的弃子之类。</p>
+</li>
+<li>
+<p><strong>无子可动</strong> <strong>Stalemate</strong></p>
+<p>在英语里，是指敌对的两支部队之间的对峙。在国际象棋术语里，指一个棋手被束缚得很厉害，以至于任一合乎规则的走法都将暴露他的国王于直接的将军之下。无子可动是和棋（平局）。</p>
+</li>
+<li>
+<p><strong>战略</strong> <strong>Strategy</strong></p>
+<p>思考之后的一步棋、一个计划或一个想法。</p>
+</li>
+<li>
+<p><strong>研究</strong> <strong>Study</strong></p>
+<p>一些理论局面，或著作，使不常见的战术主题变得突出。</p>
+</li>
+<li>
+<p><strong>风格</strong> <strong>Style</strong></p>
+<p>棋手下棋的路数，反射他的个性和偏好。棋手选择的着法风格通常表现了棋手的个人特征。在比赛中典型的是风格相反的两个棋手（例如，一个攻击者对一个安静的局面棋手），优胜者将是那个成功地强加他风格的一位。</p>
+</li>
+<li>
+<p><strong>战术</strong> <strong>Tactics</strong></p>
+<p>利用短暂的机会争取优势的调遣。有很多陷阱和组合的局面自然被认为是战术的。</p>
+</li>
+<li>
+<p><strong>先手</strong> <strong>Tempo</strong></p>
+<p>作为时间单位的一步棋。如果棋子到达一个有用的格子用一着棋但却走了两步，那它失去一个先手。例如，在l.e4 e5 2.d4 exd4 3.Qxd4 Nc6之后。黑方获一先而白方则失去一先，因为白王后被攻击必须第二次走王后到安全的地方。</p>
+</li>
+<li>
+<p><strong>理论</strong> <strong>Theory</strong></p>
+<p>书里的著名开局、中局和残局局面。</p>
+</li>
+<li>
+<p><strong>三次重复局面</strong> <strong>Three-time repetition of position</strong></p>
+<p>当棋手来回走子，重复同样的局面。经常是在物质上落后最后要失败的棋手，弃子求得长将（参见长将）。三次重复局面的结果是和棋（平局）。</p>
+</li>
+<li>
+<p><strong>时间</strong> <strong>Time</strong></p>
+<p>在这本书里，除通常的含义之外（“黑方没有时间阻止白方所有的威胁”），时间是指出子的措施。也指思考的时间，既棋钟上的时间。参见时间控制；先手。</p>
+</li>
+<li>
+<p><strong>时间控制</strong> <strong>Time control</strong></p>
+<p>每个棋手必须走完一定步数的规定时间。在国际比赛中，典型的时间控制是每个棋手用2 个小时完成40步。在各个棋手走完40步之后，被给以另外的时间（通常1 个小时20步）。如果棋手用尽了他的时间，但未走完必须的步数，不管局面如何他都被判负。</p>
+</li>
+<li>
+<p><strong>时间恐慌</strong> <strong>Time pressure</strong></p>
+<p>国际象棋比赛对局中最扣人心弦的时刻之一。当一个或两个棋手用完棋钟上的决大部分时间而仍需要几步棋才能达到规定的40或45步，他们开始快速走棋，有时在疯狂的恐慌中扔下棋子。典型的出现可怕的大漏着的阶段。一些棋手几乎每场比赛都进入时间恐慌，被认为是时间恐慌癖。</p>
+</li>
+<li>
+<p><strong>交汇点</strong> <strong>Transposition</strong></p>
+<p>由不同的次序得到的一个相同的开局局面。例如，法兰西防御的1.e4 e6 2.d4 d5 通常也能由1.d4 e6 2.e4 d5 的次序得到。</p>
+</li>
+<li>
+<p><strong>陷阱</strong> <strong>Trap</strong></p>
+<p>暗中诱使对手犯错误的方法。</p>
+</li>
+<li>
+<p><strong>低升变</strong> <strong>Underpromotion</strong></p>
+<p>兵变成比后小的棋子。</p>
+</li>
+</ul>
+<h2 id="shu-yu">术语</h2>
+<ul>
+<li><strong>Chess set</strong> <em>国际象棋棋具</em></li>
+<li><strong>Colour</strong> <em>棋色</em></li>
+<li><strong>Bishop of opposite colours</strong> <em>异色格象</em></li>
+<li><strong>Bishop of the same colours</strong> <em>同色格象</em></li>
+<li><strong>Bishop ending</strong> <em>象残局</em></li>
+<li><strong>Board</strong> <em>棋盘</em></li>
+<li><strong>Square</strong> <em>方格</em></li>
+<li><strong>Rank</strong> <em>横线</em></li>
+<li><strong>File</strong> <em>直线</em></li>
+<li><strong>Diagonal</strong> <em>斜线</em></li>
+<li><strong>Centre</strong> <em>中心</em></li>
+<li><strong>Wing</strong> <em>侧翼</em></li>
+<li><strong>Check</strong> <em>将军</em></li>
+<li><strong>Checkmate</strong> <em>将杀</em></li>
+<li><strong>Mate</strong> <em>将杀</em></li>
+<li><strong>Stalemate</strong> <em>无子可动</em></li>
+<li><strong>Discovered check</strong> <em>闪将</em></li>
+<li><strong>Double check</strong> <em>双将</em></li>
+<li><strong>Perpetual check</strong> <em>长将</em></li>
+<li><strong>To give check</strong> <em>打将</em></li>
+<li><strong>Checkmate</strong> <em>将杀</em></li>
+<li><strong>To give checkmate</strong> <em>杀王</em></li>
+<li><strong>Exchange</strong> <em>交换、兑子</em></li>
+<li><strong>Move</strong> <em>走子</em></li>
+<li><strong>Capture</strong> <em>吃子</em></li>
+<li><strong>Castling</strong> <em>王车易位</em></li>
+<li><strong>Game</strong> <em>对局</em></li>
+<li><strong>Opening</strong> <em>开局</em></li>
+<li><strong>Middlegame</strong> <em>中局</em></li>
+<li><strong>Ending</strong> <em>残局</em></li>
+<li><strong>Result</strong> <em>战绩</em></li>
+<li><strong>Win</strong> <em>赢棋</em></li>
+<li><strong>Lose</strong> <em>负</em></li>
+<li><strong>Draw</strong> <em>和</em></li>
+<li><strong>Resign</strong> <em>认输</em></li>
+<li><strong>Crosstable</strong> <em>成绩表 一般指循环制的成绩表</em></li>
+<li><strong>Point</strong> <em>分</em></li>
+<li><strong>Half a point</strong> <em>半分</em></li>
+<li><strong>Zero</strong> <em>零</em></li>
+<li><strong>Analysis</strong> <em>拆棋</em></li>
+<li><strong>Position</strong> <em>局面</em></li>
+<li><strong>Novelty</strong> <em>新招</em></li>
+<li><strong>Threat</strong> <em>威胁</em></li>
+<li><strong>Attack</strong> <em>进攻</em></li>
+<li><strong>Defence</strong> <em>防御</em></li>
+<li><strong>Variant</strong> <em>变着</em></li>
+<li><strong>Combination</strong> <em>战术组合</em></li>
+<li><strong>Sacrifice</strong> <em>弃子</em></li>
+<li><strong>Mistake</strong> <em>错着</em></li>
+<li><strong>Clock</strong> <em>棋钟</em></li>
+<li><strong>Flag</strong> <em>钟旗</em></li>
+<li><strong>Time</strong> <em>时间</em></li>
+<li><strong>Time trouble</strong> <em>时间恐慌</em></li>
+<li><strong>Score sheet</strong> <em>记录纸</em></li>
+<li><strong>Envelope</strong> <em>封棋信封</em></li>
+<li><strong>Master</strong> <em>大师</em></li>
+<li><strong>Participant</strong> <em>参赛者</em></li>
+<li><strong>Tournament</strong> <em>联赛</em></li>
+<li><strong>Match</strong> <em>对抗赛</em></li>
+<li><strong>Olympaid</strong> <em>奥林匹克赛</em></li>
+<li><strong>Team</strong> <em>队</em></li>
+<li><strong>Captain</strong> <em>队长</em></li>
+<li><strong>Country</strong> <em>国家</em></li>
+<li><strong>Winner</strong> <em>优胜者</em></li>
+<li><strong>Champion</strong> <em>冠军</em></li>
+<li><strong>Drawing of lots</strong> <em>抽签</em></li>
+<li><strong>Number</strong> <em>序号</em></li>
+<li><strong>Round</strong> <em>轮次</em></li>
+<li><strong>To accept a draw</strong> <em>接受和棋</em></li>
+<li><strong>Adjourned game</strong> <em>封局</em></li>
+<li><strong>Adjourned position</strong> <em>封棋局面</em></li>
+<li><strong>Advantage n.</strong> <em>优势</em></li>
+<li><strong>Decisive advantage</strong> <em>决定性优势</em></li>
+<li><strong>Material advantage</strong> <em>子力优势</em></li>
+<li><strong>Obvious advantage</strong> <em>明显优势</em></li>
+<li><strong>Positional advantage</strong> <em>局面优势</em></li>
+<li><strong>Development advantage</strong> <em>出子优势</em></li>
+<li><strong>Space advantage</strong> <em>空间优势</em></li>
+<li><strong>To get advantage</strong> <em>取得优势</em></li>
+<li><strong>To have advantage</strong> <em>拥有优势</em></li>
+<li><strong>Chief arbiter</strong> <em>主裁判</em></li>
+<li><strong>International arbiter</strong> <em>国际裁判</em></li>
+<li><strong>National arbiter</strong> <em>国家裁判</em></li>
+<li><strong>To have the bye</strong> <em>轮空</em></li>
+<li><strong>Game of chess</strong> <em>国际象棋对局</em></li>
+<li><strong>Laws of chess</strong> <em>国际象棋规则</em></li>
+<li><strong>Castlev.</strong> <em>王车易位</em></li>
+<li><strong>Long castling</strong> <em>长易位</em></li>
+<li><strong>Short castling</strong> <em>短易位</em></li>
+<li><strong>Centreopening</strong> <em>中心开局</em></li>
+<li><strong>Centralgambit</strong> <em>中心弃兵开局</em></li>
+<li><strong>Bishops’ opening</strong> <em>飞象开局</em></li>
+<li><strong>Latviangambit</strong> <em>拉脱维亚弃兵开局</em></li>
+<li><strong>Kings’ gambit</strong> <em>王翼弃兵局</em></li>
+<li><strong>Vienna game</strong> <em>维也纳开局</em></li>
+<li><strong>Phlidor’s defence</strong> <em>菲立道尔防御</em></li>
+<li><strong>Four knights’ game</strong> <em>四马开局</em></li>
+<li><strong>Italian game</strong> <em>意大利开局</em></li>
+<li><strong>Evans gambit</strong> <em>伊文思弃兵局</em></li>
+<li><strong>Two knights’ defence</strong> <em>双马防御</em></li>
+<li><strong>Scotch game</strong> <em>苏格兰开局</em></li>
+<li><strong>Russian defence</strong> <em>俄罗斯防御</em></li>
+<li><strong>Spanish game</strong> <em>西班牙布局</em></li>
+<li><strong>Caro-kann defence</strong> <em>卡罗-康 防御</em></li>
+<li><strong>Alekhine’s defence</strong> <em>阿列亨防御</em></li>
+<li><strong>French defence</strong> <em>法兰西防御</em></li>
+<li><strong>Sicilian defence</strong> <em>西西里防御</em></li>
+<li><strong>Queen’s gambit</strong> <em>后翼弃兵局</em></li>
+<li><strong>Queen’s gambit acepted</strong> <em>吃后翼弃兵局</em></li>
+<li><strong>Slav defence</strong> <em>斯拉夫防御</em></li>
+<li><strong>Queen’s indian</strong> <em>defence新印度防御</em></li>
+<li><strong>Catalan system</strong> <em>卡塔龙开局</em></li>
+<li><strong>Kings indian defence</strong> <em>古印度防御</em></li>
+<li><strong>English opening</strong> <em>英国式开局</em></li>
+</ul>
+
+
+
+  </div>
+</div>
+
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;linux-sync-file&#x2F;">
+    <i class="icon icon-left-open"></i>
+    linux下同步方案以及站点文件的简单防篡改</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;nginx&#x2F;">
+    Nginx Web 服务配置
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-black" href="//erasin.wang/categories/game/">game</a>
+
+
+    </div>
+    
+
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="shu-yu-gui-ze" href="//erasin.wang/chess/#shu-yu-gui-ze">术语规则</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="shu-yu" href="//erasin.wang/chess/#shu-yu">术语</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

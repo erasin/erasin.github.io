@@ -1,0 +1,453 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  CMUS 终端音乐播放器 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="" property="description" />
+
+  
+    <meta content="cli,music" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> CMUS 终端音乐播放器 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      CMUS 终端音乐播放器
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2020-01-12
+    </div>
+  </div>
+
+  <div class="post-content  " 
+    style="background-image:url(&#x27;&#x2F;assets&#x2F;img&#x2F;undraw_happy_music_g6wc.svg&#x27;)" >
+    <p>CMUS <a href="https://github.com/cmus/cmus">git</a> <a href="https://cmus.github.io/">site</a> 是一个小型的终端音乐播放器。</p>
+<h2 id="ji-ben-ming-ling">基本命令</h2>
+<ul>
+<li>:set softvol=true - 打开软音量控制</li>
+<li>:add /path/to/music/dir - 添加音乐库目录</li>
+<li>:clear -清除播放列表</li>
+<li>:save playlist.pls - 保存当前播放列表</li>
+<li>:load playlist.pls -加载播放列表</li>
+<li>:colorscheme xterm-white - 修改配色方案</li>
+</ul>
+<span id="continue-reading"></span>
+<p><img src="https://i.loli.net/2020/01/12/y7oqFQ9G681uhpV.png" alt="cmus-2.4.3-osx.png" /></p>
+<h2 id="cao-zuo-jian">操作键</h2>
+<table><thead><tr><th style="text-align: right">key</th><th>command</th><th>note</th></tr></thead><tbody>
+<tr><td style="text-align: right"><strong>q</strong></td><td><strong>quit -i</strong></td><td>退出</td></tr>
+<tr><td style="text-align: right"><strong>^C</strong></td><td><strong>echo Type :quit<enter> to exit cmus.</strong></td><td>退出（^就是ctrl的意思）</td></tr>
+<tr><td style="text-align: right"><strong>b</strong></td><td><strong>player-next</strong></td><td>下一首</td></tr>
+<tr><td style="text-align: right"><strong>c</strong></td><td><strong>player-pause</strong></td><td>暂停 [快速记忆： c == continue]</td></tr>
+<tr><td style="text-align: right"><strong>x</strong></td><td><strong>player-play</strong></td><td>播放</td></tr>
+<tr><td style="text-align: right"><strong>z</strong></td><td><strong>player-prev</strong></td><td>前一首</td></tr>
+<tr><td style="text-align: right"><strong>v</strong></td><td><strong>player-stop</strong></td><td>停止</td></tr>
+<tr><td style="text-align: right"><strong>^L</strong></td><td><strong>refresh</strong></td><td>刷新</td></tr>
+<tr><td style="text-align: right"><strong>n</strong></td><td><strong>search-next</strong></td><td>查找下一个</td></tr>
+<tr><td style="text-align: right"><strong>N</strong></td><td><strong>search-prev</strong></td><td>查找上一个</td></tr>
+<tr><td style="text-align: right"><strong>.</strong></td><td><strong>seek +1m</strong></td><td>快进</td></tr>
+<tr><td style="text-align: right"><strong>l,</strong></td><td><strong>right seek +5</strong></td><td>快快进</td></tr>
+<tr><td style="text-align: right"><strong>,</strong></td><td><strong>seek -1m</strong></td><td>快退</td></tr>
+<tr><td style="text-align: right"><strong>h,</strong></td><td><strong>left seek -5</strong></td><td>快快退</td></tr>
+<tr><td style="text-align: right"><strong>m</strong></td><td><strong>toggle <code>aaa_mode</code></strong></td><td>修改<code>aaa_mode</code>模式 [快速记忆： m == mode ]（all from library / artist from library / album from library）</td></tr>
+<tr><td style="text-align: right"><strong>C</strong></td><td><strong>toggle continue</strong></td><td>持续播放，也就是说这首播放完了继续播放下一首</td></tr>
+<tr><td style="text-align: right"><strong>M</strong></td><td><strong>toggle <code>play_library</code></strong></td><td>切换到playlist （问题：如果我M到了playlist是不是R循环播放是对于整个playlist的？）</td></tr>
+<tr><td style="text-align: right"><strong>o</strong></td><td><strong>toggle <code>play_sorted</code></strong></td><td>切换成all from sorted library，具体功能我不懂，望高手指点一二</td></tr>
+<tr><td style="text-align: right"><strong>r</strong></td><td><strong>toggle repeat</strong></td><td>循环[ 快速记忆： r == repeat ] （问题：循环针对的对象是不是<code>aaa_mode</code>？）</td></tr>
+<tr><td style="text-align: right"><strong>^R</strong></td><td><strong>toggle <code>repeat_current</code></strong></td><td>对当前循环</td></tr>
+<tr><td style="text-align: right"><strong>t</strong></td><td><strong>toggle <code>show_remaining_time</code></strong></td><td>显示剩余时间[ 快速记忆: t == time]（默认是显示播放时间）</td></tr>
+<tr><td style="text-align: right"><strong>s</strong></td><td><strong>toggle shuffle</strong></td><td>支持拖拽（？）</td></tr>
+<tr><td style="text-align: right"><strong>F</strong></td><td><strong>push filter<space></strong></td><td>不清楚，只看到命令提示行显示了:fliter ，估计是提示筛选神马的</td></tr>
+<tr><td style="text-align: right"><strong>L</strong></td><td><strong>push live-filter<space></strong></td><td>我也不清楚，命令显示为：:live-filter， 看着想即时筛选？</td></tr>
+<tr><td style="text-align: right"><strong>u</strong></td><td><strong>update-cache</strong></td><td>更新缓存（我按了没什么效果）</td></tr>
+<tr><td style="text-align: right"><strong>1</strong></td><td><strong>view tree</strong></td><td>主界面</td></tr>
+<tr><td style="text-align: right"><strong>2</strong></td><td><strong>view sorted</strong></td><td></td></tr>
+<tr><td style="text-align: right"><strong>3</strong></td><td><strong>view playlist</strong></td><td>这个估计写错了，应该是view browser</td></tr>
+<tr><td style="text-align: right"><strong>4</strong></td><td><strong>view queue</strong></td><td>显示Queue （我也不知道是啥东西）</td></tr>
+<tr><td style="text-align: right"><strong>5</strong></td><td><strong>view browser</strong></td><td>这个应该是 view playlist，显示播放列表</td></tr>
+<tr><td style="text-align: right"><strong>6</strong></td><td><strong>view filters</strong></td><td>显示筛选机制（？）</td></tr>
+<tr><td style="text-align: right"><strong>7</strong></td><td><strong>view settings</strong></td><td>显示快捷键</td></tr>
+<tr><td style="text-align: right"><strong>!</strong></td><td><strong>push\ shell<space></strong></td><td>view settings</td></tr>
+<tr><td style="text-align: right"><strong>]</strong></td><td><strong>vol +0 +1</strong></td><td>音量控制，左声道不变，右声道+1</td></tr>
+<tr><td style="text-align: right"><strong>[</strong></td><td><strong>vol +1 +0</strong></td><td>音量控制，左声道+1，右声道+0</td></tr>
+<tr><td style="text-align: right"><strong>+,</strong></td><td><strong>= vol +10%</strong></td><td>声音变大10%</td></tr>
+<tr><td style="text-align: right"><strong>-</strong></td><td><strong>vol -10%</strong></td><td>声音减小10%</td></tr>
+<tr><td style="text-align: right"><strong>}</strong></td><td><strong>vol -0 -1</strong></td><td>音量控制，左声道不变，右声道-1</td></tr>
+<tr><td style="text-align: right"><strong>{</strong></td><td><strong>vol -1 -0</strong></td><td>音量控制，左声道+0，右声道+1</td></tr>
+<tr><td style="text-align: right"><strong>enter</strong></td><td><strong>win-activate</strong></td><td>不懂解释的意思，但是按下回车就会开始放歌。。。</td></tr>
+<tr><td style="text-align: right"><strong>E</strong></td><td><strong>win-add-Q</strong></td><td>传说可以跟别人聊天（？）但是我没试出来</td></tr>
+<tr><td style="text-align: right"><strong>a</strong></td><td><strong>win-add-l</strong></td><td>不懂</td></tr>
+<tr><td style="text-align: right"><strong>y</strong></td><td><strong>win-add-p ms</strong></td><td>是前一首的意思</td></tr>
+<tr><td style="text-align: right"><strong>e</strong></td><td><strong>win-add-q</strong></td><td>光标向下</td></tr>
+<tr><td style="text-align: right"><strong>G,</strong></td><td><strong>end win-bottom</strong></td><td>光标到整个 list 的最后</td></tr>
+<tr><td style="text-align: right"><strong>down,</strong></td><td><strong>j win-down</strong></td><td>光标向下（ vim 的快捷键）</td></tr>
+<tr><td style="text-align: right"><strong>p</strong></td><td><strong>win-mv-after</strong></td><td>不懂</td></tr>
+<tr><td style="text-align: right"><strong>P</strong></td><td><strong>win-mv-before color=#FF00FF</strong></td><td>color</td></tr>
+<tr><td style="text-align: right"><strong>tab</strong></td><td><strong>win-next</strong></td><td>切换窗口</td></tr>
+<tr><td style="text-align: right"><strong>^F,</strong></td><td><strong><code>page_down</code> win-page-down</strong></td><td>光标跳到一屏中的最后</td></tr>
+<tr><td style="text-align: right"><strong>^B,</strong></td><td><strong><code>page_up</code> win-page-up</strong></td><td>光标跳到一屏中的嘴上</td></tr>
+<tr><td style="text-align: right"><strong>D,</strong></td><td><strong>delete win-remove</strong></td><td>删除</td></tr>
+<tr><td style="text-align: right"><strong>i</strong></td><td><strong>win-sel-cur</strong></td><td>打开当前光标所在的 track</td></tr>
+<tr><td style="text-align: right"><strong>space</strong></td><td><strong>win-toggle</strong></td><td>打开属性列表的子列表</td></tr>
+<tr><td style="text-align: right"><strong>g,</strong></td><td><strong>home win-top</strong></td><td>光标跳到最上边</td></tr>
+<tr><td style="text-align: right"><strong>k,</strong></td><td><strong>up win-up</strong></td><td>光标向上一行</td></tr>
+</tbody></table>
+
+
+
+  </div>
+</div>
+
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;lnmp&#x2F;">
+    <i class="icon icon-left-open"></i>
+    LinuX 服务器配置流程</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;openssl&#x2F;">
+    OpenSSL 证书
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-light" href="//erasin.wang/categories/soft/">soft</a>
+
+
+
+<a class="tag is-light" href="//erasin.wang/categories/cli/">cli</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-warning" href="//erasin.wang/tags/cli/">cli</a>
+
+
+
+<a class="tag is-success" href="//erasin.wang/tags/music/">music</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="ji-ben-ming-ling" href="//erasin.wang/soft-cmus/#ji-ben-ming-ling">基本命令</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="cao-zuo-jian" href="//erasin.wang/soft-cmus/#cao-zuo-jian">操作键</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

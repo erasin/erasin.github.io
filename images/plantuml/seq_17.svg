@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="360px" preserveAspectRatio="none" style="width:186px;height:360px;" version="1.1" viewBox="0 0 186 360" width="186px" zoomAndPan="magnify"><defs><filter height="300%" id="f1fpjwfs7gv5iw" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="50" x="67" y="23.5352">seq_17</text><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="38" x2="38" y1="116.9766" y2="272.8398"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="95" x2="95" y1="116.9766" y2="272.8398"/><rect fill="#FEFECE" filter="url(#f1fpjwfs7gv5iw)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="56" x="8" y="81.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="42" x="15" y="102.0234">服务端</text><rect fill="#FEFECE" filter="url(#f1fpjwfs7gv5iw)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="56" x="8" y="271.8398"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="42" x="15" y="292.375">服务端</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="28" x="78" y="114.0234">客户</text><ellipse cx="95" cy="43.4883" fill="#FEFECE" filter="url(#f1fpjwfs7gv5iw)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;"/><path d="M95,51.4883 L95,78.4883 M82,59.4883 L108,59.4883 M95,78.4883 L82,93.4883 M95,78.4883 L108,93.4883 " fill="#FEFECE" filter="url(#f1fpjwfs7gv5iw)" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="28" x="78" y="285.375">客户</text><ellipse cx="95" cy="298.3281" fill="#FEFECE" filter="url(#f1fpjwfs7gv5iw)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;"/><path d="M95,306.3281 L95,333.3281 M82,314.3281 L108,314.3281 M95,333.3281 L82,348.3281 M95,333.3281 L108,348.3281 " fill="#FEFECE" filter="url(#f1fpjwfs7gv5iw)" style="stroke: #A80036; stroke-width: 2.0;"/><rect fill="#FFFFFF" filter="url(#f1fpjwfs7gv5iw)" height="40.6211" style="stroke: #000000; stroke-width: 2.0;" width="106" x="5" y="126.9766"/><polygon fill="#EEEEEE" points="5,126.9766,69,126.9766,69,133.9766,59,143.9766,5,143.9766,5,126.9766" style="stroke: #000000; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="18" y="141.5449">ref</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="21" x="49.5" y="160.5449">init</text><polygon fill="#A80036" points="83,189.5977,93,193.5977,83,197.5977,87,193.5977" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="38" x2="89" y1="193.5977" y2="193.5977"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="31" x="45" y="189.166">hello</text><rect fill="#FFFFFF" filter="url(#f1fpjwfs7gv5iw)" height="55.9316" style="stroke: #000000; stroke-width: 2.0;" width="100" x="75" y="201.9082"/><polygon fill="#EEEEEE" points="75,201.9082,139,201.9082,139,208.9082,129,218.9082,75,218.9082,75,201.9082" style="stroke: #000000; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="88" y="216.4766">ref</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="92" x="81" y="235.4766">This can be on</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="78" x="81" y="250.7871">several lines</text><!--
+@startuml
+title seq_17
+
+participant 服务端
+actor 客户
+
+ref over 服务端, 客户 : init
+
+服务端 -> 客户 : hello
+
+ref over 客户
+  This can be on
+  several lines
+end ref
+@enduml
+
+PlantUML version 1.2017.19(Sun Nov 12 19:46:22 CST 2017)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 1.8.0_112-b16
+Operating System: Mac OS X
+OS Version: 10.12.6
+Default Encoding: UTF-8
+Language: zh
+Country: CN
+--></g></svg>

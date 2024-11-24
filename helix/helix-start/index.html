@@ -1,0 +1,823 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  开始使用 HELIX EDITOR 编辑器 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="从 VSCode，neovim 和 Vim 切换到 helix 编辑器" property="description" />
+
+  
+    <meta content="cli,github,helix,vim,vscode" name="keywords" />
+  
+
+  
+
+  
+    
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> 开始使用 HELIX EDITOR 编辑器 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      开始使用 HELIX EDITOR 编辑器
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2023-02-17
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <p>在工作的十来年内，我使用过各种各样的文本编辑器，从最开始的nodepad以及网页三剑客，到sublime2，sublime3，vim, neovim, atom, vscode, 特别是在使用 vscode 的时候, vim 键盘布局的兼容，加上逐渐丰富的插件系统，使用起来非常的好，可以说是我近年来使用过最好编辑器了。但是随着使用时间的加深，vscode 使用 electron 在我的电脑上也开始出现了隔上一段时间就会出现一次小小的卡顿，最开始的时候还能够忍受，当你的输入被打断的时候，就变得非常的不爽了，然后重新回到了 neovim 编辑器。</p>
+<p>Neovim 和 vim 相同，初始仅提供了模态编辑功能，优秀的键盘布局通过练习后会形成一套肌肉记忆，让编辑文本变得更加的有效率，这也是近年来多数商业的编辑器也都支持了vim mode 的原因。</p>
+<p>Neovim 支持 lua 来配置，这比之前的vim配置有效率的多，也诞生了不少<code>框架</code>，比如<a href="https://github.com/NvChad/NvChad">NvChad</a>，有这些框架的支持，最少也不用重新开始配置了,然后就是查询 neovim 的最优插件，tree-sitter 语法支持，lsp 支持，为使用到的语言配置。然后更新，修改配置。然后就是维护这套配置。这无疑会话费大量的时间。</p>
+<p>去年五月份的时候，我在github上发现了<a href="https://github.com/helix-editor/helix">Helix</a>编辑器项目，当时已经有 <strong>10K STAR</strong> 了，下载后自己编译了文件，发现编辑器和 vim 非常的类似，仅仅是部分操作有所差别，官方提供了更加现代化的提示，可以说非常的友好，可以看出它融合了很多现代编辑器以及vim插件的特性，这些我们下面再说。</p>
+<p>Vim 的操作模式是多数是 <strong>动作 --&gt; 对象</strong>, 默认情况下除了编辑器下方的动词，你没有任何的提示，需要我们自己来确认需要处理的选择对象。</p>
+<p>而 Helix 是 <strong>选择操作的对象 --&gt; 动作</strong>, 是先要明确要操作的对象，然后才是输入动作，这样在多光标多个选区的时候是非常有效和明确的。Helix 编辑器和 Kakoune 相同是以多光标操作为核心，允许多个选区同时操作的编辑器。而 Vim 则需要通过插件实现多光标模式，所以操作上也有一定的差异。</p>
+<p>在使用了 Helix 的几个月内，一定程度上变成了我主要编辑器，因为 Debugger (DAP) 还不成熟，Debug 我还在用 Vscode。下面让我快速的介绍下这款编辑器吧。</p>
+<img src='https://raw.githubusercontent.com/helix-editor/helix/master/logo.svg'  style='width:100%;max-width:200px;' />
+
+<span id="continue-reading"></span><h2 id="helix-xuan-cheng">Helix 宣称</h2>
+<p>官方制作组称 Helix 为一款后现代文本模态编辑器。</p>
+<ul>
+<li><strong>零配置</strong>
+<blockquote>
+<p>真的不需要任何配置就可以完全使用功能，不过想要好的体验还是需要配置一些快捷键之类的。</p>
+</blockquote>
+</li>
+<li>受 Neovim 和 Kakoune 启发
+<blockquote>
+<p>按键布局和动作都有受 vim 的影响，而编辑核心则更加偏向 Kakoune 。</p>
+</blockquote>
+</li>
+<li>非常的快
+<blockquote>
+<p>这点还是有保证的,在和 alacritty 配合使用的时候，几乎CPU功耗和内存低的发指。
+有的时候 LSP 的关闭速度会导致 hx 关闭的时候要等待lsp服务结束（这个好像已
+经异步解决了）。</p>
+</blockquote>
+</li>
+<li>基于终端的<strong>模态</strong>编辑
+<blockquote>
+<p>支持 true-color theme</p>
+</blockquote>
+</li>
+<li><strong>多光标</strong>，多选区</li>
+<li>vim-style 键盘布局
+<blockquote>
+<p>官方提供了<a href="https://github.com/helix-editor/helix/wiki/Keymap-brainstorm">键盘布局sheet</a>, 有<a href="https://zjp-cn.github.io/helix-book/keymap.html">中文文档</a>可以阅读。</p>
+</blockquote>
+</li>
+<li>内置语言支持 Tree-Sitter
+<blockquote>
+<p>查看项目的 <a href="https://github.com/helix-editor/helix/blob/master/languages.toml">languages.toml</a> 可以看到支持的语言。</p>
+</blockquote>
+</li>
+<li><strong>LSP</strong>支持
+<blockquote>
+<p>wiki 中可以查询下载需要的 <a href="https://github.com/helix-editor/helix/wiki/How-to-install-the-default-language-servers">语言服务器</a> 。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="helix-nei-zhi-gong-neng">Helix 内置功能</h2>
+<p>Helix 零配置下提供了大量的 vim 插件实现的功能。</p>
+<ul>
+<li>Virtual Text 虚拟文本</li>
+<li>Fuzz File finder，文件选择器,一种文件过滤器</li>
+<li>Minor modes 微模态
+<ul>
+<li>Goto Mode: Goto模式,提供了光标操作和lsp跳转操作</li>
+<li>View Mode, 预览模式下优化了阅读操作体验</li>
+<li>Match Mode 匹配模式
+<ul>
+<li>Autopairs / Surround 自动匹配符号对，可以对选区追加，改变包括的符号。</li>
+<li>Textobject Select，利用 treesitter textobject 快速选择函数，类，段落等文字块。</li>
+</ul>
+</li>
+<li>Window Mode 窗口模式,窗口分割，切换，跳转功能。暂时不支持窗口大小的变更。</li>
+<li>Space Mode 命令映射窗口</li>
+<li>Popup 弹窗</li>
+<li>Unimpaired 代码导航</li>
+</ul>
+</li>
+<li>LSP (Language Server Protocol) 语言服务
+<ul>
+<li>Completion 自动不全。</li>
+<li>Diagnostics 错误提示。</li>
+<li>Action 服务器提供各种代码重构，纠错功能。</li>
+<li>File/Workspace symbol 代码结构。</li>
+<li>Rename symbol 重命名重构语法。</li>
+</ul>
+</li>
+<li>Formatter 代码格式化</li>
+<li>Treesitter
+<ul>
+<li>Highlight 语法高亮。</li>
+<li>Indent 自动缩进。</li>
+<li>Textobject 文本选择，比如 <code>maf</code> 选择 <code>function</code>。</li>
+</ul>
+</li>
+<li>Debugger (DAP) 调试机制支持的还是不太好，建议使用cli调试或者其他的编辑器。
+<blockquote>
+<p>已经有改进的 issues 里程碑计划，后续可能会有更好的调试模式。</p>
+</blockquote>
+</li>
+<li>多重光标，这个模式下对比vscode和vim，功能完善的非常多。</li>
+<li>Buffer Manger</li>
+<li>Git Gutter</li>
+<li>Indent Guides</li>
+<li>Themes</li>
+<li>其他</li>
+</ul>
+<p>Helix 提供了大量的内置功能来达到用户可以开箱使用，而无需在配置和寻求功能上话费大量的时间。但这并不意味着所有的功能都会加入到 helix 本身。<strong>插件系统</strong>在讨论版（discussions)上置顶，基于性能的嵌入式还是RPC协议以及其他？想要了解的可以移步到<a href="https://github.com/helix-editor/helix/discussions/3806">插件系统</a>查看讨论。其中也提到了另外一个编辑器 <a href="https://github.com/lapce/lapce">Lapce</a> 使用<a href="https://lapce.dev/plugin-server-protocol/specifications/psp/0.1/specification/">PSP</a> 协议创建服务器插件。</p>
+<blockquote>
+<p><a href="https://github.com/lapce/lapce">Lapce</a> 和 Helix 相同，也是使用Rust开发的一款文本  文本编辑器，不同的是 lapce 一开始就走了类似 vscode 的道路，有不错的GUI界面，已经有了  基于 PSP 基于服务器插件协议的插件系统。当前 star 比 helix 要多谢，但是开发者活跃度  和PR 与helix 却有上不少的差距。</p>
+</blockquote>
+<p><strong>我在用功能PR</strong></p>
+<ul>
+<li>
+<p><a href="https://github.com/helix-editor/helix/pull/5768">Explorer V3</a> 这个分支已经被  人迭代了3个版本，已经进行了多轮测试，但是核心团队仍没有合并，原因是UI的操作倒退,需要设计更加合理的组件,还有就是核心成员更喜欢使用fuzz。</p>
+</li>
+<li>
+<p><a href="https://github.com/helix-editor/helix/pull/5934">LSP Inlay Hints PR#5934</a>
+基于虚拟文本(virtual Text) 利用 LSP 提供的嵌入式提示文本可以在不影响操作和
+正确的字符索引处理下提供非常好的代码提示体验。默认情况下支持rust，其他的语言
+需要根据各自语言的lsp是否支持 Inlay Hints配置。</p>
+<blockquote>
+<p><a href="https://github.com/helix-editor/helix/issues/2070#issuecomment-1433195804">issues#2070</a>
+中我有贴出 gopls, lua, typescript 的 Inlay Hints 的配置。</p>
+</blockquote>
+<p><img src="https://user-images.githubusercontent.com/354596/218293038-eef64d6d-680f-4b06-8722-f3dfabbdab49.png" alt="img" /></p>
+</li>
+<li>
+<p><a href="https://github.com/helix-editor/helix/pull/2869">Icon</a> 图标系统，图标系统默
+认使用 NerdFonts 图标字体, 可以通过自定义 <code>runtime/icons</code> 或者 <code>.config/helix/icons/</code>
+配置文件夹下配置图标主题来实现自定义图标。现在图标支持 bufferline, picker,
+statusline, 部分 symbol .</p>
+</li>
+</ul>
+<p>现在仍有大量的功能型 PR 提交未合并,相信 22.12 的下一个版本中看到更好的功能。</p>
+<h2 id="kuai-su-ru-men">快速入门</h2>
+<h3 id="yi-dong-ming-ling">移动命令</h3>
+<p>移动即选择光标贯穿的选区。</p>
+<ul>
+<li><code>h</code> <code>j</code> <code>k</code> <code>l</code> 光标单字符选区移动</li>
+<li><code>w</code> <code>e</code> <code>b</code> <code>W</code> <code>E</code> <code>B</code> 光标单词移动选区</li>
+<li><code>t</code> <code>f</code> <code>T</code> <code>F</code> 光标移动到匹配字符并选择</li>
+<li><code>%</code> 全选,光标会移动到文档最后一个字符</li>
+<li><code>x</code> 选择当前行，延伸向下选择行</li>
+</ul>
+<h3 id="cao-zuo-ming-ling">操作命令</h3>
+<ul>
+<li><code>d</code> 删除</li>
+<li><code>c</code>,<code>C</code> 复制/不复制 修改所选的内容</li>
+<li><code>|</code> 执行 shell 命令</li>
+<li><code>y</code> 复制内容到寄存器</li>
+<li><code>p</code> <code>P</code> 在所选内容 后方|前方 粘贴</li>
+<li><code>r</code> 替换</li>
+<li><code>~</code> 切换大小写</li>
+<li><code>J</code> 合并行</li>
+<li><code>Ctrl-c</code> 注释切换</li>
+<li><code>&amp;</code> 多光标下对齐选择</li>
+<li><code>;</code> 取消选区到光标</li>
+<li><code>:</code> 执行命令</li>
+</ul>
+<h3 id="insert-cha-ru-mo-shi">insert 插入模式</h3>
+<ul>
+<li><code>i</code> <code>o</code> <code>a</code> <code>I</code> <code>O</code> <code>A</code> 进入插入模式</li>
+<li><code>c</code> 修改选的内容会进入插入模式</li>
+</ul>
+<h3 id="duo-guang-biao">多光标</h3>
+<ul>
+<li><code>C</code></li>
+<li><code>Alt-C</code>
+<blockquote>
+<p>这里是大写的 <code>C</code> ,实际按键应为 <code>Alt-Shift-c</code>, 其他的也是一样，注意按键
+字母的大小写。</p>
+</blockquote>
+</li>
+<li><code>Alt-s</code> 多行选区中对非空行的末尾追加光标。</li>
+<li><code>,</code> 只保留主选区</li>
+</ul>
+<h3 id="chang-yong-de-wei-mo-shi-ming-ling">常用的微模式命令</h3>
+<p><strong>Space Mode</strong> 目录</p>
+<ul>
+<li><code>space f</code> 文件选择器</li>
+<li><code>space k</code> lsp 提示</li>
+<li><code>space w</code> 窗口模式</li>
+<li>其他的基本都是常用的 ^_^</li>
+</ul>
+<p><strong>Goto Mode</strong> 跳转</p>
+<ul>
+<li><code>gh</code> 行首 <code>gl</code> 行末</li>
+<li><code>gg</code> 首行 <code>ge</code> 末行</li>
+<li><code>gc</code> 窗口中间 <code>gt</code> 窗口顶部 <code>gb</code> 窗口中间</li>
+<li>LSP
+<ul>
+<li><code>gd</code> 定义 <code>gy</code> 类型定义 <code>gr</code> 引用 <code>gi</code> 实现</li>
+</ul>
+</li>
+<li><code>ga</code> 上次选择的文件</li>
+</ul>
+<p><strong>Match mode</strong> 匹配模式</p>
+<ul>
+<li><code>ms</code> 用来为选区追加括号引号等符号</li>
+<li><code>ma</code> 选择定义选区</li>
+</ul>
+<p><strong>Window mode</strong> 窗口</p>
+<p><code>space w</code> 或者 <code>ctrl-w</code> 进入模式</p>
+<ul>
+<li><code>s</code> 水平底部拆分窗口</li>
+<li><code>v</code> 垂直向右拆分窗口</li>
+<li><code>q</code> 关闭窗口</li>
+<li><code>o</code> 仅保留当前窗口</li>
+</ul>
+<p><strong>Unimpaired</strong></p>
+<p><code>]</code> 向下匹配 <code>[</code> 向上匹配,然后选择</p>
+<blockquote>
+<p>需要 tree-sitter 的 textobject 支持。</p>
+</blockquote>
+<ul>
+<li><code>d</code> diagnostics 错误诊断</li>
+<li><code>f</code> function 函数</li>
+<li><code>t</code> type definition 类型定义</li>
+<li><code>a</code> parameter 参数</li>
+<li><code>c</code> comment 注释</li>
+<li><code>p</code> paragraph 段落</li>
+</ul>
+<h2 id="pei-zhi">配置</h2>
+<p>即使 Helix 在零配置下也可以使用，如果想要更加符合自己的习惯还是需要一些配置。
+<a href="https://github.com/erasin/helix-config">erasin/helix-config</a> 是我自己正在使用的配置文件。</p>
+<p>在 Helix 中,加载配置的顺序是 <code>默认配置</code> --&gt;&gt; <code>.config/helix/</code>中自定义配置 --&gt; <code>self-project/.helix/</code> 项目文件夹下自定义配置。在三层配置这种常规设计基本上可以满足各种使用的情况了。</p>
+<p>配置文件结构主要有：</p>
+<ul>
+<li>config.toml &lt;-- 编辑器配置</li>
+<li>language.toml &lt;-- 语言支持配置</li>
+<li>themes/ &amp;lt-- 自定义主题
+<ul>
+<li>self-theme1.toml</li>
+</ul>
+</li>
+<li>icons/          &amp;lt--  自定义图标
+<ul>
+<li>self-icons.toml</li>
+</ul>
+</li>
+</ul>
+<h3 id="config-toml">config.toml</h3>
+<p>配置主要提供 true-color 支持,自定义显示,以及自定义键盘布局。在编辑器器中使用 <code>:set-option </code> 可以看到配置选项,或者阅读官方文档配置。</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#6c7079;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#eb6772;">theme </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;onedark&quot;
+</span><span style="font-style:italic;color:#5f697a;"># icons = &quot;nerd&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># editor 编辑器
+</span><span style="color:#abb2bf;">[editor]
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 真彩支持
+</span><span style="color:#eb6772;">true-color </span><span style="color:#abb2bf;">= </span><span style="color:#db9d63;">true
+</span><span style="color:#eb6772;">auto-completion </span><span style="color:#abb2bf;">= </span><span style="color:#db9d63;">true
+</span><span style="font-style:italic;color:#5f697a;"># auto-save = false
+</span><span style="color:#eb6772;">auto-info </span><span style="color:#abb2bf;">= </span><span style="color:#db9d63;">true
+</span><span style="font-style:italic;color:#5f697a;"># cursorcolumn = true # 光标列高亮
+</span><span style="color:#eb6772;">cursorline </span><span style="color:#abb2bf;">= </span><span style="color:#db9d63;">true </span><span style="font-style:italic;color:#5f697a;"># 光标 行高亮
+</span><span style="color:#eb6772;">color-modes </span><span style="color:#abb2bf;">= </span><span style="color:#db9d63;">true
+</span><span style="color:#eb6772;">idle-timeout </span><span style="color:#abb2bf;">= </span><span style="color:#db9d63;">40
+</span><span style="font-style:italic;color:#5f697a;"># mouse = true
+</span><span style="font-style:italic;color:#5f697a;"># scrolloff = 5 # 滚动时上下边缘填充行数
+</span><span style="font-style:italic;color:#5f697a;"># scroll-lines = 3
+</span><span style="font-style:italic;color:#5f697a;"># line-number = &quot;relative&quot;  # 行号类型 absolute / relative 
+</span><span style="font-style:italic;color:#5f697a;"># rulers = [80, 120]   # 标尺
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># bufferline = &quot;multiple&quot;  # always | multiple | never
+</span><span style="font-style:italic;color:#5f697a;"># gutters = [&quot;diagnostics&quot;, &quot;spacer&quot;, &quot;line-numbers&quot;, &quot;spacer&quot;, &quot;diff&quot;]
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">[editor.lsp]
+</span><span style="color:#eb6772;">display-messages </span><span style="color:#abb2bf;">= </span><span style="color:#db9d63;">true </span><span style="font-style:italic;color:#5f697a;"># 服务器语言信息提示 
+</span><span style="font-style:italic;color:#5f697a;"># display-signature-help-docs = false
+</span><span style="color:#eb6772;">display-inlay-hints </span><span style="color:#abb2bf;">= </span><span style="color:#db9d63;">true </span><span style="font-style:italic;color:#5f697a;"># 默认 false 
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">[editor.whitespace.render]
+</span><span style="color:#eb6772;">space </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;all&quot;
+</span><span style="color:#eb6772;">tab </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;all&quot;
+</span><span style="color:#eb6772;">newline </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;all&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">[editor.whitespace.characters]
+</span><span style="color:#eb6772;">space </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;·&quot;
+</span><span style="color:#eb6772;">nbsp </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;⍽&quot;
+</span><span style="color:#eb6772;">tab </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;→&quot;
+</span><span style="color:#eb6772;">newline </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;⏎&quot;
+</span><span style="color:#eb6772;">tabpad </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;·&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">[editor.soft-wrap]
+</span><span style="color:#eb6772;">enable </span><span style="color:#abb2bf;">= </span><span style="color:#db9d63;">true
+</span><span style="font-style:italic;color:#5f697a;"># max-wrap = 20 
+</span><span style="font-style:italic;color:#5f697a;"># max-indent-retain = 40
+</span><span style="font-style:italic;color:#5f697a;"># wrap-indicator = &quot;↪ &quot;
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 光标样式
+</span><span style="color:#abb2bf;">[editor.cursor-shape]
+</span><span style="color:#eb6772;">insert </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;bar&quot;
+</span><span style="color:#eb6772;">normal </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;block&quot;
+</span><span style="color:#eb6772;">select </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;underline&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 状态栏定义
+</span><span style="color:#abb2bf;">[editor.statusline]
+</span><span style="font-style:italic;color:#5f697a;"># [#2869] file-type-icon
+</span><span style="color:#eb6772;">left </span><span style="color:#abb2bf;">= [</span><span style="color:#9acc76;">&quot;mode&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;spacer&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;spinner&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;spacer&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;file-type-icon&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;file-name&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;file-modification-indicator&quot;</span><span style="color:#abb2bf;">]
+</span><span style="color:#eb6772;">center </span><span style="color:#abb2bf;">= [</span><span style="color:#9acc76;">&quot;diagnostics&quot;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&quot;workspace-diagnostics&quot;</span><span style="color:#abb2bf;">]
+</span><span style="color:#eb6772;">right </span><span style="color:#abb2bf;">= [ </span><span style="color:#9acc76;">&quot;selections&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;position&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;position-percentage&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;file-encoding&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;file-line-ending&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;file-type&quot;</span><span style="color:#abb2bf;">, ]
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 键盘布局
+</span><span style="color:#abb2bf;">[keys.normal]
+</span><span style="font-style:italic;color:#5f697a;"># use `li` or remap `after insert`
+</span><span style="color:#eb6772;">a </span><span style="color:#abb2bf;">= [</span><span style="color:#9acc76;">&quot;move_char_right&quot;</span><span style="color:#abb2bf;">,</span><span style="color:#9acc76;">&quot;insert_mode&quot;</span><span style="color:#abb2bf;">]
+</span><span style="color:#9acc76;">&quot;C-s&quot; </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;:write&quot;  </span><span style="font-style:italic;color:#5f697a;"># 原保存跳转列表位置，修改为 C-j
+</span><span style="color:#9acc76;">&quot;C-j&quot; </span><span style="color:#abb2bf;">= [</span><span style="color:#9acc76;">&quot;save_selection&quot;</span><span style="color:#abb2bf;">]
+</span><span style="color:#9acc76;">&quot;C-r&quot; </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;:reload&quot;
+</span><span style="color:#9acc76;">&quot;C-z&quot; </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;normal_mode&quot;     </span><span style="font-style:italic;color:#5f697a;"># replace suspend
+</span><span style="color:#9acc76;">&quot;C-q&quot; </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;:quit&quot;
+</span><span style="color:#9acc76;">&quot;A-/&quot; </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;toggle_comments&quot;
+</span><span style="color:#9acc76;">&quot;</span><span style="color:#5ebfcc;">\\</span><span style="color:#9acc76;">&quot; </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;:reflow&quot; </span><span style="font-style:italic;color:#5f697a;"># |
+</span><span style="color:#9acc76;">&quot;X&quot; </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;extend_line_above&quot;
+</span><span style="color:#9acc76;">&quot;Z&quot; </span><span style="color:#abb2bf;">= { </span><span style="color:#9acc76;">&quot;Z&quot; </span><span style="color:#abb2bf;">= [</span><span style="color:#9acc76;">&quot;:quit&quot;</span><span style="color:#abb2bf;">] }
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># macos 自动切换到英文环境
+</span><span style="color:#9acc76;">&quot;esc&quot; </span><span style="color:#abb2bf;">= [</span><span style="color:#9acc76;">&quot;:sh macism com.apple.keylayout.ABC&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;normal_mode&quot;</span><span style="color:#abb2bf;">]
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># space mode
+</span><span style="color:#abb2bf;">[keys.normal.space]
+</span><span style="color:#9acc76;">&quot;x&quot; </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;:buffer-close&quot;
+</span><span style="color:#9acc76;">&quot;w&quot; </span><span style="color:#abb2bf;">= { </span><span style="color:#9acc76;">&quot;r&quot; </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;:config-reload&quot; </span><span style="color:#abb2bf;">}
+</span><span style="color:#9acc76;">&quot;.&quot; </span><span style="color:#abb2bf;">= </span><span style="color:#9acc76;">&quot;file_picker_in_current_buffer_directory&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">[keys.insert]
+</span><span style="color:#9acc76;">&quot;esc&quot; </span><span style="color:#abb2bf;">= [</span><span style="color:#9acc76;">&quot;:sh macism com.apple.keylayout.ABC&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;normal_mode&quot;</span><span style="color:#abb2bf;">]
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># [keys.select]
+</span><span style="color:#abb2bf;">
+</span></code></pre>
+<p>Helix 提供 <a href="https://docs.helix-editor.com/keymap.html">keymap</a> 和 <a href="https://docs.helix-editor.com/commands.html">commands</a> 命令, 这些命令在自定义键盘布局中自由组合，命令组会顺序处理。比如 <code>a = ["move_char_right","insert_mode"]</code>  Helix 中 <code>a</code> 默认为选区追加, 将其覆盖为字符向后移动一位编辑模式。 详细的请参看 <a href="https://docs.helix-editor.com/configuration.html">配置文档</a> 。</p>
+<h3 id="zi-ding-yi-yu-yan-zhi-chi">自定义语言支持</h3>
+<p>如果有自定义的特殊语言支持,一种是提交issues到官方项目寻求帮助,另外一种是自己动手处理,具体可以分解以下步骤:</p>
+<ol>
+<li>向 <code>languages.toml</code> 中追加语言和语言的 tree-sitter 实现。</li>
+<li>向 <code>runtime/queries/</code> 下对语言 <code>highlights.scm</code> 高亮支持 , <code>textobjects.scm</code> 文本选择支持, <code>indents.scm</code> 缩进支持。</li>
+<li>如果是在 helix 项目中提交代码,需要执行 <code>cargo xtask docgen</code> 来生成文档支持, 自定义的则不需要这一步。</li>
+<li><code>hx -g fetch &amp; hx -g build</code> 会自动拉去配置 tree-sitter 并编译。之后就可以测试了。</li>
+</ol>
+<h2 id="jie-yu">结语</h2>
+<p>如果有 Vim 基础的同学,可以通过上面的简单的介绍,在自己测试的情况下应该能够对 Helix 有基本的了解了。 如果想要更加深入的了解，请移步到官方站点或者Github项目地址。</p>
+<p>Helix 现在还不是很完善，但无疑是非常具有潜力的编辑器，活跃的开发社区注定了编辑器会变得更好。</p>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;helix&#x2F;helix-start&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;helix&#x2F;helix-start&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2023-02-17
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;rust&#x2F;dhat&#x2F;">
+    <i class="icon icon-left-open"></i>
+    DHAT rust 程序分析器</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;helix&#x2F;tutor&#x2F;">
+    helix editor 中文教程
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+<div class="no-print">
+  
+  <script src="https://giscus.app/client.js" data-repo="erasin/erasin.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnk3MzE0Mzg3Mw==" data-category="article" data-category-id="" data-mapping="pathname"
+    data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light"
+    data-lang="zh-CN" crossorigin="anonymous" async>
+    </script>
+  <style>
+    .utterances {
+      max-width: initial;
+    }
+  </style>
+  
+  
+</div>
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-success" href="//erasin.wang/categories/cli/">cli</a>
+
+
+
+<a class="tag is-dark" href="//erasin.wang/categories/soft/">soft</a>
+
+
+
+<a class="tag is-primary" href="//erasin.wang/categories/helix/">helix</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-light" href="//erasin.wang/tags/cli/">cli</a>
+
+
+
+<a class="tag is-primary" href="//erasin.wang/tags/github/">github</a>
+
+
+
+<a class="tag is-dark" href="//erasin.wang/tags/helix/">helix</a>
+
+
+
+<a class="tag is-dark" href="//erasin.wang/tags/vim/">vim</a>
+
+
+
+<a class="tag is-info" href="//erasin.wang/tags/vscode/">vscode</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="helix-xuan-cheng" href="//erasin.wang/helix/helix-start/#helix-xuan-cheng">Helix 宣称</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="helix-nei-zhi-gong-neng" href="//erasin.wang/helix/helix-start/#helix-nei-zhi-gong-neng">Helix 内置功能</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="kuai-su-ru-men" href="//erasin.wang/helix/helix-start/#kuai-su-ru-men">快速入门</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="yi-dong-ming-ling" href="//erasin.wang/helix/helix-start/#yi-dong-ming-ling">移动命令</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="cao-zuo-ming-ling" href="//erasin.wang/helix/helix-start/#cao-zuo-ming-ling">操作命令</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="insert-cha-ru-mo-shi" href="//erasin.wang/helix/helix-start/#insert-cha-ru-mo-shi">insert 插入模式</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="duo-guang-biao" href="//erasin.wang/helix/helix-start/#duo-guang-biao">多光标</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="chang-yong-de-wei-mo-shi-ming-ling" href="//erasin.wang/helix/helix-start/#chang-yong-de-wei-mo-shi-ming-ling">常用的微模式命令</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="pei-zhi" href="//erasin.wang/helix/helix-start/#pei-zhi">配置</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="config-toml" href="//erasin.wang/helix/helix-start/#config-toml">config.toml</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="zi-ding-yi-yu-yan-zhi-chi" href="//erasin.wang/helix/helix-start/#zi-ding-yi-yu-yan-zhi-chi">自定义语言支持</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="jie-yu" href="//erasin.wang/helix/helix-start/#jie-yu">结语</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

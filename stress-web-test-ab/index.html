@@ -1,0 +1,597 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  简单的压力测试 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="" property="description" />
+
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> 简单的压力测试 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      简单的压力测试
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2020-01-03
+    </div>
+  </div>
+
+  <div class="post-content  " >
+    <p>ab 是 Apache 服务提供的测试工具， 在 window 下建议使用 <strong>hey</strong><a href="https://github.com/rakyll/hey">github</a> （前身是 boom，需要 golang 环境编译) 来获取测试数据。</p>
+<span id="continue-reading"></span><h1 id="1-ya-li-ce-shi">1. 压力测试</h1>
+<h2 id="1-1-gong-ju">1.1. 工具</h2>
+<p><strong>ab</strong> : apache 下压力测试工具，功能强大<br />
+<strong>gunplot</strong> : 函数画图工具
+<strong>hey</strong> : 下载 <a href="https://github.com/rakyll/hey">download</a></p>
+<h2 id="1-2-ab-ce-shi">1.2. ab 测试</h2>
+<p>使用脚本循环测试并打印出测试 响应，等待时间的曲线图。</p>
+<p>生成文件:<br />
+<code>boc-ab-*-list.txt</code> 访问日志<br />
+<code>boc-ab-*-over.txt</code> 打印日志<br />
+<code>boc-ab-*-list.png</code> 访问响应时间曲线图</p>
+<p>测试脚本：<a href="https://gitee.com/era/codes/v7k0uh81cpa5xmniqdgbl17">git</a></p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#5f697a;">#!/bin/bash
+</span><span style="font-style:italic;color:#5f697a;"># filename abgo.sh
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 地址列表
+</span><span style="color:#eb6772;">url1</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">&quot;url1&quot;
+</span><span style="color:#eb6772;">url1</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">&quot;url2&quot;
+</span><span style="color:#eb6772;">url1</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">&quot;url3&quot;
+</span><span style="color:#eb6772;">url1</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">&quot;url4&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;"># run 函数 执行并发测验并记录
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;"># 参数1 执行序号，用于生成文件序号
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;"># 参数2 访问链接数 
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;"># 参数3 并发数
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;"># 参数4 时间限制 [可选]
+</span><span style="color:#cd74e8;">function </span><span style="color:#5cb3fa;">run </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">i</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">$</span><span style="color:#eb6772;">1
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">n</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">$</span><span style="color:#eb6772;">2
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">c</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">$</span><span style="color:#eb6772;">3
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">t</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">$</span><span style="color:#eb6772;">4
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	</span><span style="font-style:italic;color:#5f697a;">#the_day=` date +%Y-%m-%d ` 
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">the_day</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">`</span><span style="color:#eb6772;">date</span><span style="color:#abb2bf;">` 
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">declare </span><span style="color:#eb6772;">-i j</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">0
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">for</span><span style="color:#abb2bf;"> k </span><span style="color:#cd74e8;">in </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">url1 </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">url2 </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">url3 </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">url4</span><span style="color:#adb7c9;">; </span><span style="color:#cd74e8;">do
+</span><span style="color:#abb2bf;">		</span><span style="color:#eb6772;">j</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">$</span><span style="color:#eb6772;">j</span><span style="color:#9acc76;">+1
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">		</span><span style="color:#5ebfcc;">echo </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">j
+</span><span style="color:#abb2bf;">		</span><span style="color:#5ebfcc;">echo </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">k
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">		</span><span style="color:#eb6772;">touch</span><span style="color:#abb2bf;"> boc-ab-${</span><span style="color:#eb6772;">i</span><span style="color:#abb2bf;">}-url${</span><span style="color:#eb6772;">j</span><span style="color:#abb2bf;">}-list.txt
+</span><span style="color:#abb2bf;">		</span><span style="color:#eb6772;">touch</span><span style="color:#abb2bf;"> boc-ab-${</span><span style="color:#eb6772;">i</span><span style="color:#abb2bf;">}-url${</span><span style="color:#eb6772;">j</span><span style="color:#abb2bf;">}-over.txt
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">		</span><span style="color:#eb6772;">file_list</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">boc-ab-${</span><span style="color:#eb6772;">i</span><span style="color:#9acc76;">}-url${</span><span style="color:#eb6772;">j</span><span style="color:#9acc76;">}-list.txt 
+</span><span style="color:#abb2bf;">		</span><span style="color:#eb6772;">file_over</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">boc-ab-${</span><span style="color:#eb6772;">i</span><span style="color:#9acc76;">}-url${</span><span style="color:#eb6772;">j</span><span style="color:#9acc76;">}-over.txt
+</span><span style="color:#abb2bf;">		</span><span style="color:#eb6772;">file_png</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">boc-ab-${</span><span style="color:#eb6772;">i</span><span style="color:#9acc76;">}-url${</span><span style="color:#eb6772;">j</span><span style="color:#9acc76;">}-list.png
+</span><span style="color:#abb2bf;">		</span><span style="font-style:italic;color:#5f697a;">#file_png_tile=&quot;${the_day} connectioner:${c} Request:${2}&quot;
+</span><span style="color:#abb2bf;">		</span><span style="color:#eb6772;">file_png_tile</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">&quot;${</span><span style="color:#eb6772;">the_day</span><span style="color:#9acc76;">} 并发数:${</span><span style="color:#eb6772;">c</span><span style="color:#9acc76;">} 发送请求数:${</span><span style="color:#eb6772;">2</span><span style="color:#9acc76;">}&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">		</span><span style="color:#eb6772;">date </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">file_over 
+</span><span style="color:#abb2bf;">		</span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&quot;==============================================================&quot; </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">file_over 
+</span><span style="color:#abb2bf;">		</span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&quot;&quot; </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">file_over 
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">		</span><span style="color:#cd74e8;">if </span><span style="color:#5ebfcc;">[[ </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">t </span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> 0 </span><span style="color:#5ebfcc;">]]</span><span style="color:#adb7c9;">; </span><span style="color:#cd74e8;">then
+</span><span style="color:#abb2bf;">			</span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&quot;限定执行时间：$</span><span style="color:#eb6772;">t</span><span style="color:#9acc76;"> &gt; ab -n $</span><span style="color:#eb6772;">n</span><span style="color:#9acc76;"> -c $</span><span style="color:#eb6772;">c</span><span style="color:#9acc76;"> -t $</span><span style="color:#eb6772;">t </span><span style="color:#9acc76;">$</span><span style="color:#eb6772;">k</span><span style="color:#9acc76;">&quot;
+</span><span style="color:#abb2bf;">			</span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&quot;限定执行时间：$</span><span style="color:#eb6772;">t 
+</span><span style="color:#9acc76;">ab -n $</span><span style="color:#eb6772;">n</span><span style="color:#9acc76;"> -c $</span><span style="color:#eb6772;">c</span><span style="color:#9acc76;"> -t $</span><span style="color:#eb6772;">t </span><span style="color:#9acc76;">$</span><span style="color:#eb6772;">k
+</span><span style="color:#9acc76;">---------------------------------------&quot; </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">file_over
+</span><span style="color:#abb2bf;">			</span><span style="color:#eb6772;">ab -n </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">n -c </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">c -t </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">t -g </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">file_list </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">k </span><span style="color:#adb7c9;">| </span><span style="color:#eb6772;">tee </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">file_over 
+</span><span style="color:#abb2bf;">		</span><span style="color:#cd74e8;">else
+</span><span style="color:#abb2bf;">			</span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&quot;执行： &gt; ab -n $</span><span style="color:#eb6772;">n</span><span style="color:#9acc76;"> -c $</span><span style="color:#eb6772;">c </span><span style="color:#9acc76;">$</span><span style="color:#eb6772;">k</span><span style="color:#9acc76;">&quot;
+</span><span style="color:#abb2bf;">			</span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&quot;执行：
+</span><span style="color:#9acc76;">ab -n $</span><span style="color:#eb6772;">n</span><span style="color:#9acc76;"> -c $</span><span style="color:#eb6772;">c </span><span style="color:#9acc76;">$</span><span style="color:#eb6772;">k
+</span><span style="color:#9acc76;">---------------------------------------&quot; </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">file_over
+</span><span style="color:#abb2bf;">			</span><span style="color:#eb6772;">ab -n </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">n -c </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">c -g </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">file_list </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">k </span><span style="color:#adb7c9;">| </span><span style="color:#eb6772;">tee </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">file_over 
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">		</span><span style="color:#cd74e8;">fi
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">		</span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&quot;&quot; </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">file_over 
+</span><span style="color:#abb2bf;">		</span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&quot;==============================================================&quot; </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">file_over
+</span><span style="color:#abb2bf;">		</span><span style="color:#eb6772;">date </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">file_over
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">		</span><span style="font-style:italic;color:#5f697a;"># 打印图表
+</span><span style="color:#abb2bf;">		</span><span style="color:#eb6772;">gnuplot </span><span style="color:#adb7c9;">&lt;&lt;- </span><span style="color:#cd74e8;">EOF
+</span><span style="color:#9acc76;">			datafile=&quot;$</span><span style="color:#eb6772;">file_list</span><span style="color:#9acc76;">&quot;
+</span><span style="color:#9acc76;">			set title  &quot;$</span><span style="color:#eb6772;">file_png_tile</span><span style="color:#9acc76;"> \n $</span><span style="color:#eb6772;">k</span><span style="color:#9acc76;">&quot;
+</span><span style="color:#9acc76;">			#set xlabel &quot;Request&quot;
+</span><span style="color:#9acc76;">			#set ylabel &quot;ms&quot;
+</span><span style="color:#9acc76;">			set xlabel &quot;处理请求数&quot;
+</span><span style="color:#9acc76;">			set ylabel &quot;时耗(毫秒)&quot;
+</span><span style="color:#9acc76;">			set terminal png
+</span><span style="color:#9acc76;">			set terminal pngcairo size 960,600 enhanced
+</span><span style="color:#9acc76;">			set output &quot;${</span><span style="color:#eb6772;">file_png</span><span style="color:#9acc76;">}&quot;
+</span><span style="color:#9acc76;">			plot datafile using 7 with lines title &quot;ctime&quot;, datafile using 8 with lines title &quot;dtime&quot;, datafile using 9 with lines title &quot;ttime&quot;, datafile using 10 with lines title &quot;wait&quot; 
+</span><span style="color:#9acc76;">		</span><span style="color:#cd74e8;">EOF
+</span><span style="color:#abb2bf;">		</span><span style="font-style:italic;color:#5f697a;">#此处修改eog为自己图片查看器
+</span><span style="color:#abb2bf;">		</span><span style="color:#eb6772;">eog </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">file_png </span><span style="color:#adb7c9;">&amp; 
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">done
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&quot;第1次; 100并发 100访问&quot;
+</span><span style="color:#eb6772;">run</span><span style="color:#abb2bf;"> 1 100 100
+</span><span style="color:#abb2bf;">
+</span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&quot;第2次; 200并发 200访问&quot;
+</span><span style="color:#eb6772;">run</span><span style="color:#abb2bf;"> 2 200 200 
+</span><span style="color:#abb2bf;">
+</span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&quot;第3次; 100并发 1000访问&quot;
+</span><span style="color:#eb6772;">run</span><span style="color:#abb2bf;"> 3 1000 100
+</span><span style="color:#abb2bf;">
+</span><span style="color:#5ebfcc;">echo </span><span style="color:#9acc76;">&quot;第4次; 200并发 1000访问&quot;
+</span><span style="color:#eb6772;">run</span><span style="color:#abb2bf;"> 4 1000 200 
+</span></code></pre>
+<p>将获得的 <code>*-1-*-over.txt</code> 中的 进度的响应请求时间 即 <code>Percentage of the requests served within a certain time (ms)</code> 下的数据进行统计对比。</p>
+<blockquote>
+<p>有兴趣的同学用 sed 来调出下试试。</p>
+</blockquote>
+<table><thead><tr><th>进度</th><th>1-u1</th><th>1-u2</th><th>1-u3</th><th>1-u4</th></tr></thead><tbody>
+<tr><td>50%</td><td>310</td><td>310</td><td>2780</td><td>1214</td></tr>
+<tr><td>66%</td><td>453</td><td>453</td><td>5032</td><td>1498</td></tr>
+<tr><td>75%</td><td>1030</td><td>1030</td><td>11715</td><td>1642</td></tr>
+<tr><td>80%</td><td>1154</td><td>1154</td><td>12206</td><td>1722</td></tr>
+<tr><td>90%</td><td>5643</td><td>5643</td><td>12559</td><td>1898</td></tr>
+<tr><td>95%</td><td>5880</td><td>5880</td><td>12597</td><td>5219</td></tr>
+<tr><td>98%</td><td>5897</td><td>5897</td><td>13266</td><td>5267</td></tr>
+<tr><td>99%</td><td>5900</td><td>5900</td><td>13282</td><td>5267</td></tr>
+<tr><td>100%</td><td>5900</td><td>5900</td><td>13282</td><td>5267</td></tr>
+</tbody></table>
+<p>保存文件命名为 <code>boc-ab-1.txt</code>,对应第一次测试。其他的测试相同。</p>
+<p>gunplot 脚本, 生成对比图片</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#5f697a;">#!/bin/bash 
+</span><span style="font-style:italic;color:#5f697a;">#filename contrast2png.sh
+</span><span style="color:#eb6772;">i</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">$</span><span style="color:#eb6772;">1
+</span><span style="color:#eb6772;">file_title</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">&quot;对比： $</span><span style="color:#eb6772;">i</span><span style="color:#9acc76;"> - ${</span><span style="color:#eb6772;">2</span><span style="color:#9acc76;">}&quot;
+</span><span style="color:#eb6772;">file_png</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">&quot;boc-ab-${</span><span style="color:#eb6772;">i</span><span style="color:#9acc76;">}.png&quot;
+</span><span style="color:#eb6772;">file_data</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">&quot;boc-ab-${</span><span style="color:#eb6772;">i</span><span style="color:#9acc76;">}.txt&quot;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">gnuplot </span><span style="color:#adb7c9;">&lt;&lt;- </span><span style="color:#cd74e8;">EOF
+</span><span style="color:#9acc76;">	set terminal png; 
+</span><span style="color:#9acc76;">	set terminal pngcairo size 960,600 enhanced
+</span><span style="color:#9acc76;">	set output &quot;${</span><span style="color:#eb6772;">file_png</span><span style="color:#9acc76;">}&quot;
+</span><span style="color:#9acc76;">	datafile=&quot;$</span><span style="color:#eb6772;">file_data</span><span style="color:#9acc76;">&quot;
+</span><span style="color:#9acc76;">	set title  &quot;$</span><span style="color:#eb6772;">file_title</span><span style="color:#9acc76;">&quot;
+</span><span style="color:#9acc76;">	set xlabel &quot;运行进度（%）&quot;; 
+</span><span style="color:#9acc76;">	set ylabel &quot;响应(毫秒)&quot;; 
+</span><span style="color:#9acc76;">	set grid
+</span><span style="color:#9acc76;">	set xtics (&quot;&quot; 0, &quot;50&quot; 1, &quot;66&quot; 2, &quot;75&quot; 3, &quot;80&quot; 4, &quot;90&quot; 5, &quot;95&quot; 6, &quot;98&quot; 7, &quot;99&quot; 8, &quot;100&quot; 9)
+</span><span style="color:#9acc76;">	plot datafile using 2 with lines title &quot;url1&quot;, datafile using 3 with lines title &quot;url2&quot;, datafile using 4 with lines title &quot;url3&quot;, datafile using 5 with lines title &quot;url4&quot; 
+</span><span style="color:#cd74e8;">EOF
+</span></code></pre>
+<p>执行 <code>./contrast2png.sh 1 </code> 来生成 <code>boc-ab-1.png</code> 图片,用来直观对比四个地址的访问状态。</p>
+<h1 id="2-wang-su-ce-shi">2. 网速测试</h1>
+<p>工具： crond, wget , sed, paste , gnuplot[^2] ,vim<br />
+场景： 两个站点，同样大小的文件(用于下载)。</p>
+<p>先使用 wget下载设定好的文件，查看要对比的两个站点的所使用的大概时间，比如 2M大小文件使用时间约1分钟。</p>
+<p>设定 <code>crontab -e </code> 采集数据。</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">*/5 * * * * /home/boc/wgetit.sh
+</span></code></pre>
+<p>脚本：</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#5f697a;">#!/bin/bash
+</span><span style="font-style:italic;color:#5f697a;"># filename wgetit.sh
+</span><span style="color:#eb6772;">n</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">`</span><span style="color:#eb6772;">date</span><span style="color:#abb2bf;"> +%</span><span style="color:#eb6772;">Y</span><span style="color:#abb2bf;">-%</span><span style="color:#eb6772;">m</span><span style="color:#abb2bf;">-%</span><span style="color:#eb6772;">d</span><span style="color:#abb2bf;">-%</span><span style="color:#eb6772;">H</span><span style="color:#abb2bf;">-%</span><span style="color:#eb6772;">M</span><span style="color:#abb2bf;">-%</span><span style="color:#eb6772;">S</span><span style="color:#abb2bf;">`
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">wget --limit-rate</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">1000 site1/file1.flv</span><span style="color:#eb6772;"> -d -a</span><span style="color:#abb2bf;"> /home/boc/${</span><span style="color:#eb6772;">n</span><span style="color:#abb2bf;">}-t1
+</span><span style="color:#eb6772;">wget --limit-rate</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">1000 site1/file2.flv</span><span style="color:#eb6772;"> -d -a</span><span style="color:#abb2bf;"> /home/boc/${</span><span style="color:#eb6772;">n</span><span style="color:#abb2bf;">}-t2
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">rm -rvf </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;">.flv
+</span></code></pre>
+<p>将wget导出的数据整合，生产出对比图。</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#5f697a;">#!/bin/bash
+</span><span style="font-style:italic;color:#5f697a;"># filename speed2png.sh
+</span><span style="font-style:italic;color:#5f697a;"># wget url -d -a `date +%Y-%m-%D-%H-%M-%s-t1`
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">function </span><span style="color:#5cb3fa;">readend</span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">for</span><span style="color:#abb2bf;"> i </span><span style="color:#cd74e8;">in </span><span style="color:#abb2bf;">`</span><span style="color:#eb6772;">find</span><span style="color:#abb2bf;"> .</span><span style="color:#eb6772;"> -iname </span><span style="color:#9acc76;">&quot;$</span><span style="color:#eb6772;">2</span><span style="color:#9acc76;">&quot;</span><span style="color:#abb2bf;">`</span><span style="color:#adb7c9;">; </span><span style="color:#cd74e8;">do
+</span><span style="color:#abb2bf;">		</span><span style="color:#5ebfcc;">echo </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">i
+</span><span style="color:#abb2bf;">		</span><span style="color:#eb6772;">n</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">`</span><span style="color:#eb6772;">sed -n </span><span style="color:#9acc76;">&quot;$=&quot; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">i</span><span style="color:#abb2bf;">`
+</span><span style="color:#abb2bf;">		((n</span><span style="color:#adb7c9;">--</span><span style="color:#abb2bf;">))
+</span><span style="color:#abb2bf;">		</span><span style="color:#eb6772;">sed -n </span><span style="color:#9acc76;">&quot;${</span><span style="color:#eb6772;">n</span><span style="color:#9acc76;">} p&quot; </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">i </span><span style="color:#adb7c9;">&gt;&gt;</span><span style="color:#abb2bf;"> time${</span><span style="color:#eb6772;">1</span><span style="color:#abb2bf;">}.txt
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">done
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 生成 对应的最终时间表
+</span><span style="color:#eb6772;">readend</span><span style="color:#abb2bf;"> 1 </span><span style="color:#9acc76;">&quot;2013*t1&quot;
+</span><span style="color:#eb6772;">readend</span><span style="color:#abb2bf;"> 2 </span><span style="color:#9acc76;">&quot;2013*t2&quot;
+</span></code></pre>
+<p>使用vim 处理 time1.txt 和 time2.txt,去除多余部分</p>
+<blockquote>
+<p>可以在上面脚本中使用 sed 直接处理，正则无敌</p>
+</blockquote>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">:%s/^.*(//g
+</span><span style="color:#abb2bf;">:%s/\ KB.*$//g
+</span></code></pre>
+<p>合并结果并生成图</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#5f697a;"># 合并两列
+</span><span style="color:#eb6772;">paste -d </span><span style="color:#9acc76;">&quot;\t&quot;</span><span style="color:#abb2bf;"> time1.txt time2.txt </span><span style="color:#adb7c9;">&gt;&gt;</span><span style="color:#abb2bf;"> time3.txt 
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 生成图标
+</span><span style="color:#eb6772;">gnuplot </span><span style="color:#adb7c9;">&lt;&lt;- </span><span style="color:#cd74e8;">EOF
+</span><span style="color:#9acc76;">	set terminal png; 
+</span><span style="color:#9acc76;">	set terminal pngcairo size 960,600 enhanced
+</span><span style="color:#9acc76;">	set output &quot;speed.png&quot;
+</span><span style="color:#9acc76;">	datafile=&quot;time3.txt&quot;
+</span><span style="color:#9acc76;">	set title  &quot;网速状态&quot;
+</span><span style="color:#9acc76;">	set xlabel &quot;时间/5分&quot;; 
+</span><span style="color:#9acc76;">	set ylabel &quot;网速（Kb/s)&quot;; 
+</span><span style="color:#9acc76;">	set grid
+</span><span style="color:#9acc76;">	plot datafile using 1 with lines title &quot;site1&quot;, datafile using 2 with lines title &quot;site2&quot;
+</span><span style="color:#cd74e8;">EOF
+</span></code></pre>
+<p>*[Kb/s]: 千字节每秒
+*[date]: 时间函数</p>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;stress-web-test-ab&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;stress-web-test-ab&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2020-01-03
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;python-pip&#x2F;">
+    <i class="icon icon-left-open"></i>
+    PIP Python package</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;flex&#x2F;">
+    FLEX 布局
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-link" href="//erasin.wang/categories/server/">server</a>
+
+
+    </div>
+    
+
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="1-ya-li-ce-shi" href="//erasin.wang/stress-web-test-ab/#1-ya-li-ce-shi">1. 压力测试</a>
+
+      
+      <ul class="ui list tree">
+        
+        <li class="item t2">
+          <a data_id="1-1-gong-ju" href="//erasin.wang/stress-web-test-ab/#1-1-gong-ju">1.1. 工具</a>
+        </li>
+        
+        <li class="item t2">
+          <a data_id="1-2-ab-ce-shi" href="//erasin.wang/stress-web-test-ab/#1-2-ab-ce-shi">1.2. ab 测试</a>
+        </li>
+        
+      </ul>
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="2-wang-su-ce-shi" href="//erasin.wang/stress-web-test-ab/#2-wang-su-ce-shi">2. 网速测试</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

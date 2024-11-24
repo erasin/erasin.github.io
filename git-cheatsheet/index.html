@@ -1,0 +1,597 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  Git 常用命令速查表 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="Git 常用命令速查表" property="description" />
+
+  
+    <meta content="git" name="keywords" />
+  
+
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> Git 常用命令速查表 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      GIT 常用命令速查表
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2019-12-18
+    </div>
+  </div>
+
+  <div class="post-content  " 
+    style="background-image:url(&#x27;&#x2F;assets&#x2F;img&#x2F;undraw_version_control_9bpv.svg&#x27;);" >
+    <h2 id="chuang-jian-ban-ben-ku">创建版本库</h2>
+<ul>
+<li><code>git init</code>	# 初始化本地版本库</li>
+<li><code>git clone &lt;url&gt;</code>	# 克隆远程版本库</li>
+</ul>
+<h2 id="an-zhuang-pei-zhi">安装配置</h2>
+<pre data-lang="sh" style="background-color:#2b303b;color:#6c7079;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#eb6772;">git</span><span style="color:#abb2bf;"> config</span><span style="color:#eb6772;"> --global</span><span style="color:#abb2bf;"> user.name </span><span style="color:#9acc76;">&quot;Your Name&quot;
+</span><span style="color:#eb6772;">git</span><span style="color:#abb2bf;"> config</span><span style="color:#eb6772;"> --global</span><span style="color:#abb2bf;"> user.email your.email@example.com
+</span><span style="color:#eb6772;">git</span><span style="color:#abb2bf;"> config</span><span style="color:#eb6772;"> --global</span><span style="color:#abb2bf;"> color.ui true  	</span><span style="font-style:italic;color:#5f697a;">#  git status等命令自动着色
+</span><span style="color:#eb6772;">git</span><span style="color:#abb2bf;"> config</span><span style="color:#eb6772;"> --global</span><span style="color:#abb2bf;"> color.status auto
+</span><span style="color:#eb6772;">git</span><span style="color:#abb2bf;"> config</span><span style="color:#eb6772;"> --global</span><span style="color:#abb2bf;"> color.diff auto
+</span><span style="color:#eb6772;">git</span><span style="color:#abb2bf;"> config</span><span style="color:#eb6772;"> --global</span><span style="color:#abb2bf;"> color.branch auto
+</span><span style="color:#eb6772;">git</span><span style="color:#abb2bf;"> config</span><span style="color:#eb6772;"> --global</span><span style="color:#abb2bf;"> color.interactive auto
+</span></code></pre>
+<p>添加 <code>.gitignore</code> 文件，输入过滤文件以及文件夹</p>
+<span id="continue-reading"></span><h2 id="xiu-gai-he-ti-jiao">修改和提交</h2>
+<ul>
+<li><code>git status</code>	#  查看当前版本状态</li>
+<li><code>git diff</code>	# 查看变更内容</li>
+<li><code>git add .</code>	# 增加当前子目录下所有更改过的文件至index</li>
+<li><code>git add &lt;file&gt;</code>	# 跟踪指定的文件</li>
+<li><code>git mv &lt;old&gt; &lt;new&gt;</code>	# 文件改名</li>
+<li><code>git rm &lt;file&gt;</code>	# 删除文件</li>
+<li><code>git rm --cached &lt;file&gt;</code>	# 停止跟踪文件但不删除</li>
+<li><code>git commit -m “commit message”</code>	# 提交所有更新过的文件</li>
+<li><code>git commit --amend</code>	# 修改最后一次提交</li>
+<li><code>git commit --amend -m 'message'</code> #  合并上一次提交（用于反复修改）</li>
+</ul>
+<h2 id="cha-kan-ti-jiao-li-shi">查看提交历史</h2>
+<ul>
+<li><code>git log</code>	 # 查看提交历史</li>
+<li><code>git log -&lt;number&gt;</code>	 # 查看行数</li>
+<li><code>git log -p &lt;file&gt;</code>	# 查看指定文件的提交历史</li>
+<li><code>git blame &lt;file&gt;</code>	# 以列表方式查看指定文件的提交历史</li>
+<li><code>git log --stat</code>  #  显示提交日志及相关变动文件</li>
+<li><code>git show &lt;hash&gt;</code>  # 使用 comment ID 前几位来查看变动</li>
+<li><code>git show HEAD</code>   #  显示HEAD提交日志</li>
+<li><code>git show HEAD^</code>  # 查看 len(<code>^</code>)提交的日志</li>
+</ul>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">git log --graph --date=short --pretty=format:&#39;%C(auto)%h %d %s (%Cgreen%an%Creset) %Cblue%ad%Creset&#39; --all
+</span></code></pre>
+<h2 id="che-xiao">撤消</h2>
+<ul>
+<li><code>git reset --hard HEAD</code>	# 撤消工作目录中所有未提交文件的修改内容</li>
+<li><code>git checkout HEAD &lt;file&gt;</code>	# 撤消指定的未提交文件的修改内容</li>
+<li><code>git revert &lt;commit&gt;</code>	# 撤消指定的提交</li>
+</ul>
+<h2 id="fen-zhi-yu-biao-qian">分支与标签</h2>
+<ul>
+<li><code>git branch</code>	# 显示所有本地分支</li>
+<li><code>git checkout &lt;branch/tag&gt;</code>	# 切换到指定分支或标签</li>
+<li><code>git branch &lt;new-branch&gt;</code>	# 创建新分支</li>
+<li><code>git branch -d &lt;branch&gt;</code>	# 删除本地分支</li>
+<li></li>
+<li><code>git tag</code>	# 列出所有本地标签</li>
+<li><code>git tag &lt;tagname&gt;</code>	# 基于最新提交创建标签</li>
+<li><code>git tag -a &lt;tagname&gt; -m "message"</code>	# 提交冰追加标签</li>
+<li><code>git tag -d &lt;tagname&gt;</code>	# 删除标签</li>
+<li><code>git show &lt;tag&gt;</code>  显示日志</li>
+<li><code>git log &lt;tag&gt;</code></li>
+</ul>
+<h2 id="he-bing-yu-yan-he">合并与衍合</h2>
+<ul>
+<li><code>git merge &lt;branch&gt;</code>	# 合并指定分支到当前分支</li>
+<li><code>git rebase &lt;branch&gt;</code>	# 衍合指定分支到当前分支</li>
+</ul>
+<h2 id="yuan-cheng-cao-zuo">远程操作</h2>
+<ul>
+<li><code>git remote -v</code>	# 查看远程版本库信息</li>
+<li><code>git remote show &lt;remote&gt;</code>	# 查看指定远程版本库信息</li>
+<li><code>git remote add &lt;remote&gt; &lt;url&gt;</code>	# 添加远程版本库</li>
+<li><code>git fetch &lt;remote&gt;</code>	# 从远程库获取代码</li>
+<li><code>git pull &lt;remote&gt; &lt;branch&gt;</code>	# 下载代码及快速合并</li>
+<li><code>git push &lt;remote&gt; &lt;branch&gt;</code>	# 上传代码及快速合并</li>
+<li><code>git push &lt;remote&gt; :&lt;branch/tag-name&gt;</code>	# 删除远程分支或标签</li>
+<li><code>git push --tags</code>	# 上传所有标签</li>
+</ul>
+<h2 id="ji-qiao">技巧</h2>
+<p>打包 diff 文件</p>
+<ul>
+<li><code>git diff 762f97cf b2e7e3f342 --name-only|xargs zip update.zip</code> 打包两个提交的差异</li>
+</ul>
+<h2 id="alias">alias</h2>
+<p>在 git 配置文件 <code>~/.gitconfig</code> 中使用 <code>alias</code> 来做命令别名。 比如 <code>git lg</code> 就可以打印 <code>git log</code>定制的命令。</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#6c7079;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#abb2bf;">[user]
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">email </span><span style="color:#abb2bf;">= 
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">name </span><span style="color:#abb2bf;">= 
+</span><span style="color:#abb2bf;">[core]
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">excludesfile </span><span style="color:#abb2bf;">= </span><span style="background-color:#e05252;color:#ffffff;">~/.gitignore_global</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">[log]
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">date </span><span style="color:#abb2bf;">= </span><span style="background-color:#e05252;color:#ffffff;">format:%w %Y-%m-%d %H:%M:%S</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">[alias]
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">lg </span><span style="color:#abb2bf;">= </span><span style="background-color:#e05252;color:#ffffff;">log --graph --date=short --pretty=format:&#39;%C(auto)%h %d %s (%Cgreen%an%Creset) %Cblue%ad%Creset&#39;</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">lga </span><span style="color:#abb2bf;">= </span><span style="background-color:#e05252;color:#ffffff;">log --graph --date=short --pretty=format:&#39;%C(auto)%h %d %s (%Cgreen%an%Creset) %Cblue%ad%Creset&#39; --all</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">[filter</span><span style="background-color:#e05252;color:#ffffff;"> </span><span style="color:#9acc76;">&quot;lfs&quot;</span><span style="color:#abb2bf;">]
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">smudge </span><span style="color:#abb2bf;">= </span><span style="background-color:#e05252;color:#ffffff;">git-lfs smudge -- %f</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">process </span><span style="color:#abb2bf;">= </span><span style="background-color:#e05252;color:#ffffff;">git-lfs filter-process</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">required </span><span style="color:#abb2bf;">= </span><span style="color:#db9d63;">true
+</span><span style="color:#abb2bf;">	</span><span style="color:#eb6772;">clean </span><span style="color:#abb2bf;">= </span><span style="background-color:#e05252;color:#ffffff;">git-lfs clean -- %f</span><span style="color:#abb2bf;">
+</span></code></pre>
+<h2 id="qi-ta">其他</h2>
+<ul>
+<li>git diff                                                 	#  显示所有未添加至index的变更</li>
+<li>git diff --cached                                        	#  显示所有已添加index但还未commit的变更</li>
+<li>git diff HEAD^                                           	#  比较与上一个版本的差异</li>
+<li>git diff HEAD -- ./lib                                   	#  比较与HEAD版本lib目录的差异</li>
+<li>git diff origin/master..master                           	#  比较远程分支master上有本地分支master上没有的</li>
+<li>git diff origin/master..master --stat                    	#  只显示差异的文件，不显示具体内容</li>
+<li>git remote add origin git+ssh://git@192.168.53.168/VT.git	#  增加远程定义（用于push/pull/fetch）</li>
+<li>git branch                                               	#  显示本地分支</li>
+<li>git branch --contains 50089                              	#  显示包含提交50089的分支</li>
+<li>git branch -a                                            	#  显示所有分支</li>
+<li>git branch -r                                            	#  显示所有原创分支</li>
+<li>git branch --merged                                      	#  显示所有已合并到当前分支的分支</li>
+<li>git branch --no-merged                                   	#  显示所有未合并到当前分支的分支</li>
+<li>git branch -m master master_copy                         	#  本地分支改名</li>
+<li>git checkout -b master_copy                              	#  从当前分支创建新分支master_copy并检出</li>
+<li>git checkout -b master master_copy                       	#  上面的完整版</li>
+<li>git checkout features/performance                        	#  检出已存在的features/performance分支</li>
+<li>git checkout --track hotfixes/BJVEP933                   	#  检出远程分支hotfixes/BJVEP933并创建本地跟踪分支</li>
+<li>git checkout v2.0                                        	#  检出版本v2.0</li>
+<li>git checkout -b devel origin/develop                     	#  从远程分支develop创建新本地分支devel并检出</li>
+<li>git checkout -- README                                   	#  检出head版本的README文件（可用于修改错误回退）</li>
+<li>git merge origin/master                                  	#  合并远程master分支至当前分支</li>
+<li>git cherry-pick ff44785404a8e                            	#  合并提交ff44785404a8e的修改</li>
+<li>git push origin master                                   	#  将当前分支push到远程master分支</li>
+<li>git push origin :hotfixes/BJVEP933                       	#  删除远程仓库的hotfixes/BJVEP933分支</li>
+<li>git push --tags                                          	#  把所有tag推送到远程仓库</li>
+<li>git fetch                                                	#  获取所有远程分支（不更新本地分支，另需merge）</li>
+<li>git fetch --prune                                        	#  获取所有原创分支并清除服务器上已删掉的分支</li>
+<li>git pull origin master                                   	#  获取远程分支master并merge到当前分支</li>
+<li>git mv README README2                                    	#  重命名文件README为README2</li>
+<li>git reset --hard HEAD                                    	#  将当前版本重置为HEAD（通常用于merge失败回退）</li>
+<li>git rebase</li>
+<li>git branch -d hotfixes/BJVEP933                          	#  删除分支hotfixes/BJVEP933（本分支修改已合并到其他分支）</li>
+<li>git branch -D hotfixes/BJVEP933                          	#  强制删除分支hotfixes/BJVEP933</li>
+<li>git ls-files                                             	#  列出git index包含的文件</li>
+<li>git show-branch                                          	#  图示当前分支历史</li>
+<li>git show-branch --all                                    	#  图示所有分支历史</li>
+<li>git whatchanged                                          	#  显示提交历史对应的文件修改</li>
+<li>git revert dfb02e6e4f2f7b573337763e5c0013802e392818      	#  撤销提交dfb02e6e4f2f7b573337763e5c0013802e392818</li>
+<li>git ls-tree HEAD                                         	#  内部命令：显示某个git对象</li>
+<li>git rev-parse v2.0                                       	#  内部命令：显示某个ref对于的SHA1 HASH</li>
+<li>git reflog                                               	#  显示所有提交，包括孤立节点</li>
+<li>git show HEAD@{5}</li>
+<li>git show master@{yesterday}                              	#  显示master分支昨天的状态</li>
+<li>git log --pretty=format:'%h %s' --graph                  	#  图示提交日志</li>
+<li>git show HEAD~3</li>
+<li>git show -s --pretty=raw 2be7fcb476</li>
+<li>git stash                                                	#  暂存当前修改，将所有至为HEAD状态</li>
+<li>git stash list                                           	#  查看所有暂存</li>
+<li>git stash show -p stash@{0}                              	#  参考第一次暂存</li>
+<li>git stash apply stash@{0}                                	#  应用第一次暂存</li>
+<li>git grep "delete from"                                   	#  文件中搜索文本“delete from”</li>
+<li>git grep -e '#define' --and -e SORT_DIRENT</li>
+<li>git gc</li>
+<li>git fsck</li>
+</ul>
+
+
+
+  </div>
+</div>
+
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;golang-cheetsheet&#x2F;">
+    <i class="icon icon-left-open"></i>
+    Golang Cheetsheet</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;iterm2-cheatsheet&#x2F;">
+    Terminal &amp; iterm2 cheatsheet
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-success" href="//erasin.wang/categories/cli/">cli</a>
+
+
+
+<a class="tag is-dark" href="//erasin.wang/categories/cheatsheet/">cheatsheet</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-info" href="//erasin.wang/tags/git/">git</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="chuang-jian-ban-ben-ku" href="//erasin.wang/git-cheatsheet/#chuang-jian-ban-ben-ku">创建版本库</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="an-zhuang-pei-zhi" href="//erasin.wang/git-cheatsheet/#an-zhuang-pei-zhi">安装配置</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="xiu-gai-he-ti-jiao" href="//erasin.wang/git-cheatsheet/#xiu-gai-he-ti-jiao">修改和提交</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="cha-kan-ti-jiao-li-shi" href="//erasin.wang/git-cheatsheet/#cha-kan-ti-jiao-li-shi">查看提交历史</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="che-xiao" href="//erasin.wang/git-cheatsheet/#che-xiao">撤消</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="fen-zhi-yu-biao-qian" href="//erasin.wang/git-cheatsheet/#fen-zhi-yu-biao-qian">分支与标签</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="he-bing-yu-yan-he" href="//erasin.wang/git-cheatsheet/#he-bing-yu-yan-he">合并与衍合</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="yuan-cheng-cao-zuo" href="//erasin.wang/git-cheatsheet/#yuan-cheng-cao-zuo">远程操作</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="ji-qiao" href="//erasin.wang/git-cheatsheet/#ji-qiao">技巧</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="alias" href="//erasin.wang/git-cheatsheet/#alias">alias</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="qi-ta" href="//erasin.wang/git-cheatsheet/#qi-ta">其他</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

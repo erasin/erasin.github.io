@@ -1,0 +1,696 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  Mysql Master Slave 主从同步 设置 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="" property="description" />
+
+  
+    <meta content="server,SQL" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> Mysql Master Slave 主从同步 设置 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      MYSQL MASTER SLAVE 主从同步 设置
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2019-12-30
+    </div>
+  </div>
+
+  <div class="post-content  " 
+    style="background-image:url(&#x2F;assets&#x2F;img&#x2F;database.svg); background-size:150px;" >
+    <p>利用mysql 的 Master - Slave 机制处理多台数据库服务的同步操作。</p>
+<span id="continue-reading"></span>
+<blockquote>
+<p>下面cli中 <code>$</code> 为普通权限，<code>#</code> 为root权限。</p>
+</blockquote>
+<h2 id="mo-shi-1-shi-yong-mysqlming-ling-lai-she-ding-slave">模式1 使用mysql命令来设定slave</h2>
+<p><strong>Master</strong>：SerA IP:10.0.2.81<br />
+<strong>Slave</strong>：SerB IP:10.0.2.82</p>
+<p>A: my.cnf</p>
+<pre data-lang="ini" style="background-color:#2b303b;color:#6c7079;" class="language-ini "><code class="language-ini" data-lang="ini"><span style="color:#eb6772;">server-id</span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">1
+</span><span style="font-style:italic;color:#5f697a;">#master
+</span><span style="color:#eb6772;">log-bin</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">mysql</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">bin
+</span><span style="color:#eb6772;">binlog-do-db</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">dbname       </span><span style="font-style:italic;color:#5f697a;"># 需要备份的数据库名, 多个则重复设置 
+</span></code></pre>
+<p>A: mysql cmd</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> GRANT all privileges ON </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;">.</span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> TO </span><span style="color:#9acc76;">&#39;backup&#39;</span><span style="color:#abb2bf;">@</span><span style="color:#9acc76;">&#39;10.0.2.82&#39;</span><span style="color:#abb2bf;"> IDENTIFIED BY </span><span style="color:#9acc76;">&#39;123456&#39;
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> flush privileges</span><span style="color:#adb7c9;">; 
+</span></code></pre>
+<p>导出 dbname 数据库</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">$</span><span style="color:#abb2bf;"> mysqldump</span><span style="color:#eb6772;"> -uroot -p</span><span style="color:#abb2bf;"> dbname </span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> dbname.sql
+</span></code></pre>
+<p>重启mysql服务器</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#5f697a;"># service mysql restart 
+</span></code></pre>
+<p>A: mysql cmd</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> show grants</span><span style="color:#adb7c9;">;          </span><span style="color:#eb6772;">--</span><span style="color:#abb2bf;"> 查看权限生效</span><span style="color:#adb7c9;"> -- 
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> show master status</span><span style="color:#5ebfcc;">\G</span><span style="color:#adb7c9;">; </span><span style="color:#eb6772;">--</span><span style="color:#abb2bf;"> 录下 FILE </span><span style="color:#adb7c9;">&amp; </span><span style="color:#eb6772;">Position</span><span style="color:#abb2bf;"> 的值</span><span style="color:#adb7c9;"> -- 
+</span></code></pre>
+<p>记下 file &amp; Position 的值，在配置 slave时会用到</p>
+<p>权限(需要时执行)</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> show grants</span><span style="color:#adb7c9;">;  </span><span style="color:#eb6772;">--</span><span style="color:#abb2bf;"> 查看权限</span><span style="color:#adb7c9;"> --
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> GRANT FILE,SELECT,REPLICATION SLAVE ON </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;">.</span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> TO </span><span style="color:#9acc76;">&#39;backup&#39;</span><span style="color:#abb2bf;">@</span><span style="color:#9acc76;">&#39;10.0.2.82&#39;</span><span style="color:#abb2bf;"> IDENTIFIED BY </span><span style="color:#9acc76;">&#39;123456&#39;</span><span style="color:#adb7c9;">;
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> flush privileges</span><span style="color:#adb7c9;">; 
+</span></code></pre>
+<p>B: my.cnf</p>
+<pre data-lang="ini" style="background-color:#2b303b;color:#6c7079;" class="language-ini "><code class="language-ini" data-lang="ini"><span style="color:#eb6772;">server-id</span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">2
+</span><span style="font-style:italic;color:#5f697a;">#master 
+</span><span style="color:#eb6772;">log-bin</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">mysql</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">bin
+</span><span style="font-style:italic;color:#5f697a;">#slave
+</span><span style="color:#eb6772;">replicate-do-db</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">dbname  </span><span style="font-style:italic;color:#5f697a;"># 需要备份的数据库名, 多个则重复设置
+</span><span style="color:#eb6772;">master-connect-retry</span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">60 </span><span style="font-style:italic;color:#5f697a;"># 服务器拓机重连 默认60s
+</span><span style="color:#eb6772;">slave-net-timeout</span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">60    </span><span style="font-style:italic;color:#5f697a;"># 60s同步
+</span></code></pre>
+<p>B: mysql cmd</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">--</span><span style="color:#abb2bf;"> 添加 master 服务器</span><span style="color:#adb7c9;"> --
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> stop slave</span><span style="color:#adb7c9;">; 
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> change master to 
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">master_host</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">&#39;10.0.2.81&#39;, 
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">master_port</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">3306, 
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">master_user</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">&#39;backup&#39;, 
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">master_password</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">&#39;123456&#39;
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">master_log_file</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">&#39;mysql-bin.000002&#39;,
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">master_log_pos</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">98</span><span style="color:#adb7c9;">;
+</span><span style="color:#eb6772;">--</span><span style="color:#abb2bf;"> 其中 file </span><span style="color:#adb7c9;">&amp; </span><span style="color:#eb6772;">pos</span><span style="color:#abb2bf;"> 到 A 的 master中找</span><span style="color:#adb7c9;"> --
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> start slave</span><span style="color:#adb7c9;">;
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> show slave status</span><span style="color:#5ebfcc;">\G</span><span style="color:#adb7c9;">;
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">--</span><span style="color:#abb2bf;"> Slave_IO_Running和Slave_SQL_Running的状态都必须是YES</span><span style="color:#adb7c9;"> --
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> show master stauts</span><span style="color:#5ebfcc;">\G</span><span style="color:#adb7c9;">;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">--</span><span style="color:#abb2bf;"> 导入数据</span><span style="color:#adb7c9;"> --
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> stop slave</span><span style="color:#adb7c9;">;
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> create database `</span><span style="color:#eb6772;">dbname</span><span style="color:#abb2bf;">`</span><span style="color:#adb7c9;">;
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> use dbname</span><span style="color:#adb7c9;">;
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> source /pwd/dbname.sql</span><span style="color:#adb7c9;">;
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> start slave</span><span style="color:#adb7c9;">;
+</span></code></pre>
+<p>如果需要则重启mysql服务器</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;"># service mysql restart 
+</span></code></pre>
+<h2 id="mo-shi-2-shi-yong-pei-zhi-wen-jian-lai-she-ding-slave">模式2 使用配置文件来设定slave</h2>
+<p>A: my.cnf</p>
+<pre data-lang="ini" style="background-color:#2b303b;color:#6c7079;" class="language-ini "><code class="language-ini" data-lang="ini"><span style="color:#eb6772;">default-character-set</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">utf8
+</span><span style="color:#eb6772;">server-id </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">1
+</span><span style="font-style:italic;color:#5f697a;"># master
+</span><span style="color:#eb6772;">log-bin</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">mysql</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">bin 
+</span><span style="color:#eb6772;">binlog-do-db</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">dbname           </span><span style="font-style:italic;color:#5f697a;"># 需要备份的数据库名, 多个则重复设置
+</span><span style="color:#eb6772;">binlog-ignore-db</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">dbname       </span><span style="font-style:italic;color:#5f697a;"># 不需要备份的数据库
+</span></code></pre>
+<p>B: my.cnf</p>
+<pre data-lang="ini" style="background-color:#2b303b;color:#6c7079;" class="language-ini "><code class="language-ini" data-lang="ini"><span style="color:#eb6772;">server-id </span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">2                    </span><span style="font-style:italic;color:#5f697a;"># 不可重复
+</span><span style="font-style:italic;color:#5f697a;"># master
+</span><span style="color:#eb6772;">log-bin</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">mysql</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">bin
+</span><span style="color:#eb6772;">relay-log</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">relay</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">bin
+</span><span style="color:#eb6772;">relay-log-index</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">relay</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">bin</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">index
+</span><span style="font-style:italic;color:#5f697a;"># slave
+</span><span style="color:#eb6772;">master-host </span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">&#39;ip&#39;
+</span><span style="color:#eb6772;">master-user </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">root
+</span><span style="color:#eb6772;">master-password </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">passwd
+</span><span style="color:#eb6772;">master-port </span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">3306
+</span><span style="color:#eb6772;">master-connect-retry</span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">30         </span><span style="font-style:italic;color:#5f697a;"># s
+</span><span style="color:#eb6772;">slave-net-timeout</span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">60            </span><span style="font-style:italic;color:#5f697a;"># 60s同步
+</span><span style="color:#eb6772;">replicate-do-db</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">dbname          </span><span style="font-style:italic;color:#5f697a;"># 需要同步的数据库名, 多个则重复设置
+</span></code></pre>
+<p>索引偏移：</p>
+<p>auto_increment_increment：自增值的自增量<br />
+auto_increment_offset： 自增值的偏移量</p>
+<p>设置了两个值之后，改服务器的自增字段值限定为：
+<code>auto_increment_offset + auto_increment_increment*N</code>  的值，其中N&gt;=0，但是上限还是要受定义字段的类型限制。</p>
+<p>比如：</p>
+<p>auto_increment_offset=1<br />
+auto_increment_increment=2<br />
+那么ID则是所有的奇数[1,3,5,7，.....]</p>
+<p>如果：</p>
+<p>auto_increment_offset=5<br />
+auto_increment_increment=10<br />
+那么ID则是所有的奇数[5,15,25,35，.....]</p>
+<blockquote>
+<p>其余参考模式1</p>
+</blockquote>
+<h2 id="password-zhong-zhi">password 重置</h2>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">$</span><span style="color:#abb2bf;"> mysqladmin</span><span style="color:#eb6772;"> -uroot -p</span><span style="color:#abb2bf;"> oldpassword newpasswd
+</span><span style="color:#eb6772;">$</span><span style="color:#abb2bf;"> mysql</span><span style="color:#eb6772;"> -uroot -p</span><span style="color:#abb2bf;"> user 
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> UPDATE user SET password=PASSWORD(”new password”) </span><span style="color:#eb6772;">WHERE</span><span style="color:#abb2bf;"> user=’root’</span><span style="color:#adb7c9;">; 
+</span></code></pre>
+<h2 id="ju-yu-wang-fang-wen-quan-xian">局域网访问 权限</h2>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#5f697a;"># 给所有的权限
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> grant all privileges on </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;">.</span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> to root@</span><span style="color:#9acc76;">&quot;ip&quot;</span><span style="color:#abb2bf;"> identified by </span><span style="color:#9acc76;">&#39;password&#39;</span><span style="color:#abb2bf;"> with grant option</span><span style="color:#adb7c9;">;
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> flush privileges</span><span style="color:#adb7c9;">; 
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 仅仅给同步权限
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> grant replication slave,file on </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;">.</span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> to </span><span style="color:#9acc76;">&#39;username&#39;</span><span style="color:#abb2bf;">@</span><span style="color:#9acc76;">&#39;ip&#39;</span><span style="color:#abb2bf;"> identified by </span><span style="color:#9acc76;">&#39;password&#39;</span><span style="color:#adb7c9;">;
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> flush privileges</span><span style="color:#adb7c9;">; 
+</span></code></pre>
+<h2 id="shi-li-duo-tai-xun-huan-she-xing-tong-bu">实例 多台循环蛇型同步</h2>
+<p>环境　linux 3台</p>
+<p>IP：</p>
+<ul>
+<li>A: 10.86.1.83</li>
+<li>B: 10.86.1.82</li>
+<li>C: 10.86.1.81</li>
+</ul>
+<p>同步数据库： demodb</p>
+<p>使用同步方向　　A 83 -&gt; B 82 -&gt; C 81 -&gt; A83</p>
+<p><strong>1. 授权用户</strong> ,为了方便使用统一帐号和密码: demouser 123456</p>
+<p>分别开始在ＡＢＣ三台服务器上授权用户登录访问　Ａ要给Ｂ，Ｂ给Ｃ依次设定</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">A-</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;">B:
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;">　grant replication slave,file on </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;">.</span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> to </span><span style="color:#9acc76;">&#39;demouser&#39;</span><span style="color:#abb2bf;">@</span><span style="color:#9acc76;">&#39;10.86.1.82&#39;</span><span style="color:#abb2bf;"> identified by </span><span style="color:#9acc76;">&#39;123456&#39;</span><span style="color:#adb7c9;">;
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> flush privileges</span><span style="color:#adb7c9;">; 
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">B-</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;">C:   
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;">　grant replication slave,file on </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;">.</span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> to </span><span style="color:#9acc76;">&#39;demouser&#39;</span><span style="color:#abb2bf;">@</span><span style="color:#9acc76;">&#39;10.86.1.81&#39;</span><span style="color:#abb2bf;"> identified by </span><span style="color:#9acc76;">&#39;123456&#39;</span><span style="color:#adb7c9;">;
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> flush privileges</span><span style="color:#adb7c9;">; 
+</span><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">C-</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;">A:   
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;">　grant replication slave,file on </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;">.</span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> to </span><span style="color:#9acc76;">&#39;demouser&#39;</span><span style="color:#abb2bf;">@</span><span style="color:#9acc76;">&#39;10.86.1.83&#39;</span><span style="color:#abb2bf;"> identified by </span><span style="color:#9acc76;">&#39;123456&#39;</span><span style="color:#adb7c9;">;
+</span><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> flush privileges</span><span style="color:#adb7c9;">; 
+</span></code></pre>
+<p><strong>2. 修改配置</strong> , 修改<code>my.cnf</code>文件添加</p>
+<p>A: 83 服务器</p>
+<pre data-lang="ini" style="background-color:#2b303b;color:#6c7079;" class="language-ini "><code class="language-ini" data-lang="ini"><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;"># master
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">log-bin</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">mysql</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">bin
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">server-id </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">1
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">binlog-do-db</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">demodb
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">binlog-ignore-db</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">mysql
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">log-slave-updates
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;"># slave
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">replicate-do-db</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">demodb
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">replicate-ignore-db</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">mysql
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">slave-skip-errors</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">all
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">sync_binlog</span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">1
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;"># index
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">auto_increment_increment</span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">1
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">auto_increment_offset</span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">1
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">master-host </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">10.86.1.81
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">master-user </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> demouser
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">master-password </span><span style="color:#adb7c9;">= </span><span style="color:#9acc76;">&#39;123456&#39; 
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">master-port </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">3306
+</span></code></pre>
+<p>B: 82 服务器</p>
+<pre data-lang="ini" style="background-color:#2b303b;color:#6c7079;" class="language-ini "><code class="language-ini" data-lang="ini"><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;"># master
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">log-bin</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">mysql</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">bin
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">server-id </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">2
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">binlog-do-db</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">demodb
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">binlog-ignore-db</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">mysql
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">log-slave-updates
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;"># slave
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">replicate-do-db</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">demodb
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">replicate-ignore-db</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">mysql
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">slave-skip-errors</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">all
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">sync_binlog</span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">1
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;"># index
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">auto_increment_increment</span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">2
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">auto_increment_offset</span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">2
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">master-host </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">10.86.1.83
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">master-user </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> demouser
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">master-password </span><span style="color:#adb7c9;">= </span><span style="color:#9acc76;">&#39;123456&#39; 
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">master-port </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">3306
+</span></code></pre>
+<p>C: 81 服务器</p>
+<pre data-lang="ini" style="background-color:#2b303b;color:#6c7079;" class="language-ini "><code class="language-ini" data-lang="ini"><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;"># master
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">log-bin</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">mysql</span><span style="color:#adb7c9;">-</span><span style="color:#abb2bf;">bin
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">server-id </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">3
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">binlog-do-db</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">demodb
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">binlog-ignore-db</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">mysql
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">log-slave-updates
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;"># slave
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">replicate-do-db</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">demodb
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">replicate-ignore-db</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">mysql
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">slave-skip-errors</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">all
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">sync_binlog</span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">1
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;"># index
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">auto_increment_increment</span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">2
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">auto_increment_offset</span><span style="color:#adb7c9;">=</span><span style="color:#db9d63;">3
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">master-host </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">10.86.1.82
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">master-user </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> demouser
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">master-password </span><span style="color:#adb7c9;">= </span><span style="color:#9acc76;">&#39;123456&#39; 
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">master-port </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">3306
+</span></code></pre>
+<blockquote>
+<p>注意参考 <code>auto_increment_increment</code> 和 <code>auto_increment_offset</code></p>
+</blockquote>
+<p><strong>3. 重启服务 检查错误</strong></p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">service</span><span style="color:#abb2bf;"> mysql restart
+</span></code></pre>
+<p>登录msyql查看 slave 状态 ,执行  <code>show slave status\G;</code></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">Slave_IO_Running: Yes
+</span><span style="color:#abb2bf;">Slave_SQL_Running: Yes
+</span></code></pre>
+<p>以上两个参数。</p>
+<p>极有可能出现的问题：</p>
+<p><strong>Slave_IO_Running: NO</strong>  同步日志和索引问题</p>
+<p>比如 B 出现错误 则查看其master A</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">A服务器：
+</span><span style="color:#abb2bf;">mysql&gt; show master status\G;
+</span><span style="color:#abb2bf;">*************************** 1. row ***************************
+</span><span style="color:#abb2bf;">            File: mysql-bin.000016
+</span><span style="color:#abb2bf;">        Position: 41489841
+</span><span style="color:#abb2bf;">    Binlog_Do_DB: demodb
+</span><span style="color:#abb2bf;">Binlog_Ignore_DB: mysql
+</span><span style="color:#abb2bf;">1 row in set (0.00 sec)
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">ERROR:
+</span><span style="color:#abb2bf;">No query specified
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">B:服务器
+</span><span style="color:#abb2bf;">mysql&gt; show slave status\G;
+</span><span style="color:#abb2bf;">*************************** 1. row ***************************
+</span><span style="color:#abb2bf;">           Slave_IO_State: Waiting for master to send event
+</span><span style="color:#abb2bf;">              Master_Host: 10.86.1.83
+</span><span style="color:#abb2bf;">              Master_User: root
+</span><span style="color:#abb2bf;">              Master_Port: 3306
+</span><span style="color:#abb2bf;">            Connect_Retry: 60
+</span><span style="color:#abb2bf;">          Master_Log_File: mysql-bin.000024             # 该位置出现错误           
+</span><span style="color:#abb2bf;">      Read_Master_Log_Pos: 41523164
+</span><span style="color:#abb2bf;">           Relay_Log_File: web82-relay-bin.000004
+</span><span style="color:#abb2bf;">            Relay_Log_Pos: 41071442
+</span><span style="color:#abb2bf;">    Relay_Master_Log_File: mysql-bin.000024
+</span><span style="color:#abb2bf;">         Slave_IO_Running: No
+</span><span style="color:#abb2bf;">        Slave_SQL_Running: Yes
+</span><span style="color:#abb2bf;">          Replicate_Do_DB: demodb
+</span><span style="color:#abb2bf;">      Replicate_Ignore_DB: mysql
+</span></code></pre>
+<p>在A上获取日志(File)和pos(41489841)后B上执行修改</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">mysql&gt; STOP SLAVE;CHANGE MASTER TO MASTER_LOG_FILE=&#39;mysql-bin.000016&#39;, MASTER_LOG_POS=41489841;START SLAVE ;
+</span></code></pre>
+<p>不出问题的话查看 <code>show slave status\G;</code> 的 <code>Slave_IO_Running</code> 应该ok</p>
+<p><strong>Slave_SQL_Running: NO</strong> 错误</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#eb6772;">mysql</span><span style="color:#adb7c9;">&gt;</span><span style="color:#abb2bf;"> SLAVE STOP</span><span style="color:#adb7c9;">; </span><span style="color:#eb6772;">SET</span><span style="color:#abb2bf;"> GLOBAL SQL_SLAVE_SKIP_COUNTER=1</span><span style="color:#adb7c9;">; </span><span style="color:#eb6772;">START</span><span style="color:#abb2bf;"> SLAVE</span><span style="color:#adb7c9;">; 
+</span></code></pre>
+<p><strong>4. 测试</strong>
+插入表到其他服务器查看</p>
+<pre data-lang="sql" style="background-color:#2b303b;color:#6c7079;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#abb2bf;">mysql</span><span style="color:#adb7c9;">&gt; </span><span style="color:#cd74e8;">CREATE TABLE </span><span style="color:#abb2bf;">`</span><span style="color:#5cb3fa;">testc</span><span style="color:#abb2bf;">` ( </span><span style="color:#9acc76;">`id` </span><span style="color:#cd74e8;">int </span><span style="color:#adb7c9;">NOT </span><span style="color:#db9d63;">NULL</span><span style="color:#abb2bf;"> AUTO_INCREMENT </span><span style="color:#cd74e8;">PRIMARY KEY</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">`title` </span><span style="color:#cd74e8;">int </span><span style="color:#adb7c9;">NOT </span><span style="color:#db9d63;">NULL</span><span style="color:#abb2bf;">);
+</span></code></pre>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;mysql-sync&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;mysql-sync&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2019-12-30
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;gallery&#x2F;">
+    <i class="icon icon-left-open"></i>
+    gallery</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;linux-sync-file&#x2F;">
+    linux下同步方案以及站点文件的简单防篡改
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-warning" href="//erasin.wang/categories/server/">server</a>
+
+
+
+<a class="tag is-black" href="//erasin.wang/categories/sql/">SQL</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-black" href="//erasin.wang/tags/server/">server</a>
+
+
+
+<a class="tag is-danger" href="//erasin.wang/tags/sql/">SQL</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+<div class="box no-print toc" id="toc">
+  
+  
+  <ul class="ui list tree"> 
+    <li class="item t1">
+      <a data_id="mo-shi-1-shi-yong-mysqlming-ling-lai-she-ding-slave" href="//erasin.wang/mysql-sync/#mo-shi-1-shi-yong-mysqlming-ling-lai-she-ding-slave">模式1 使用mysql命令来设定slave</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="mo-shi-2-shi-yong-pei-zhi-wen-jian-lai-she-ding-slave" href="//erasin.wang/mysql-sync/#mo-shi-2-shi-yong-pei-zhi-wen-jian-lai-she-ding-slave">模式2 使用配置文件来设定slave</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="password-zhong-zhi" href="//erasin.wang/mysql-sync/#password-zhong-zhi">password 重置</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="ju-yu-wang-fang-wen-quan-xian" href="//erasin.wang/mysql-sync/#ju-yu-wang-fang-wen-quan-xian">局域网访问 权限</a>
+
+      
+
+    </li>
+    
+    <li class="item t1">
+      <a data_id="shi-li-duo-tai-xun-huan-she-xing-tong-bu" href="//erasin.wang/mysql-sync/#shi-li-duo-tai-xun-huan-she-xing-tong-bu">实例 多台循环蛇型同步</a>
+
+      
+
+    </li>
+    
+  </ul>
+  
+</div>
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>

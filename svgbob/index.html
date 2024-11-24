@@ -1,0 +1,564 @@
+<!DOCTYPE html> 
+  
+
+  
+    
+    
+  
+
+<html lang="zh">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link data-n-head="true" rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+  
+  <title>
+  svgbob 文本转图形 - 编程与开发
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-cascadia-code@2.2.6/index.min.css" crossorigin />
+  <link rel="stylesheet" href='//erasin.wang/icon.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/style.css?F59EA3FB4CHG8E' />
+  <link rel="stylesheet" href='//erasin.wang/print.css?F59EA3FB4CHG8E' media="print" />
+  
+
+  <link rel="preload" as="style" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" onload='this.rel="stylesheet"' crossorigin />
+  <link rel="preload" as="script" href="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" crossorigin />
+
+  <link rel="prefetch" as="style" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" crossorigin />
+
+  <link rel="prefetch" as="script" href="//cdn.jsdelivr.net/npm/mermaid@8.5.0/dist/mermaid.min.js" crossorigin />
+  <link rel="prefetch" as="script" href="//cdn.staticfile.org/axios/0.19.2/axios.min.js" crossorigin />
+
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' />
+  <link rel="preload" as="script" href='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' />
+
+  
+
+
+  
+  <meta content="类似Assic 转换svg工具" property="description" />
+
+  
+    <meta content="soft,svg,uml" name="keywords" />
+  
+
+  
+    <meta content="erasin" name="author" />
+  
+
+  
+    
+  
+
+</head>
+
+<body class="col">
+  <div id="js-progress-bar" style="width: 0%"></div>
+  
+  <a href="#" id="btn-top" class="no-print"> <i class="icon icon-angle-double-up"></i> </a>
+
+  <div id="main">
+    
+    <div id="sidebar" class="col no-print mask">
+      <div class="wrapper">&nbsp; &nbsp;</div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-about">
+          
+          <a href="//erasin.wang/">
+            <h1>ERASIN</h1>
+          </a>
+          
+          <p class="lead">编程中</p>
+          
+          <p>
+            <a href="https://github.com/erasin" target="_blank"> <i class="icon icon-git"></i></a>
+            <a href="/rss.xml" target="_blank"> <i class="icon icon-rss"></i></a>
+            <a href='//erasin.wang/tags'> <i class="icon icon-hashtag"></i></a>
+            <a href='//erasin.wang/categories'> <i class="icon icon-bookmark"></i></a>
+            
+          </p>
+          
+        </div>
+
+        <a id="navbar-burger" class="navbar-burger burger" data-target="sidebar-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+           
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang">INDEX <i class='icon icon-home'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/awesome">AWESOME  <i class='icon icon-thumbs-up-alt'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/book">BOOK <i class='icon icon-book'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/rustlang">RUST LANGUAGE  <i class='icon icon-rust'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/categories/game">GAME DEV <i class='icon icon-gamepad'></i></a>
+          </li>
+          
+          <li class="sidebar-nav-item">
+            <a href="//erasin.wang/comments">COMMENTS <i class='icon icon-comment'></i></a>
+          </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+    
+
+    <div id="container" class="col">
+     
+    
+  
+<nav class="breadcrumb no-print" aria-label="breadcrumbs">
+  
+  
+  
+  <a href="//erasin.wang/">ERASIN </a>
+  
+  <a href="#" class="is-active" aria-current="page"> svgbob 文本转图形 </a>
+</nav>
+
+  
+
+
+
+<div class="post animated fadeIn">
+  <div class="post-header">
+    <h1 class="title">
+      SVGBOB 文本转图形
+      
+
+
+    </h1>
+    <div class="sub-title">
+      2020-08-05
+    </div>
+  </div>
+
+  <div class="post-content  " 
+    style="background-image:url(&#x2F;assets&#x2F;img&#x2F;undraw_pen_nqf7.svg);background-size:200px;" >
+    <p>SvgBob <a href="https://github.com/ivanceras/svgbob">git</a></p>
+<p>一款文本解析为 svg 图形工具。<br />
+一般用途为绘制 uml 图形，也可以绘制其他的有趣图形。</p>
+<ul>
+<li>支持 命令行工具</li>
+<li>支持 lib 库（对markdown解析）</li>
+<li>支持 wasm ，对js支持</li>
+<li>在线工具 <a href="/tools/svgbob/index.html">本站点编辑器</a> <a href="https://ivanceras.github.io/svgbob-editor/">官方的编辑器</a></li>
+<li>中文支持</li>
+</ul>
+<p>在编辑文本的时候需要<strong>等宽字体</strong>支持，否则在中文处理可能错位</p>
+<span id="continue-reading"></span>
+<p><strong>安装下载</strong></p>
+<p>如果安装了 rust 环境可以使用 cargo 来安装。</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">cargo install svgbob_cli
+</span></code></pre>
+<p><strong>主要组成</strong></p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">.--&gt;
+</span><span style="color:#abb2bf;"> \
+</span><span style="color:#abb2bf;">  v
+</span><span style="color:#abb2bf;">   *--.
+</span><span style="color:#abb2bf;">     /
+</span><span style="color:#abb2bf;"> .--&#39;
+</span><span style="color:#abb2bf;"> |
+</span><span style="color:#abb2bf;"> &#39;- - -*
+</span><span style="color:#abb2bf;">       |
+</span><span style="color:#abb2bf;">       *
+</span><span style="color:#abb2bf;">       ^
+</span><span style="color:#abb2bf;">      / 
+</span><span style="color:#abb2bf;">     &#39;====
+</span></code></pre>
+<p>效果</p>
+<pre data-lang="bob" style="background-color:#2b303b;color:#6c7079;" class="language-bob "><code class="language-bob" data-lang="bob"><span style="color:#abb2bf;">.--&gt;
+</span><span style="color:#abb2bf;"> \
+</span><span style="color:#abb2bf;">  v
+</span><span style="color:#abb2bf;">   *--.
+</span><span style="color:#abb2bf;">     /
+</span><span style="color:#abb2bf;"> .--&#39;
+</span><span style="color:#abb2bf;"> |
+</span><span style="color:#abb2bf;"> &#39;- - -*
+</span><span style="color:#abb2bf;">       |
+</span><span style="color:#abb2bf;">       *
+</span><span style="color:#abb2bf;">       ^
+</span><span style="color:#abb2bf;">      / 
+</span><span style="color:#abb2bf;">     &#39;====
+</span></code></pre>
+<p><strong>例子</strong></p>
+<pre data-lang="text" style="background-color:#2b303b;color:#6c7079;" class="language-text "><code class="language-text" data-lang="text"><span style="color:#abb2bf;">                          .---&gt;  F 
+</span><span style="color:#abb2bf;">节点1    节点2           /
+</span><span style="color:#abb2bf;"> *-------*-----*---*----*-----&gt;  E 
+</span><span style="color:#abb2bf;">          \            ^ \
+</span><span style="color:#abb2bf;">           v          /   &#39;---&gt;  G 
+</span><span style="color:#abb2bf;">            B --&gt; C -&#39;
+</span></code></pre>
+<p>结果为</p>
+<pre data-lang="bob" style="background-color:#2b303b;color:#6c7079;" class="language-bob "><code class="language-bob" data-lang="bob"><span style="color:#abb2bf;">                          .---&gt;  F 
+</span><span style="color:#abb2bf;"> 节点    节点            /
+</span><span style="color:#abb2bf;"> *-------*-----*---*----*-----&gt;  E 
+</span><span style="color:#abb2bf;">          \            ^ \
+</span><span style="color:#abb2bf;">           v          /   &#39;---&gt;  G 
+</span><span style="color:#abb2bf;">            B --&gt; C -&#39;
+</span></code></pre>
+<p>官方的 <a href="https://github.com/ivanceras/svgbob/blob/master/svgbob/test_data/demo.bob">DEMO</a></p>
+<pre data-lang="bob" style="background-color:#2b303b;color:#6c7079;" class="language-bob "><code class="language-bob" data-lang="bob"><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"> o-&gt; Plot diagrams
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">        ▲
+</span><span style="color:#abb2bf;">    Uin ┊   .------------------------
+</span><span style="color:#abb2bf;">        ┊   |
+</span><span style="color:#abb2bf;">        ┊   |
+</span><span style="color:#abb2bf;">        *---&#39;┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄▶
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">     Udc▲
+</span><span style="color:#abb2bf;">&quot;Udc_OK&quot;┊      .---------------------
+</span><span style="color:#abb2bf;">        ┊     /  :
+</span><span style="color:#abb2bf;">        ┊    /   :
+</span><span style="color:#abb2bf;">        *---&#39;┄┄┄┄:┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄▶
+</span><span style="color:#abb2bf;">                 :&lt;-----&gt;:
+</span><span style="color:#abb2bf;">        ▲          500ms :
+</span><span style="color:#abb2bf;">        ┊                :
+</span><span style="color:#abb2bf;">Cpu.Qon ┊┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄.-----------
+</span><span style="color:#abb2bf;">        ┊                |  Inactive
+</span><span style="color:#abb2bf;">        ┊    Active      |
+</span><span style="color:#abb2bf;">        *----------------&#39;┄┄┄┄┄┄┄┄┄┄┄▶
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"> o-&gt; Railroad diagrams
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">               ┌------┐   .-.  ┌---┐
+</span><span style="color:#abb2bf;">        o--╮---| elem |--( ; )-| n |--╭--o
+</span><span style="color:#abb2bf;">           |   └------┘   `-&#39;  └---┘  |
+</span><span style="color:#abb2bf;">           | ╭------&gt;------╮          |
+</span><span style="color:#abb2bf;">           | |    ┌---┐    |          |
+</span><span style="color:#abb2bf;">           ╰-╯-╭--| x |--╮-╰----------╯
+</span><span style="color:#abb2bf;">           |   |  └---┘  |            |
+</span><span style="color:#abb2bf;">           |   |   .-.   |            |
+</span><span style="color:#abb2bf;">           |   `--( , )--&#39;            ^
+</span><span style="color:#abb2bf;">           |       `-&#39;                |
+</span><span style="color:#abb2bf;">           |  ╭--------&gt;---------╮    |
+</span><span style="color:#abb2bf;">           |  |   ┌---┐   .-.    |    |
+</span><span style="color:#abb2bf;">           ╰--╰-╭-| x |--( , )-╮-╯----╯
+</span><span style="color:#abb2bf;">                | └---┘   `-&#39;  |
+</span><span style="color:#abb2bf;">                `-------&lt;------&#39;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"> o-&gt; Statistical charts
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    E +-------------------------*--+     E |                         o
+</span><span style="color:#abb2bf;">    D |-------------------*--*--|--*     D |                   o  o  |  o
+</span><span style="color:#abb2bf;">    C |-------------*--*  |  |  |  |     C |             o  o  |  |  |  |
+</span><span style="color:#abb2bf;">    B |-------*--*  |  |  |  |  |  |     B |       o  o  |  |  |  |  |  |
+</span><span style="color:#abb2bf;">    A +-*--*--+--+--+--+--+--+--+--+     A +-o--o--|--|--|--|--|--|--|--|
+</span><span style="color:#abb2bf;">        5 10 15 20 25 30 35 40 45 50         5 10 15 20 25 30 35 40 45 50
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">  85.67 ┤                                       ╭╮
+</span><span style="color:#abb2bf;">  78.20 ┤                                       ││                  ╭╮
+</span><span style="color:#abb2bf;">  70.73 ┤                                       ││  ╭╮ ╭╮ ╭╮   ╭╮  ╭╯╰─╮
+</span><span style="color:#abb2bf;">  63.27 ┤                        ╭╮         ╭─╮ ││ ╭╯╰╮│╰─╯╰╮╭╮│╰──╯   │╭
+</span><span style="color:#abb2bf;">  55.80 ┤   ╭╮                 ╭╮││╭╮ ╭╮╭╮  │ ╰─╯╰─╯  ││    ││││       ╰╯
+</span><span style="color:#abb2bf;">  48.33 ┤   │╰╮      ╭──╮      │││││╰╮│╰╯│  │         ╰╯    ╰╯╰╯
+</span><span style="color:#abb2bf;">  40.87 ┤╭╮ │ ╰╮╭╮  ╭╯  ╰─╮╭╮╭─╯╰╯╰╯ ╰╯  ╰──╯
+</span><span style="color:#abb2bf;">  33.40 ┤││ │  ╰╯╰╮╭╯     ││╰╯
+</span><span style="color:#abb2bf;">  25.93 ┤││╭╯     ╰╯      ╰╯
+</span><span style="color:#abb2bf;">  18.47 ┼╯││
+</span><span style="color:#abb2bf;">  11.00 ┤ ╰╯
+</span><span style="color:#abb2bf;">        └───────────┴───────────┴───────────┴───────────┴───────────┴────
+</span><span style="color:#abb2bf;">      2011        2012        2013        2014        2015        2016
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">  85.67 ┤
+</span><span style="color:#abb2bf;">  78.20 ┤
+</span><span style="color:#abb2bf;">  70.73 ┤
+</span><span style="color:#abb2bf;">  63.27 ┤ █                           █
+</span><span style="color:#abb2bf;">  55.80 ┤ █                     ▁ ▂ █ █ █ █ █
+</span><span style="color:#abb2bf;">  48.33 ┤ █                   █ █ █ █ █ █ █ █
+</span><span style="color:#abb2bf;">  40.87 ┤ █                   █ █ █ █ █ █ █ █ █ █ █
+</span><span style="color:#abb2bf;">  33.40 ┤ █                   █ █ █ █ █ █ █ █ █ █ █ █ █ █
+</span><span style="color:#abb2bf;">  25.93 ┤ █                   █ █ █ █ █ █ █ █ █ █ █ █ █ █ █
+</span><span style="color:#abb2bf;">  18.47 ┼ █ █                 █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █
+</span><span style="color:#abb2bf;">  11.00 ┤ █ █ ▁ ▂ ▃ ▄ ▅ ▆ ▇ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █
+</span><span style="color:#abb2bf;">        └───────────┴───────────┴───────────┴───────────┴───────────┴────
+</span><span style="color:#abb2bf;">      2011         2012        2013        2014        2015        2016
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;"> o-&gt;  Flow charts
+</span><span style="color:#abb2bf;">                      .--.            .---.  .---. .---.  .---.    .---.  .---.
+</span><span style="color:#abb2bf;">                      |  |   OS API   &#39;---&#39;  &#39;---&#39; &#39;---&#39;  &#39;---&#39;    &#39;---&#39;  &#39;---&#39;
+</span><span style="color:#abb2bf;">                      v  |              |      |     |      |        |      |
+</span><span style="color:#abb2bf;">             .-. .-. .-. |              v      v     |      v        |      v
+</span><span style="color:#abb2bf;">         .--&gt;&#39;-&#39; &#39;-&#39; &#39;-&#39; |            .------------. | .-----------. |  .-----.
+</span><span style="color:#abb2bf;">         |     \  |  /   |            | Filesystem | | | Scheduler | |  | MMU |
+</span><span style="color:#abb2bf;">         |      v ^ v    |            &#39;------------&#39; | &#39;-----------&#39; |  &#39;-----&#39;
+</span><span style="color:#abb2bf;">         |_______/ \_____|                   |       |      |        |
+</span><span style="color:#abb2bf;">                 \ /                         v       |      |        v
+</span><span style="color:#abb2bf;">                  |     ____              .----.     |      |    .---------.
+</span><span style="color:#abb2bf;">                  &#39;--&gt; /___/              | IO |&lt;----&#39;      |    | Network |
+</span><span style="color:#abb2bf;">                                          &#39;----&#39;            |    &#39;---------&#39;
+</span><span style="color:#abb2bf;">                                             |              |         |
+</span><span style="color:#abb2bf;">                                             v              v         v
+</span><span style="color:#abb2bf;">                                      .---------------------------------------.
+</span><span style="color:#abb2bf;">                                      |                  HAL                  |
+</span><span style="color:#abb2bf;">                                      &#39;---------------------------------------&#39;
+</span><span style="color:#abb2bf;">
+</span></code></pre>
+
+
+
+  </div>
+</div>
+
+
+  
+<div class="post-footer">
+  <div class="signature">
+    <span class="signature-icon"></span>
+    <strong>作者：</strong>
+    
+    
+    <a class="author" href="&#x2F;&#x2F;erasin.wang&#x2F;">erasin</a>
+    
+    <br />
+    <strong>出处：</strong>
+    <a href="&#x2F;&#x2F;erasin.wang&#x2F;svgbob&#x2F;">&#x2F;&#x2F;erasin.wang&#x2F;svgbob&#x2F;</a><br />
+    <strong>版权：</strong>本文采用「署名-非商业性使用-相同方式共享 4.0 国际」知识共享许可协议进行许可。<br />
+    <strong>时间：</strong>
+    2020-08-05
+  </div>
+</div>
+
+
+<div class="post-page pagination is-centered no-print">
+  
+  <a class="pagination-previous" href="&#x2F;&#x2F;erasin.wang&#x2F;linux-disk-full&#x2F;">
+    <i class="icon icon-left-open"></i>
+    Linux系统硬盘使用100%写入失败</a>
+  
+
+  
+  <a class="pagination-next" href="&#x2F;&#x2F;erasin.wang&#x2F;vscode&#x2F;">
+    我的VSCODE 插件
+    <i class="icon icon-right-open"></i>
+  </a>
+  
+</div>
+
+
+<div class="no-print">
+  
+  <script src="https://giscus.app/client.js" data-repo="erasin/erasin.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnk3MzE0Mzg3Mw==" data-category="article" data-category-id="" data-mapping="pathname"
+    data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light"
+    data-lang="zh-CN" crossorigin="anonymous" async>
+    </script>
+  <style>
+    .utterances {
+      max-width: initial;
+    }
+  </style>
+  
+  
+</div>
+
+
+
+    </div>
+
+    <div id="right-side" class="right-side no-print mask">
+      <div class="spaceline"></div>
+      
+  
+<div class="box">
+  <div class="meta box-body">
+    
+    <div class="meta-item">
+      <strong>分类:</strong>
+      
+
+
+
+
+<a class="tag is-link" href="//erasin.wang/categories/soft/">soft</a>
+
+
+    </div>
+    
+
+    
+    <div class="meta-item">
+      <strong>标签:</strong>
+      
+
+
+
+
+<a class="tag is-success" href="//erasin.wang/tags/soft/">soft</a>
+
+
+
+<a class="tag is-warning" href="//erasin.wang/tags/svg/">svg</a>
+
+
+
+<a class="tag is-success" href="//erasin.wang/tags/uml/">uml</a>
+
+
+    </div>
+    
+  </div>
+</div>
+  
+
+<div></div>
+
+
+
+<div class="box">
+  <div class="box-body">
+    
+<ul class="row">
+  
+    
+  
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/linux-core-switch/">arch linux 更换内核 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/hx-lsp/">hx-lsp 为 Helix editor 提供 snippets 和 actions 
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/blender-thumbnailer/">blender thumbnailer 在Linux下缩略图 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/helix/ime-switch/">在类vim/emacs/helix/vscode模态文本编辑器中使用esc键切换输入法 
+
+
+
+<i class="icon icon-terminal"></i> 
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/makefile/">make 和 Makefile 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+  
+  
+  <li style="min-width:50%">
+    <a href="//erasin.wang/posts/vscode-wayland/">vscode 在linux wayland 环境的处理 
+
+
+
+
+</a>
+    
+  </li>
+  
+  
+   
+</ul>
+
+  </div>
+</div>
+
+
+
+
+ 
+    </div>
+  </div>
+
+  
+  <footer id="footer" class="footer no-print text-center">
+     
+    <p style="color: gray; padding: 10px">
+      站点由<a href="https://www.getzola.org/" target="_blank">Zola</a> 驱动 |
+      <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备2022034121号</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" defer></script>
+  <script src='//erasin.wang/assets/js/comment.js?F59EA3FB4CHG8E' defer></script>
+  <script src='//erasin.wang/assets/js/init.js?F59EA3FB4CHG8E' defer></script>
+  
+<script src='//erasin.wang/assets/js/page.js?F59EA3FB4CHG8E'></script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-EVFY56MH67"></script-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('js', new Date());
+
+    // gtag('config', 'G-EVFY56MH67');
+  </script>
+</body>
+
+</html>
