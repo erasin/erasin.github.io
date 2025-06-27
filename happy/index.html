@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生日快乐，我的爱人！</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial Rounded MT Bold', 'Microsoft YaHei', sans-serif;
+      background: linear-gradient(135deg, #ffafbd, #ffc3a0, #ffd8cb);
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .container {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      max-width: 90%;
+      margin: 20px;
+    }
+
+    h1 {
+      color: #e84393;
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+      letter-spacing: 3px;
+    }
+
+    .cake-container {
+      position: relative;
+      width: 300px;
+      height: 250px;
+      margin: 30px auto;
+    }
+
+    .cake {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .plate {
+      width: 220px;
+      height: 20px;
+      background: #f1c40f;
+      border-radius: 10px;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .layer {
+      position: absolute;
+      width: 180px;
+      height: 60px;
+      background: #f39c12;
+      border-radius: 10px 10px 0 0;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .layer.top {
+      width: 150px;
+      height: 50px;
+      background: #e67e22;
+      bottom: 80px;
+    }
+
+    .layer.cream {
+      width: 160px;
+      height: 20px;
+      background: #ecf0f1;
+      bottom: 130px;
+      border-radius: 10px;
+    }
+
+    .candle {
+      position: absolute;
+      width: 10px;
+      height: 50px;
+      background: #e74c3c;
+      border-radius: 5px;
+      bottom: 150px;
+    }
+
+    .candle:nth-child(1) {
+      left: 35%;
+    }
+
+    .candle:nth-child(2) {
+      left: 50%;
+    }
+
+    .candle:nth-child(3) {
+      left: 65%;
+    }
+
+    .flame {
+      position: absolute;
+      width: 15px;
+      height: 30px;
+      background: #ff9d00;
+      border-radius: 50% 50% 20% 20%;
+      bottom: 200px;
+      animation: flicker 1.5s infinite alternate;
+      box-shadow: 0 0 15px #ff5722;
+    }
+
+    .flame:nth-child(4) {
+      left: 35%;
+    }
+
+    .flame:nth-child(5) {
+      left: 50%;
+    }
+
+    .flame:nth-child(6) {
+      left: 65%;
+    }
+
+    .message {
+      color: #d63031;
+      font-size: 1.8rem;
+      margin-top: 30px;
+      line-height: 1.6;
+      min-height: 150px;
+      padding: 20px;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .balloon {
+      position: absolute;
+      width: 50px;
+      height: 60px;
+      border-radius: 50%;
+      z-index: 1;
+      top: 100%;
+      animation: float 15s infinite linear;
+    }
+
+    .balloon::before {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .balloon:nth-child(1) {
+      background: radial-gradient(circle at 30% 30%, #ff7979, #e84393);
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .balloon:nth-child(2) {
+      background: radial-gradient(circle at 30% 30%, #7ed6df, #22a6b3);
+      left: 20%;
+      animation-delay: 2s;
+    }
+
+    .balloon:nth-child(3) {
+      background: radial-gradient(circle at 30% 30%, #badc58, #6ab04c);
+      left: 30%;
+      animation-delay: 4s;
+    }
+
+    .balloon:nth-child(4) {
+      background: radial-gradient(circle at 30% 30%, #f6e58d, #f9ca24);
+      left: 70%;
+      animation-delay: 1s;
+    }
+
+    .balloon:nth-child(5) {
+      background: radial-gradient(circle at 30% 30%, #ffbe76, #f0932b);
+      left: 80%;
+      animation-delay: 3s;
+    }
+
+    .balloon:nth-child(6) {
+      background: radial-gradient(circle at 30% 30%, #dff9fb, #c7ecee);
+      left: 90%;
+      animation-delay: 5s;
+    }
+
+    .firework {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff6b6b;
+      font-size: 1.5rem;
+      z-index: 0;
+      top: 100%;
+      animation: float 20s infinite linear;
+    }
+
+    .controls {
+      margin-top: 20px;
+    }
+
+    button {
+      background: #e84393;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 0 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    button:hover {
+      background: #fd79a8;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes flicker {
+      0% {
+        transform: scale(1) translateY(0);
+        opacity: 0.9;
+      }
+
+      100% {
+        transform: scale(1.1) translateY(-5px);
+        opacity: 1;
+      }
+    }
+
+    @keyframes float {
+      0% {
+        top: 100%;
+        transform: translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 0.8;
+      }
+
+      100% {
+        top: -100px;
+        transform: translateX(20px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fireworks {
+      0% {
+        transform: translateY(0) scale(0);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-100px) scale(1);
+        opacity: 0;
+      }
+    }
+
+    @keyframes text-appear {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .message {
+        font-size: 1.4rem;
+      }
+
+      .cake-container {
+        transform: scale(0.8);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 飘动的心形 -->
+  <div class="heart">❤️</div>
+  <div class="heart">❤️</div>
+  <div class="heart">❤️</div>
+  <div class="heart">❤️</div>
+  <div class="heart">❤️</div>
+
+  <!-- 飘动的气球 -->
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+
+  <div class="container">
+    <h1>生日快乐，我的爱人！</h1>
+
+    <div class="cake-container">
+      <div class="cake">
+        <div class="plate"></div>
+        <div class="layer"></div>
+        <div class="layer top"></div>
+        <div class="layer cream"></div>
+        <div class="candle"></div>
+        <div class="candle"></div>
+        <div class="candle"></div>
+        <div class="flame"></div>
+        <div class="flame"></div>
+        <div class="flame"></div>
+      </div>
+    </div>
+
+    <div class="message" id="birthdayMessage">
+      亲爱的，愿你的生日充满欢乐与惊喜;
+      每一天都像今天一样特别;
+      你是我生命中最美的礼物;
+      爱你直到永远 ❤️
+    </div>
+
+    <!-- <div class="controls"> -->
+      <!-- <button id="musicBtn">播放音乐</button> -->
+      <!-- <button id="fireworksBtn">绽放烟花</button> -->
+    <!-- </div> -->
+  </div>
+
+  <audio id="birthdayMusic" loop>
+    <source src="https://music.163.com/song/media/outer/url?id=1450707819.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // 创建飘动的心形
+    function createHearts() {
+      const container = document.body;
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDelay = Math.random() * 15 + 's';
+        heart.style.fontSize = (Math.random() * 2 + 1) + 'rem';
+        container.appendChild(heart);
+      }
+    }
+
+    // 创建烟花效果
+    function createFireworks() {
+      const container = document.body;
+      const colors = ['#ff7979', '#7ed6df', '#f6e58d', '#badc58', '#fd79a8'];
+
+      for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+          const firework = document.createElement('div');
+          firework.classList.add('firework');
+
+          const size = Math.random() * 8 + 2;
+          firework.style.width = size + 'px';
+          firework.style.height = size + 'px';
+          firework.style.left = Math.random() * 100 + 'vw';
+          firework.style.bottom = '0';
+          firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          firework.style.animation = `fireworks ${Math.random() * 3 + 2}s ease-out forwards`;
+
+          container.appendChild(firework);
+
+          // 移除元素
+          setTimeout(() => {
+            firework.remove();
+          }, 5000);
+        }, i * 100);
+      }
+    }
+
+    // 文字动画效果
+    function animateText() {
+      const message = document.getElementById('birthdayMessage');
+      const text = message.innerHTML;
+      message.innerHTML = '';
+
+      let i = 0;
+      const typewriter = setInterval(() => {
+        if (i < text.length) {
+          var char = text.charAt(i);
+          if (char == ";") {
+            char = "<br/>";
+          }
+          message.innerHTML += text.charAt(char);
+          i++;
+        } else {
+          clearInterval(typewriter);
+        }
+      }, 100);
+    }
+
+    // 控制音乐
+    const musicBtn = document.getElementById('musicBtn');
+    const audio = document.getElementById('birthdayMusic');
+    let isPlaying = false;
+
+    musicBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        audio.pause();
+        musicBtn.textContent = '播放音乐';
+      } else {
+        audio.play().catch(e => console.log('自动播放被阻止，请手动点击播放'));
+        musicBtn.textContent = '暂停音乐';
+      }
+      isPlaying = !isPlaying;
+    });
+    audio.play().catch(e => console.log('自动播放被阻止，请手动点击播放'));
+
+    // 烟花按钮
+    const fireworksBtn = document.getElementById('fireworksBtn');
+    fireworksBtn.addEventListener('click', createFireworks);
+
+    // 初始化
+    window.onload = function () {
+      createHearts();
+      animateText();
+
+      // 自动播放音乐（可能会被浏览器阻止）
+      setTimeout(() => {
+        audio.play().catch(e => {
+          console.log('自动播放被阻止：', e);
+          musicBtn.textContent = '播放音乐';
+        });
+      }, 2000);
+    };
+  </script>
+</body>
+
+</html>
